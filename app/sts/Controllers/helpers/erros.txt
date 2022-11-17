@@ -1,0 +1,21 @@
+                    DESCRIÇÃO DOS ERROS
+
+Erro 000: Página não encontrada;
+Erro 001: Falha ao cadastrar conta;
+Erro 002: Usuario tenta logar ou cadastrar outro usuario mas já esta logado;
+Erro 003: Falha ao cadastrar novo pet;
+Erro 004: Falha ao alterar dados do usuario;
+Erro 005: Falha ao alterar dados do endereço;
+Erro 006: Falha ao alterar dados do pet;
+Erro 007: Usuario tentou acessar uma pagina sem estar logado;
+Erro 008: Falha ao cadastrar endereço do usuario;
+Erro 009: Usuario tento acessar um action da página SobreCliente-AlterarDados que não existe
+Erro 010: Usuario tentou acessar alterarDadosEndereco da página SobreCliente mas não possui endereço cadastrado
+Erro 011: Usuario tentou cadastrar um endereço na conta mas já existe um endereço cadastrado na conta
+Erro 012: Usuario tentou alterar um endereço mas ele ainda não está logado em uma conta
+Erro 013: Falha ao cadastrar foto do usuario
+Erro 014: Usuario tentou acessar a página de cadastro de foto de perfil mas já tem uma foto cadastrada
+
+
+
+
