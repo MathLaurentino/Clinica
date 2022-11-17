@@ -1,0 +1,18 @@
+{
+    "description": "Clinica Veterinaria, projeto integrador 2022",
+    "authors": [
+        {
+            "name": "Matheus Laurentino Alves Barbosa Vieira",
+            "email": "matheus.laurentino.ifpr@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Core\\": "core",
+            "App\\": "app",
+            "Adms\\": "app/adms"
+        }
+    },
+    "require": {}
+    
+}
