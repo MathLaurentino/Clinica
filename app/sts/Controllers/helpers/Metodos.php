@@ -53,10 +53,7 @@ class Metodos{
 
 
     /**
-     * @author Name <email@email.com>
-     *
-     * @param [type] $email
-     * @return boolean
+     * 
      */
     public function verifyEmail($email): bool 
     {   
@@ -65,8 +62,6 @@ class Metodos{
         else 
             return false;
     }
-
-
     
     
 }

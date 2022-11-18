@@ -28,6 +28,7 @@ class FotoPerfil
     
                     $stsCreate= new \Sts\Models\StsFotoPerfil();
                     $result = $stsCreate->cadastroFoto($this->data);
+
                     if ($result) {
                         $_SESSION['foto_usuario'] = $this->data['foto_usuario'];
                         $_SESSION['msg'] = "Foto salva com sucesso";
@@ -53,13 +54,26 @@ class FotoPerfil
     }
 
 
+    
     /**     function pet()
      * Cadastra uma foto de perfil de um pet do usuario
      */
     public function pet()
     {
 
+        echo "oi";
+
     }
+
+
+
+
+
+
+
+
+
+
 
     private function view($view) 
     {

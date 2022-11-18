@@ -164,7 +164,7 @@ class Cadastro{
             } else {
                 $this->data=[];
                 $loadView = new \Core\LoadView("sts/Views/cadastros/cadastroEndereco", $this->data, null);
-                $loadView->loadView();
+                $loadView->loadView2();
             }
         } elseif (isset($_SESSION['idendereco'])) {
             $header = URL . "Erro?case=11"; // Erro 011
