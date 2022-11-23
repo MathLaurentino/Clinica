@@ -10,7 +10,7 @@ namespace Core;
             define('URL', 'http://localhost/Clinica/');
             define('URLADM', 'http://localhost/Clinica/Adm/');
 
-            define('IMG', 'app\sts\Helpers\imagens/');
+            define('IMG', 'app\sts\assets\imagens/'); 
             define('IMGERRO', 'app\sts\Helpers\imagens\Sem_Foto.png');
 
             define('CONTROLLER', 'Home');

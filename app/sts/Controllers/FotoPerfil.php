@@ -147,7 +147,7 @@ class FotoPerfil
      */
     private function saveFile($extensao): bool 
     {
-        $pasta = "app\sts\Helpers\imagens/";
+        $pasta = IMG; 
         $nomeUnicoArquivo = uniqid(); // nome aleatorio de arquivo
         $path = $pasta . $nomeUnicoArquivo . "." . $extensao;
         $this->nameInDB = $nomeUnicoArquivo . "." . $extensao;
