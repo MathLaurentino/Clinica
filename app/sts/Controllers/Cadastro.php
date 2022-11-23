@@ -64,7 +64,7 @@ class Cadastro{
         } else {   
             $this->data=[];
             $loadView = new \Core\LoadView("sts/Views/cadastros/Cadastrocliente", $this->data, null);
-            $loadView->loadView();
+            $loadView->loadView2();
         }
 
     }
