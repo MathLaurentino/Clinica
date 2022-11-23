@@ -162,9 +162,9 @@ class Cadastro{
                 $this->data = $this->dataForm;
                 $this->createEndereco();
             } else {
-                $this->data=[];
-                $loadView = new \Core\LoadView("sts/Views/cadastros/cadastroEndereco", $this->data, null);
-                $loadView->loadView2();
+                $this->data=[]; 
+                $loadView = new \Core\LoadView("sts/Views/cadastros/cadastro_endereco", $this->data, null);
+                $loadView->loadView_header('cadastro_endereco');
             }
         } elseif (isset($_SESSION['idendereco'])) {
             $header = URL . "Erro?case=11"; // Erro 011

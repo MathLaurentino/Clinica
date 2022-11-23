@@ -28,7 +28,6 @@ class LoadView
         }
     }
 
-
     public function loadview2()
     {
         if (file_exists('app/' . $this->nameView . '.php')){
@@ -41,6 +40,22 @@ class LoadView
             die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
         }
     }
+
+    public function loadView_header($header)
+    {
+        if (file_exists('app/' . $this->nameView . '.php')){
+            
+            include 'app\sts\Views\helpers/headers/' . $header . '.php'; 
+            include 'app/' . $this->nameView . '.php';
+            include 'app/sts/views/helpers/footer.php';
+
+        } else {
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+        }
+    }
+
+
+
 }
 
 ?>

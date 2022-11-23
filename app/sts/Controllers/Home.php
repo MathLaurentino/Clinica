@@ -19,7 +19,7 @@ class Home{
         }
         
         $loadView = new \Core\LoadView('sts/Views/home', null, null);
-        $loadView->loadView();
+        $loadView->loadView_header('index');
     }
 
 

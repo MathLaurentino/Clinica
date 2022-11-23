@@ -1,0 +1,358 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap');
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ECEFF1;
+}
+
+.main-container .conteudo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    width: 860px;
+    height: 55%;
+    position: relative;
+}
+
+.main-container .conteudo::before{
+    content:"";
+    position:absolute;
+    background-color:#A487D5;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    left: 0;
+}
+
+/*PRIMEIRO CONTEÚDO*/ 
+.main-container .conteudo01{
+    display: flex;
+    align-items: flex-start;
+}
+
+.main-container .primeiracoluna{
+    text-align: center;
+    width: 40%;
+}
+
+.conteudo01 .primeiracoluna{
+    z-index: 10;
+}
+
+.conteudo01 .segundacoluna{
+    z-index: 11;
+}
+
+.primeiracoluna .título{
+    font-family: 'Righteous', cursive;
+    font-size: 33px;
+    color: white;
+    padding-top: 10px;
+}
+
+.primeiracoluna .subtítulo{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: white;
+    padding: 20px;
+    padding-bottom: 30px;
+}
+
+.primeiracoluna .botao{
+    font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: black;
+	background-color: white;
+	border: none;
+    padding: 6px 9px;
+    width: 125px;
+	border-radius: 5px;
+    cursor: pointer;
+}
+
+.main-container .segundacoluna{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+}
+
+.segundacoluna .título{
+    font-family: 'Righteous', cursive;
+    font-size: 33px;
+    color: black;
+    padding-top: 10px;
+}
+
+.main-container .form-login{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+}
+
+.form-login input{
+    height: 45px;
+    border: none;
+    background: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    font-size: 15px;
+    color: black;
+    margin: 8px;
+}
+
+.segundacoluna .botao{
+    font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #7DE04A;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+    align-self: center;
+    margin: 5px;
+}
+
+.segundacoluna .opções{
+    font-family: 'Righteous', cursive;
+    font-size: 19px;
+    color: black;
+}
+
+.main-container .listaredes{
+    display: flex;
+    list-style: none;
+}
+
+.listaredes .icone{
+   padding: 10px;
+}
+
+/*SEGUNDO CONTEÚDO*/ 
+.main-container .conteudo02{
+    display: flex;
+    align-items: flex-start;
+    position: absolute;
+}
+
+.conteudo02 .primeiracoluna{
+    order: 2;
+    z-index: -1;
+}
+
+.conteudo02 .segundacoluna{
+    order: 1;
+    z-index: -1;
+}
+
+.segundacoluna .senha{
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: underline;
+    font-size: 15px;
+    color: black;
+    padding: 20px;
+}
+
+/*LOGIN ADMINISTRAÇÃO*/ 
+.main-container .conteudo-principal{
+   display: flex;
+   flex-direction: column;
+}
+
+.main-container .conteudo-principal{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    width: 860px;
+    height: 55%;
+    position: relative;
+}
+
+.conteudo-principal .título{
+    font-family: 'Righteous', cursive;
+    font-size: 33px;
+    color: black;
+    padding-top: 10px;
+}
+
+.form-login .botao-adm{
+    font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #FFB300;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+    align-self: center;
+    margin: 5px;
+}
+
+
+/*POSICIONANDO DAS TELAS*/
+.sign-in-js .conteudo01 .primeiracoluna,
+.sign-in-js .conteudo01 .segundacoluna{
+	z-index: -1;
+}
+
+.sign-in-js .conteudo02 .segundacoluna{
+	z-index: 11;
+}
+.sign-in-js .conteudo02 .primeiracoluna{
+    z-index: 13;
+}
+
+.sign-in-js .conteudo::before{
+    left: 60%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    animation: slidein 3s; 
+
+    z-index: 12;
+}
+
+.sign-up-js .conteudo::before{
+    animation: slideout 3s;
+
+    z-index: 12;
+}
+
+.sign-up-js .conteudo02 .primeiracoluna,
+.sign-up-js .conteudo02 .segundacoluna{
+    z-index: -1;
+}
+
+.sign-up-js .conteudo01 .segundacoluna{
+    z-index: 11;
+}
+.sign-up-js .conteudo01 .primeiracoluna{ 
+    z-index: 13;
+}
+
+/*DESLOCAMENTO DE CONTEÚDO ATRÁS DO CONTEUDO::BEFORE*/
+.sign-in-js .conteudo01 .segundacoluna{
+    z-index: -1;
+    position: relative;
+    animation: deslocamentoEsq 3s;
+}
+
+.sign-up-js .conteudo02 .segundacoluna{
+    z-index: -1;
+    position: relative;
+    animation: deslocamentoDir 3s;
+}
+
+/*ANIMAÇÃO CSS PARA O CONTEÚDO*/
+@keyframes deslocamentoEsq{
+    from{
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+
+    25%{
+        left: -80px;
+        opacity: .5;
+    }
+    50%{
+        left: -100px;
+        opacity: .2;
+    }
+
+    to{
+        left: -110px;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+@keyframes deslocamentoDir{
+    from{
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+
+    25%{
+        left: 80px;
+        opacity: .5;
+    }
+    50%{
+        left: 100px;
+        opacity: .2;
+    }
+
+    to{
+        left: 110px;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+/*ANIMAÇÃO CSS*/ 
+@keyframes slidein{
+    from{
+        left: 0;
+        width: 40%;
+    }
+    25%{
+        left: 5%;
+        width: 50%;
+    }
+    50%{
+        width: 25%;
+
+    }
+    75%{
+        width: 45%;
+    }
+    to{
+        left: 60%;
+        width: 40%;
+    }
+}
+
+@keyframes slideout{
+    from{
+        left: 60%;
+        width: 40%;
+    }
+    25%{
+        left: 45%;
+        width: 50%;
+    }
+    50%{
+        left: 25%;
+        width: 60%;
+    }
+    75%{
+        left: 5%;
+        width: 50%;
+    }
+    to{
+        left: 0;
+        width: 40%;
+    }
+}
