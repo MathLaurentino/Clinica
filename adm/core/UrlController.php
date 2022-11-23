@@ -141,7 +141,9 @@ class UrlController extends Define
             $method = $this->urlMetodo;
             $page->$method();
         }else{
-            die("Erro: pagina não encontrada");
+            //die("Erro: pagina não encontrada");
+            echo $methodo;
+            echo $page;
         }
     }
 }

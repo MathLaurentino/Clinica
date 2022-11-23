@@ -1,4 +1,4 @@
- @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap');
 
 *{
 	margin: 0;
@@ -116,6 +116,7 @@
     font-size: 15px;
     color: black;
     margin: 8px;
+    width: 20vw;
 }
 
 .segundacoluna .botao{
@@ -172,5 +173,4 @@
     color: black;
     padding: 20px;
 }
-
 

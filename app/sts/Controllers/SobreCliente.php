@@ -91,7 +91,7 @@ private array|null $dataForm; // dados que vem do formulario
                 }
 
             } else {
-                $_SESSION['msg'] = "CPF infromado é invalido";
+                $_SESSION['msg'] = "CPF informado é invalido";
                 $this->data = $this->dataForm;
                 $this->view('alterarDados');
             } 

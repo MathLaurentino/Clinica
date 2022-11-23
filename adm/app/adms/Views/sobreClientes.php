@@ -38,7 +38,7 @@
             echo "E-mail:" . "$email" ."<br>"; 
             
             if ($_SESSION['idusuario'] == '1') {
-                if ($tipo_usuario == 'mantenedor' && $_SESSION['idusuario'] != '1') {
+                if ($tipo_usuario == 'mantenedor' && $idusuario != '1') {
                     ?>
                         <form method="post" action=""> 
                             <input type="hidden" name="idusuario" value="<?php if(isset($idusuario)) { echo $idusuario; } ?>">

@@ -31,8 +31,7 @@
 
             <button class="botao"> Adicionar informações</button>
         </form>
-
-
+        
     </div>
 
 </div>

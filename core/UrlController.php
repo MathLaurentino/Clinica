@@ -42,12 +42,15 @@ class UrlController extends Define
                 $this->urlController = CONTROLLER; //Home
             }
 
-            // Se tiver passado o método da controller na URL
-            if (isset($this->urlArray[1])){
-                $this->urlMetodo = $this->slugMetodo($this->urlArray[1]);
-            }else{
-                $this->urlMetodo = METODO; //index
+            if ($this->urlArray[0] != 'adm') {
+                // Se tiver passado o método da controller na URL
+                if (isset($this->urlArray[1])){
+                    $this->urlMetodo = $this->slugMetodo($this->urlArray[1]);
+                }else{
+                    $this->urlMetodo = METODO; //index
+                }
             }
+            
 
         }else{
             $this->urlController = CONTROLLER; //Home
@@ -146,11 +149,11 @@ class UrlController extends Define
                 $method = $this->urlMetodo;
                 $page->$method();
             } else {
-                die("Erro: pagina não encontrada");
+                die("Erro: pagina não encontrada1");
             }
             
-        }else{
-            die("Erro: pagina não encontrada");
+        } else {
+            die("Erro: pagina não encontrada2");
         }
     }
 }

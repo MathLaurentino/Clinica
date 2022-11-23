@@ -10,8 +10,12 @@
         unset($_SESSION['msg']);   
     }
     
-    if (isset($this->data)) {
+    if (isset($this->data[0])) {
         extract($this->data[0]);
+    }
+    
+    if (isset($this->data)) {
+        extract($this->data);
     }
 
 ?>
