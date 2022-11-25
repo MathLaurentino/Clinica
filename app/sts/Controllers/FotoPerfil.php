@@ -66,15 +66,6 @@ class FotoPerfil
     }
 
 
-
-
-
-
-
-
-
-
-
     private function view($view) 
     {
         $loadView = new \Core\LoadView("sts/Views/fotoPerfil/" . $view, $this->data, null);
@@ -148,7 +139,7 @@ class FotoPerfil
     private function saveFile($extensao): bool 
     {
         $pasta = IMG; 
-        $nomeUnicoArquivo = uniqid(); // nome aleatorio de arquivo
+        $nomeUnicoArquivo = uniqid(); // nome aleatorio de arquivo, mas sempre unico
         $path = $pasta . $nomeUnicoArquivo . "." . $extensao;
         $this->nameInDB = $nomeUnicoArquivo . "." . $extensao;
 

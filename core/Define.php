@@ -11,7 +11,7 @@ namespace Core;
             define('URLADM', 'http://localhost/Clinica/Adm/');
 
             define('IMG', 'app\sts\assets\imagens/'); 
-            define('IMGERRO', 'app\sts\Helpers\imagens\Sem_Foto.png');
+            define('IMGERRO', 'app\sts\assets\imagens/Sem_Foto.png');
 
             define('CONTROLLER', 'Home');
             define('CONTROLLERERRO', 'Erro');
