@@ -20,14 +20,16 @@
 
     <?php
 
-        if (!empty($_SESSION['foto_usuario'])) {  
+        if (isset($_SESSION['foto_usuario'])) {  
 
-            echo "<img height='100' src= '../". IMG . $_SESSION['foto_usuario'] ." '> <br> <br>";
+            echo "<img height='100' src= '../". IMG . $_SESSION['foto_usuario'] ." '> <br> <br> <hr>";
+            echo "<a href='" . URL . "FotoUsuario/alterar'> Alterar Foto de Perfil </a> <br> <br>";
+            echo "<a href='" . URL . "FotoUsuario/apagar'> Apagar Foto de Perfil </a> <br> <br> <hr> <br>";
 
         } else { 
             
             echo "<img height='100' src= ' ../". IMGERRO ." '> <br> <br>";
-            echo "<a href='" . URL . "FotoPerfil/usuario'> Foto de Perfil </a> <br>";
+            echo "<a href='" . URL . "FotoUsuario/adicionar'> Adicionar Foto de Perfil </a> <br> <br> <hr> <br>";
 
         }
 

@@ -47,7 +47,10 @@ echo "<hr>";
 
     echo "<a href='" . URL . "Servicos'> Serviços da Clinica</a> <br><br>";
 
-    echo "<a href='" . URL . "FotoPerfil/usuario'> Foto de Perfil </a> <br>";
+    echo "<a href='" . URL . "FotoUsuario/adicionar'> Foto de Perfil </a> <br><br>";
+
+    echo "<a href='" . URL . "AlterarFoto/usuario'> Alterar Foto de Perfil </a> <br>";
+
 
 
 ?>

@@ -108,6 +108,12 @@ class Erro{
                 $this->data['botao'] = "Home";
                 $this->data['descricaoBotao'] = "Ir para a Home";
                 break;
+            case 15:
+                $this->data['numeroErro'] = "015";
+                $this->data['descricaoErro']  = "Você não pode acessar a página de alterar foto pois você não tem uma foto de perfil";
+                $this->data['botao'] = "Home";
+                $this->data['descricaoBotao'] = "Ir para a Home";
+                break;
         }
 
         $loadView = new \Core\LoadView("sts/Views/erro", $this->data, null);
