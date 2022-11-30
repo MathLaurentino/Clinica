@@ -92,6 +92,7 @@
                 $pet = $this->data['pet'][$x];
                 extract($pet);
                 echo "<hr>";
+                echo "Foto: <br>"; if(isset($nome_pet)) { echo "<img height='100' src= '../". IMG . $imagem_pet ." '> <br> <br> "; } else {  echo "<img height='100' src= '../". IMGERRO . " '> <br> <br> "; }
                 echo "id: " . $idpet . "<br>";
                 echo "Nome: "; if(isset($nome_pet)) { echo $nome_pet; } else { echo "vazio"; }
                 echo "<br>";
@@ -103,6 +104,8 @@
                 echo "<br>";
                 echo "Espécie: "; if(isset($tipo_pet)) {echo $tipo_pet;} else {echo "vazio";}
                 echo "<br> <a href='" . URL . "Sobre-Cliente/Alterar-Dados-Pet?id={$idpet}'> Alterar Dados </a> <br>";
+                echo "<br> <a href='" . URL . "FotoPet/Adicionar?id={$idpet}'> Adicionar Foto Pet </a> <br>";
+
 
             }
 

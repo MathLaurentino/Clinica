@@ -9,9 +9,9 @@
 
 <form method="post" enctype="multipart/form-data" action="">
 
-    <h2> ADICIONAR FOTO DE PERFIL </h2>
+    <h2> ADICIONAR FOTO DE PET </h2>
 
-    <label>Foto de Perfil: </label>
+    <label>Foto do Pet: </label>
     <input name="arquivo" type="file"> <br> <br> 
 
     <input name="AddFile" type="submit" value="Enviar">

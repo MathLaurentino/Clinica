@@ -4,11 +4,12 @@ namespace Sts\Controllers;
 
 include_once 'app/sts/Controllers/helpers/protect.php';
 
-class FotoUsuario 
+class FotoPet
 {
     private string $nameInDB;
     private array|null $data = null;
     private array|null $dataForm = null;
+    private string|null $id = null;
 
 
     public function index()
@@ -23,10 +24,15 @@ class FotoUsuario
      */
     public function adicionar(): void
     {
-        // so é possivel acessar o método se não existir a $_SESSION['foto_usuario'] 
-        // (no caso se não tiver foto cadastrada)
-        if (!isset($_SESSION['foto_usuario'])) { 
+        if(isset($_GET['id'])){
+            $this->id = $_GET['id'];
+        }
 
+        $stsFotoPet = new \Sts\Models\StsFotoPet();
+
+        // verifica se ja existe uma foto de pet no BD
+        if ($stsFotoPet->verificarFoto($this->id)) { 
+            
             if (isset($_FILES['arquivo'])) { // se o usuario mandou o arquivo de foto 
 
                 $foto = new \Sts\Controllers\helpers\Metodos();
@@ -36,14 +42,13 @@ class FotoUsuario
                     $nameInDB = $foto->saveFile($_FILES['arquivo']);
 
                     if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
-                        $this->data = ['foto_usuario' => $nameInDB];
+                        $this->data = ['imagem_pet' => $nameInDB];
 
-                        $stsCreate= new \Sts\Models\StsFotoUsuario();
-                        $result = $stsCreate->cadastroFoto($this->data);
+                        $stsCreate= new \Sts\Models\StsFotoPet();
+                        $result = $stsCreate->cadastroFotoPet($this->data, $this->id);
 
                         if ($result) { // se salvar corretamente no BD
-                            $_SESSION['foto_usuario'] = $this->data['foto_usuario'];
-                            $_SESSION['msg'] = "Foto salva com sucesso";
+                            $_SESSION['msg'] = "Foto do Pet salva com sucesso";
                             $header = URL . "Sobre-Cliente/Dados"; 
                             header("Location: {$header}");
                         } else { // se não salvar corretamente no BD
@@ -63,13 +68,13 @@ class FotoUsuario
                 } 
 
             } else { // caso n tenha arquivo enviado, carrega a tela
-                $this->view("usuario", "foto_usuario");
+                $this->view("pet", "foto_usuario");
             }
 
         } else {
-            $header = URL . "Erro?case=14"; // Erro 014
-            header("Location: {$header}");
-        }   
+            // erro
+            echo "Erro";
+        }
     }
 
 
@@ -176,7 +181,7 @@ class FotoUsuario
 
     private function view($view, $header) 
     {
-        $loadView = new \Core\LoadView("sts/Views/foto/" . $view, $this->data, null);
+        $loadView = new \Core\LoadView("sts/Views/fotoPet/" . $view, $this->data, null);
         $loadView->loadView_header($header);
     }
 
