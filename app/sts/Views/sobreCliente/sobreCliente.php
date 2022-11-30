@@ -58,7 +58,7 @@
 
             extract($this->data['adress'][0]);
 
-            echo "Nome da Rua: "; if(isset($cep)) {echo "$cep";} else {echo "vazio";}
+            echo "Nome da Rua: "; if(isset($rua)) {echo "$rua";} else {echo "vazio";}
             echo "<br>";
             echo "Número da Residência: "; if(isset($numero_residencial)) {echo "$numero_residencial";} else {echo "vazio";}
             echo "<br>";

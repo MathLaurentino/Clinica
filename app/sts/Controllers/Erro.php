@@ -114,6 +114,12 @@ class Erro{
                 $this->data['botao'] = "Home";
                 $this->data['descricaoBotao'] = "Ir para a Home";
                 break;
+            case 16:
+                $this->data['numeroErro'] = "016";
+                $this->data['descricaoErro']  = "Você não pode apagar a foto pois você não tem uma foto de perfil";
+                $this->data['botao'] = "SobreCliente/Dados";
+                $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
+                break;
         }
 
         $loadView = new \Core\LoadView("sts/Views/erro", $this->data, null);

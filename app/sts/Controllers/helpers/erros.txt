@@ -15,7 +15,9 @@ Erro 011: Usuario tentou cadastrar um endereço na conta mas já existe um ender
 Erro 012: Usuario tentou alterar um endereço mas ele ainda não está logado em uma conta
 Erro 013: Falha ao cadastrar foto do usuario
 Erro 014: Usuario tentou acessar a página de cadastro de foto de perfil mas já tem uma foto cadastrada
-Erro 015: Usuario tentou acessar a página de alterar a foto de perfil mas não tem uma cadastrada
+Erro 015: Usuario tentou acessar a página de alterar a foto de perfil mas não tem uma foto cadastrada
+Erro 015: Usuario tentou acessar a página de apagar a foto de perfil mas não tem uma foto cadastrada
+
 
 
 
