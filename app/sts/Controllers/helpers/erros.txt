@@ -16,7 +16,11 @@ Erro 012: Usuario tentou alterar um endereço mas ele ainda não está logado em
 Erro 013: Falha ao cadastrar foto do usuario ou pet
 Erro 014: Usuario tentou acessar a página de cadastro de foto de perfil mas já tem uma foto cadastrada
 Erro 015: Usuario tentou acessar a página de alterar a foto de perfil mas não tem uma foto cadastrada
-Erro 015: Usuario tentou acessar a página de apagar a foto de perfil mas não tem uma foto cadastrada
+Erro 016: Usuario tentou acessar a página de apagar a foto de perfil mas não tem uma foto cadastrada
+Erro 017: Usuario tentou acessar a página de adicionar foto do pet mas ele ja tem uma foto adicionada
+Erro 018: Usuario tentou acessar a página de alterar a foto do pet mas o pet ainda não tem uma foto adicionada
+Erro 019: Usuario tentou acessar a página de apagar a foto do pet mas o pet ainda não tem uma foto adicionada
+Erro 020: Usuario tentou mudar dados de um pet que não é dele por meio da URL
 
 
 

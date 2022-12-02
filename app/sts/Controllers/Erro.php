@@ -98,7 +98,7 @@ class Erro{
                 break;
             case 13:
                 $this->data['numeroErro'] = "013";
-                $this->data['descricaoErro']  = "Falha ao salvar foto de perfil, entre em contato conosco no nosso email: " . EMAILADM;
+                $this->data['descricaoErro']  = "Falha ao salvar nova foto, entre em contato conosco no nosso email: " . EMAILADM;
                 $this->data['botao'] = "Home";
                 $this->data['descricaoBotao'] = "Ir para a Home";
                 break;
@@ -117,6 +117,30 @@ class Erro{
             case 16:
                 $this->data['numeroErro'] = "016";
                 $this->data['descricaoErro']  = "Você não pode apagar a foto pois você não tem uma foto de perfil";
+                $this->data['botao'] = "SobreCliente/Dados";
+                $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
+                break;
+            case 17:
+                $this->data['numeroErro'] = "017";
+                $this->data['descricaoErro']  = "Você não pode acessar a pagina de adicionar foto do pet pois ele ja tem uma foto adicionada";
+                $this->data['botao'] = "SobreCliente/Dados";
+                $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
+                break;
+            case 18:
+                $this->data['numeroErro'] = "018";
+                $this->data['descricaoErro']  = "Você não pode acessar a pagina de alterar a foto do pet pois seu pet ainda não tem uma foto cadastrada";
+                $this->data['botao'] = "SobreCliente/Dados";
+                $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
+                break;
+            case 19:
+                $this->data['numeroErro'] = "019";
+                $this->data['descricaoErro']  = "Você não pode apagar a foto do pet pois seu pet ainda não tem uma foto cadastrada";
+                $this->data['botao'] = "SobreCliente/Dados";
+                $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
+                break;
+            case 20:
+                $this->data['numeroErro'] = "020";
+                $this->data['descricaoErro']  = "Id do pet fornecido não pertence a sua conta";
                 $this->data['botao'] = "SobreCliente/Dados";
                 $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
                 break;

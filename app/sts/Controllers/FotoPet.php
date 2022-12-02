@@ -14,7 +14,8 @@ class FotoPet
 
     public function index()
     {
-        $this->adicionar();
+        $header = URL . "Home"; 
+        header("Location: {$header}");
     }
 
 
@@ -30,117 +31,61 @@ class FotoPet
 
         $stsFotoPet = new \Sts\Models\StsFotoPet();
 
-        // verifica se ja existe uma foto de pet no BD
-        if ($stsFotoPet->verificarFoto($this->id)) { 
-            
-            if (isset($_FILES['arquivo'])) { // se o usuario mandou o arquivo de foto 
+        // verifica se id do pet passado pela URL pertence ao usuario da sessão
+        if ($stsFotoPet->verificaDonoPet($this->id)) {
 
-                $foto = new \Sts\Controllers\helpers\Metodos();
+            //verifica se ja existe uma foto de pet no BD
+            if ($stsFotoPet->verificarFoto($this->id)) { 
                 
-                if ($foto->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
+                if (isset($_FILES['arquivo'])) { // se o usuario mandou o arquivo de foto 
 
-                    $nameInDB = $foto->saveFile($_FILES['arquivo']);
+                    $foto = new \Sts\Controllers\helpers\Metodos();
+                    
+                    if ($foto->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
 
-                    if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
-                        $this->data = ['imagem_pet' => $nameInDB];
+                        $nameInDB = $foto->saveFile($_FILES['arquivo']);
 
-                        $stsCreate= new \Sts\Models\StsFotoPet();
-                        $result = $stsCreate->cadastroFotoPet($this->data, $this->id);
+                        if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
+                            $this->data = ['imagem_pet' => $nameInDB];
 
-                        if ($result) { // se salvar corretamente no BD
-                            $_SESSION['msg'] = "Foto do Pet salva com sucesso";
-                            $header = URL . "Sobre-Cliente/Dados"; 
-                            header("Location: {$header}");
-                        } else { // se não salvar corretamente no BD
-                            $header = URL . "Erro?case=13"; // Erro 013
+                            $stsCreate= new \Sts\Models\StsFotoPet();
+                            $result = $stsCreate->cadastroFotoPet($this->data, $this->id);
+
+                            if ($result) { // se salvar corretamente no BD
+                                $_SESSION['msg'] = "Foto do Pet salva com sucesso";
+                                $header = URL . "Sobre-Cliente/Dados"; 
+                                header("Location: {$header}");
+                            } else { // se não salvar corretamente no BD
+                                $header = URL . "Erro?case=13"; // Erro 013
+                                header("Location: {$header}");
+                            }
+
+                        } else { // se não conseguiu salvar na pasta assets/imagens
+                            // recarrega a pagina mostrando o erro pro usuario 
+                            $header = URL . "Foto/Usuario"; 
                             header("Location: {$header}");
                         }
 
-                    } else { // se não conseguiu salvar na pasta assets/imagens
-                        // recarrega a pagina mostrando o erro pro usuario 
+                    } else { // se a foto não segue as regras de negocio
                         $header = URL . "Foto/Usuario"; 
                         header("Location: {$header}");
-                    }
+                    } 
 
-                } else { // se a foto não segue as regras de negocio
-                    $header = URL . "Foto/Usuario"; 
-                    header("Location: {$header}");
-                } 
+                } else { // caso n tenha arquivo enviado, carrega a tela
+                    $this->view("pet", "foto_usuario");
+                }
 
-            } else { // caso n tenha arquivo enviado, carrega a tela
-                $this->view("pet", "foto_usuario");
+            } else {
+                $header = URL . "Erro?case=17"; // Erro 017
+                header("Location: {$header}");
             }
 
         } else {
-            // erro
-            echo "Erro";
-        }
-    }
-
-
-
-    /**     function alterar()
-     * Altera a foto de perfil do usuario 
-     * Falta implementar 
-     */
-    public function alterar(): void
-    {
-        // se o usuario não tiver foto de perfil
-        if (!isset($_SESSION['foto_usuario'])) {
-            $header = URL . "Erro?case=15"; // Erro 015
+            $header = URL . "Erro?case=20"; // Erro 020
             header("Location: {$header}");
-        } 
-
-        // se o usuario ainda não mandou o arquivo da foto
-        elseif (!isset($_FILES['arquivo'])) {
-            $this->view("alteraFotoUsuario", "foto_usuario"); // carrega a view 
         }
+
         
-        else {
-            $foto = new \Sts\Controllers\helpers\Metodos();
-                
-            if ($foto->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
-
-                $nameInDB = $foto->saveFile($_FILES['arquivo']);
-
-                if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
-
-                    $stsAlter= new \Sts\Models\StsFotoUsuario();
-                    $resultApaga = $stsAlter->apagarFotoUsuario();
-
-                    if ($resultApaga) {
-                        unlink( IMG . $_SESSION['foto_usuario'] );
-                        unset($_SESSION['foto_usuario']);
-
-                        $this->data = ['foto_usuario' => $nameInDB];
-
-                        $stsCreate= new \Sts\Models\StsFotoUsuario();
-                        $resultCadastra = $stsCreate->cadastroFoto($this->data);
-
-                        if ($resultCadastra) { // se salvar corretamente no BD
-                            $_SESSION['foto_usuario'] = $this->data['foto_usuario'];
-                            $_SESSION['msg'] = "Foto salva com sucesso";
-                            $header = URL . "Sobre-Cliente/Dados"; 
-                            header("Location: {$header}");
-                        } else { // se não salvar corretamente no BD
-                            $header = URL . "Erro?case=13"; // Erro 013
-                            header("Location: {$header}");
-                        }
-
-                    } else {
-                        $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
-                    }
-
-                } else { // se não conseguiu salvar na pasta assets/imagens
-                    // recarrega a pagina mostrando o erro pro usuario 
-                    $header = URL . "Foto/Usuario"; 
-                    header("Location: {$header}");
-                }
-            } else { // se a foto não segue as regras de negocio
-                $header = URL . "Foto/Usuario"; 
-                header("Location: {$header}");
-            } 
-        }
     }
 
 
@@ -152,24 +97,38 @@ class FotoPet
      */
     public function apagar(): void
     {
-        if (isset($_SESSION['foto_usuario'])) {
 
-            $stsdelete= new \Sts\Models\StsFotoUsuario();
-            $result = $stsdelete->apagarFotoUsuario();
-            
-            if ($result) {
-                unlink( IMG . $_SESSION['foto_usuario'] );
-                unset($_SESSION['foto_usuario']);
-                $_SESSION['msg'] = "Foto apagada com sucesso";
+        if(isset($_GET['id'])){
+            $this->id = $_GET['id'];
+        }
+
+        $stsFotoPet = new \Sts\Models\StsFotoPet();
+
+        if ($stsFotoPet->verificaDonoPet($this->id)) { // verifica se o pet pertence ao usuario
+
+            if (!$stsFotoPet->verificarFoto($this->id)) { // verifica se o pet realmente tem uma foto
+
+                unlink( IMG .  $stsFotoPet->enderecoImagemPet($this->id));
+                $pa = $stsFotoPet->enderecoImagemPet($this->id);
+
+                $result = $stsFotoPet->apagarFotoPet($this->id);
+
+                if ($result) {
+                    $_SESSION['msg'] = "Foto apagada com sucesso";
+                } else {
+                    $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
+                }
+    
+                $header = URL . "SobreCliente/Dados";
+                header("Location: {$header}");
+    
             } else {
-                $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
+                $header = URL . "Erro?case=19"; // Erro 019
+                header("Location: {$header}");
             }
 
-            $header = URL . "SobreCliente/Dados"; // Erro 014
-            header("Location: {$header}");
-
         } else {
-            $header = URL . "Erro?case=16"; // Erro 016
+            $header = URL . "Erro?case=20"; // Erro 020
             header("Location: {$header}");
         }
     }
