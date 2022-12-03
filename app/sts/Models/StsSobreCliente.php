@@ -56,7 +56,7 @@ class StsSobreCliente
     public function userPet(): array|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
-        $stsSelect->fullRead("SELECT p.idpet, p.nome_pet, p.idade_pet, p.sexo, p.imagem_pet, r.raca, r.tipo_pet 
+        $stsSelect->fullRead("SELECT p.idpet, p.nome_pet, p.idade_pet, p.sexo, p.imagem_pet, p.imagem_carteira_pet, r.raca, r.tipo_pet 
                                     FROM pet AS p 
                                     INNER JOIN raca_pet AS r 
                                     ON p.idraca = r.idraca_pet 

@@ -9,7 +9,7 @@ if (!defined('D7E4T2K6F4')) {
 
 include_once 'app/sts/Controllers/helpers/protect.php';
 
-class FotoPet
+class FotoCarteira
 {
     private string $nameInDB;
     private array|null $data = null;
@@ -34,13 +34,13 @@ class FotoPet
             $this->id = $_GET['id'];
         }
 
-        $stsFotoPet = new \Sts\Models\StsFotoPet();
+        $stsFotoPet = new \Sts\Models\StsFotoCarteira();
 
         // verifica se id do pet passado pela URL pertence ao usuario da sessão
         if ($stsFotoPet->verificaDonoPet($this->id)) {
 
             //verifica se ja existe uma foto de pet no BD
-            if ($stsFotoPet->verificarFoto($this->id)) { 
+            if ($stsFotoPet->verificarFotoCarteira($this->id)) { 
                 
                 if (isset($_FILES['arquivo'])) { // se o usuario mandou o arquivo de foto 
 
@@ -51,13 +51,13 @@ class FotoPet
                         $nameInDB = $foto->saveFile($_FILES['arquivo']);
 
                         if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
-                            $this->data = ['imagem_pet' => $nameInDB];
+                            $this->data = ['imagem_carteira_pet' => $nameInDB];
 
-                            $stsCreate= new \Sts\Models\StsFotoPet();
-                            $result = $stsCreate->cadastroFotoPet($this->data, $this->id);
+                            $stsCreate= new \Sts\Models\StsFotoCarteira();
+                            $result = $stsCreate->cadastroFotoCarteira($this->data, $this->id);
 
                             if ($result) { // se salvar corretamente no BD
-                                $_SESSION['msg'] = "Foto do Pet salva com sucesso";
+                                $_SESSION['msg'] = "Foto da carteira de vacina salva com sucesso";
                                 $header = URL . "Sobre-Cliente/Dados"; 
                                 header("Location: {$header}");
                             } else { // se não salvar corretamente no BD
@@ -67,17 +67,18 @@ class FotoPet
 
                         } else { // se não conseguiu salvar na pasta assets/imagens
                             // recarrega a pagina mostrando o erro pro usuario 
-                            $header = URL . "Foto/Usuario"; 
+                            $header = URL . "SobreCliete/Dados"; 
                             header("Location: {$header}");
                         }
 
                     } else { // se a foto não segue as regras de negocio
-                        $header = URL . "Foto/Usuario"; 
+                        $header = URL . "SobreCliete/Dados"; 
                         header("Location: {$header}");
                     } 
 
                 } else { // caso n tenha arquivo enviado, carrega a tela
-                    $this->view("pet", "foto_usuario");
+                    $loadView = new \Core\LoadView("sts/Views/fotoPet/carteira", $this->data, null);
+                    $loadView->loadView_header('fotoCarteira');
                 }
 
             } else {
@@ -107,14 +108,14 @@ class FotoPet
             $this->id = $_GET['id'];
         }
 
-        $stsFotoPet = new \Sts\Models\StsFotoPet();
+        $stsFotoCarteira = new \Sts\Models\StsFotoCarteira();
 
-        if ($stsFotoPet->verificaDonoPet($this->id)) { // verifica se o pet pertence ao usuario
+        if ($stsFotoCarteira->verificaDonoPet($this->id)) { // verifica se o pet pertence ao usuario
 
-            if (!$stsFotoPet->verificarFoto($this->id)) { // verifica se o pet realmente tem uma foto
+            if (!$stsFotoCarteira->verificarFotoCarteira($this->id)) { // verifica se o pet realmente tem uma foto
 
-                unlink( IMG .  $stsFotoPet->enderecoImagemPet($this->id));
-                $result = $stsFotoPet->apagarFotoPet($this->id);
+                unlink( IMG .  $stsFotoCarteira->enderecoFotoCarteira($this->id));
+                $result = $stsFotoCarteira->apagarFotoCarteira($this->id);
 
                 if ($result) {
                     $_SESSION['msg'] = "Foto apagada com sucesso";
@@ -140,12 +141,6 @@ class FotoPet
 
     // Outros Métodos -----------------------------------------------
 
-
-    private function view($view, $header) 
-    {
-        $loadView = new \Core\LoadView("sts/Views/fotoPet/" . $view, $this->data, null);
-        $loadView->loadView_header($header);
-    }
 
     /**     function pages()
      * Retorna as functions que são publicas nessa controller

@@ -122,19 +122,19 @@ class Erro{
                 break;
             case 17:
                 $this->data['numeroErro'] = "017";
-                $this->data['descricaoErro']  = "Você não pode acessar a pagina de adicionar foto do pet pois ele ja tem uma foto adicionada";
+                $this->data['descricaoErro']  = "Você não pode acessar a pagina de adicionar foto pois ja tem uma foto adicionada";
                 $this->data['botao'] = "SobreCliente/Dados";
                 $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
                 break;
             case 18:
                 $this->data['numeroErro'] = "018";
-                $this->data['descricaoErro']  = "Você não pode acessar a pagina de alterar a foto do pet pois seu pet ainda não tem uma foto cadastrada";
+                $this->data['descricaoErro']  = "Você não pode acessar a pagina de alterar foto pois ainda não tem uma foto cadastrada";
                 $this->data['botao'] = "SobreCliente/Dados";
                 $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
                 break;
             case 19:
                 $this->data['numeroErro'] = "019";
-                $this->data['descricaoErro']  = "Você não pode apagar a foto do pet pois seu pet ainda não tem uma foto cadastrada";
+                $this->data['descricaoErro']  = "Você não pode apagar a foto pois ainda não tem uma foto cadastrada";
                 $this->data['botao'] = "SobreCliente/Dados";
                 $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
                 break;

@@ -90,12 +90,20 @@
             $pet = $this->data['pet'][$x];
             extract($pet);
             echo "<hr>";
-            echo "Foto: <br>"; if(!empty($imagem_pet)) { 
+            echo "Foto: <br>"; 
+            
+            if(!empty($imagem_pet)) { 
                 echo "<img height='100' src= '../". IMG . $imagem_pet ." '> <br> <br> "; 
             } else {  
                 if ($tipo_pet == "gato") { echo "<img height='100' src= ' ../". IMG ."Gato_Sem_Foto.jpg'> <br> <br>"; }
                 elseif ($tipo_pet == "cachorro") { echo "<img height='100' src= ' ../". IMG ."Cachorro_Sem_Foto.png'> <br> <br>"; }
                 elseif ($tipo_pet == "ave") { echo "<img height='100' src= ' ../". IMG ."Ave_Sem_Foto.png '> <br> <br>"; }
+            }
+
+            if (!empty($imagem_carteira_pet)) {
+                echo "<img height='100' src= '../". IMG . $imagem_carteira_pet ." '> <br> <br> "; 
+            } else {
+                echo "<img height='100' src= '../". IMGERRO . $imagem_carteira_pet ." '> <br> <br> "; 
             }
 
 
@@ -111,8 +119,18 @@
             echo "<br>";
             echo "Espécie: "; if(isset($tipo_pet)) {echo $tipo_pet;} else {echo "vazio";}
             echo "<br> <a href='" . URL . "Sobre-Cliente/Alterar-Dados-Pet?id={$idpet}'> Alterar Dados </a> <br>";
-            echo "<br> <a href='" . URL . "FotoPet/Adicionar?id={$idpet}'> Adicionar Foto Pet </a> <br>";
-            echo "<br> <a href='" . URL . "FotoPet/apagar?id={$idpet}'> Apagar Foto Pet </a> <br>";
+
+            if (!empty($imagem_pet)) {
+                echo "<br> <a href='" . URL . "FotoPet/apagar?id={$idpet}'> Apagar Foto Pet </a> <br>";
+            } else {
+                echo "<br> <a href='" . URL . "FotoPet/Adicionar?id={$idpet}'> Adicionar Foto Pet </a> <br>";
+            }
+
+            if (!empty($imagem_carteira_pet)) {
+                echo "<br> <a href='" . URL . "FotoCarteira/apagar?id={$idpet}'> Apagar Foto Carteira </a> <br>";
+            } else {
+                echo "<br> <a href='" . URL . "FotoCarteira/Adicionar?id={$idpet}'> Adicionar Foto Carteira </a> <br>";
+            }
 
         }
 
