@@ -145,15 +145,17 @@ class UrlController extends Define
             $result = $page->pages(); //retorna o nome das paginas públicas dessa controller
             $key = 1 + array_search($this->urlMetodo, $result); // verifica se o nome da página passada pelo cliente é pública
 
-            if (!empty($key)) { // se for  carrega o método, se não vai para a página de erro
+            if (!empty($key)) { // se for publica carrega o método, caso contrario vai para a página de erro
                 $method = $this->urlMetodo;
                 $page->$method();
             } else {
-                die("Erro: pagina não encontrada1");
+                $header = URL ."Erro?case=404"; // Erro 404
+                header("Location: {$header}");
             }
             
         } else {
-            die("Erro: pagina não encontrada2");
+            $header = URL ."Erro?case=404"; // Erro 404
+            header("Location: {$header}");
         }
     }
 }

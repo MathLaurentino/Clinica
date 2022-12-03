@@ -24,4 +24,4 @@ RewriteCond %{REQUEST_FILENAME} !-l
 RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
 
 # Bloquer para não listar os arquivos quando acessar o diretório
-# Options -Indexes
+Options -Indexes

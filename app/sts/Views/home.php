@@ -49,18 +49,18 @@ echo "<hr>";
 
     echo "<a href='" . URL . "FotoUsuario/adicionar'> Foto de Perfil </a> <br><br>";
 
-    echo "<a href='" . URL . "AlterarFoto/usuario'> Alterar Foto de Perfil </a> <br>";
+    echo "<a href='" . URL . "AlterarFoto/usuario'> Alterar Foto de Perfil </a> <br><br><br><br>";
 
-
+    echo "<a href='" . URL . "Logout/Index'> Logout </a> <br>";
 
 ?>
-
-<form method="post" action="">
+<!-- <form method="post" action="">
 
     <br>
     <input name="session_destroy" type="submit" value="session_destroy" >
 
-</form>
+</form> -->
+
 
 </body>
 </html>

@@ -144,6 +144,13 @@ class Erro{
                 $this->data['botao'] = "SobreCliente/Dados";
                 $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
                 break;
+            case 404:
+                $this->data['numeroErro'] = "404";
+                $this->data['descricaoErro']  = "Página não encontrada";
+                $this->data['botao'] = "Home";
+                $this->data['descricaoBotao'] = "Ir para Home";
+                break;
+
         }
 
         $loadView = new \Core\LoadView("sts/Views/erro", $this->data, null);

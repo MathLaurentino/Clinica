@@ -2,6 +2,13 @@
 
 namespace Sts\Controllers;
 
+if (!defined('D7E4T2K6F4')) {
+    $header = "http://localhost/Clinica/Erro?case=404"; // Erro 404
+    header("Location: {$header}");
+}
+
+include_once 'app/sts/Controllers/helpers/protect.php';
+
 class Agendamento{
     
     public function index(){

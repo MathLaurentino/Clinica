@@ -2,7 +2,10 @@
 
 namespace Sts\Controllers;
 
-
+if (!defined('D7E4T2K6F4')) {
+    $header = "http://localhost/Clinica/Erro?case=404"; // Erro 404
+    header("Location: {$header}");
+}
 
 /**     class Cadastro
  * Responsavel por realizar o cadastro dos dados pessoas do cliente
