@@ -1,0 +1,8 @@
+*{margin: o; padding: 0; box-sizing: border-box; font-family: Arial;}
+
+.calendarUser, .calendarManager
+{
+    width: 80%;
+    margin: 30px auto;
+    height: 80vh;
+}

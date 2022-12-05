@@ -10,9 +10,21 @@ if (!defined('D7E4T2K6F4')) {
 include_once 'app/sts/Controllers/helpers/protect.php';
 
 class Agendamento{
+
+
+    private array|null $data = null;
     
-    public function index(){
-        echo "<h2>Página de Agendamento</h2>";
+    public function index()
+    {
+        $this->novaConsulta();
+    }
+
+
+    public function novaConsulta()
+    {
+        $this->data = null;
+        $loadView = new \Core\LoadView("sts/Views/agendamento/userView", $this->data, null);
+        $loadView->loadView_agendamento();
     }
 
     /**     function pages()
@@ -21,7 +33,7 @@ class Agendamento{
      */
     public function pages(): array
     {  
-        return $array = ['index'];
+        return $array = ['index','novaConsulta'];
     }
     
 }

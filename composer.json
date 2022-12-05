@@ -13,6 +13,8 @@
             "Sts\\": "app/sts"
         }
     },
-    "require": {}
+    "require": {
+        
+    }
     
 }

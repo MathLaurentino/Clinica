@@ -37,7 +37,7 @@ echo "<hr>";
     
     echo "<h2>View Home</h2>";
     echo "<a href='" . URL . "Cadastro/Usuario'> Cadastro Usuario</a> <br>";
-    echo "<a href='" . URL . "Cadastro/Endereco'> Cadastro Endereço</a> <br>";
+    echo "<a href='" . URL . "CadastroEndereco/Endereco'> Cadastro Endereço</a> <br>";
 
     echo "<a href='" . URL . "Login'> Login </a> <br> <br>";
 
@@ -50,6 +50,8 @@ echo "<hr>";
     echo "<a href='" . URL . "FotoUsuario/adicionar'> Foto de Perfil </a> <br><br>";
 
     echo "<a href='" . URL . "AlterarFoto/usuario'> Alterar Foto de Perfil </a> <br><br><br><br>";
+
+    echo "<a href='" . URL . "Agendamento'> Agendamento </a> <br><br><br><br>";
 
     echo "<a href='" . URL . "Logout/Index'> Logout </a> <br>";
 
