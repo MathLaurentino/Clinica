@@ -11,7 +11,7 @@ include_once 'app/sts/Controllers/helpers/protect.php';
 
 class AlterarFoto {
 
-    
+    private array|null $data = null;
     /**     function alterarFotoUsuario()
      * Function responsavel por altarar a foto do usuario
      */
@@ -43,7 +43,8 @@ class AlterarFoto {
                     echo $_SESSION['errFile'];
                 }
             } else {
-                $this->view("alteraFotoUsuario", "alterar_foto_usuario");
+                $loadView = new \Core\LoadView("sts/Views/foto/alteraFotoUsuario", $this->data, null);
+                $loadView->loadView_header("alterar_foto_usuario");
             }
 
         } else {

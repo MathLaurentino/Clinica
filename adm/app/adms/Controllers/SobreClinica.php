@@ -94,7 +94,7 @@ class SobreClinica
 
     private function view(): void
     {
-        $loadView = new \Core\LoadView("adms/Views/sobreClinica", $this->data, null);
+        $loadView = new \Core\LoadView("adms/Views/servicosadm", $this->data, null);
         $loadView->loadView();
     }
 
