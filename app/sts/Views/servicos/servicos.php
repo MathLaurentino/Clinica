@@ -1,65 +1,49 @@
 
+<!--CONTEÚDO PRINCIPAL-->
+<main class="conteudo-principal">
+    <h1 class="título">Escolha um de <br>nossos serviços</h1>
 
-<!--CABEÇALHO-->
-<header class="cabecalho-principal"> 
-        <img class="img" src="app\sts\assets\imagens_clinica\logo.png" alt="logo da clínica">
+    <section class="conteudo-serviços">
+        <img src="img/" alt="icone vacina" class="">
 
-        <nav class="menu">
-            <a class="item">HOME</a>
-            <a class="item">SERVIÇOS</a>
-            <a class="item">CORPO CLÍNICO</a>
-            <a href="#"> <button class="botao">AGENDE AQUI!</button> </a> 
+        <div class="procedimento">
+            <h3 class="título-serviço"> VACINA </h3>
 
-            <!--PARTE DE ICONE E LOGIN-->
-            <a href="#conta-user" class="login-user"> <i class="fa fa-user-circle-o fa-2x"  aria-hidden="true"></i></a>   
-        </nav>
-    </header>
+            <p class="info">R$ 0 <br> TEMPO DO PROCEDIMENTO</p>
 
-    <!--CONTEÚDO PRINCIPAL-->
-    <main class="conteudo-principal">
-        <h1 class="título">Escolha um de <br>nossos serviços</h1>
+            <a href="#"> <button class="agendar">AGENDAR</button></a>
+        </div>
 
-        <section class="conteudo-serviços">
-            <img src="img/" alt="icone vacina" class="">
+    </section>
 
-            <div class="procedimento">
-                <h3 class="título-serviço"> VACINA </h3>
+    <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
-                <p class="info">R$ 0 <br> TEMPO DO PROCEDIMENTO</p>
+    <section class="conteudo-serviços">
+        <img src="img/" alt="icone exames" class="">
 
-                <a href="#"> <button class="agendar">AGENDAR</button></a>
-            </div>
+        <div class="procedimento">
+            <h3 class="título-serviço"> EXAMES </h3>
 
-        </section>
+            <p class="info">R$ 0 <br> TEMPO DO PROCEDIMENTO</p>
 
-        <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+            <a href="#"> <button class="agendar">AGENDAR</button></a>
+        </div>
 
-        <section class="conteudo-serviços">
-            <img src="img/" alt="icone exames" class="">
+    </section>
 
-            <div class="procedimento">
-                <h3 class="título-serviço"> EXAMES </h3>
+    <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
-                <p class="info">R$ 0 <br> TEMPO DO PROCEDIMENTO</p>
+    <section class="conteudo-serviços">
+        <img src="img/" alt="icone consulta" class="">
 
-                <a href="#"> <button class="agendar">AGENDAR</button></a>
-            </div>
+        <div class="procedimento">
+            <h3 class="título-serviço"> CONSULTA </h3>
 
-        </section>
+            <p class="info">R$ 0 <br> TEMPO DO PROCEDIMENTO</p>
 
-        <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+            <a href="#"> <button class="agendar">AGENDAR</button></a>
+        </div>
 
-        <section class="conteudo-serviços">
-            <img src="img/" alt="icone consulta" class="">
+    </section>
 
-            <div class="procedimento">
-                <h3 class="título-serviço"> CONSULTA </h3>
-
-                <p class="info">R$ 0 <br> TEMPO DO PROCEDIMENTO</p>
-
-                <a href="#"> <button class="agendar">AGENDAR</button></a>
-            </div>
-
-        </section>
-
-    </main>
+</main>

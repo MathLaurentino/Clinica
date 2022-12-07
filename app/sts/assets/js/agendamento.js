@@ -24,12 +24,12 @@
 
         dateClick: function(info) {
           if (perfil == 'manager') {
-            win.location.href = 'app/sts/Views/agendamento/add.php?date=' + info.dateStr;
+            win.location.href = 'http://localhost/Clinica/Home' + info.dateStr;
           } else {
             if(info.view.type == 'dayGridMonth') {
               calendar.changeView('timeGrid', info.dateStr);
             } else {
-              win.location.href = 'app/sts/Views/agendamento/add.php?date=' + info.dateStr;
+              win.location.href = 'http://localhost/Clinica/Home';
             }
           }
             /*alert('Clicked on: ' + info.dateStr);

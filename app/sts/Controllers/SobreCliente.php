@@ -44,7 +44,8 @@ private array|null $dataForm; // dados que vem do formulario
         if ($this->verifyIfUserHasAPet()) 
             $this->data['pet'] = $stsSobreCliente->userPet();
 
-        $this->view('sobreCliente');
+        $loadView = new \Core\LoadView("sts/Views/sobreCliente/sobreCliente", $this->data, null);
+        $loadView->loadView_header('sobre_cliente');
     }
 
 
