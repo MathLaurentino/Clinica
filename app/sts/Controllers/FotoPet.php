@@ -44,11 +44,11 @@ class FotoPet
                 
                 if (isset($_FILES['arquivo'])) { // se o usuario mandou o arquivo de foto 
 
-                    $foto = new \Sts\Controllers\helpers\Metodos();
+                    $StsFile = new \Sts\Models\helpers\StsFile();
                     
-                    if ($foto->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
+                    if ($StsFile->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
 
-                        $nameInDB = $foto->saveFile($_FILES['arquivo']);
+                        $nameInDB = $StsFile->saveFile($_FILES['arquivo']);
 
                         if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
                             $this->data = ['imagem_pet' => $nameInDB];
