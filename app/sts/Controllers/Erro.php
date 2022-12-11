@@ -153,8 +153,8 @@ class Erro{
 
         }
 
-        $loadView = new \Core\LoadView("sts/Views/erro", $this->data, null);
-        $loadView->loadView();
+        $loadView = new \Core\LoadView("sts/Views/bodys/erro/erro", $this->data, null);
+        $loadView->loadView_header2();
 
     }
 

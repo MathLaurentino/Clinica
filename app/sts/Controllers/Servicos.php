@@ -18,7 +18,7 @@ class Servicos{
         $servico = new \Sts\Models\StsServicos();
         $this->data = $servico->index();
         //var_dump($this->data);
-        $loadView = new \Core\LoadView("sts/Views/servicos/servicos", $this->data, null);
+        $loadView = new \Core\LoadView("sts/Views/bodys/servicos/servicos", $this->data, null);
         $loadView->loadView_header('servicos');
     }
 

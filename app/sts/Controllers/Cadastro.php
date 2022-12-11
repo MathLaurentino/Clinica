@@ -54,8 +54,7 @@ class Cadastro{
             // se os dados não estão informados corretamente
             if (!$this->checkData()) { 
 
-                $loadView = new \Core\LoadView("sts/Views/cadastros/Cadastrocliente", $this->data, null);
-                $loadView->loadView();
+                $this->view();
 
             } else {
 
@@ -80,8 +79,7 @@ class Cadastro{
 
         } else {   
             $this->data=[];
-            $loadView = new \Core\LoadView("sts/Views/cadastros/Cadastrocliente", $this->data, null);
-            $loadView->loadView2();
+            $this->view();
         }
 
     }
@@ -175,8 +173,8 @@ class Cadastro{
 
     private function view() 
     {
-        $loadView = new \Core\LoadView("sts/Views/cadastros/Cadastrocliente", $this->data, null);
-        $loadView->loadView();
+        $loadView = new \Core\LoadView("sts/Views/bodys/cadastros/Cadastrocliente", $this->data, null);
+        $loadView->loadView_header2();
     }
         
 

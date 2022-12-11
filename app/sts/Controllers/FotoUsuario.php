@@ -68,7 +68,7 @@ class FotoUsuario
                 } 
 
             } else { // caso n tenha arquivo enviado, carrega a tela
-                $this->view("usuario", "foto_usuario");
+                $this->view("usuario");
             }
 
         } else {
@@ -93,7 +93,7 @@ class FotoUsuario
 
         // se o usuario ainda não mandou o arquivo da foto
         elseif (!isset($_FILES['arquivo'])) {
-            $this->view("alteraFotoUsuario", "foto_usuario"); // carrega a view 
+            $this->view("alteraFotoUsuario"); // carrega a view 
         }
         
         else {
@@ -179,10 +179,10 @@ class FotoUsuario
     // Outros Métodos -----------------------------------------------
 
 
-    private function view($view, $header) 
+    private function view($view) 
     {
-        $loadView = new \Core\LoadView("sts/Views/foto/" . $view, $this->data, null);
-        $loadView->loadView_header($header);
+        $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/" . $view, $this->data, null);
+        $loadView->loadView_header('imageFile');
     }
 
     /**     function pages()

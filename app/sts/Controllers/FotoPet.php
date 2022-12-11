@@ -77,7 +77,8 @@ class FotoPet
                     } 
 
                 } else { // caso n tenha arquivo enviado, carrega a tela
-                    $this->view("pet", "foto_usuario");
+                    $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/pet", $this->data, null);
+                    $loadView->loadView_header('imageFile');
                 }
 
             } else {
@@ -137,15 +138,6 @@ class FotoPet
     }
 
 
-
-    // Outros Métodos -----------------------------------------------
-
-
-    private function view($view, $header) 
-    {
-        $loadView = new \Core\LoadView("sts/Views/fotoPet/" . $view, $this->data, null);
-        $loadView->loadView_header($header);
-    }
 
     /**     function pages()
      * Retorna as functions que são publicas nessa controller

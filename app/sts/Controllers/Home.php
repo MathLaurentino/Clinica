@@ -23,7 +23,7 @@ class Home{
             session_destroy();
         }
         
-        $loadView = new \Core\LoadView('sts/Views/home', null, null);
+        $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
         $loadView->loadView_header('index');
     }
 

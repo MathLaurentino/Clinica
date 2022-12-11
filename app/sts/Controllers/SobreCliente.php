@@ -44,7 +44,7 @@ private array|null $dataForm; // dados que vem do formulario
         if ($this->verifyIfUserHasAPet()) 
             $this->data['pet'] = $stsSobreCliente->userPet();
 
-        $loadView = new \Core\LoadView("sts/Views/sobreCliente/sobreCliente", $this->data, null);
+        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/sobreCliente", $this->data, null);
         $loadView->loadView_header('sobre_cliente');
     }
 
@@ -69,32 +69,39 @@ private array|null $dataForm; // dados que vem do formulario
 
             unset($this->dataForm['AlterUser']);
 
+            $stsverify = new \Sts\Models\helpers\StsVerifyRegistrationData();
             
-            $metodo = new \Sts\Controllers\helpers\Metodos();
-            
-            if ($metodo->verifyCpf($this->dataForm['cpf'])) { // Se o CPF for valido
+            if ($stsverify->verifyCpf($this->dataForm['cpf'])) { // Se o CPF for valido
 
-                $stsSobreCliente = new \Sts\Models\StsSobreCliente();
-                $check = $stsSobreCliente->checkEmail();
+                if ($stsverify->verifyAge($this->dataForm['data_nascimento'])) {
 
-                if (empty($check)) { // Se não existir um CPF igual no banco de dados
-                    $result = $stsSobreCliente->alterUser($this->dataForm);
-
-                    if(!empty($result)) // Se os dados foram alterados com sucesso
-                    {
-                        $_SESSION['msg'] = "Dados do usuario alterados com sucesso";
-                        $header = URL . "Sobre-Cliente/Dados"; 
-                        header("Location: {$header}");
+                    $stsSobreCliente = new \Sts\Models\StsSobreCliente();
+                    $check = $stsSobreCliente->checkEmail();
+    
+                    if (empty($check)) { // Se não existir um CPF igual no banco de dados
+                        $result = $stsSobreCliente->alterUser($this->dataForm);
+    
+                        if(!empty($result)) // Se os dados foram alterados com sucesso
+                        {
+                            $_SESSION['msg'] = "Dados do usuario alterados com sucesso";
+                            $header = URL . "Sobre-Cliente/Dados"; 
+                            header("Location: {$header}");
+                        } else {
+                            $header = URL . "Erro?case=4"; // Erro 004
+                            header("Location: {$header}");
+                        }
+    
                     } else {
-                        $header = URL . "Erro?case=4"; // Erro 004
-                        header("Location: {$header}");
-                    }
-
+                        $_SESSION['msg'] = "CPF informado já possui cadastro no banco de dados";
+                        $this->data = $this->dataForm;
+                        $this->view('alterarDados');
+                    } 
                 } else {
-                    $_SESSION['msg'] = "CPF informado já possui cadastro no banco de dados";
+                    $_SESSION['msg'] = "Idade invalida";
                     $this->data = $this->dataForm;
                     $this->view('alterarDados');
                 }
+                
 
             } else {
                 $_SESSION['msg'] = "CPF informado é invalido";
@@ -265,8 +272,8 @@ private array|null $dataForm; // dados que vem do formulario
      */
     private function view(string $view): void
     {
-        $loadView = new \Core\LoadView("sts/Views/sobreCliente/" . $view, $this->data, null);
-        $loadView->loadview2();
+        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/" . $view, $this->data, null);
+        $loadView->loadView_header2();
     }
 
 

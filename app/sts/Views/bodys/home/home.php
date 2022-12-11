@@ -1,29 +1,3 @@
- <!--CABEÇALHO-->
- <header class="cabecalho-principal"> 
-        <img class="img" src="app\sts\assets\imagens_clinica\logo.png" alt="logo da clínica">
-
-        <nav class="menu">
-            <!-- <a href=# class="item">HOME</a> -->
-            <a href="<?php echo URL . 'Servicos' ?>"class="item">SERVIÇOS</a>
-            <a href="#"class="item">CORPO CLÍNICO</a>
-            <a href="#"href="serviços.html"> <button class="botao">AGENDE AQUI!</button> </a> 
-
-            <!--PARTE DE ICONE E LOGIN-->
-          
-        <nav class="nav__bar">
-            <div class="mobile-menu">
-              <div class="icone"> <i class="fa fa-user-circle-o fa-2x"  aria-hidden="true"></i> </div>
-            </div>
-            <ul class="nav-list">
-                
-                    <li><a href="#" class="item-nav">Dados Cliente</a></li>
-                    <li><a href="#" class="item-nav">Cadastrar Pet</a></li>            
-            </ul>
-
-        </nav> <!-- fim navbar -->
-        </nav>
-
-    </header>
 
     <!--CONTEÚDO PRINCIPAL-->
     <main class="conteudo-principal">

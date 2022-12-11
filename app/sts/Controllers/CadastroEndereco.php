@@ -12,7 +12,7 @@ include_once 'app/sts/Controllers/helpers/protect.php';
 class CadastroEndereco {
 
 
-    private array|string|null $data = [];
+    private array|string|null $data = null;
     private array|string|null $dataForm;
 
 
@@ -41,9 +41,9 @@ class CadastroEndereco {
                 $this->data = $this->dataForm;
                 $this->createEndereco();
             } else {
-                $this->data=[]; 
-                $loadView = new \Core\LoadView("sts/Views/cadastros/cadastroEndereco", $this->data, null);
-                $loadView->loadView_header('cadastro_endereco');
+                $this->data = null; 
+                $loadView = new \Core\LoadView("sts/Views/bodys/cadastros/cadastroEndereco", $this->data, null);
+                $loadView->loadView_header2('cadastro_endereco');
             }
         } elseif (isset($_SESSION['idendereco'])) {
             $header = URL . "Erro?case=11"; // Erro 011

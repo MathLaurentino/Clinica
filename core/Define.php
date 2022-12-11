@@ -13,6 +13,8 @@ namespace Core;
             define('IMG', 'app\sts\assets\imagens/'); 
             define('IMGERRO', 'app\sts\assets\imagens/Sem_Foto.png');
 
+            define('CSS', 'http://localhost/Clinica/app/sts/assets/css/');
+
             define('CONTROLLER', 'Home');
             define('CONTROLLERERRO', 'Erro');
             define('METODO', 'index');
