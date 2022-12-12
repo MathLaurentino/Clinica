@@ -144,7 +144,6 @@ class StsSobreCliente
      */
     public function alterUser(array $data): string|null
     {
-        ;
 
         if (!empty($resul)) {
             return null;

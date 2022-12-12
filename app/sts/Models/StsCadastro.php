@@ -63,6 +63,27 @@ class StsCadastro{
     }
 
 
+
+    /**     function verifyRepeatedKey($key)
+     * Verifica se existe alguma consta com a mesma chave de ativação passada
+     * Retorna TRUE se não tiver e FALSE se tiver
+     */
+    public function verifyRepeatedKey($key): bool
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT id FROM usuario 
+                            WHERE chave = :chave",
+                            "chave={$key}");
+
+        $resultado =  $stsSelect->getResult();
+
+        if(empty($resultado))
+            return true;
+        else
+            return false;    
+    }
+
+
     private function addAdress(array $data): bool
     {
         $stsUpdate = new \Sts\Models\helpers\StsUpdate();
@@ -74,6 +95,8 @@ class StsCadastro{
             return false;
         }
     }
+
+
 }
 
 ?>

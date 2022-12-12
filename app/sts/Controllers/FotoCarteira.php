@@ -19,8 +19,7 @@ class FotoCarteira
 
     public function index()
     {
-        $header = URL . "Home"; 
-        header("Location: {$header}");
+        $this->adicionar();
     }
 
 
@@ -91,7 +90,6 @@ class FotoCarteira
             header("Location: {$header}");
         }
 
-        
     }
 
 

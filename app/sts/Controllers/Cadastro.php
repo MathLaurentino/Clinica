@@ -2,6 +2,10 @@
 
 namespace Sts\Controllers;
 
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+
 if (!defined('D7E4T2K6F4')) {
     $header = "http://localhost/Clinica/Erro?case=404"; // Erro 404
     header("Location: {$header}");
@@ -61,9 +65,41 @@ class Cadastro{
                 if ($this->checkIfAccountExist()) {
 
                     if ($this->createNewAccount()) {
-                        $_SESSION['msg'] = "<p style='color:green;'>Usuario cadastrado com sucesso</p>";
-                        $header = URL . "Login";
-                        header("Location: {$header}");
+
+                        $mail = new PHPMailer(true);
+                        $chave = $this->data['chave'];
+
+                        try {
+                            //Server settings
+                            //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
+                            $mail->CharSet = "UTF-8";
+                            $mail->isSMTP();                                            //Send using SMTP
+                            $mail->Host       = 'smtp.mailtrap.io';                     //Set the SMTP server to send through
+                            $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+                            $mail->Username   = '5b0b0de0c72429';                     //SMTP username
+                            $mail->Password   = '1dcc7c242ab250';                               //SMTP password
+                            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
+                            $mail->Port       = 2525;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            
+                            //Recipients
+                            $mail->setFrom('matheuscalifornia29@gmail.com', 'Matheus');
+                            $mail->addAddress($this->dataForm['email'], $this->dataForm['nome_usuario']);
+            
+                            $mail->isHTML(true);                                  //Set email format to HTML
+                            $mail->Subject = 'Confirma o e-mail';
+                            $mail->Body    = "Prezado(a) " . $this->dataForm['nome_usuario'] . ".<br><br>Agradecemos a sua solicitação de cadastramento em nosso site!<br><br>Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicanco no link abaixo: <br><br> <a href='http://localhost/Clinica/ConfirmarEmail?chave=$chave'>Clique aqui</a><br><br>Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>" ;
+                            $mail->AltBody = "Prezado(a) " . $this->dataForm['nome_usuario'] . ".\n\nAgradecemos a sua solicitação de cadastramento em nosso site!\n\nPara que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicanco no link abaixo: \n\n http://localhost/Clinica/ConfirmarEmail?chave=$chave \n\nEsta mensagem foi enviada a você pela empresa XXX.\nVocê está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.\n\n";
+            
+                            $mail->send();
+            
+                            $_SESSION['msg'] = "<p style='color:green;'>Usuario cadastrado com sucesso</p> <p style='color:green;'>Confirme seu Email para acessar sua conta</p>";
+                            $header = URL . "Home";
+                            header("Location: {$header}");
+            
+                        } catch (Exception $e) {
+                            echo "ERRO";
+                        }
+
                     } else {
                         $header = URL . "Erro?case=2"; // Erro 002
                         header("Location: {$header}");
@@ -111,6 +147,7 @@ class Cadastro{
     private function createNewAccount(): bool
     {   
         $this->data['senha_usuario'] = password_hash($this->data['senha_usuario'], PASSWORD_DEFAULT);
+        $this->createKey();
 
         $stsCadastro = new \Sts\Models\StsCadastro();
         $idUsuario = $stsCadastro->createAccount($this->data);
@@ -122,6 +159,24 @@ class Cadastro{
     }
 
 
+    /**     function createKey()
+     * Cria uma chave unica de ativação para a conta
+     * É uma função recursiva 
+     */
+    private function createKey()
+    {
+        //cria uma chave aleatória
+        $key = password_hash($this->data['email'] . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
+
+        $stsCadastro = new \Sts\Models\StsCadastro();
+        if ($stsCadastro->verifyRepeatedKey($key))
+            // se nenhuma conta tiver essa chave de ativação
+            $this->data['chave'] = $key;
+        else 
+            $this->createKey();
+    }
+
+
 
     /**     function checkData()
      * Verifica os dados passados pelo cliente
@@ -129,26 +184,27 @@ class Cadastro{
      */
     private function checkData(): bool
     {
-        $metodos = new \Sts\Controllers\helpers\Metodos();
+        $stsVerifyData = new \Sts\Models\helpers\StsVerifyRegistrationData();
 
-        // if (!$metodos->verifyCpf($this->data['cpf'])) {
-        //     $_SESSION['msg'] = "CPF Incorreto";  
-        //     return false; 
-        // } 
-        // elseif (!$metodos->verifyAge($this->data['data_nascimento'])) {
-        //     $_SESSION['msg'] = "Menor de Idade";
-        //     return false;
-        // }
-        // elseif (!$metodos->verifyEmail($this->data['email'])) {
-        //     $_SESSION['msg'] = "Email Invalido";
-        //     return false;
-        // }
-        // else {
-        //     return true;
-        // }
+        /*
+        if (!$stsVerifyData->verifyCpf($this->data['cpf'])) {
+            $_SESSION['msg'] = "CPF Incorreto";  
+            return false; 
+        } 
+        elseif (!$stsVerifyData->verifyAge($this->data['data_nascimento'])) {
+            $_SESSION['msg'] = "Menor de Idade";
+            return false;
+        }
+        elseif (!$stsVerifyData->verifyEmail($this->data['email'])) {
+            $_SESSION['msg'] = "Email Invalido";
+            return false;
+        }
+        else {
+            return true;
+        }
+        */
 
         return true;
-
     }
 
     // ---------------------------------------------------------------------
