@@ -77,7 +77,7 @@ class FotoCarteira
 
                 } else { // caso n tenha arquivo enviado, carrega a tela
                     $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/carteira", $this->data, null);
-                    $loadView->loadView_header('imageFile');
+                    $loadView->loadView_header2();
                 }
 
             } else {

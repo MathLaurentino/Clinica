@@ -1,4 +1,14 @@
+<?php
+    if (!isset($_session)) {
+        session_start();
+    }
+    
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'];
+        unset($_SESSION['msg']);
+    }
 
+?>
     <!--CONTEÚDO PRINCIPAL-->
     <main class="conteudo-principal">
         <section id="" class="apresentação">
