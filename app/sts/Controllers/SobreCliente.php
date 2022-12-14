@@ -70,44 +70,37 @@ private array|null $dataForm; // dados que vem do formulario
             unset($this->dataForm['AlterUser']);
 
             $stsverify = new \Sts\Models\helpers\StsVerifyRegistrationData();
+            //echo "<pre>" ;var_dump($this->dataForm['cpf']);
             
-            if ($stsverify->verifyCpf($this->dataForm['cpf'])) { // Se o CPF for valido
+            if ($stsverify->verifyCpf($this->dataForm['cpf']) && $stsverify->verifyAge($this->dataForm['data_nascimento'])) {
+                
+                $stsSobreCliente = new \Sts\Models\StsSobreCliente();
+                $check = $stsSobreCliente->checkEmail($this->dataForm['cpf']);
 
-                if ($stsverify->verifyAge($this->dataForm['data_nascimento'])) {
+                if (empty($check)) { // Se não existir um CPF igual no banco de dados
+                    $result = $stsSobreCliente->alterUser($this->dataForm);
 
-                    $stsSobreCliente = new \Sts\Models\StsSobreCliente();
-                    $check = $stsSobreCliente->checkEmail();
-    
-                    if (empty($check)) { // Se não existir um CPF igual no banco de dados
-                        $result = $stsSobreCliente->alterUser($this->dataForm);
-    
-                        if(!empty($result)) // Se os dados foram alterados com sucesso
-                        {
-                            $_SESSION['msg'] = "Dados do usuario alterados com sucesso";
-                            $header = URL . "Sobre-Cliente/Dados"; 
-                            header("Location: {$header}");
-                        } else {
-                            $header = URL . "Erro?case=4"; // Erro 004
-                            header("Location: {$header}");
-                        }
-    
+                    if(!empty($result)) // Se os dados foram alterados com sucesso
+                    {
+                        $_SESSION['msg'] = "Dados do usuario alterados com sucesso";
+                        $header = URL . "Sobre-Cliente/Dados"; 
+                        header("Location: {$header}");
                     } else {
-                        $_SESSION['msg'] = "CPF informado já possui cadastro no banco de dados";
-                        $this->data = $this->dataForm;
-                        $this->view('alterarDados');
-                    } 
+                        $header = URL . "Erro?case=4"; // Erro 004
+                        header("Location: {$header}");
+                    }
+
                 } else {
-                    $_SESSION['msg'] = "Idade invalida";
+                    $_SESSION['msg'] = "CPF informado já possui cadastro no banco de dados";
                     $this->data = $this->dataForm;
                     $this->view('alterarDados');
-                }
-                
+                } 
 
             } else {
-                $_SESSION['msg'] = "CPF informado é invalido";
                 $this->data = $this->dataForm;
                 $this->view('alterarDados');
-            } 
+            }
+            
 
         } else {
             $this->getData('usuario');
@@ -215,30 +208,42 @@ private array|null $dataForm; // dados que vem do formulario
     }
 
 
-    public function apagarDadosPet(): void
+
+    /**     function apagarDadosPet()
+     * Apaga o pet selecionado pelo cliente
+     * Verifica se o pet pertence ao cliente antes de apagar
+     */
+    public function apagarDadosPet()
     {
-        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        if (isset($_GET['idpet'])) {
 
-        if (!empty($this->dataForm['DeleteU'])) {
-
-            unset($this->dataForm['DeleteU']);
-            extract($this->dataForm);
+            $idpet = $_GET['idpet'];
 
             $stsSobreCliente = new \Sts\Models\StsSobreCliente();
-            $resultD =  $stsSobreCliente-> deleteAll("pet","idpet",$idpet);
-           
-            if (!empty($resultD)){
-                $_SESSION['msg'] = "Dados do pet apagados com sucesso";
-                $header = URL . "Sobre-Cliente/Dados"; 
-                header("Location: {$header}");
+
+            if ($stsSobreCliente->verifyIdPetIsFromUser($idpet)){
+
+                $resultD =  $stsSobreCliente-> deleteAll("pet","idpet",$idpet);
+
+                if (!empty($resultD)){
+                    $_SESSION['msg'] = "Dados do pet apagados com sucesso";
+                    $header = URL . "Sobre-Cliente/Dados"; 
+                    header("Location: {$header}");
+                } else {
+                    $_SESSION['msg'] = "Falha ao apagar dados";
+                    $header = URL . "Sobre-Cliente/Dados"; 
+                    header("Location: {$header}");
+                }
+
             } else {
-                $_SESSION['msg'] = "Falha ao apagar dados";
-                $header = URL . "Sobre-Cliente/Dados"; 
+                $header = URL . "Erro?case=20"; // Erro 020
                 header("Location: {$header}");
             }
-
-        }
             
+        } else {
+            $header = URL . "SobreCliente/Dados";
+            header("Location: {$header}");
+        }
     }
 
 

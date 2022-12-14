@@ -33,6 +33,21 @@ class StsConfirmarEmail
 
     }
 
+
+    /**     function getKey()
+     * Pega a chave de ativação do cliente no BD
+     *
+     * @return void
+     */
+    public function getKey($email)
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT chave FROM usuario WHERE email = :email", "email={$email}");
+        $userKey = $stsSelect->getResult();
+        var_dump($userKey);
+        //return $userKey;
+    }
+
 }
 
 

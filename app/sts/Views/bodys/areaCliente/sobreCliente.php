@@ -138,6 +138,8 @@ if(isset($this->data)){
                             echo "<br>";
                             echo "Espécie: "; if(isset($tipo_pet)) {echo $tipo_pet;} else {echo "vazio";}
                             echo "<br> <a href='" . URL . "Sobre-Cliente/Alterar-Dados-Pet?id={$idpet}'> Alterar Dados </a> <br>";
+                            echo "<br> <a href='" . URL . "Sobre-Cliente/apagarDadosPet?idpet={$idpet}'> Apagar Pet </a> <br>";
+
 
                             if (!empty($imagem_pet)) {
                                 echo "<br> <a href='" . URL . "FotoPet/apagar?id={$idpet}'> Apagar Foto Pet </a> <br>";

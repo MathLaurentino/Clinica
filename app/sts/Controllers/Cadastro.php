@@ -55,8 +55,10 @@ class Cadastro{
             unset($this->dataForm['createAccount']);
             $this->data = $this->dataForm;
             
+            $stsVeriry = new \Sts\Models\helpers\StsVerifyRegistrationData();
+
             // se os dados não estão informados corretamente
-            if (!$this->checkData()) { 
+            if (!$stsVeriry->verifyCpf($this->data['cpf']) || !$stsVeriry->verifyAge($this->data['data_nascimento']) || !$stsVeriry->verifyEmail($this->data['email'])) { 
 
                 $this->view();
 
@@ -91,7 +93,8 @@ class Cadastro{
                             $mail->AltBody = "Prezado(a) " . $this->dataForm['nome_usuario'] . ".\n\nAgradecemos a sua solicitação de cadastramento em nosso site!\n\nPara que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicanco no link abaixo: \n\n http://localhost/Clinica/ConfirmarEmail?chave=$chave \n\nEsta mensagem foi enviada a você pela empresa XXX.\nVocê está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.\n\n";
             
                             $mail->send();
-            
+
+                            $_SESSION['email_para_verificar'] = $this->dataForm['email'];
                             $_SESSION['msg'] = "<p style='color:green;'>Usuario cadastrado com sucesso</p> <p style='color:green;'>Confirme seu Email para acessar sua conta</p>";
                             $header = URL . "Home";
                             header("Location: {$header}");
@@ -135,7 +138,7 @@ class Cadastro{
         if ($resultVerify == true) 
             return true;
         else
-            return true;
+            return false;
 
     }
 
@@ -177,35 +180,6 @@ class Cadastro{
     }
 
 
-
-    /**     function checkData()
-     * Verifica os dados passados pelo cliente
-     * Utiliza a classe Metodos()
-     */
-    private function checkData(): bool
-    {
-        $stsVerifyData = new \Sts\Models\helpers\StsVerifyRegistrationData();
-
-        /*
-        if (!$stsVerifyData->verifyCpf($this->data['cpf'])) {
-            $_SESSION['msg'] = "CPF Incorreto";  
-            return false; 
-        } 
-        elseif (!$stsVerifyData->verifyAge($this->data['data_nascimento'])) {
-            $_SESSION['msg'] = "Menor de Idade";
-            return false;
-        }
-        elseif (!$stsVerifyData->verifyEmail($this->data['email'])) {
-            $_SESSION['msg'] = "Email Invalido";
-            return false;
-        }
-        else {
-            return true;
-        }
-        */
-
-        return true;
-    }
 
     // ---------------------------------------------------------------------
 

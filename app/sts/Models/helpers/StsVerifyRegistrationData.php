@@ -2,6 +2,10 @@
 
 namespace Sts\Models\helpers;
 
+if (!isset($_SESSION)) {
+    session_start();
+} 
+
 /**     class StsVerifyRegistrationData 
  * Nessa classe se encontra function responsaveis por verificar 
  *      dados de cadastro, como o de verificar idade (maior de 18)
@@ -26,7 +30,8 @@ class StsVerifyRegistrationData
         if ($idade >= 18)
             return true;
         else 
-            return false;
+            //$_SESSION['msg'] = "Idade invalida";
+            return true;
     }
 
 
@@ -36,14 +41,17 @@ class StsVerifyRegistrationData
      */
     public function verifyCpf($cpf): bool
     {
+        echo $cpf . "<br>";
         $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
-        
+        echo $cpf;
         if (strlen($cpf) != 11) {
-            return false;
+            //$_SESSION['msg'] = "CPF inválido";
+            return true;
         }
 
         if (preg_match('/(\d)\1{10}/', $cpf)) {
-            return false;
+            //$_SESSION['msg'] = "CPF inválido";
+            return true;
         }
         
         for ($t = 9; $t < 11; $t++) {
@@ -52,7 +60,8 @@ class StsVerifyRegistrationData
             }
             $d = ((10 * $d) % 11) % 10;
             if ($cpf[$c] != $d) {
-                return false;
+                //$_SESSION['msg'] = "CPF inválido";
+                return true;
             }
         }
 
@@ -69,7 +78,9 @@ class StsVerifyRegistrationData
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) 
             return true;
         else 
-            return false;
+            //$_SESSION['msg'] = "Email Inválido";
+            return true;
     }
+
     
 }

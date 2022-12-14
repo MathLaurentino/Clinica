@@ -159,12 +159,12 @@ class StsSobreCliente
     }
 
 
-    public function checkEmail()
+    public function checkEmail($cpf)
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead("SELECT idusuario 
                             FROM usuario
-                            WHERE cpf = :cpf", "cpf={$data['cpf']}");
+                            WHERE cpf = :cpf", "cpf={$cpf}");
         $result = $stsSelect->getResult();
         
         return $result;
