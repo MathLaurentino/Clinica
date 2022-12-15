@@ -6,8 +6,12 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+include_once 'app/sts/Controllers/helpers/protectLogin.php';
+
 class ConfirmarEmail{
 
+    private array|null $dataForm = null;
+    private array|null $data = null;
 
     public function index()
     {
@@ -22,37 +26,55 @@ class ConfirmarEmail{
      */
     public function verificarChave()
     {
-        if (!isset($_SESSION)) {
-            session_start();
-        } 
+
+        // if (!isset($_SESSION)) {
+        //     session_start();
+        // } 
 
         $chave = filter_input(INPUT_GET, "chave", FILTER_SANITIZE_STRING);
+        $stsKey = new \Sts\Models\StsConfirmarEmail();
 
         if (!empty($chave)) {
-            
-            $stsKey = new \Sts\Models\StsConfirmarEmail();
-            $id = $stsKey->verifyKey($chave);
 
-            if (!empty($id)){
+            $userSituation = $stsKey->getSituation("chave", $chave);
 
-                if ($stsKey->alterSituation($id[0]['idusuario'])) {
-                    $_SESSION['msg'] = "Email confirmado com sucesso";
-                    $header = URL . "Login";
+            if ($userSituation == "Confirmando") {
+
+                $id = $stsKey->verifyKey($chave);
+    
+                if (!empty($id)){
+    
+                    if ($stsKey->alterSituation($id[0]['idusuario'])) {
+                        $_SESSION['msg'] = "Email confirmado com sucesso";
+                        $header = URL . "Login";
+                        header("Location: {$header}");
+                    }
+    
+                } else {
+                    $_SESSION['msg'] = "Chave de confirmação invalida";
+                    $header = URL . "Home";
                     header("Location: {$header}");
                 }
 
-            } else {
-                $_SESSION['msg'] = "Chave de confirmação invalida";
-                $header = URL . "Home";
+            } elseif ($userSituation == "Inativo") {
+
+                $_SESSION['msg'] = "Conta Inativa ou com falha";
+                $header = URL . "Login";
                 header("Location: {$header}");
+
+            } elseif ($userSituation == "Ativo") {
+
+                $_SESSION['msg'] = "Conta Ativada";
+                $header = URL . "Login";
+                header("Location: {$header}");
+
             }
-        
+
         } else { 
-            $_SESSION['msg'] = "Chave de confirmação invalida";
+            $_SESSION['msg'] = "Falha ao indentificar chave de ativação";
             $header = URL . "Home";
             header("Location: {$header}");
         }
-
     }
 
 
@@ -66,15 +88,13 @@ class ConfirmarEmail{
             
             if (isset($_SESSION['email_para_verificar'])) {
                 $email = $_SESSION['email_para_verificar'];
-            } else {
+            } 
 
-            }
-
-            $mail = new PHPMailer(true);
             $stsEmail = new \Sts\Models\StsConfirmarEmail();
-            $stsEmail->getKey($email);
-
-            /*
+            $chave = $stsEmail->getKey($email);
+            
+            $mail = new PHPMailer(true);
+            
             try {
                 //Server settings
                 //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
@@ -89,27 +109,64 @@ class ConfirmarEmail{
 
                 //Recipients
                 $mail->setFrom('matheuscalifornia29@gmail.com', 'Matheus');
-                $mail->addAddress($this->dataForm['email'], $this->dataForm['nome_usuario']);
+                $mail->addAddress($email);
 
                 $mail->isHTML(true);                                  //Set email format to HTML
                 $mail->Subject = 'Confirma o e-mail';
-                $mail->Body    = "Prezado(a) " . $this->dataForm['nome_usuario'] . ".<br><br>Agradecemos a sua solicitação de cadastramento em nosso site!<br><br>Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicanco no link abaixo: <br><br> <a href='http://localhost/Clinica/ConfirmarEmail?chave=$chave'>Clique aqui</a><br><br>Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>" ;
-                $mail->AltBody = "Prezado(a) " . $this->dataForm['nome_usuario'] . ".\n\nAgradecemos a sua solicitação de cadastramento em nosso site!\n\nPara que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicanco no link abaixo: \n\n http://localhost/Clinica/ConfirmarEmail?chave=$chave \n\nEsta mensagem foi enviada a você pela empresa XXX.\nVocê está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.\n\n";
+                $mail->Body    = "Prezado(a) Cliente.<br><br>Agradecemos a sua solicitação de cadastramento em nosso site!<br><br>Para que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicanco no link abaixo: <br><br> <a href='http://localhost/Clinica/ConfirmarEmail?chave=$chave'>Clique aqui</a><br><br>Esta mensagem foi enviada a você pela empresa XXX.<br>Você está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.<br><br>" ;
+                $mail->AltBody = "Prezado(a) Cliente.\n\nAgradecemos a sua solicitação de cadastramento em nosso site!\n\nPara que possamos liberar o seu cadastro em nosso sistema, solicitamos a confirmação do e-mail clicanco no link abaixo: \n\n http://localhost/Clinica/ConfirmarEmail?chave=$chave \n\nEsta mensagem foi enviada a você pela empresa XXX.\nVocê está recebendo porque está cadastrado no banco de dados da empresa XXX. Nenhum e-mail enviado pela empresa XXX tem arquivos anexados ou solicita o preenchimento de senhas e informações cadastrais.\n\n";
 
                 $mail->send();
 
-                $_SESSION['email_para_verificar'] = $this->dataForm['email'];
-                $_SESSION['msg'] = "<p style='color:green;'>Usuario cadastrado com sucesso</p> <p style='color:green;'>Confirme seu Email para acessar sua conta</p>";
-                $header = URL . "Home";
+                $_SESSION['msg'] = "<p style='color:green;'>Chave reenviada com sucesso, confirme no seu email</p> <p style='color:green;'>Confirme seu Email para acessar sua conta</p>";
+                $header = URL . "Login";
                 header("Location: {$header}");
 
             } catch (Exception $e) {
                 echo "ERRO";
             }
-            */
-
+            
         } else {
 
+            $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+            if (isset($this->dataForm['send'])) {
+ 
+                $stsEmail = new \Sts\Models\StsConfirmarEmail();
+                if ($stsEmail->verifyIfEmailExist($this->dataForm['email'])){
+
+                    $stsKey = new \Sts\Models\StsConfirmarEmail();
+                    $userSituation = $stsKey->getSituation("email", $this->dataForm['email']);
+
+                    if ($userSituation == "Confirmando") {
+                        $_SESSION['email_para_verificar'] = $this->dataForm['email'];
+                        $header = URL . "ConfirmarEmail/reenviarEmail";
+                        header("Location: {$header}");
+                    } elseif ($userSituation == "Inativo") {
+
+                        $_SESSION['msg'] = "Conta Inativa ou com falha";
+                        $header = URL . "Login";
+                        header("Location: {$header}");
+        
+                    } elseif ($userSituation == "Ativo") {
+        
+                        $_SESSION['msg'] = "Conta já está ativada";
+                        $header = URL . "Login";
+                        header("Location: {$header}");
+        
+                    }
+
+                } else {
+                    $_SESSION['msg'] = "Email informado é inválido";
+                    $this->data['email'] = $this->dataForm['email'];
+                    $loadView = new \Core\LoadView("sts/Views/bodys/sendEmail/sendEmail", $this->data, null);
+                    $loadView->loadView_header2();
+                }
+
+            } else {
+                $loadView = new \Core\LoadView("sts/Views/bodys/sendEmail/sendEmail", null, null);
+                $loadView->loadView_header2();
+            }
+            
         }
     }
 

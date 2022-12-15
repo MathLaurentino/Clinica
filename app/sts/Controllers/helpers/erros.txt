@@ -21,6 +21,8 @@ Erro 017: Usuario tentou acessar a página de adicionar foto do pet / carteira m
 Erro 018: Usuario tentou acessar a página de alterar a foto do pet / carteira mas o pet ainda não tem uma foto adicionada
 Erro 019: Usuario tentou acessar a página de apagar a foto do pet / carteira mas o pet ainda não tem uma foto adicionada
 Erro 020: Usuario tentou mudar dados de um pet que não é dele por meio da URL
+Erro 020: Cliente tentou entrar em uma página que so é permitida quando não está logado mas ele já esta logado
+
 
 
 

@@ -18,7 +18,10 @@ class StsConfirmarEmail
     }
 
 
-    
+
+    /**     alterSituation($id)
+     * Muda o estado da conta para ativo
+     */
     public function alterSituation($id): bool
     {
         $data = array('sit_usuario' => 'Ativo');
@@ -34,18 +37,56 @@ class StsConfirmarEmail
     }
 
 
+
+    /**
+     * Pega qual o estado da conta
+     *      Ativa, Inativa ou Confirmando
+     */
+    public function getSituation($condition, $value): string|null
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT sit_usuario FROM usuario WHERE {$condition} = :{$condition}", "{$condition}={$value}");
+        $userSituation = $stsSelect->getResult();
+        
+        if (!empty($userSituation)) {
+            return $userSituation[0]['sit_usuario'];
+        } else {
+            return null;
+        }
+    }
+
+
+
     /**     function getKey()
      * Pega a chave de ativação do cliente no BD
      *
      * @return void
      */
-    public function getKey($email)
+    public function getKey($email): string|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead("SELECT chave FROM usuario WHERE email = :email", "email={$email}");
         $userKey = $stsSelect->getResult();
-        var_dump($userKey);
-        //return $userKey;
+        if (!empty($userKey)) 
+            return $userKey[0]['chave'];
+        else 
+            return null;
+    }
+
+
+
+    /**     verifyIfEmailExist($email)
+     * Verifica se o email mandado tem registro no banco de dados
+     */
+    public function verifyIfEmailExist($email): bool
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT idusuario FROM usuario WHERE email = :email", "email={$email}");
+        $idUser = $stsSelect->getResult();
+        if (!empty($idUser)) 
+            return true;
+        else 
+            return false;
     }
 
 }

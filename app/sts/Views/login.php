@@ -5,7 +5,7 @@
         session_start();
     }
     if(isset($_SESSION['msg'])){
-        echo "Mensagem: " . $_SESSION['msg'] . "<br>";
+        echo $_SESSION['msg'] . "<br>";
         unset($_SESSION['msg']);    
     }
 
@@ -33,6 +33,9 @@
         <input name="Login" type="submit" value="Enviar" >
 
     </form>
+
+    <?= "<a href='" . URL . "ConfirmarEmail/reenviarEmail'> Reenviar confirmação de e-mail</a> <br>"; ?>
+
 
 </body>
 </html>

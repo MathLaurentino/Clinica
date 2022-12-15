@@ -2,6 +2,8 @@
 
 namespace Sts\Controllers;
 
+include_once 'app/sts/Controllers/helpers/protectLogin.php';
+
 if (!defined('D7E4T2K6F4')) {
     $header = "http://localhost/Clinica/Erro?case=404"; // Erro 404
     header("Location: {$header}");
@@ -21,16 +23,6 @@ class Login{
     public function index(): void
     {
         $this->usuario();
-    }
-
-
-
-    /**     function pages()
-     * Retorna as functions que são publicas nessa controller
-     */
-    public function pages(): array
-    {  
-        return $array = ['index','usuario'];
     }
 
 
@@ -132,7 +124,13 @@ class Login{
             $_SESSION['idendereco'] = $endereco; //enderecoUsuario
         if (!empty ($foto_usuario)) 
             $_SESSION['foto_usuario'] = $foto_usuario; //fotoUsuario
+        
 
+        /* variavel global que ajuda na confirmaçõa de email
+           depois do login já não é necessária */
+        if (isset($_SESSION['email_para_verificar'])) 
+            unset($_SESSION['email_para_verificar']);
+        
         $_SESSION['msg'] = "Login realizado com sucesso";
     }
 
@@ -152,5 +150,15 @@ class Login{
             $header = URL . "Erro?case=2"; 
             header("Location: {$header}");
         } 
+    }
+
+    
+
+    /**     function pages()
+     * Retorna as functions que são publicas nessa controller
+     */
+    public function pages(): array
+    {  
+        return $array = ['index','usuario'];
     }
 }

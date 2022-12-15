@@ -144,6 +144,12 @@ class Erro{
                 $this->data['botao'] = "SobreCliente/Dados";
                 $this->data['descricaoBotao'] = "Ir para a Sobre Cliente";
                 break;
+            case 21:
+                $this->data['numeroErro'] = "021";
+                $this->data['descricaoErro']  = "Você já está logado e por isso não pode acessar essa página";
+                $this->data['botao'] = "Home";
+                $this->data['descricaoBotao'] = "Ir para a Home";
+                break;
             case 404:
                 $this->data['numeroErro'] = "404";
                 $this->data['descricaoErro']  = "Página não encontrada";
