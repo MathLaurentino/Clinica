@@ -13,12 +13,23 @@ class SobreClinica
 {
     private array|null $data;
     private array|null $dataForm;
+    
 
+    /**     function index()
+     * Chama a function padrão da classe
+     */
     public function index(): void
     {
         $this->sobreClinica();
     }
 
+
+
+    /**     function sobreClinica()
+     * Responsavel por carregar a tela "clinica.php" se não foi mandado
+     *      nenhum formulário
+     * Recebe os formulário de adicionar serviços e alterar serviços
+     */
     public function sobreClinica(): void
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -32,7 +43,7 @@ class SobreClinica
 
             if($result){
                 $_SESSION['msg'] = "Serviço cadastrado com sucesso";
-                $header = URLADM . "Sobre-Clinica"; 
+                $header = URLADM . "Sobre-Clinica";   
                 header("Location: {$header}");
             }else{
                 $_SESSION['msg'] = "Erro ao cadastrar serviço";
@@ -41,29 +52,8 @@ class SobreClinica
             }
 
         } 
-        
-
-        elseif (!empty($this->dataForm['DeleteConsulta'])) {
-            unset($this->dataForm['DeleteConsulta']);
-
-            $result = $modelsClinica->deleteAll('tipo_consulta', 'idtipo_consulta', $this->dataForm['idtipo_consulta']);
-
-            if ($result) {
-                $_SESSION['msg'] = "Serviço deletado com sucesso";
-                $header = URLADM . "Sobre-Clinica"; 
-                header("Location: {$header}");
-            } else {
-                $_SESSION['msg'] = "Falha ao deletar serviço";
-                $header = URLADM . "Sobre-Clinica"; 
-                header("Location: {$header}");
-            }
-
-        }
-
-
-        elseif (!empty($this->dataForm['AlterConsulta'])) {
-            unset($this->dataForm['AlterConsulta']);
-
+        elseif (!empty($this->dataForm['AlterServico'])) {
+            unset($this->dataForm['AlterServico']);
             $result = $modelsClinica->updateServico($this->dataForm);
             
             if ($result) {
@@ -77,8 +67,6 @@ class SobreClinica
             }
 
         }
-
-        
         else {
             $this->getData();
             $this->view();
@@ -86,18 +74,58 @@ class SobreClinica
 
     }
 
-    private function getData()
+
+
+    /**     function delete()
+     * Apaga o serviço selecionando pelo ID na URL
+     */
+    public function delete()
+    {
+        if (isset($_GET['idServico'])) {
+
+            $idServico = $_GET['idServico'];
+
+            $modelsClinica = new \Adms\Models\AdmsSobreClinica();
+            $result = $modelsClinica->deleteAll('tipo_consulta', 'idtipo_consulta', $idServico);
+
+            if ($result) {
+                $_SESSION['msg'] = "Serviço deletado com sucesso";
+                $header = URLADM . "Sobre-Clinica"; 
+                header("Location: {$header}");
+            } else {
+                $_SESSION['msg'] = "Falha ao deletar serviço";
+                $header = URLADM . "Sobre-Clinica"; 
+                header("Location: {$header}");
+            }
+
+        } else {
+            $_SESSION['msg'] = "Falha ao identificar ID da consulta";
+            $header = URLADM . "Sobre-Clinica"; 
+            header("Location: {$header}");
+        }
+    }
+
+
+
+    /**     function getData()
+     * Pega os dados no BD necessarios para a tela "clinica.php"
+     */
+    private function getData(): void
     {   
         $modelsClinica = new \Adms\Models\AdmsSobreClinica();
         $this->data = $modelsClinica->dadosClinica();
     }
 
+
+
+    /**
+     * Carrega a tela "clinica.php"
+     */
     private function view(): void
     {
-        $loadView = new \Core\LoadView("adms/Views/sobreClinica", $this->data, null); //servicosadm -> pagina com css
+        $loadView = new \Core\LoadView("adms/Views/clinica", $this->data, null); //servicosadm -> pagina com css
         $loadView->loadView();
     }
-
 
 }
 

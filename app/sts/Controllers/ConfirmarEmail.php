@@ -27,10 +27,6 @@ class ConfirmarEmail{
     public function verificarChave()
     {
 
-        // if (!isset($_SESSION)) {
-        //     session_start();
-        // } 
-
         $chave = filter_input(INPUT_GET, "chave", FILTER_SANITIZE_STRING);
         $stsKey = new \Sts\Models\StsConfirmarEmail();
 
