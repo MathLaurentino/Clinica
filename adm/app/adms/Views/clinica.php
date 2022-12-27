@@ -43,6 +43,9 @@ if (isset($_SESSION['msg'])) {
                     if(isset($valor_consulta)) {echo $valor_consulta; }
                 echo "<br>Descrição: ";
                     if(isset($descricao_consulta)) {echo $descricao_consulta; }
+
+                
+
                 
     ?>
 
@@ -99,8 +102,11 @@ if (isset($_SESSION['msg'])) {
             </div>
         </div>
 
-    <?php echo "<a href='" . URLADM . "Sobre-Clinica/delete?idServico={$idtipo_consulta}'> Deletar </a> 
-            <br> <hr>"; } } ?>
+    <?php 
+            echo "<a href='" . URLADM . "Sobre-Clinica/delete?idServico={$idtipo_consulta}'> Deletar </a> <br>"; 
+            echo "<a href='" . URLADM . "FotoServico/Adicionar?idservico={$idtipo_consulta}'> Adicionar foto</a> <br> <hr>";
+        } } 
+    ?>
 
 
     <!-- --------------- PARTE DE ADICIONAR NOVO SERVIÇO --------------- -->

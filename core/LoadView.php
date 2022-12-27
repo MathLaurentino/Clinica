@@ -63,11 +63,11 @@ class LoadView
     {
         if (file_exists('app/' . $this->nameView . '.php')){
     
-            include 'app\sts\Views\helpers\headers\agendamento.php'; 
+            include 'app\sts\Views\headers\agendamento.php'; 
 
             include 'app/'. $this->nameView .'.php';
 
-            include 'app/sts/views/helpers/footer.php';
+            include 'app/sts/views/footer.php';
 
         } else {
             die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);

@@ -23,7 +23,7 @@ class Agendamento{
     public function novaConsulta()
     {
         $this->data = null;
-        $loadView = new \Core\LoadView("sts/Views/agendamento/userView", $this->data, null);
+        $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/userView", $this->data, null);
         $loadView->loadView_agendamento();
     }
 
