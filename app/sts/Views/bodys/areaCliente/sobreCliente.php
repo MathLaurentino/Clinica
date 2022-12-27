@@ -89,7 +89,7 @@ if(isset($this->data)){
                     } else {
 
                         echo "Você ainda não tem um endereço cadastrado <br>";
-                        echo "<br> <a href='" . URL . "Cadastro/Endereco'> Ir Cadastrar Endereço </a> <br>";
+                        echo "<br> <a href='" . URL . "CadastroEndereco/endereco'> Ir Cadastrar Endereço </a> <br>";
 
                     }
 

@@ -10,13 +10,15 @@ namespace Sts\Models\helpers;
 class StsFile
 {
 
-    /**
-     * Undocumented function
-     *
+    /**     function verifyFile($formFile)
+     * O arquivo que o cliente insere no formulario é avaliado as seguintes informações
+     *      - se o arquivo é maior que 2 mg: 
+     *      - se é diferente de .pdf ou .png
+     *      - se teve falha ao carregar arquivo
      */
     public function verifyFile($formFile): bool
     {
-        $file = $formFile;
+        $file = $formFile; // arquivo passado pelo cliente
 
         if ($file['error']) // falha ao carregar arquivo
         {
@@ -46,9 +48,10 @@ class StsFile
 
 
 
-    /**
-     * Undocumented function
-     *
+    /**     function saveFile($formFile)
+     * Salva o arquivo na pasta de imagens 
+     * Se conseguir salvar retorna o nome do arquivo dentro da pasta 
+     * Se não conseguir salvar retorna NULL
      */
     public function saveFile($formFile): string|null
     {
@@ -63,7 +66,7 @@ class StsFile
             return $nameInDB;
         }
         else { // se tiver algum erro no save
-            $_SESSION['errFile'] = "falha ao salvar arquivo333";
+            $_SESSION['errFile'] = "falha ao salvar arquivo";
             return null;
         }
         
