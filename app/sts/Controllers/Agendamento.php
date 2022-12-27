@@ -27,6 +27,12 @@ class Agendamento{
         $loadView->loadView_agendamento();
     }
 
+
+    public function data()
+    {
+        echo "oi";
+    }
+
     /**     function pages()
      * Function que todas as controller tem
      * Retorna as functions que são publicas nessa controller

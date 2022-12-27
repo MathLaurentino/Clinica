@@ -28,7 +28,7 @@ class FotoServico
 
 
     /**     function usuario()
-     * Cadastra uma foto de perfil do usuario
+     * Cadastra uma foto do serviço selecionado
      */
     public function adicionar(): void
     {
@@ -47,7 +47,38 @@ class FotoServico
             } 
             
             else {
+                $admsFile = new \Adms\Models\helpers\AdmsFile();
                 
+                if ($admsFile->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
+                    
+                    $nameInDB = $admsFile->saveFile($_FILES['arquivo']);
+
+                    if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
+                        $this->data = ['foto_servico' => $nameInDB];
+
+                        $admsCreate= new \Adms\Models\AdmsFotoServico();
+                        $result = $admsCreate->cadastroFoto($this->data, $this->idservico);
+
+                        if ($result) { // se salvar corretamente no BD
+                            $_SESSION['msg'] = "Foto salva com sucesso";
+                            $header = URLADM . "SobreClinica"; 
+                            header("Location: {$header}");
+                        } else { // se não salvar corretamente no BD
+                            $header = URLADM . "Erro?case=13"; // Erro 013
+                            header("Location: {$header}");
+                        }
+
+                    } else { // se não conseguiu salvar na pasta assets/imagens
+                        // recarrega a pagina mostrando o erro pro usuario 
+                        $header = URLADM . "FotoServico/adicionar"; 
+                        header("Location: {$header}");
+                    }
+
+                } else {
+                    $_SESSION['msg'] = "Arquivo com problemas, tente outro";
+                    $header = URLADM . "FotoServico/adicionar"; 
+                    header("Location: {$header}");
+                }
             }
 
         } else {
@@ -55,56 +86,69 @@ class FotoServico
             $header = URLADM . "SobreClinica"; 
             header("Location: {$header}");
         }
-        
-
-        // // so é possivel acessar o método se não existir a $_SESSION['foto_usuario'] 
-        // // (no caso se não tiver foto cadastrada)
-        // if (!isset($_SESSION['foto_usuario'])) { 
-
-        //     if (isset($_FILES['arquivo'])) { // se o usuario mandou o arquivo de foto 
-
-        //         $StsFile = new \Sts\Models\helpers\StsFile();
-                
-        //         if ($StsFile->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
-
-        //             $nameInDB = $StsFile->saveFile($_FILES['arquivo']);
-
-        //             if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
-        //                 $this->data = ['foto_usuario' => $nameInDB];
-
-        //                 $stsCreate= new \Sts\Models\StsFotoUsuario();
-        //                 $result = $stsCreate->cadastroFoto($this->data);
-
-        //                 if ($result) { // se salvar corretamente no BD
-        //                     $_SESSION['foto_usuario'] = $this->data['foto_usuario'];
-        //                     $_SESSION['msg'] = "Foto salva com sucesso";
-        //                     $header = URL . "Sobre-Cliente/Dados"; 
-        //                     header("Location: {$header}");
-        //                 } else { // se não salvar corretamente no BD
-        //                     $header = URL . "Erro?case=13"; // Erro 013
-        //                     header("Location: {$header}");
-        //                 }
-
-        //             } else { // se não conseguiu salvar na pasta assets/imagens
-        //                 // recarrega a pagina mostrando o erro pro usuario 
-        //                 $header = URL . "Foto/Usuario"; 
-        //                 header("Location: {$header}");
-        //             }
-
-        //         } else { // se a foto não segue as regras de negocio
-        //             $header = URL . "Foto/Usuario"; 
-        //             header("Location: {$header}");
-        //         } 
-
-        //     } else { // caso n tenha arquivo enviado, carrega a tela
-        //         $this->view("usuario");
-        //     }
-
-        // } else {
-        //     $header = URL . "Erro?case=14"; // Erro 014
-        //     header("Location: {$header}");
-        // }   
     }
+
+
+
+    /**     function apagar()
+     * Apaga a foto do serviço selecionado
+     */
+    public function apagar(): void
+    {
+        if(isset($_GET['idservico'])){
+            $this->id = $_GET['idservico'];
+        }
+
+        $admsFotoServico = new \Adms\Models\AdmsFotoServico();
+
+        if ($admsFotoServico->verifyIdServico()) {
+
+        }
+
+    }
+
+
+    /**     function apagar()
+     * Responsavel por apagar a foto de perfil do usuario
+     * Primeiro apaga o endereco da imagem no BD
+     * Se der certo, apaga a imagem da pasta assets/imagens  
+     */
+    public function apagarr(): void
+    {
+
+        if(isset($_GET['id'])){
+            $this->id = $_GET['id'];
+        }
+
+        $stsFotoPet = new \Sts\Models\StsFotoPet();
+
+        if ($stsFotoPet->verificaDonoPet($this->id)) { // verifica se o pet pertence ao usuario
+
+            if (!$stsFotoPet->verificarFoto($this->id)) { // verifica se o pet realmente tem uma foto
+
+                unlink( IMG .  $stsFotoPet->enderecoImagemPet($this->id));
+                $result = $stsFotoPet->apagarFotoPet($this->id);
+
+                if ($result) {
+                    $_SESSION['msg'] = "Foto apagada com sucesso";
+                } else {
+                    $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
+                }
+    
+                $header = URL . "SobreCliente/Dados";
+                header("Location: {$header}");
+    
+            } else {
+                $header = URL . "Erro?case=19"; // Erro 019
+                header("Location: {$header}");
+            }
+
+        } else {
+            $header = URL . "Erro?case=20"; // Erro 020
+            header("Location: {$header}");
+        }
+    }
+
 
 
 

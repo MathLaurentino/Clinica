@@ -35,6 +35,15 @@ if (isset($_SESSION['msg'])) {
             for ($x = 0; $x < count($this->data); $x++) {
                 $servico = $this->data[$x];
                 extract($servico);
+
+                if (!empty($foto_servico)) {  echo "<img height='100' src= ' ". IMGADMSER . $foto_servico ." '> <br>"; } else { echo "sem foto <br>"; }
+                if (empty($foto_servico)) {
+                    echo "<a href='" . URLADM . "FotoServico/Adicionar?idservico={$idtipo_consulta}'> Adicionar foto</a> <br>"; 
+                } else {
+                    echo "<a href='" . URLADM . "FotoServico/Apagar?idservico={$idtipo_consulta}'> Apagar </a> <br>"; 
+                    echo "<a href='" . URLADM . "FotoServico/Alterar?idservico={$idtipo_consulta}'> Alterar </a> <br>"; 
+                }
+                
                 echo "<br>id "; 
                     if(isset($idtipo_consulta)) { echo $idtipo_consulta; };
                 echo "<br>Nome: ";
@@ -42,11 +51,7 @@ if (isset($_SESSION['msg'])) {
                 echo "<br>Valor: ";
                     if(isset($valor_consulta)) {echo $valor_consulta; }
                 echo "<br>Descrição: ";
-                    if(isset($descricao_consulta)) {echo $descricao_consulta; }
-
-                
-
-                
+                    if(isset($descricao_consulta)) {echo $descricao_consulta; }      
     ?>
 
 
@@ -104,7 +109,8 @@ if (isset($_SESSION['msg'])) {
 
     <?php 
             echo "<a href='" . URLADM . "Sobre-Clinica/delete?idServico={$idtipo_consulta}'> Deletar </a> <br>"; 
-            echo "<a href='" . URLADM . "FotoServico/Adicionar?idservico={$idtipo_consulta}'> Adicionar foto</a> <br> <hr>";
+            echo "<hr>";
+            
         } } 
     ?>
 

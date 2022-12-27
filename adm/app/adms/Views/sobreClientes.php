@@ -29,7 +29,7 @@
             $lista = $this->data[$x];
             extract($lista);
 
-            if (!empty($foto_usuario)) {  echo "<img height='100' src= ' ". IMGADM . $foto_usuario ." '> <br> <br>"; } else { echo "<img height='100' src= ' ". IMGADMERRO ." '> <br> <br>"; }
+            if (!empty($foto_usuario)) {  echo "<img height='100' src= ' ". IMGCLIENTEADM . $foto_usuario ." '> <br> <br>"; } else { echo "<img height='100' src= ' ". IMGCLIENTEERRO ." '> <br> <br>"; }
 
             //echo "<img height='100' src= ' ".  IMGADM . $foto_usuario ." '> <br> <br>";
             echo "Id do usuário:" . "$idusuario" . "<br>";

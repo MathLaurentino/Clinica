@@ -4,7 +4,7 @@
   function getCalendar(perfil, div)
   {
       let calendarEl = doc.querySelector(div);
-    let calendar = new FullCalendar.Calendar(calendarEl, {
+      let calendar = new FullCalendar.Calendar(calendarEl, {
         initialView: 'dayGridMonth',
 
         headerToolbar:{
@@ -25,6 +25,7 @@
         dateClick: function(info) {
           if (perfil == 'manager') {
             win.location.href = 'http://localhost/Clinica/Home' + info.dateStr;
+            console.log("Clicou em " + info.dataStr);
           } else {
             if(info.view.type == 'dayGridMonth') {
               calendar.changeView('timeGrid', info.dateStr);
@@ -50,7 +51,7 @@
               cachebuster: new Date().valueOf()
             };
           }
-    });
+      });
     calendar.render();
   }
 
