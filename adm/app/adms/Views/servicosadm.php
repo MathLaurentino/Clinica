@@ -15,7 +15,7 @@
 
      <!--CABEÇALHO-->
      <header class="cabecalho-principal"> 
-        <img class="img" src="<?= IMGADM ?>logo.png" alt="logo da clínica">
+     <img class="img" src="<?= IMGADM ?>logo.png" alt="logo da clínica">
 
         <nav class="menu">
             <a class="item">HOME</a>
@@ -26,17 +26,17 @@
             <!--PARTE DE ICONE E LOGIN-->
             <nav class="nav__bar">
                 <div class="mobile-menu">
-                  <div class="icone"> <i class="fa fa-user-circle-o fa-2x"  aria-hidden="true"></i> </div>
+                <div class="icone"> <i class="fa fa-user-circle-o fa-2x"  aria-hidden="true"></i> </div>
                 </div>
                 <ul class="nav-list">
                     
                         <li><a href="#" class="item-nav">Ver perfil</a></li>
                         <li><a href="#" class="item-nav">Sair da conta</a></li>            
                 </ul>
-    
+
             </nav> <!-- fim navbar -->
-          
         </nav>
+
     </header>
 
     <!--CONTEÚDO PRINCIPAL-->

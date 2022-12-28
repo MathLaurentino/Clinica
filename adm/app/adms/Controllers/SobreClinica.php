@@ -43,30 +43,31 @@ class SobreClinica
 
             if($result){
                 $_SESSION['msg'] = "Serviço cadastrado com sucesso";
-                $header = URLADM . "Sobre-Clinica";   
-                header("Location: {$header}");
             }else{
                 $_SESSION['msg'] = "Erro ao cadastrar serviço";
-                $header = URLADM . "Sobre-Clinica"; 
-                header("Location: {$header}");
             }
+
+            $header = URLADM . "Sobre-Clinica";   
+            header("Location: {$header}");
 
         } 
+
         elseif (!empty($this->dataForm['AlterServico'])) {
             unset($this->dataForm['AlterServico']);
+
             $result = $modelsClinica->updateServico($this->dataForm);
-            
+        
             if ($result) {
                 $_SESSION['msg'] = "Serviço Alterado com sucesso";
-                $header = URLADM . "Sobre-Clinica"; 
-                header("Location: {$header}");
             } else {
                 $_SESSION['msg'] = "Problema ao alterar serviço";
-                $header = URLADM . "Sobre-Clinica"; 
-                header("Location: {$header}");
             }
 
+            $header = URLADM . "Sobre-Clinica"; 
+            header("Location: {$header}");
+
         }
+
         else {
             $this->getData();
             $this->view();
@@ -124,7 +125,7 @@ class SobreClinica
     private function view(): void
     {
         $loadView = new \Core\LoadView("adms/Views/clinica", $this->data, null); //servicosadm -> pagina com css
-        $loadView->loadView();
+        $loadView->loadViewAdm();
     }
 
 }

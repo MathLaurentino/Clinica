@@ -66,7 +66,6 @@ class AdmsFile
             return $nameInDB;
         }
         else { // se tiver algum erro no save
-            $_SESSION['errFile'] = "falha ao salvar arquivo";
             return null;
         }
         

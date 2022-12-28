@@ -27,7 +27,7 @@ class Home{
         }
         
         $loadView = new \Core\LoadView('adms/Views/home', null, null);
-        $loadView->loadView();
+        $loadView->loadViewAdm();
     }
 
 }

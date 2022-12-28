@@ -17,7 +17,7 @@ class LoadView
     /**     function loadView()
      * Carrega a view requerida pela controller
      */
-    public function loadView(): void
+    public function loadViewAdm(): void
     {
         if (file_exists('app/' . $this->nameView . '.php')){
     

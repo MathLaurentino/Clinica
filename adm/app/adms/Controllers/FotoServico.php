@@ -132,91 +132,68 @@ class FotoServico
             $this->idservico = $_GET['idservico'];
         }
 
-        if ($AdmsFotoServico->verifyIdServico($this->idservico)) {
-            
-            if (!isset($_FILES['arquivo'])) {
-                $this->view("fotoServico");
-            } 
-            
-            else {
-                
-            } 
-        
-        }
-    }
+        $admsFotoServico = new \Adms\Models\AdmsFotoServico();
 
-
-
-    /**     function alterar()
-     * Altera a foto de perfil do usuario 
-     * Falta implementar 
-     */
-    public function alterarr(): void
-    {
-        // se o usuario não tiver foto de perfil
-        if (!isset($_SESSION['foto_usuario'])) {
-            $header = URL . "Erro?case=15"; // Erro 015
+        if (!$admsFotoServico->verifyIdServico($this->idservico)) {
+            $_SESSION['msg'] = "Id serviço inválida, tente novamente";
+            $header = URL . "SobreClinica/index"; 
             header("Location: {$header}");
-        } 
-
-        // se o usuario ainda não mandou o arquivo da foto
-        elseif (!isset($_FILES['arquivo'])) {
-            $this->view("alteraFotoUsuario"); // carrega a view 
         }
+   
+        if (!isset($_FILES['arquivo'])) {
+            $this->data['foto_servico'] = $admsFotoServico->enderecoFotoServico($this->idservico);
+            $this->view("alterarFotoServico");
+        } 
         
         else {
-            $StsFile = new \Sts\Models\helpers\StsFile();
-                
-            if ($StsFile->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
 
-                $nameInDB = $StsFile->saveFile($_FILES['arquivo']);
+            $admsFile = new \Adms\Models\helpers\AdmsFile();
+
+            if ($admsFile->verifyFile($_FILES['arquivo'])) {
+
+                $nameInDB = $admsFile->saveFile($_FILES['arquivo']);
 
                 if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
 
-                    $stsAlter= new \Sts\Models\StsFotoUsuario();
-                    $resultApaga = $stsAlter->apagarFotoUsuario();
+                    $enderecoFoto = $admsFotoServico->enderecoFotoServico($this->idservico);
+                    $resultApaga = $admsFotoServico->apagarFotoServico($this->idservico);
 
                     if ($resultApaga) {
-                        unlink( IMG . $_SESSION['foto_usuario'] );
-                        unset($_SESSION['foto_usuario']);
 
-                        $this->data = ['foto_usuario' => $nameInDB];
+                        unlink( IMGADMSER . $enderecoFoto);
 
-                        $stsCreate= new \Sts\Models\StsFotoUsuario();
-                        $resultCadastra = $stsCreate->cadastroFoto($this->data);
+                        $this->data = ['foto_servico' => $nameInDB];
+                        $resultCadastra = $admsFotoServico->cadastroFoto($this->data, $this->idservico);
 
                         if ($resultCadastra) { // se salvar corretamente no BD
-                            $_SESSION['foto_usuario'] = $this->data['foto_usuario'];
-                            $_SESSION['msg'] = "Foto salva com sucesso";
-                            $header = URL . "Sobre-Cliente/Dados"; 
-                            header("Location: {$header}");
+                            $_SESSION['msg'] = "Foto alterada com sucesso";
                         } else { // se não salvar corretamente no BD
-                            $header = URL . "Erro?case=13"; // Erro 013
-                            header("Location: {$header}");
+                            $_SESSION['msg'] = "Falha ao alterar foto";
                         }
 
-                    } else {
+                    } else { // não conseguiu apagar dados no banco de dados
                         $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
                     }
 
                 } else { // se não conseguiu salvar na pasta assets/imagens
-                    // recarrega a pagina mostrando o erro pro usuario 
-                    $header = URL . "Foto/Usuario"; 
-                    header("Location: {$header}");
+                    $_SESSION['msg'] = "falha ao salvar arquivo";
                 }
-            } else { // se a foto não segue as regras de negocio
-                $header = URL . "Foto/Usuario"; 
-                header("Location: {$header}");
-            } 
-        }
-    }
 
+            } else { // se o arquinvo não segue as regras de negócio
+                $_SESSION['msg'] = "Arquivo com problemas, tente outro";
+            }
 
+            $header = URLADM . "SobreClinica/index"; 
+            header("Location: {$header}");
+
+        } 
+    } 
+    
 
     private function view($view) 
     {
         $loadView = new \Core\LoadView("Adms/Views/bodys/files/" . $view, $this->data, null);
-        $loadView->loadView();
+        $loadView->loadViewAdm();
     }
 }
 

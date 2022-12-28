@@ -36,14 +36,15 @@ if (isset($_SESSION['msg'])) {
                 $servico = $this->data[$x];
                 extract($servico);
 
-                if (!empty($foto_servico)) {  echo "<img height='100' src= ' ". IMGADMSER . $foto_servico ." '> <br>"; } else { echo "sem foto <br>"; }
+                if (!empty($foto_servico)) {  echo "<img height='100' src= '". URLADM . IMGADMSER . $foto_servico ." '> <br>"; } else { echo "sem foto <br>"; }
+
                 if (empty($foto_servico)) {
                     echo "<a href='" . URLADM . "FotoServico/Adicionar?idservico={$idtipo_consulta}'> Adicionar foto</a> <br>"; 
                 } else {
                     echo "<a href='" . URLADM . "FotoServico/Apagar?idservico={$idtipo_consulta}'> Apagar </a> <br>"; 
                     echo "<a href='" . URLADM . "FotoServico/Alterar?idservico={$idtipo_consulta}'> Alterar </a> <br>"; 
                 }
-                
+
                 echo "<br>id "; 
                     if(isset($idtipo_consulta)) { echo $idtipo_consulta; };
                 echo "<br>Nome: ";
