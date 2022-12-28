@@ -50,9 +50,11 @@ if (isset($_SESSION['msg'])) {
                 echo "<br>Nome: ";
                     if(isset($nome_consulta)) { echo $nome_consulta; }
                 echo "<br>Valor: ";
-                    if(isset($valor_consulta)) {echo $valor_consulta; }
+                    if(isset($valor_consulta)) { echo $valor_consulta; }
                 echo "<br>Descrição: ";
-                    if(isset($descricao_consulta)) {echo $descricao_consulta; }      
+                    if(isset($descricao_consulta)) { echo $descricao_consulta; }     
+                echo "<br>Tempo Médio: ";
+                    if(isset($tempo_medio)) { echo $tempo_medio; }  
     ?>
 
 
@@ -70,7 +72,7 @@ if (isset($_SESSION['msg'])) {
                     <div class="modal-content">
                         
                         <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Serviço</h1>
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Altera Dados Serviço</h1>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
 
@@ -87,13 +89,18 @@ if (isset($_SESSION['msg'])) {
 
                                 <div class="mb-3"> <!-- Descrição -->
                                     <label for="descricao" class="col-form-label">Descrição:</label>
-                                    <textarea class="form-control" id="descricao" name="descricao_consulta" required> <?php if(isset($descricao_consulta)) {echo $descricao_consulta; } ?> </textarea>
+                                    <textarea class="form-control" id="descricao" name="descricao_consulta" required><?php if(isset($descricao_consulta)) {echo $descricao_consulta; } ?> </textarea>
                                     <!-- <input type="text" class="form-control" id="descricao" name="descricao_consulta"> -->
                                 </div>
 
                                 <div class="mb-3"> <!-- Valor -->
                                     <label for="valor" class="col-form-label">Valor:</label>
                                     <input type="text" class="form-control" id="valor" name="valor_consulta" required value="<?php if(isset($valor_consulta)) {echo $valor_consulta; } ?>">
+                                </div>
+
+                                <div class="mb-3"> <!-- Valor -->
+                                    <label for="tempo" class="col-form-label">Tempo Médio:</label>
+                                    <input type="time" class="form-control" id="tempo" name="tempo_medio" required value="<?php if(isset($tempo_medio)) {echo $tempo_medio; } ?>">
                                 </div>
 
                                 <div class="mb-3"> <!-- Botão -->
@@ -154,6 +161,11 @@ if (isset($_SESSION['msg'])) {
                             <div class="mb-3"> <!-- Valor -->
                                 <label for="valor" class="col-form-label">Valor:</label>
                                 <input type="text" class="form-control" required id="valor" name="valor_consulta">
+                            </div>
+
+                            <div class="mb-3"> <!-- Valor -->
+                                <label for="tempo" class="col-form-label">Tempo Médio:</label>
+                                <input type="time" class="form-control" required id="tempo" name="tempo_medio">
                             </div>
 
                             <div class="mb-3"> <!-- Botão -->

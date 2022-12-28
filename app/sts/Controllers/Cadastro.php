@@ -203,8 +203,8 @@ class Cadastro{
 
     private function view() 
     {
-        $loadView = new \Core\LoadView("sts/Views/bodys/cadastros/Cadastrocliente", $this->data, null);
-        $loadView->loadView_header2();
+        $loadView = new \Core\LoadView("sts/Views/bodys/cadastros/cadastro_cliente", $this->data, null);
+        $loadView->loadView_header3("cadastro_cliente");
     }
         
 

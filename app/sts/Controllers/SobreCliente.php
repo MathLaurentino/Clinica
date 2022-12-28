@@ -93,18 +93,17 @@ private array|null $dataForm; // dados que vem do formulario
                 } else {
                     $_SESSION['msg'] = "CPF informado já possui cadastro no banco de dados";
                     $this->data = $this->dataForm;
-                    $this->view('alterarDados');
+                    $this->view2('alterarDados');
                 } 
 
             } else {
                 $this->data = $this->dataForm;
-                $this->view('alterarDados');
+                $this->view2('alterarDados');
             }
             
-
         } else {
             $this->getData('usuario');
-            $this->view('alterarDados');
+            $this->view2('alterarDados');
         }
     }
 
@@ -276,6 +275,12 @@ private array|null $dataForm; // dados que vem do formulario
     {
         $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/" . $view, $this->data, null);
         $loadView->loadView_header2();
+    }
+
+    private function view2(string $view): void
+    {
+        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/" . $view, $this->data, null);
+        $loadView->loadView_header3("alterarDados");
     }
 
 

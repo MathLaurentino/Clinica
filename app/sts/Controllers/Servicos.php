@@ -15,9 +15,14 @@ class Servicos{
 
     public function index()
     {    
+        $this->clinica();
+    }
+
+    public function clinica()
+    {
         $servico = new \Sts\Models\StsServicos();
-        $this->data = $servico->index();
-        //var_dump($this->data);
+        $this->data = $servico->dataServicos();
+
         $loadView = new \Core\LoadView("sts/Views/bodys/servicos/servicos", $this->data, null);
         $loadView->loadView_header('servicos');
     }
@@ -30,7 +35,7 @@ class Servicos{
      */
     public function pages(): array
     {  
-        return $array = ['index'];
+        return $array = ['index','clinica'];
     }
     
 }

@@ -59,6 +59,14 @@ class LoadView
     }
 
 
+    public function loadView_header3($header)
+    {
+        include 'app\sts\Views\headers/' . $header . '.php'; 
+        include 'app/' . $this->nameView . '.php';
+        include 'app/sts/views/footer.php';
+    }
+
+
     public function loadView_agendamento()
     {
         if (file_exists('app/' . $this->nameView . '.php')){

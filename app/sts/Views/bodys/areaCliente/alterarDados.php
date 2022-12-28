@@ -1,42 +1,37 @@
+
 <?php
+if (!isset($_SESSION)) { session_start(); }
 
-    if(!isset($_SESSION)){
-        session_start();
-    }
-    
-    if(isset($_SESSION['msg']))
-    {
-        echo "Mensagem: " . $_SESSION['msg'] . "<br>"; 
-        unset($_SESSION['msg']);   
-    }
-    
-    if (isset($this->data[0])) {
-        extract($this->data[0]);
-    }
-    
-    if (isset($this->data)) {
-        extract($this->data);
-    }
+if (isset($_SESSION['msg'])) {
+    echo $_SESSION['msg'] . "<br>"; 
+    unset($_SESSION['msg']);   
+}
 
-?>
+if (isset($this->data[0])) { extract($this->data[0]); }
+if (isset($this->data)) { extract($this->data); }
+?>  
 
 
-<form method="post" action="">
+<!--CONTEÚDO PRINCIPAL-->
+<main class="conteudo-principal">
+    <h1 class="título">Atualizar Cadastro</h1>
+    <p class="subtítulo">atualize os seus dados cadastrais abaixo</p>
 
-    <h2> DADOS PESSOAIS </h2>
+    <!--formulário para alterar dados-->
+    <form class="form-edição" method="post" action="">
 
-    <label>NOME: </label>
-    <input name="nome_usuario" type="text" placeholder="Nome Completo" value="<?php if(isset($nome_usuario)) {echo "$nome_usuario";} ?>"> <br> <br> 
+        <input type="text" placeholder="Nome Completo" name="nome_usuario" value="<?php if(isset($nome_usuario)) {echo "$nome_usuario";} ?>">
 
-    <label>DATA DE NAS.: </label>
-    <input name="data_nascimento" type="date" placeholder="data" value="<?php if(isset($data_nascimento)) {echo "$data_nascimento";} ?>"> <br> <br>
+        <input type="date" placeholder="Data de Nascimento" name="data_nascimento" value="<?php if(isset($data_nascimento)) { echo $data_nascimento; } ?>">
 
-    <label>CPF: </label>
-    <input name="cpf" type="text" placeholder="CPF" value="<?php if(isset($cpf)) {echo "$cpf";} ?>"> <br> <br>
+        <input type="text" placeholder="CPF" name="cpf" value="<?php if(isset($cpf)) {echo "$cpf";} ?>">
 
-    <label>RG: </label>
-    <input name="rg" type="text" placeholder="RG" value="<?php if(isset($rg)) {echo "$rg";} ?>"> <br> <br>
+        <input type="text" placeholder="RG" name="rg" value="<?php if(isset($rg)) {echo "$rg";} ?>">
 
-    <input name="AlterUser" type="submit" value="Alterar">
+        <input name="AlterUser" type="submit" class="botao" value="salvar alterações">
 
-</form>
+    </form>
+
+    <img src="<?= URL . IMGCLINICA ?>img04.png" class="img-donopet" alt="imagem com modelo afro segurando cão"> 
+
+</main>    

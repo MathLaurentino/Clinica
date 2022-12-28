@@ -5,7 +5,10 @@ namespace Sts\Models;
 class StsServicos{
 
 
-    public function index():array|null
+    /**     function dataServicos()
+     * Retorna todos so dados da tabela tipo_consulta
+     */
+    public function dataServicos():array|null
     {
         
         $stsSelect = new \Sts\Models\helpers\StsSelect();
