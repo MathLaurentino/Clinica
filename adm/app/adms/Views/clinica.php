@@ -58,12 +58,10 @@ if (isset($_SESSION['msg'])) {
     ?>
 
 
-        <div class="container"> 
-
             <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#alterServiceModal<?= $idtipo_consulta ?>">
                 Alterar
             </button>
-
+        <div class="container"> 
                     <!-- Modal -->
             <div class="modal fade" id="alterServiceModal<?= $idtipo_consulta ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 

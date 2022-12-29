@@ -55,7 +55,7 @@ class Login
                 var_dump($this->dataForm);
                 $this->createLogin();
             } else { // carrega a view
-                $loadView = new \Core\LoadView('adms/Views/bodys/login/login2', null, null);
+                $loadView = new \Core\LoadView('adms/Views/bodys/login/login', null, null);
                 $loadView->loadViewAdm();
             }
         }

@@ -224,7 +224,7 @@ button:hover{
 	font-family: 'Righteous', cursive;
 	font-size: 15px;
 	text-align: center;
-	flex-basis: 10vw;
+	flex-basis: 18vw;
 
 }
 
@@ -240,6 +240,22 @@ button:hover{
 	line-height: 40px;
 	padding-left: 20px;
 	padding-right: 20px;
+}
+
+
+.procedimento .editaexclui{
+	font-family: 'Righteous', cursive;
+	font-size: 15px;
+	text-align: center;
+	color: black;
+	background-color: white;
+	border:solid 5px;
+	border-color: #7711dd;
+	height: 30px;
+	line-height: 25px;
+	padding-left: 15px;
+	padding-right: 15px;
+	flex-basis: 3vw;
 }
 
 /*ESTILIZAÇÃO PÁGINA ÁREA DOS CLIENTES - USUÁRIO*/ 

@@ -124,7 +124,7 @@ class SobreClinica
      */
     private function view(): void
     {
-        $loadView = new \Core\LoadView("adms/Views/clinica", $this->data, null); //servicosadm -> pagina com css
+        $loadView = new \Core\LoadView("adms/Views/servicosadm", $this->data, null); //servicosadm -> pagina com css clinica
         $loadView->loadViewAdm();
     }
 

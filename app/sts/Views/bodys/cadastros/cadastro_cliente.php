@@ -34,11 +34,10 @@
                 <button class="botao"> Criar conta</button>
             </form>
 
-
         </div>
 
     </div>
 
-    <script src="<?= JS ?>cadastro.js"> </script>
+    <script src="<?= URL . JS ?>cadastro.js"> </script>
 </div>
 

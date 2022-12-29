@@ -19,6 +19,8 @@ abstract class Define
         // ------------------------------------------------------------------
 
         define('IMGADMSER', 'app/adms/assets/imagens_servicos/');
+        define('IMGADMCLINICA', 'app/adms/assets/imagens_clinica/');
+
         
         define('CONTROLLER', 'Login');
         define('METODO', 'index');

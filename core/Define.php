@@ -17,7 +17,7 @@ namespace Core;
             define('IMGADMSERVICOS', 'app/adms/assets/imagens_servicos/'); 
 
             define('CSS', 'http://localhost/Clinica/app/sts/assets/css/');
-            define('JS', 'http://localhost/Clinica/app/sts/assets/js/');
+            define('JS', 'app/sts/assets/js/');
 
 
             define('CONTROLLER', 'Home');

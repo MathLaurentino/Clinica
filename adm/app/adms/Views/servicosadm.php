@@ -1,3 +1,15 @@
+<?php
+
+if(!isset($_SESSION)){
+    session_start();
+}
+if (isset($_SESSION['msg'])) {
+    echo $_SESSION['msg'];
+    unset($_SESSION['msg']);
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -8,14 +20,16 @@
     <script src="https://kit.fontawesome.com/7f492723e7.js" crossorigin="anonymous"></script>    
     <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>styleNavBar.css"> 
     <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <title>Clínica Veterinária</title>
 </head>
 
 <body>
 
      <!--CABEÇALHO-->
-     <header class="cabecalho-principal"> 
-     <img class="img" src="<?= IMGADM ?>logo.png" alt="logo da clínica">
+     <header class="cabecalho-principal">
+
+        <img class="img" src="<?= URLADM . IMGADMCLINICA ?>logo.png" alt="logo da clínica">
 
         <nav class="menu">
             <a class="item">HOME</a>
@@ -36,99 +50,172 @@
 
             </nav> <!-- fim navbar -->
         </nav>
-
+    
     </header>
+
+
+
 
     <!--CONTEÚDO PRINCIPAL-->
     <main class="conteudo-principal">
+
         <h1 class="título">Escolha um de <br>nossos serviços</h1>
 
+        <?php
+            if ($this->data){
+                for ($x = 0; $x < count($this->data); $x++) {
+                    $servico = $this->data[$x];
+                    extract($servico);
+                    $tempo = explode(":",$tempo_medio); 
+        ?>
+
         <section class="conteudo-serviços">
-            <img src="../img/icone_vacina.png" alt="icone vacina" class="img-serviços">
 
             <div class="procedimento">
-                <h3 class="título-serviço">VACINAÇÃO </h3>
 
-                <p class="info">R$ 65 <br> 20 min.</p>
+                <?php // relacionado a imagem do servico
+                    if (!empty($foto_servico)) { 
+                        echo "<img src='". URLADM . IMGADMSER . $foto_servico ."' class='img-serviços'>";
+                        echo "<a href='" . URLADM . "FotoServico/Apagar?idservico={$idtipo_consulta}'> <button class='editaexclui'>APAGAR</button>  </a> <br>"; 
+                        echo "<br>";
+                        echo "<a href='" . URLADM . "FotoServico/Alterar?idservico={$idtipo_consulta}'> <button class='editaexclui'>EDITAR</button>  </a> <br>"; 
+                    } else { 
+                        echo "sem foto <br>";
+                        echo "<a href='" . URLADM . "FotoServico/Adicionar?idservico={$idtipo_consulta}'> <button class='editaexclui'>ADICONAR</button></a> <br>"; 
+                    } 
+                ?>
+            
+                <h3 class="título-serviço"> <?php  echo $nome_consulta; ?> </h3>
 
-                <a href="agendamento.html"> <button class="agendar">EDITAR</button></a>
-                <a href="agendamento.html"> <button class="agendar">EXCLUIR</button></a>
+                <p class="info">R$<?php  echo $valor_consulta . "<br>" . $tempo[0] . "h-" . $tempo[1] . "m";   ?> </p>
+
+                <a> <button type="button" class="agendar" data-bs-toggle="modal" data-bs-target="#alterServiceModal<?= $idtipo_consulta ?>"> Alterar </button> </a> 
+
+                <!-- <button class="agendar">EDITAR</button> -->
+
+                <a href="<?= URLADM . "Sobre-Clinica/delete?idServico={$idtipo_consulta}" ?>"> <button class="agendar">EXCLUIR</button> </a>
+                
             </div>
 
         </section>
 
         <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
-        <section class="conteudo-serviços">
-            <img src="../img/icone_exames.png" alt="icone exames" class="img-serviços">
+        <div class="container"> 
+                    <!-- Modal -->
+            <div class="modal fade" id="alterServiceModal<?= $idtipo_consulta ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
-            <div class="procedimento">
-                <h3 class="título-serviço"> EXAMES </h3>
+                <div class="modal-dialog">
 
-                <p class="info">R$ 250 <br> 2h.</p>
+                    <div class="modal-content">
+                        
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Altera Dados Serviço</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
 
-                <a href="agendamento.html"> <button class="agendar">EDITAR</button></a>
-                <a href="agendamento.html"> <button class="agendar">EXCLUIR</button></a>
+                        <div class="modal-body"> <!-- Formulário dentro do modal -->
+
+                            <form id="alter-service-form" method="post" action="">
+
+                                <input type="hidden" name="idtipo_consulta" value="<?php if(isset($idtipo_consulta)) { echo $idtipo_consulta; } ?>">
+
+                                <div class="mb-3"> <!-- Nome -->
+                                    <label for="nome" class="col-form-label">Nome:</label>
+                                    <input type="text" class="form-control" id="nome" name="nome_consulta" required value="<?php if(isset($nome_consulta)) { echo $nome_consulta; } ?>">
+                                </div>
+
+                                <div class="mb-3"> <!-- Descrição -->
+                                    <label for="descricao" class="col-form-label">Descrição:</label>
+                                    <textarea class="form-control" id="descricao" name="descricao_consulta" required><?php if(isset($descricao_consulta)) {echo $descricao_consulta; } ?> </textarea>
+                                    <!-- <input type="text" class="form-control" id="descricao" name="descricao_consulta"> -->
+                                </div>
+
+                                <div class="mb-3"> <!-- Valor -->
+                                    <label for="valor" class="col-form-label">Valor:</label>
+                                    <input type="text" class="form-control" id="valor" name="valor_consulta" required value="<?php if(isset($valor_consulta)) {echo $valor_consulta; } ?>">
+                                </div>
+
+                                <div class="mb-3"> <!-- Valor -->
+                                    <label for="tempo" class="col-form-label">Tempo Médio:</label>
+                                    <input type="time" class="form-control" id="tempo" name="tempo_medio" required value="<?php if(isset($tempo_medio)) {echo $tempo_medio; } ?>">
+                                </div>
+
+                                <div class="mb-3"> <!-- Botão -->
+                                    <input type="submit" class="btn btn-primary bt-sm" value="alterar" id="alter-service-bnt" name="AlterServico" >
+                                </div>
+
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
 
-        </section>
+        <?php     
+            } } 
+        ?>
 
-        <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
-        <section class="conteudo-serviços">
-            <img src="../img/icone_consulta.png" alt="icone consulta" class="img-serviços">
-
-            <div class="procedimento">
-                <h3 class="título-serviço"> CONSULTAS </h3>
-
-                <p class="info">R$ 100 <br> 1h30min. </p>
-
-                <a href="agendamento.html"> <button class="agendar">EDITAR</button></a>
-                <a href="agendamento.html"> <button class="agendar">EXCLUIR</button></a>
-            </div>
-
-        </section>
-
-        <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
-
-        <section class="conteudo-serviços">
-            <img src="../img/icone_dentes.png" alt="icone cuidados dentais" class="img-serviços">
-
-            <div class="procedimento">
-                <h3 class="título-serviço"> CUIDADOS DENTAIS </h3>
-
-                <p class="info">R$ 80 <br> 30min. </p>
-
-                <a href="agendamento.html"> <button class="agendar">EDITAR</button></a>
-                <a href="agendamento.html"> <button class="agendar">EXCLUIR</button></a>
-            </div>
-
-        </section>
-
-        <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
-
-        <section class="conteudo-serviços">
-            <img src="../img/icone_castração.png" alt="icone castração" class="img-serviços">
-
-            <div class="procedimento">
-                <h3 class="título-serviço"> CASTRAÇÃO & PÓS OPERATÓRIO</h3>
-
-                <p class="info">R$ 500 <br> 3h. </p>
-
-                <a href="agendamento.html"> <button class="agendar">EDITAR</button></a>
-                <a href="agendamento.html"> <button class="agendar">EXCLUIR</button></a>
-            </div>
-
-        </section>
-
-        <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+        
         <div class="addServicos">
-            <a href="#addservicos"> <button class="addServicosBotao">ADICIONAR SERVIÇOS</button></a>
-    
+            
+            <a> <button type="button" class="addServicosBotao" data-bs-toggle="modal" data-bs-target="#newServiceModal">ADICIONAR SERVIÇO</button> </a>
+
+            <div class="container"> 
+                        <!-- Modal -->
+                <div class="modal fade" id="newServiceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+                    <div class="modal-dialog">
+
+                        <div class="modal-content">
+                            
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Novo Serviço</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+
+                            <div class="modal-body"> <!-- Formulário dentro do modal -->
+
+                                <form id="submit-new-service-form" method="post" action="">
+
+                                    <div class="mb-3"> <!-- Nome -->
+                                        <label for="nome" class="col-form-label">Nome:</label>
+                                        <input type="text" class="form-control" required id="nome" name="nome_consulta">
+                                    </div>
+
+                                    <div class="mb-3"> <!-- Descrição -->
+                                        <label for="descricao" class="col-form-label">Descrição:</label>
+                                        <textarea class="form-control" required id="descricao" name="descricao_consulta"></textarea>
+                                        <!-- <input type="text" class="form-control" id="descricao" name="descricao_consulta"> -->
+                                    </div>
+
+                                    <div class="mb-3"> <!-- Valor -->
+                                        <label for="valor" class="col-form-label">Valor:</label>
+                                        <input type="text" class="form-control" required id="valor" name="valor_consulta">
+                                    </div>
+
+                                    <div class="mb-3"> <!-- Valor -->
+                                        <label for="tempo" class="col-form-label">Tempo Médio:</label>
+                                        <input type="time" class="form-control" required id="tempo" name="tempo_medio">
+                                    </div>
+
+                                    <div class="mb-3"> <!-- Botão -->
+                                        <input type="submit" class="btn btn-primary bt-sm" value="Adicionar" id="submit-new-service-bnt" name="AddServico" >
+                                    </div>
+
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
     
 
-    <script src="../js/navbar.js"> </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
 </body>
 </html>
