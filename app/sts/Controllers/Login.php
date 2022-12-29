@@ -43,8 +43,8 @@ class Login{
             unset($this->dataForm['Login']);
             $this->createLogin();
         } else { // carrega a view
-            $loadView = new \Core\LoadView('sts/Views/login', null, null);
-            $loadView->loadView();
+            $loadView = new \Core\LoadView('sts/Views/bodys/login/login', null, null);
+            $loadView->loadView_header3('login');
         }
 
     }

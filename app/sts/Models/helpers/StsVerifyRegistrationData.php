@@ -41,9 +41,7 @@ class StsVerifyRegistrationData
      */
     public function verifyCpf($cpf): bool
     {
-        echo $cpf . "<br>";
         $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
-        echo $cpf;
         if (strlen($cpf) != 11) {
             //$_SESSION['msg'] = "CPF inválido";
             return true;
@@ -82,5 +80,4 @@ class StsVerifyRegistrationData
             return true;
     }
 
-    
 }

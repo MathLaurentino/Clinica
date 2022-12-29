@@ -134,12 +134,8 @@ class Cadastro{
         $stsCadastro = new \Sts\Models\StsCadastro();
         $resultVerify = $stsCadastro->verifyAccount($this->data);
         
-        // caso não tenha registro no BD com esse email, cpf ou rg retorna true
-        if ($resultVerify == true) 
-            return true;
-        else
-            return false;
-
+        // retorna true caso não tenha registro no BD com esse email, rg ou cpf
+        return $resultVerify; 
     }
 
 
@@ -150,12 +146,15 @@ class Cadastro{
     private function createNewAccount(): bool
     {   
         $this->data['senha_usuario'] = password_hash($this->data['senha_usuario'], PASSWORD_DEFAULT);
+        $this->data['nome_usuario'] = ucwords(strtolower($this->data['nome_usuario']));
+        
         $this->createKey();
 
         $stsCadastro = new \Sts\Models\StsCadastro();
         $idUsuario = $stsCadastro->createAccount($this->data);
-        
-        if(!empty($idUsuario))
+
+        // se conseguir criar a conta corretamente
+        if(!empty($idUsuario)) 
             return true;
         else
             return false;

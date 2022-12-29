@@ -75,9 +75,10 @@ private array|null $dataForm; // dados que vem do formulario
             if ($stsverify->verifyCpf($this->dataForm['cpf']) && $stsverify->verifyAge($this->dataForm['data_nascimento'])) {
                 
                 $stsSobreCliente = new \Sts\Models\StsSobreCliente();
-                $check = $stsSobreCliente->checkEmail($this->dataForm['cpf']);
 
-                if (empty($check)) { // Se não existir um CPF igual no banco de dados
+                // Se não existir um CPF igual no banco de dados
+                if ($stsSobreCliente->verifyRepeatedCpf($this->dataForm['cpf']) || $stsSobreCliente->verifySameCpf($_SESSION['idusuario'], $this->dataForm['cpf'])) { 
+
                     $result = $stsSobreCliente->alterUser($this->dataForm);
 
                     if(!empty($result)) // Se os dados foram alterados com sucesso

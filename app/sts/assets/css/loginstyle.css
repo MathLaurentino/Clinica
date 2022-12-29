@@ -1,539 +1,113 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap');
 
-* {
+*{
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
 	text-decoration: none;
 }
 
-body{
-	font-size: 100%;
-	background-color: white;
+
+.main-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ECEFF1;
 }
 
-.container{
-	position: relative;
-	padding: 15px;
-	max-width: 600px;
-	margin: 0 auto;
+.main-container .conteudo{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    border-radius: 20px;
+    width: 65vw;
+    height: 80vh;
+    position: relative;
 }
 
-.cabecalho-principal{
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: space-around;
-	padding-top: 24px;
-	white-space: nowrap;
+.main-container .conteudo::before{
+    content:"";
+    position:absolute;
+    background-color:#A487D5;
+    width: 40%;
+    height: 100%;
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+
+    left: 0;
 }
 
-.cabecalho-principal .img{
-	height: 65px;
+/*PRIMEIRO CONTEÚDO*/ 
+.main-container .conteudo01{
+    display: flex;
+    align-items: flex-start;
 }
 
-.cabecalho-principal .menu{
-	display: flex;
-	align-items: baseline;
-	gap: 60px;
+.main-container .primeiracoluna{
+    text-align: center;
+    width: 40%;
 }
 
-.cabecalho-principal .item{
-	font-family: 'Righteous', cursive;
-	font-size: 20px;
-	color: #000;
-
+.conteudo01 .primeiracoluna{
+    z-index: 10;
 }
 
-.cabecalho-principal .item-nav{
-	font-family: 'Righteous', cursive;
-	font-size: 13px;
-	color: #000;}
-
-.cabecalho-principal .botao{
-	font-family: 'Righteous', cursive;
-	font-size: 20px;
-	color: white;
-	background-color: #FFB300;
-	border: none;
-	height: 40px;
-	line-height: 40px;
-	padding-left: 20px;
-	padding-right: 20px;
-	border-radius: 8px;
+.conteudo01 .segundacoluna{
+    z-index: 11;
 }
 
-button:hover{
-	transform: scale(1.1);
-	cursor: pointer;
+.primeiracoluna .título{
+    font-family: 'Righteous', cursive;
+    font-size: 33px;
+    color: white;
+    padding-top: 125px;
 }
 
-
-
-/* ESTILIZAÇÃO NO ICONE DE LOGIN */ 
-
-.conteudo-principal{
-	border-top: 4px solid black;
-	margin-bottom: 20px;
+.primeiracoluna .subtítulo{
+    font-family: 'Open Sans', sans-serif;
+    font-size: 15px;
+    color: white;   
+    padding: 20px;
+    padding-bottom: 30px;
 }
 
-.conteudo-principal .apresentação{
-	display: flex;	
-	align-items: center;
-	justify-content: space-around;
-}
-
-#circulo{
-	margin-top: 15px;
-	width: 470px;
-	height: 450px;
-	background: #FFB300;
-	border-radius: 66% 34% 38% 62% / 53% 53% 47% 47% ;
-}
-
-.conteudo-principal .introdução{
-	padding: 20px;
-}
-
-.conteudo-principal .título{
-	font-family: 'Righteous', cursive;
-	font-size: 50px;
-	text-align: center;
-	margin-top: 15px;
-}
-
-.conteudo-principal .subtítulo{
-	font-family: 'Open Sans', sans-serif;
-	font-size: 25px;
-	text-align: center;
-}
-
-.conteudo-principal .serviços{
-	font-family: 'Righteous', cursive;
-	text-align: center;
-	padding-left: 30px;
-}
-
-.conteudo-principal .corpoclinico{
-	font-family: 'Righteous', cursive;
-	text-align: center;
-	padding-left: 30px;
-}
-
-.conteudo-principal .descricao{
-	font-family: 'Open Sans', sans-serif;
-	font-size: 20px;
-	margin-left: 30px;
-}
-
-#serviços{
-	display: flex;
-	flex-direction: column;
-}
-
-#corpoclinico{
-	display: flex;
-	align-items: flex-start;
-	/* ALGUMA COISA PARA DEIXAR O TEXTO PARA A ESQUERDA*/
-	flex-direction: column;
-}
-
-.rodape-principal{
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding-bottom: 30px;
-	background-color: #ECEFF1;
-}
-
-.rodape-principal .logo{
-	height: 150px ;
-	margin-bottom: 5px;
-}
-
-.rodape-principal .endereco{
-	font-family: 'Righteous', cursive;
-	font-size: 30px;
-	color: black;
-}
-
-.fa-whatsapp{
-	color: black;
-}
-
-.fa-instagram{
-	color: black;
-}
-
-.fa-envelope-o{
-	color: black; 
-}
-
-.rodape-principal .informações{
-	display: flex;
-	justify-content: center;
-	gap: 20px;
-	padding: 20px;
-}
-
-.rodape-principal .direitos{
-	font-family: 'Righteous', cursive;
-	font-size: 15px;
-	padding-bottom: 5px;
-}
-
-/*ESTILIZAÇÃO PÁGINA DE SERVIÇOS - USUÁRIO*/ 
-.linha{
-	border-top: 0.5px solid black;
-	margin-bottom: 30px;
-
-}
-.conteudo-serviços{
-	display: flex;
-	justify-content: center;
-	align-items: baseline;
-	padding-top: 60px;
-	gap: 58px;
-}
- 
-.conteudo-serviços .img-serviços{
-	display: flex;
-	align-self: flex-start;
-	height: 50px; 
-
-}
-
-.conteudo-serviços .procedimento{
-	display: flex;
-	align-items: center;
-	flex-direction: row;
-	gap: 20px;
-	padding-bottom: 10px;
-	flex-basis: 55vw;
-
-}
-
-.procedimento .título-serviço{
-	font-family: 'Righteous', cursive;
-	font-size: 25px;
-	flex-basis: 85vw;
-
-
-}
-
-.procedimento .info{
-	font-family: 'Righteous', cursive;
-	font-size: 15px;
-	text-align: center;
-	flex-basis: 11vw;
-
-}
-
-.procedimento .agendar{
-	font-family: 'Righteous', cursive;
-	font-size: 20px;
-	text-align: center;
-	color: black;
-	background-color: white;
-	border:solid 5px;
-	border-color: #FFB300;
-	height: 50px;
-	line-height: 40px;
-	padding-left: 20px;
-	padding-right: 20px;
-
-}
-
-/*ESTILIZAÇÃO PÁGINA ÁREA DOS CLIENTES - USUÁRIO*/ 
-
-
-/*ESTILIZAÇÃO PÁGINA AGENDAMENTO - USUÁRIO*/ 
-.conteudo-principal .sub-título{
-	font-family: 'Righteous', cursive;
-	font-size: 20px;
-	text-align: center;
-}
-
-.calendario .info{
-	font-family: 'Open Sans', sans-serif;
+.primeiracoluna .botao{
+    font-family: 'Righteous', cursive;
 	font-size: 17px;
-	text-decoration: underline;
-	margin-top: 50px;
-	margin-left: 30px;
-}
-
-.calendario .img-dog{
-	position: absolute;
-	left: 68%;
-}
-/*ESTILIZAÇÃO PÁGINA SERVICOS - ADM*/ 
-.addServicos{
-	padding-left: 40vw;
-}
-.addServicosBotao{
-	font-family: 'Righteous', cursive;
-	font-size: 20px;
-	text-align: center;
-	color: white;
-	background-color: #7d59ff;
-	border-color: white;
-	border:solid 1px;
-	height: 50px;
-	line-height: 40px;
-	padding-left: 20px;
-	padding-right: 20px;
-
-}
-/*----------------*/
-
-/*SLIDER*/
-
-
-.slider{
-	margin-left: 60px;
-	width: 250px;
-	height: 250px;
-	overflow: hidden;
-	border-radius: 120px;
-
-}
-
-.slides{
-	width: 400%;
-	height: 250px;
-	display: flex;
-	
-}
-
-.slides input{
-	display: none;
-
-}
-
-.slide{
-	width: 25%;
-	position: relative;
-	transition: 2s;
-	border-radius: 10px;
-
-
-}
-
-.slide img{
-	width: 250px;
-	height: 250px;
-	border-radius: 10px;
-
-}
-
-.manual-navigation{
-	padding-left: 140px;
-	position: absolute;
-	width: 400px;
-	margin-top: -244.5px;
-	display: flex;
-	justify-content: center;
-}
-
-.manual-btn{
-	border: 0.5px solid rgb(0, 0, 0);
-	padding: 8px;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: 1s;
-}
-
-.manual-btn:not(:last-child){ /*nao aplica no ultimo*/
-	margin-right: 20px;
-}
-
-
-.manual-btn:hover{
-	background-color: rgb(184, 118, 245);
-}
-
-
-
-
-#radio2:checked ~ .first{
-	margin-left: -25%;
-}
-
-#radio3:checked ~ .first{
-	margin-left: -50%;
-}
-
-#radio4:checked ~ .first{
-	margin-left: -75%;
-}
-
-.navigation-auto div{
-	border: 0.5px solid #000000;
-	padding: 8px;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: 1s;
-}
-
-.navigation-auto{
-	padding-left: 140px;
-
-	position: absolute;
-	width: 400px;
-	margin-top: 5px;
-	display: flex;
-	justify-content: center;
-}
-
-.navigation-auto div:not(:last-child){
-	margin-right: 20px;
-}
-
-#radio1:checked ~ .navigation-auto .auto-btn1{
-	background-color: rgb(255, 255, 255);
-}
-
-#radio2:checked ~ .navigation-auto .auto-btn2{
-	background-color: rgb(255, 255, 255);
-}
-
-#radio3:checked ~ .navigation-auto .auto-btn3{
-	background-color: rgb(255, 255, 255);
-}
-
-#radio4:checked ~ .navigation-auto .auto-btn4{
-	background-color: rgb(255, 255, 255);
-}
-
-/*ESTILIZACAO GERENCIAMENTO ADM*/
-
-.conteudo-serviçosadm{
-	display: flex;
-	justify-content: center;
-	align-items: baseline;
-	gap: 58px;
-	height: 9vh;
-
-}
- 
-@media (max-width: 999px){
-	.conteudo-serviçosadm{
-		overflow: scroll;
-	}
-}
-
-.btn-meio{
-	align-items: center;
-}
-
-.conteudo-serviçosadm .img-serviços{
-	display: flex;
-	align-self: flex-start;
-	height: 50px; 
-
-}
-
-.conteudo-serviçosadm .procedimentoadm{
-	display: flex;
-	align-items: center;
-	flex-direction: row;
-	gap: 20px;
-	padding-bottom: 10px;
-	flex-basis: 65vw;
-
-}
-
-.procedimentoadm .título-serviço{
-	font-family: 'Righteous', cursive;
-	font-size: 25px;
-	flex-basis: 30vw;
-
-
-}
-
-.procedimentoadm .info{
-	font-family: 'Righteous', cursive;
-	font-size: 15px;
-	text-align: center;
-	flex-basis: 10vw;
-
-}
-.procedimentoadm .data{
-	font-family: 'Righteous', cursive;
-	font-size: 15px;
-	text-align: center;
-	flex-basis: 20vw;
-
-
-
-}
-
-.procedimentoadm .agendar{
-	font-family: 'Righteous', cursive;
-	font-size: 20px;
-	text-align: center;
-	color: black;
-	background-color: white;
-	border:solid 5px;
-	border-color: #FFB300;
-	height: 50px;
-	line-height: 40px;
-	padding-left: 20px;
-	padding-right: 20px;
-
-}
-
-.tipoServico{
-	flex-basis: 10vw;
-
-}
-.icone-check{
-	color: rgb(27, 223, 21);
-	font-size: 2rem;
-	text-decoration: none;
-}
-
-a,
-a:hover,
-a:active,
-a:link,
-a:visited{
-	text-decoration: none;
-}
-
-.icone-cancel{
-	color: rgb(223, 21, 21);
-	font-size: 2rem;
-
-}
-
-.btn-maisinfo{
-	background-color: rgb(184, 118, 245);
+	color: rgb(0, 0, 0);
+	background-color: #ffffff;
 	border: none;
+    padding: 6px 9px;
+    width: 125px;
 	border-radius: 5px;
-	color: #fff;
-	font-size: 20px;
-	padding: 5px 5px;
-	align-items: center;
-	
+    cursor: pointer;
+    transition: 3s;
 }
 
-/*Telas de Edição de Dados: Cliente, Endereço e Pet */ 
-#edição_dados{
-	background-color: #ECEFF1;
-	font-size: 100%;
-
+.main-container .segundacoluna{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
 }
 
-.conteudo-principal .form-edição{
+.segundacoluna .título{
+    font-family: 'Righteous', cursive;
+    font-size: 25px;
+    color: black;
+    padding-top: 25px;
+}
+
+.main-container .form-login{
     display: flex;
     align-items: center;
     flex-direction: column;
-    width: 80%;
-	margin-top: 30px;
+    width: 70%;
 }
 
-.form-edição input{
+.form-login input{
     height: 7vh;
     border: none;
     background: none;
@@ -545,22 +119,237 @@ a:visited{
     width: 20vw;
 }
 
-.conteudo-principal .botao{
+.segundacoluna .botao{
     font-family: 'Righteous', cursive;
 	font-size: 17px;
 	color: white;
-	background-color: #A487D5;
+	background-color: #7DE04A;
 	border: none;
 	padding: 8px 10px;
 	border-radius: 5px;
     cursor: pointer;
-    width: 165px;
+    width: 120px;
     align-self: center;
-    margin: 6px;  
+    margin: 5px;
+    
 }
 
-.conteudo-principal .img-donopet{
-	position: absolute;
-	left: 68%;
-	top: 5%;
+.segundacoluna .opções{
+    font-family: 'Righteous', cursive;
+    font-size: 19px;
+    color: black;
+}
+
+.main-container .listaredes{
+    display: flex;
+    list-style: none;
+}
+
+.listaredes .icone{
+   padding: 10px;
+}
+
+/*SEGUNDO CONTEÚDO*/ 
+.main-container .conteudo02{
+    display: flex;
+    align-items: flex-start;
+    position: absolute;
+}
+
+.conteudo02 .primeiracoluna{
+    order: 2;
+    z-index: -1;
+}
+
+.conteudo02 .segundacoluna{
+    order: 1;
+    z-index: -1;
+}
+
+.segundacoluna .senha{
+    font-family: 'Open Sans', sans-serif;
+    text-decoration: underline;
+    font-size: 15px;
+    color: black;
+    padding: 20px;
+}
+
+
+/***************************/
+
+
+/*POSICIONANDO DAS TELAS*/
+.sign-in-js .conteudo01 .primeiracoluna,
+.sign-in-js .conteudo01 .segundacoluna{
+	z-index: -1;
+}
+
+.sign-in-js .conteudo02 .segundacoluna{
+	z-index: 11;
+}
+.sign-in-js .conteudo02 .primeiracoluna{
+    z-index: 13;
+}
+
+.sign-in-js .conteudo::before{
+    left: 60%;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    animation: slidein .1s; 
+
+    z-index: 12;
+}
+
+.sign-up-js .conteudo::before{
+    animation: slideout .1s;
+
+    z-index: 12;
+}
+
+.sign-up-js .conteudo02 .primeiracoluna,
+.sign-up-js .conteudo02 .segundacoluna{
+    z-index: -1;
+}
+
+.sign-up-js .conteudo01 .segundacoluna{
+    z-index: 11;
+}
+.sign-up-js .conteudo01 .primeiracoluna{ 
+    z-index: 13;
+}
+
+/*DESLOCAMENTO DE CONTEÚDO ATRÁS DO CONTEUDO::BEFORE*/
+.sign-in-js .conteudo01 .segundacoluna{
+    z-index: -1;
+    position: relative;
+    animation: deslocamentoEsq .1s;
+}
+
+.sign-up-js .conteudo02 .segundacoluna{
+    z-index: -1;
+    position: relative;
+    animation: deslocamentoDir 0.1s;
+}
+
+/*ANIMAÇÃO CSS PARA O CONTEÚDO*/
+@keyframes deslocamentoEsq{
+    from{
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+
+    25%{
+        left: -80px;
+        opacity: .5;
+    }
+    50%{
+        left: -100px;
+        opacity: .2;
+    }
+
+    to{
+        left: -110px;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+@keyframes deslocamentoDir{
+    from{
+        left: 0;
+        opacity: 1;
+        z-index: 12;
+    }
+
+    25%{
+        left: 80px;
+        opacity: .5;
+    }
+    50%{
+        left: 100px;
+        opacity: .2;
+    }
+
+    to{
+        left: 110px;
+        opacity: 0;
+        z-index: -1;
+    }
+}
+
+/*ANIMAÇÃO CSS*/ 
+@keyframes slidein{
+    from{
+        left: 0;
+        width: 40%;
+    }
+    25%{
+        left: 5%;
+        width: 50%;
+    }
+    50%{
+        width: 25%;
+
+    }
+    75%{
+        width: 45%;
+    }
+    to{
+        left: 60%;
+        width: 40%;
+    }
+}
+
+@keyframes slideout{
+    from{
+        left: 60%;
+        width: 40%;
+    }
+    25%{
+        left: 45%;
+        width: 50%;
+    }
+    50%{
+        left: 25%;
+        width: 60%;
+    }
+    75%{
+        left: 5%;
+        width: 50%;
+    }
+    to{
+        left: 0;
+        width: 40%;
+    }
+}
+
+/*Login Adm*/ 
+.main-container .conteudo-principal{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.conteudo-principal .título{
+       font-family: 'Righteous', cursive;
+    font-size: 33px;
+    color: black;
+    padding-top: 125px;
+}
+
+.conteudo-principal .botao-adm{
+    font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #FFB300;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+    align-self: center;
+    margin: 5px;
 }

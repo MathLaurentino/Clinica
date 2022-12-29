@@ -4,7 +4,10 @@ if(!isset($_SESSION)){
     session_start();
 }
 if (isset($_SESSION['msg'])) {
-    echo $_SESSION['msg'];
+    echo "<div class='alert alert-success alert-dismissible fade show' role='alert'>
+            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>" 
+            . $_SESSION['msg'] 
+        . "</div>";
     unset($_SESSION['msg']);
 }
 
@@ -21,6 +24,10 @@ if (isset($_SESSION['msg'])) {
     <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>styleNavBar.css"> 
     <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- <style>
+        p{text-align: center;}
+    </style> -->
+    
     <title>Clínica Veterinária</title>
 </head>
 
@@ -55,11 +62,10 @@ if (isset($_SESSION['msg'])) {
 
 
 
-
     <!--CONTEÚDO PRINCIPAL-->
     <main class="conteudo-principal">
 
-        <h1 class="título">Escolha um de <br>nossos serviços</h1>
+        <h1 class="título">Serviços da Clínica</h1>
 
         <?php
             if ($this->data){
@@ -90,8 +96,6 @@ if (isset($_SESSION['msg'])) {
                 <p class="info">R$<?php  echo $valor_consulta . "<br>" . $tempo[0] . "h-" . $tempo[1] . "m";   ?> </p>
 
                 <a> <button type="button" class="agendar" data-bs-toggle="modal" data-bs-target="#alterServiceModal<?= $idtipo_consulta ?>"> Alterar </button> </a> 
-
-                <!-- <button class="agendar">EDITAR</button> -->
 
                 <a href="<?= URLADM . "Sobre-Clinica/delete?idServico={$idtipo_consulta}" ?>"> <button class="agendar">EXCLUIR</button> </a>
                 

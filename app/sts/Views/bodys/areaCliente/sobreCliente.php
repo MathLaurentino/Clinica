@@ -39,7 +39,7 @@ if(isset($this->data)){
 
                     if (isset($_SESSION['foto_usuario'])) {  
 
-                        echo "<img height='100' src= '../". IMG . $_SESSION['foto_usuario'] ." '> <br> <br> <hr>";
+                        echo "<img height='100' src= '" . URL. IMG . $_SESSION['foto_usuario'] ." '> <br> <br> <hr>";
                         echo "<a href='" . URL . "FotoUsuario/alterar'> Alterar Foto de Perfil </a> <br> <br>";
                         echo "<a href='" . URL . "FotoUsuario/apagar'> Apagar Foto de Perfil </a> <br> <br> <hr> <br>";
 

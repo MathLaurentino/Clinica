@@ -159,7 +159,11 @@ class StsSobreCliente
     }
 
 
-    public function checkEmail($cpf)
+
+    /**     function verifyRepeatedCpf($cpf)
+     * Verifica se o novo cpf passado pelo cliente já possui cadastro no BD
+     */
+    public function verifyRepeatedCpf($cpf): bool
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead("SELECT idusuario 
@@ -167,7 +171,31 @@ class StsSobreCliente
                             WHERE cpf = :cpf", "cpf={$cpf}");
         $result = $stsSelect->getResult();
         
-        return $result;
+        if (empty($result))
+            return true;
+        else 
+            return false;
+    }
+
+
+    /**     function verifySameCpf()
+     * Verifica se o cpf passado é o mesmo que esta cadastrado na conta do cliente
+     * (Acontece quando o usuario faz alteração nos dados da conta mas não muda a parte 
+     *      do formulário referente ao CPF)
+     */
+    public function verifySameCpf($idusuario, $formCpf)
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT cpf 
+                            FROM usuario
+                            WHERE idusuario = :idusuario", "idusuario={$idusuario}");
+        $result = $stsSelect->getResult();
+        $userCpf = $result[0]['cpf'];
+
+        if ($userCpf == $formCpf)
+            return true;
+        else 
+            return false;
     }
 
 
