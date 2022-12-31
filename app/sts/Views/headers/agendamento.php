@@ -102,7 +102,7 @@
                                 document.getElementById("bnt"+hourEvent).classList = "btn btn-danger";
 
                                 hourNow = new Date().toLocaleTimeString();
-                                hourNow = 9;//hourNow.slice(0,2);
+                                hourNow = hourNow.slice(0,2);
 
                                 if (hourNow >= 8 && yearForm == yearNow && monthForm == monthNow && dayForm == dayNow) {
                                     for (x = 8; x <= hourNow; x++) {

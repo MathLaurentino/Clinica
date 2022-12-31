@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 27-Dez-2022 às 23:05
--- Versão do servidor: 10.4.22-MariaDB
--- versão do PHP: 8.1.1
+-- Tempo de geração: 31-Dez-2022 às 18:18
+-- Versão do servidor: 10.4.24-MariaDB
+-- versão do PHP: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -56,24 +56,13 @@ CREATE TABLE `endereco` (
 --
 
 INSERT INTO `endereco` (`idendereco`, `cep`, `rua`, `numero_residencial`, `bairro`, `cidade`, `estado`) VALUES
-(57, '85861070', 'rua marmotaa', '12334', '', 'Foz do Iguaçu', 'Parana'),
-(58, '', '', '', '', '', ''),
-(59, '', '', '', '', '', ''),
-(60, '', '', '', '', '', ''),
-(61, '123123', 'rua marmota', '543', '', 'Foz do Iguaçu', 'Parana'),
-(62, '123', '123', '123', '', 'Foz do Iguaçu', 'Parana'),
-(63, '123', 'rua marmota', '123', '', 'Foz do Iguaçu', 'Parana'),
-(64, '', '', '', '', '', ''),
-(65, '', '', '', '', '', ''),
+(62, '123434', '123', '123', '', 'Foz do Iguaçu', 'Parana'),
 (66, '123', 'rua barbosa', '4321324', '', 'Foz do Iguaçu', 'Parana'),
-(67, '123123', 'rua marmota', '543', '', 'Foz do Iguaçu', 'Parana'),
-(68, '', '', '', '', '', ''),
-(69, '', '', '', '', '', ''),
-(71, '123125', 'Avenida Brasil', '3567', '', 'Natal', 'Rio Grande Do Norte'),
 (72, '12345435', 'rua marmota', '268', '', 'Foz do Iguaçu', 'Parana'),
 (73, '85857740', 'Avenida Paranaa', '123', '', 'Foz do Iguaçu', 'Parana'),
-(74, '85861090', 'Rua Marmota Vila Residencial A', '1234', 'Itaipu A', 'Foz do Iguaçu', 'PR'),
-(75, '85861090', 'Rua Marmota Vila Residencial A', '123', 'Itaipu A', 'Foz do Iguaçu', 'PR');
+(75, '85861090', 'Rua Marmota Vila Residencial A', '123', 'Itaipu A', 'Foz do Iguaçu', 'PR'),
+(76, '85861090', 'Rua Marmota Vila Residencial A', '544', 'Itaipu A', 'Foz do Iguaçu', 'PR'),
+(77, '85861090', 'Rua Marmota Vila Residencial A', '262', 'Itaipu A', 'Foz do Iguaçu', 'PR');
 
 -- --------------------------------------------------------
 
@@ -83,20 +72,22 @@ INSERT INTO `endereco` (`idendereco`, `cep`, `rua`, `numero_residencial`, `bairr
 
 CREATE TABLE `events` (
   `id` int(11) NOT NULL,
-  `title` varchar(90) NOT NULL,
-  `description` text NOT NULL,
-  `color` varchar(10) NOT NULL,
-  `start` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `end` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `title` varchar(220) DEFAULT NULL,
+  `color` varchar(10) DEFAULT NULL,
+  `start` datetime DEFAULT NULL,
+  `end` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `events`
 --
 
-INSERT INTO `events` (`id`, `title`, `description`, `color`, `start`, `end`) VALUES
-(6, 'Luna', 'dor no dente', 'orange', '2022-12-05 13:00:00', '2022-12-05 12:00:00'),
-(7, 'mel', 'coceira', 'orange', '2022-12-05 12:00:00', '2022-12-05 13:00:00');
+INSERT INTO `events` (`id`, `title`, `color`, `start`, `end`) VALUES
+(17, 'vacina2', '#8B4513', '2023-01-01 14:00:00', '2023-01-01 16:00:00'),
+(9, 'Tutorial', '#228B22', '2019-09-12 16:00:00', '2019-09-13 00:00:00'),
+(10, 'Tutorial 2', '#FF4500', '2019-09-13 15:10:10', '2019-09-13 17:15:15'),
+(11, 'ReuniÃ£o 15', '#436EEE', '2019-10-09 15:30:00', '2019-10-09 17:00:00'),
+(16, 'vacina', '#8B4513', '2022-12-31 15:00:00', '2022-12-31 16:00:00');
 
 -- --------------------------------------------------------
 
@@ -121,15 +112,7 @@ CREATE TABLE `pet` (
 --
 
 INSERT INTO `pet` (`idpet`, `nome_pet`, `idade_pet`, `sexo`, `imagem_pet`, `imagem_carteira_pet`, `idraca`, `usuario`, `consulta`) VALUES
-(20, 'Luna', 2, 'feminino', NULL, NULL, 14, 61, NULL),
-(21, 'leona', 4, 'feminino', NULL, NULL, 24, 61, NULL),
-(22, 'sofia', 5, 'feminino', NULL, NULL, 24, 61, NULL),
-(25, 'Luna', 2, 'feminino', NULL, NULL, 14, 69, NULL),
-(26, 'passarinhozinho', 8, 'masculino', NULL, NULL, 29, 69, NULL),
-(27, 'Luna', 5, 'feminino', NULL, NULL, 19, 69, NULL),
-(29, 'Luna', 7, 'feminino', NULL, NULL, 14, 69, NULL),
-(30, 'felipinho jr', 2, 'feminino', NULL, '6390c1252891a.jpg', 20, 70, NULL),
-(31, 'sofia', 1, 'feminino', NULL, NULL, 24, 66, NULL);
+(38, 'sofia', 5, 'feminino', NULL, NULL, 24, 90, NULL);
 
 -- --------------------------------------------------------
 
@@ -189,18 +172,20 @@ CREATE TABLE `tipo_consulta` (
   `idtipo_consulta` int(11) NOT NULL,
   `nome_consulta` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
   `valor_consulta` float NOT NULL,
-  `descricao_consulta` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL
+  `descricao_consulta` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `tempo_medio` time NOT NULL,
+  `foto_servico` varchar(220) COLLATE utf8mb4_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Extraindo dados da tabela `tipo_consulta`
 --
 
-INSERT INTO `tipo_consulta` (`idtipo_consulta`, `nome_consulta`, `valor_consulta`, `descricao_consulta`) VALUES
-(4, 'consulta', 300, ''),
-(5, 'exame', 200, ''),
-(18, 'vacina', 200, 'aplicação de vacina '),
-(20, 'banho', 80, 'banho');
+INSERT INTO `tipo_consulta` (`idtipo_consulta`, `nome_consulta`, `valor_consulta`, `descricao_consulta`, `tempo_medio`, `foto_servico`) VALUES
+(21, 'Consulta Dentária', 150, 'Exame como dentista veterinário             ', '01:30:00', '63add46fb3e08.png'),
+(23, 'Vacina', 200, 'Aplicação de vacina a combinar com o médico veterinário   ', '02:00:00', '63acb6b131bcd.png'),
+(24, 'Consulta Médica', 200, 'Avaliação geral do animal por uma médico veterinário geral    ', '02:00:00', '63acde444571f.png'),
+(25, 'Castração', 500, 'cirurgia para castrar animal  ', '04:00:00', '63acf7c41e520.png');
 
 -- --------------------------------------------------------
 
@@ -218,6 +203,8 @@ CREATE TABLE `usuario` (
   `foto_usuario` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tipo_usuario` enum('mantenedor','cliente') COLLATE utf8mb4_unicode_ci NOT NULL,
   `senha_usuario` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `chave` varchar(220) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sit_usuario` enum('Ativo','Inativo','Confirmando') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Confirmando',
   `endereco` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -225,19 +212,11 @@ CREATE TABLE `usuario` (
 -- Extraindo dados da tabela `usuario`
 --
 
-INSERT INTO `usuario` (`idusuario`, `nome_usuario`, `cpf`, `rg`, `data_nascimento`, `email`, `foto_usuario`, `tipo_usuario`, `senha_usuario`, `endereco`) VALUES
-(1, 'maria', '123', '123', '2022-09-28', 'maria@maria.com', '', 'mantenedor', '$2y$10$Q6pkE2iA9fepKpF6EJqJeufYRIpjSQYxW5pmycYhfGiAbC7FCOQtS', 62),
-(60, 'iluska', '4321', '4321', '2022-11-08', 'iluska@iluska.com', NULL, 'cliente', '$2y$10$MjsH5jxemFZWxIA5YySri.S6ApN9lk8UrU5tj.6cB862zHA.XDRGG', 65),
-(61, 'gohan', '8729472052', '12348646295', '2022-11-23', 'goran@goran.com', NULL, 'cliente', '$2y$10$u8cAQIxi3Z6lTNT7NS7z/OCIjiqSRCnPwpoF5KkdLwQLOubrqtj4C', 66),
-(62, 'goku', '1541123985', '524392637', '2022-11-29', 'goku@goku.com', NULL, 'cliente', '$2y$10$lqVZq2QxoIuH080/q6lXPetGlLlVi99roDHi2Su46CkJexr5AL/2m', 67),
-(63, 'videl', '123453749576', '2651583675', '2022-11-08', 'videl@videl.com', NULL, 'cliente', '$2y$10$NnCmzXapmkgXJ3JdD1TKtuvbCopnlcgebOxfjUStQCteJNjJaZoFi', 68),
-(64, 'vegeta', '1254336784253', '123457345612543', '2022-11-14', 'vegeta@vegeta.com', NULL, 'cliente', '$2y$10$4xMXO7zipkQpe6qTCCe3f.wwVM35npvPCshuYKtX2QLxh5zFkka/.', 69),
-(66, 'felipe', '0698967', '098478', '2022-11-15', 'felipe@felipe.com', NULL, 'cliente', '$2y$10$O4yaRah0XzSCIRFSvq3x0.J/HewlyawMF.QMY7Wv.a3GR7saWsONO', 73),
-(67, 'Joao', '241352756', '154256', '2022-11-16', 'joao@joao.com', NULL, 'cliente', '$2y$10$6NbGeS2YHUJpbexQS05y9ObGcKMpNAIyNA6Zl1amMJf8yq8Ee65M.', 71),
-(69, 'Matheus Laurentino', '07894971405', '1234515', '2003-11-29', 'matheus.laurentino.ifpr@gmail.com', '6390ee3ef40fb.jpg', 'cliente', '$2y$10$gtFPrdb.10ozqRKcWq8WlO7TSKMEbn./WB37vZiSrEpZlgmOLwNQG', 72),
-(70, 'Nicolas', '123123123', '123123123', '2022-11-19', 'nicolas@nicolas.com', NULL, 'cliente', '$2y$10$m25VFAo9W2TJj7lK7mKe4.Ocr1Q54b6GnBM57nOfJCaKEgNTPBp9u', 75),
-(71, 'vitoria', '123321123321', '123321123321', '2000-11-29', 'vitoria@vitoria.com', NULL, 'cliente', '$2y$10$QsTaH8wVhwBkjOvszZb1leq5MjHF7xb6oyY7XTlYgu/2uNYCO2Ona', 74),
-(78, 'matheus1', '123', '123', '0000-00-00', 'matheus1@matheus.com', NULL, 'cliente', '$2y$10$uCdvLzlu4NuJ/t.4DwO7xOVgMS6Go90TuFdp.xSCwZldqwIwGz88K', NULL);
+INSERT INTO `usuario` (`idusuario`, `nome_usuario`, `cpf`, `rg`, `data_nascimento`, `email`, `foto_usuario`, `tipo_usuario`, `senha_usuario`, `chave`, `sit_usuario`, `endereco`) VALUES
+(1, 'maria', '123', '123', '2022-09-28', 'maria@maria.com', NULL, 'mantenedor', '$2y$10$Q6pkE2iA9fepKpF6EJqJeufYRIpjSQYxW5pmycYhfGiAbC7FCOQtS', NULL, 'Ativo', 62),
+(90, 'João Pedro Sgobero', '07894971406', '28289054898', '2000-11-29', 'joao@joao.com', '63ab4fb2dfc08.jpg', 'cliente', '$2y$10$0KBkP2jOcze/XeQhXxHeG.n.PE4CNAxLVxv3Oyb8gE5R4v0XnWgMu', '$2y$10$AeyKCfce0ndyuFJk23eKZuaYWcbvLK6J5tU02DqOGbt1NVoa6GREC', 'Ativo', 77),
+(97, 'mathes1', '22222', '33333', '2000-11-29', 'matheus1@gmail.com', NULL, 'cliente', '$2y$10$/NKXTJiu3kbIHfKpq34zHe9Cje6FFtrlDNW3bIz5NDXQOkaXBTFv6', '$2y$10$NadA97fX/1sKD2OUiH.6devWLcGdfCC6hKKTkc81hyr.NC1dXlVqa', 'Ativo', NULL),
+(98, 'Marcos Barbosa Vieira', '32311285523', '12344537', '1963-07-25', 'marcos@marcos.com', NULL, 'cliente', '$2y$10$CxdAn1iPbrZ1YbTDGQHJjuUEDes/QmH9J7YcZYPkNJy1SPpfte.1S', '$2y$10$C1M1jEZA6U.sxfdKaaRS.eXJcrUMZvJiCKNQsoE5zvYJJhcow.m6.', 'Ativo', NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -304,19 +283,19 @@ ALTER TABLE `consulta`
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
+  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=78;
 
 --
 -- AUTO_INCREMENT de tabela `events`
 --
 ALTER TABLE `events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de tabela `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de tabela `raca_pet`
@@ -328,13 +307,13 @@ ALTER TABLE `raca_pet`
 -- AUTO_INCREMENT de tabela `tipo_consulta`
 --
 ALTER TABLE `tipo_consulta`
-  MODIFY `idtipo_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `idtipo_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=79;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 
 --
 -- Restrições para despejos de tabelas
