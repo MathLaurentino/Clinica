@@ -21,7 +21,7 @@ abstract class StsConn
 
             return $this->connect;
         }catch(PDOException $e){
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador (banco de dados off)" . EMAILADM);
         }
     }
 }

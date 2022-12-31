@@ -64,16 +64,16 @@ class LoadView
         include 'app\sts\Views\headers/' . $header . '.php'; 
         include 'app/' . $this->nameView . '.php';
         include 'app/sts/views/footer.php';
-    }
+    } 
 
 
     public function loadView_agendamento()
     {
-        if (file_exists('app/' . $this->nameView . '.php')){
+        if (file_exists('app/' . $this->nameView . '.html')){
     
             include 'app\sts\Views\headers\agendamento.php'; 
 
-            include 'app/'. $this->nameView .'.php';
+            include 'app/'. $this->nameView .'.html';
 
             include 'app/sts/views/footer.php';
 

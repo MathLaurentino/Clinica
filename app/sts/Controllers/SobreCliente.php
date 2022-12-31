@@ -139,7 +139,7 @@ private array|null $dataForm; // dados que vem do formulario
 
             } else {
                 $this->getData('endereco');
-                $this->view('alterarEndereco');
+                $this->view2('alterarEndereco2');
             }
 
         } else { 
