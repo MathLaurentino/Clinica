@@ -1,46 +1,68 @@
-
 <div id='calendar'></div>
 
 
 
 
-<!-- Modal -->
-<div class="modal fade" id="visualizar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="horarios" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 
     <div class="modal-dialog modal-lg">
 
-        <div class="modal-content">
-            
+        <div class="modal-content text-center">
+
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalhes do Evento</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Horários de Atendimento</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
+                    <span aria-hidden="true">&times;</span>
                 </button>
             </div>
 
-            <div class="modal-body">
+            <div class="modal-body" id="horario">
 
-                <dl class="row">
-                    <dt class="col-sm-3">ID do evento</dt>
-                    <dd class="col-sm-9" id="id"></dd>
+               <button type="button" class="" id="bnt12" value="12">12:00</button>
 
-                    <dt class="col-sm-3">Título do evento</dt>
-                    <dd class="col-sm-9" id="title"></dd>
+                <button type="button" class="" id="bnt13" value="13">13:00</button>
 
-                    <dt class="col-sm-3">Início do evento</dt>
-                    <dd class="col-sm-9" id="start"></dd>
+                <button type="button" class="" id="bnt14" value="14">14:00</button>
 
-                    <dt class="col-sm-3">Fim do evento</dt>
-                    <dd class="col-sm-9" id="end"></dd>
-                </dl>
-            
+                <button type="button" class="" id="bnt15" value="15">15:00</button>
+
+                <button type="button" class="" id="bnt16" value="16">16:00</button>
+
+                <button type="button" class="" id="bnt17" value="17">17:00</button>
+
+                <button type="button" class="" id="bnt18" value="18">18:00</button>
+
             </div>
-        
-        </div>
-            
-    </div>
 
+            <div class="modal-footer">
+                <button class="btn btn-primary" id="segundoModal" type="button" data-bs-toggle="modal" data-bs-target="#secondModal"
+                    data-bs-dismiss="modal">Submit</button>
+                <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+            </div>
+
+        </div>
+    </div>
 </div>
+
+<div class="modal" id="secondModal">
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h5 class="modal-title">Second Modal</h5>
+                <button class="btn-close" type="button" data-bs-dismiss="modal"></button>
+            </div>
+
+            <div class="modal-body">
+                <p>Message Received</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
 
 
 
@@ -51,58 +73,11 @@
 
         <div class="modal-content text-center">
 
-            
-            
-            
-        
         </div>
             
     </div>
 
 </div> -->
-
-
-<div class="modal fade" id="cadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-
-    <div class="modal-dialog modal-lg">
-
-        <div class="modal-content text-center">
-            
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Detalhes do Evento</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-
-            <div class="modal-body">
-
-                <button type="button" class="btn btn-outline-success" id="bnt8">08:00</button> 
-
-                <button type="button" class="btn btn-outline-success" id="bnt9">09:00</button>
-
-                <button type="button" class="btn btn-outline-success" id="bnt10">10:00</button>
-
-                <button type="button" class="btn btn-outline-success" id="bnt11">11:00</button>
-
-                <button type="button" class="btn btn-outline-success" id="bnt12">12:00</button>
-
-                <button type="button" class="btn btn-outline-success" id="bnt13">13:00</button>
-
-                <button type="button" class="btn btn-outline-success" id="bnt14">14:00</button>
-
-                <button type="button" class="btn btn-outline-success" id="bnt15">15:00</button>
-
-                <button type="button" class="btn btn-outline-success" id="bnt16">16:00</button>
-            
-            </div>
-        
-        </div>
-            
-    </div>
-
-</div>
-
 
 
 
@@ -168,4 +143,3 @@
                 </form>
             
             </div> -->
-

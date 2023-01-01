@@ -23,7 +23,7 @@ class Agendamento{
     }
 
 
-    public function novaConsulta()
+    public function horarios()
     {
 
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -32,9 +32,7 @@ class Agendamento{
 
             $sts = new \Sts\Models\StsAgendamento();
             $eventsArray = $sts->dataFullCalendar();
-            // echo "<pre>";var_dump($eventsArray);
-            // $eventsArray[11]['url']  = 'http://localhost/Clinica/Sobre-Cliente/Dados';
-
+            
             $this->events = json_encode($eventsArray);
         
             $loadView = new \Core\LoadView("sts/Views/agendamento", $this->events , NULL);
@@ -86,6 +84,14 @@ class Agendamento{
         }
 
         
+    }
+
+    public function varificarData()
+    {
+        $dia = $_GET['dia'];
+        $horario = $_GET['horario'];
+        echo $horario . "<br>";
+        echo $dia;
     }
 
 

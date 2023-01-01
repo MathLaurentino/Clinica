@@ -15,9 +15,6 @@
 
         <section class="conteudo-serviços">
 
-            <!-- <img src="img/" alt="icone vacina" class=""> -->
-            
-
             <?php if (!empty($foto_servico)) { echo "<img class='img' src='" . URLADM . IMGADMSERVICOS . $foto_servico . "' class=''>"; } else { echo "<img class='img' src='" . URL . IMGCLINICA . 'logo.pn' . "' class=''>"; } ?>
 
             <div class="procedimento">
@@ -25,7 +22,7 @@
 
                 <p class="info">R$<?= $valor_consulta ?> <br> <?= $tempo[0] ?>h-<?= $tempo[1] ?>m</p>
 
-                <a href="#"> <button class="agendar">AGENDAR</button></a>
+                <a href="<?= URL ?>Agendamento/Horarios"> <button class="agendar">AGENDAR</button></a>
             </div>
 
         </section>

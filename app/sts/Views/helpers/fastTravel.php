@@ -32,7 +32,7 @@
     echo "<a href='" . URL . "Servicos'> Serviços da Clinica</a> <br>";
     echo "<a href='" . URL . "FotoUsuario/adicionar'> Foto de Perfil </a> <br>";
     echo "<a href='" . URL . "FotoUsuario/Alterar'> Alterar Foto de Perfil </a> <br>";
-    echo "<a href='" . URL . "Agendamento'> Agendamento </a> <br><br>";
+    echo "<a href='" . URL . "Agendamento/Horarios'> Agendamento </a> <br><br>";
 
     echo "<a href='" . URL . "Logout/Index'> Logout </a> <br>";
 
