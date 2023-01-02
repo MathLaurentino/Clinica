@@ -58,4 +58,19 @@ class StsAgendamento{
 
 
 
+    public function salvarServico(array $data): bool
+    {
+        $stsCreate = new \Sts\Models\helpers\StsCreate();
+        $stsCreate->exeCreatre("consulta", $data);
+        $result = $stsCreate->getResult();
+
+        if(!empty($result)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+
 }

@@ -41,6 +41,11 @@ class Agendamento{
     }
 
 
+
+
+
+
+
     /**     function agendar()
      * Carrega a tela para agendar uma nova consulta
      */
@@ -62,7 +67,14 @@ class Agendamento{
                 
                 if (isset($this->dataForm['agendar'])) {
 
-                    var_dump($this->dataForm);
+                    unset($this->dataForm['agendar']);
+                    //echo "<pre>";var_dump($this->dataForm);
+                    if ($sts->salvarServico($this->dataForm)) {
+                        echo "deu certo";
+                    } else {
+                        echo "deu errado";
+                    }
+                    
 
                 } else {
 
@@ -82,6 +94,11 @@ class Agendamento{
 
 
         
+
+
+
+
+
     /**     function varificarData()
      * Verifica se a data e hora passada pela URL está 
      *      disponivel no banco de dados
