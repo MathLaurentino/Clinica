@@ -36,6 +36,7 @@
                 //weekends: false, // tira o fim de semana
                 
                 //events:  //echo $this->data,
+
                 
                 
 
@@ -49,7 +50,7 @@
 
                 select: function(info) {
 
-                    events = <?= $this->data ?>;
+                    var events = <?= $this->data ?>;
                     $('#horarios').modal('show');
 
                     var dateNow = new Date();
@@ -80,16 +81,20 @@
                             document.getElementById("bnt"+y).classList = "btn btn-outline-success";
                         }
 
+
+
                         for (y = 0; y < events.length; y++) {
 
                             event = events[y];
-                            dateEvent = event['start'];
+                            
+                            dateEvent = event["data_consulta"];
+                            hourEvent = event["horario_consulta"];
 
                             yearEvent = dateEvent.slice(0,4);
                             monthEvent = dateEvent.slice(5,7);
                             dayEvent = dateEvent.slice(8,10);
 
-                            hourEvent = dateEvent.slice(11,13);
+                            hourEvent = hourEvent.slice(0,2);
 
                             // caso exista um evento na data selecionada - deixa o botao vermelho total
                             if (yearForm == yearEvent && monthForm == monthEvent && dayForm == dayEvent) {
@@ -103,7 +108,7 @@
                                 if (hourNow >= 12 && yearForm == yearNow && monthForm == monthNow && dayForm == dayNow) {
                                     for (x = 12; x <= hourNow; x++) {
                                         document.getElementById("bnt"+x).classList = "btn btn-outline-danger";
-                                        if (x == 20) { x = hourNow; }
+                                        if (x == 18) { x = hourNow; }
                                     }
                                 }
 
@@ -118,7 +123,7 @@
                         if (botao12.classList[1] == "btn-outline-danger" || botao12.classList[1] == "btn-danger") {
                             alert("Horário indisponível");
                         } else {
-                            window.open("<?= URL ?>Agendamento/VarificarData?dia=" + info.startStr + "&horario=" + botao12.value,"_self");
+                            window.open("<?= URL ?>Agendamento/agendar?dia=" + info.startStr + "&horario=" + botao12.value + "&servico=" + <?= $_GET['servico'] ?>,"_self");
                         }
 
                     })
@@ -129,7 +134,7 @@
                         if (botao13.classList[1] == "btn-outline-danger" || botao13.classList[1] == "btn-danger") {
                             alert("Horário indisponível");
                         } else {
-                            window.open("<?= URL ?>Agendamento/VarificarData?dia=" + info.startStr + "&horario=" + botao13.value,"_self");
+                            window.open("<?= URL ?>Agendamento/agendar?dia=" + info.startStr + "&horario=" + botao13.value + "&servico=" + <?= $_GET['servico'] ?>,"_self");
                         }
 
                     })
@@ -140,7 +145,7 @@
                         if (botao14.classList[1] == "btn-outline-danger" || botao14.classList[1] == "btn-danger") {
                             alert("Horário indisponível");
                         } else {
-                            window.open("<?= URL ?>Agendamento/VarificarData?dia=" + info.startStr + "&horario=" + botao14.value,"_self");
+                            window.open("<?= URL ?>Agendamento/agendar?dia=" + info.startStr + "&horario=" + botao14.value + "&servico=" + <?= $_GET['servico'] ?>,"_self");
                         }
 
                     })
@@ -151,7 +156,7 @@
                         if (botao15.classList[1] == "btn-outline-danger" || botao15.classList[1] == "btn-danger") {
                             alert("Horário indisponível");
                         } else {
-                            window.open("<?= URL ?>Agendamento/VarificarData?dia=" + info.startStr + "&horario=" + botao15.value,"_self");
+                            window.open("<?= URL ?>Agendamento/agendar?dia=" + info.startStr + "&horario=" + botao15.value + "&servico=" + <?= $_GET['servico'] ?>,"_self");
                         }
 
                     })
@@ -162,7 +167,7 @@
                         if (botao16.classList[1] == "btn-outline-danger" || botao16.classList[1] == "btn-danger") {
                             alert("Horário indisponível");
                         } else {
-                            window.open("<?= URL ?>Agendamento/VarificarData?dia=" + info.startStr + "&horario=" + botao16.value,"_self");
+                            window.open("<?= URL ?>Agendamento/agendar?dia=" + info.startStr + "&horario=" + botao16.value + "&servico=" + <?= $_GET['servico'] ?>,"_self");
                         }
 
                     })
@@ -173,7 +178,7 @@
                         if (botao17.classList[1] == "btn-outline-danger" || botao17.classList[1] == "btn-danger") {
                             alert("Horário indisponível");
                         } else {
-                            window.open("<?= URL ?>Agendamento/VarificarData?dia=" + info.startStr + "&horario=" + botao17.value,"_self");
+                            window.open("<?= URL ?>Agendamento/agendar?dia=" + info.startStr + "&horario=" + botao17.value + "&servico=" + <?= $_GET['servico'] ?>,"_self");
                         }
 
                     })
@@ -184,7 +189,7 @@
                         if (botao18.classList[1] == "btn-outline-danger" || botao18.classList[1] == "btn-danger") {
                             alert("Horário indisponível");
                         } else {
-                            window.open("<?= URL ?>Agendamento/VarificarData?dia=" + info.startStr + "&horario=" + botao18.value,"_self");
+                            window.open("<?= URL ?>Agendamento/agendar?dia=" + info.startStr + "&horario=" + botao18.value + "&servico=" + <?= $_GET['servico'] ?>,"_self");
                         }
 
                     })

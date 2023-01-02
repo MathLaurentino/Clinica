@@ -22,7 +22,7 @@
 
                 <p class="info">R$<?= $valor_consulta ?> <br> <?= $tempo[0] ?>h-<?= $tempo[1] ?>m</p>
 
-                <a href="<?= URL ?>Agendamento/Horarios"> <button class="agendar">AGENDAR</button></a>
+                <a href="<?= URL ?>Agendamento/Horarios?servico=<?= $idtipo_consulta ?>"> <button class="agendar">AGENDAR</button></a>
             </div>
 
         </section>

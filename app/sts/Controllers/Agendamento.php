@@ -14,96 +14,129 @@ date_default_timezone_set('America/Sao_Paulo');
 class Agendamento{
 
 
-    private $events;
+    private $data;
     private array|null $dataForm;
     
     public function index()
     {
-        $this->novaConsulta();
+        $this->horarios();
     }
 
 
-    public function horarios()
+    /**     function horarios()
+     * Carrega a tela do Full Calendar 
+     * Manda os dados da tebela consulta para o Full Calendar 
+     */
+    public function horarios(): void
     {
 
-        $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+        $sts = new \Sts\Models\StsAgendamento();
+        $eventsArray = $sts->horariosDeConsulta();
 
-        if (empty($this->dataForm['CadEvent'])) {
+        $this->data = json_encode($eventsArray);
 
-            $sts = new \Sts\Models\StsAgendamento();
-            $eventsArray = $sts->dataFullCalendar();
-            
-            $this->events = json_encode($eventsArray);
+        $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/calendar", $this->data , NULL);
+        $loadView->loadView_header3("calendarH");
+      
+    }
+
+
+    /**     function agendar()
+     * Carrega a tela para agendar uma nova consulta
+     */
+    public function agendar(): void
+    {
+
         
-            $loadView = new \Core\LoadView("sts/Views/agendamento", $this->events , NULL);
-            $loadView->loadView_agendamento();
+        if (isset($_GET['dia']) && isset($_GET['horario'])) {
 
+            $dayNewEvent = $_GET['dia'];
+            $timeNewEvent = $_GET['horario'];
+            $idServico = $_GET['servico'];
 
-            /*
-            $hojeDia = date('d/m/Y', time());
-            $hojeDia = explode("/",$hojeDia);
+            $sts = new \Sts\Models\StsAgendamento();            
 
-            $horaHoje = date('H/i', time());
-            $horaHoje = explode("/", $horaHoje);
-            echo $horaHoje;
+            if ($this->varificarData($dayNewEvent, $timeNewEvent) && $sts->idServicoExiste($idServico)){
 
+                $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
+                
+                if (isset($this->dataForm['agendar'])) {
 
-            for ($x = 0; $x <count($eventsArray); $x++) {
+                    var_dump($this->dataForm);
 
-                $event = $eventsArray[$x];
+                } else {
 
-                //echo "<pre>";var_dump($event);
+                    $this->data = $sts->servicoClinica($idServico);
+                    $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/agendamento", $this->data[0] , NULL);
+                    $loadView->loadView_header3("agendamentoH");
 
-                $dayTime = $event['start'];
-                $dayTime = explode(" ",$dayTime);
-                $day = $dayTime[0];
-                $time = $dayTime[1];
-                $day = explode("-", $day);
-
-                if ($day[0] == $hojeDia[2] && $day[1] == $hojeDia[1] && $day[2] == $hojeDia[0]) {
-                    echo "Aqui: " . $x;
-                    var_dump($dayTime); echo "<br>";
-                    var_dump($time);
-                    $time = explode(":",$time);
-                    var_dump( $time);
-                    
                 }
+                
 
-                // var_dump($day); // ano mes dia
-                // var_dump($hoje); // dia mes ano
-
-                // $timeString = $timeArray[1];
-
-                // $timeArray = explode(":", $timeString);
-
+            } else {
+                echo "DateTime inválido";
             }
-            */
-
-        } else {
-            echo "<pre>";var_dump($this->dataForm);
         }
 
+    }
+
+
         
-    }
-
-    public function varificarData()
+    /**     function varificarData()
+     * Verifica se a data e hora passada pela URL está 
+     *      disponivel no banco de dados
+     */
+    private function varificarData($dayNewEvent, $timeNewEvent): bool
     {
-        $dia = $_GET['dia'];
-        $horario = $_GET['horario'];
-        echo $horario . "<br>";
-        echo $dia;
-    }
 
+        $dayTimeNow = date('d/m/Y H:i');
+        $dayNow = substr($dayTimeNow, 0, 10); // 01/01/2023
+        $dayNow = substr($dayNow,6) . "-" . substr($dayNow, 3, -5) . "-" . substr($dayNow, 0, -8); // 2023-01-01
+        $timeNow = substr($dayTimeNow,10, -3);
 
+        $dateDayNew = date_create($dayNewEvent); 
+        $dateDayNow = date_create($dayNow);
+        $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
+        $result = $diff->invert; // retorna 1 se o dia da URL é passado e 0 se for presente o futuro
 
-    public function dataEvents()
-    {
+        // Se o dia da URL já é passado
+        if ($result == 1) {
+            return FALSE;
+        }
+
+        if ($timeNewEvent < 12 || $timeNewEvent > 18) {
+            return FALSE;
+        }   
+
+        // se tiver no mesmo dia mas o horario já é passado
+        if ($dayNewEvent == $dayNow && $timeNewEvent <= $timeNow) {
+            return FALSE;
+        }
+
         $sts = new \Sts\Models\StsAgendamento();
-        $eventsArray = $sts->dataFullCalendar();
+        $eventsArray = $sts->horariosDeConsulta();
 
-        $events = json_encode($eventsArray);
-        return $events;
+        for ($x = 0; $x <count($eventsArray); $x++) {
+
+            $event = $eventsArray[$x];
+
+            $dayEventDB = $event['data_consulta'];
+            $timeEventDB = $event['horario_consulta'];
+            $timeEventDB = substr($timeEventDB, 0, 2);
+
+            // se tiver um evento no mesmo dia e mesmo horario
+            if ($dayEventDB == $dayNewEvent && $timeEventDB == $timeNewEvent) {
+                return FALSE;
+            }
+        
+        }
+
+        return TRUE;
+
+        
+            
     }
+
 
     /**     function pages()
      * Function que todas as controller tem
@@ -111,7 +144,7 @@ class Agendamento{
      */
     public function pages(): array
     {  
-        return $array = ['index','novaConsulta'];
+        return $array = ['index','horarios','agendar'];
     }
     
 }

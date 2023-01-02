@@ -24,7 +24,7 @@ class LoadView
             include 'app/' . $this->nameView . '.php';
 
         } else {
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 1" . EMAILADM);
         }
     }
 
@@ -40,7 +40,7 @@ class LoadView
             include 'app\sts\Views\helpers\fastTravel.php';
 
         } else {
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 2" . EMAILADM);
         }
     }
 
@@ -54,7 +54,7 @@ class LoadView
             include 'app\sts\Views\helpers\fastTravel.php';
 
         } else {
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 3" . EMAILADM);
         }
     }
 
@@ -65,22 +65,6 @@ class LoadView
         include 'app/' . $this->nameView . '.php';
         include 'app/sts/views/footer.php';
     } 
-
-
-    public function loadView_agendamento()
-    {
-        if (file_exists('app/' . $this->nameView . '.html')){
-    
-            include 'app\sts\Views\headers\agendamento.php'; 
-
-            include 'app/'. $this->nameView .'.html';
-
-            include 'app/sts/views/footer.php';
-
-        } else {
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
-        }
-    }
 
 }
 
