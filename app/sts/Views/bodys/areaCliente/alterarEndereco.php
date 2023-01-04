@@ -4,9 +4,8 @@
         session_start();
     }
     
-    if(isset($_SESSION['msg']))
-    {
-        echo "Mensagem: " . $_SESSION['msg'] . "<br>"; 
+    if (isset($_SESSION['msg'])) {
+        echo $_SESSION['msg'] . "<br>"; 
         unset($_SESSION['msg']);   
     }
     
@@ -16,25 +15,26 @@
 
 ?>
 
-<form method="post" action="">
+<!--CONTEÚDO PRINCIPAL-->
+<main class="conteudo-principal">
+    <h1 class="título">Atualizar Cadastro</h1>
+    <p class="subtítulo">atualize o seu endereço cadastrais abaixo</p>
 
-    <h4> ENDERECO </h4>
+    <!--formulário para alterar dados-->
+    <form class="form-edição1" method="post" action="" >
+        
+        <input type="text" placeholder="CEP" name="cep" value="<?php if(isset($cep)) {echo "$cep";} ?>">
 
-    <label>CEP: </label>
-    <input name="cep" type="text" placeholder="cep" value="<?php if(isset($cep)) {echo "$cep";} ?>"> <br> <br>
+        <input type="text" placeholder="Estado" name="estado" value="<?php if(isset($estado)) {echo "$estado";} ?>">
 
-    <label>NOME RUA: </label>
-    <input name="rua" type="text" placeholder="nome da rua" value="<?php if(isset($rua)) {echo "$rua";} ?>"> <br> <br>
+        <input type="text" placeholder="Cidade" name="cidade" value="<?php if(isset($cidade)) {echo "$cidade";} ?>">
 
-    <label>NUMERO DA RESIDENCIA: </label>
-    <input name="numero_residencial" type="text" placeholder="numero" value="<?php if(isset($numero_residencial)) {echo "$numero_residencial";} ?>"> <br> <br>
+        <input type="text" placeholder="Rua" name="rua" value="<?php if(isset($rua)) {echo "$rua";} ?>">
 
-    <label>CIDADE: </label>
-    <input name="cidade" type="text" placeholder="cidade" value="<?php if(isset($cidade)) {echo "$cidade";} ?>"> <br> <br>
+        <input type="text" placeholder="N°" name="numero_residencial" value="<?php if(isset($numero_residencial)) {echo "$numero_residencial";} ?>">
 
-    <label>ESTADO: </label>
-    <input name="estado" type="text" placeholder="estado" value="<?php if(isset($estado)) {echo "$estado";} ?>"> <br> <br>
+        <input name="AlterAdress" type="submit" class="botao" value="salvar alterações">
+        
+    </form>
 
-    <input name="AlterAdress" type="submit" value="Alterar">
-
-</form>
+</main>    
