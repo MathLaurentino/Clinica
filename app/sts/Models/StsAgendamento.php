@@ -56,20 +56,59 @@ class StsAgendamento{
         return $resultado;
     }
 
-
-
-    public function salvarServico(array $data): bool
+    /**
+     * Salva na tebela consulta o servico agendado pelo cliente 
+     * com os seguintes dadod: 
+     *      - data_consulta
+     *      - horario_consulta
+     *      - tipo_consulta
+     *      - descricao
+     */
+    public function salvarServico(array $data)
     {
         $stsCreate = new \Sts\Models\helpers\StsCreate();
         $stsCreate->exeCreatre("consulta", $data);
         $result = $stsCreate->getResult();
 
-        if(!empty($result)){
+        return $result;
+    }
+
+
+    /**     function userPets($idusuario)
+     * Retorna os pets do cliente que está logado
+     */
+    public function userPets($idusuario): array|null
+    { 
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT p.idpet , p.nome_pet, p.imagem_pet
+                            FROM pet as p
+                            INNER JOIN usuario as u 
+                            ON u.idusuario = p.usuario 
+                            WHERE u.idusuario = :idusuario", "idusuario={$idusuario}" );
+
+        return $stsSelect->getResult();
+    }
+
+
+
+    /**     function consultaPet
+     * Cadastra a chave estrangeira da tabela pet com consulta 
+     */
+    public function consultaPet(array $data, string $idpet): bool
+    {
+        $stsUpdate = new \Sts\Models\helpers\StsUpdate();
+        $stsUpdate->exeAlter('pet', $data, 'idpet', $idpet);
+        $resultAlter = $stsUpdate->getResult();
+        if(!empty($resultAlter)){
             return true;
-        }else{
+        } else {
             return false;
         }
     }
+
+
+
+    
 
 
 

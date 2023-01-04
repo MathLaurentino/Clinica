@@ -30,7 +30,9 @@
     echo "<hr>";
     echo "<a href='" . URLADM . "Sobre-Clientes'> Sobre Cliente </a> <br>";
     echo "<a href='" . URLADM . "Sobre-Clinica'> Sobre Clinica </a> <br>";
-    echo "<a href='" . URL . "Logout/Index'> Logout </a> <br>";
+    echo "<a href='" . URLADM . "ConsultasAgendadas/clientes'> Consultas Agendadas </a> <br>"; 
+    echo "<a href='" . URL . "Logout/Index'> Logout </a> <br>"; 
+   
 ?>
 
 </body>

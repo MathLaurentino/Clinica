@@ -48,12 +48,13 @@ class Agendamento{
 
     /**     function agendar()
      * Carrega a tela para agendar uma nova consulta
+     * Recebe os dados do formulário para agendar uma nova consulta
      */
     public function agendar(): void
     {
 
-        
-        if (isset($_GET['dia']) && isset($_GET['horario'])) {
+        // se o dados de dia, horario e servico forem passados na URL
+        if (isset($_GET['dia']) && isset($_GET['horario']) && isset($_GET['servico'])) {
 
             $dayNewEvent = $_GET['dia'];
             $timeNewEvent = $_GET['horario'];
@@ -61,33 +62,53 @@ class Agendamento{
 
             $sts = new \Sts\Models\StsAgendamento();            
 
-            if ($this->varificarData($dayNewEvent, $timeNewEvent) && $sts->idServicoExiste($idServico)){
+            // se os dados passados na URL são válidos (consulta no BD)
+            if ($this->varificarData($dayNewEvent, $timeNewEvent) && $sts->idServicoExiste($idServico)) {
 
                 $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
                 
-                if (isset($this->dataForm['agendar'])) {
+                // se não mandou o formulário de agendar servico, então carrega a tela de agendamento
+                if (!isset($this->dataForm['agendar'])) {
 
-                    unset($this->dataForm['agendar']);
-                    //echo "<pre>";var_dump($this->dataForm);
-                    if ($sts->salvarServico($this->dataForm)) {
-                        echo "deu certo";
-                    } else {
-                        echo "deu errado";
-                    }
+                    $this->data['servico'] = $sts->servicoClinica($idServico);
+                    $this->data['servico'] = $this->data['servico'][0];
+                    $this->data['pets'] = $sts->userPets($_SESSION['idusuario']);
                     
-
+                    $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/agendamento", $this->data , NULL);
+                    $loadView->loadView_header3("agendamentoH");
+                
+                // caso já tenha mandado o formulário de agendar servico, cadastre a consulta no banco de dados
+                // a nova consulta por padrão aperecera como "AConfirmar" no BD
                 } else {
 
-                    $this->data = $sts->servicoClinica($idServico);
-                    $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/agendamento", $this->data[0] , NULL);
-                    $loadView->loadView_header3("agendamentoH");
+                    $idpet = $this->dataForm['idpet'];
 
+                    unset($this->dataForm['idpet']);
+                    unset($this->dataForm['agendar']);
+
+                    $petUpdate['consulta'] = $sts->salvarServico($this->dataForm);
+
+                    if ($sts->consultaPet($petUpdate, $idpet)) {
+                        $_SESSION['msg'] = "Consulta agendada com sucesso, aguarde a confirmação da clinica";
+                        $header = URL . "Sobre Cliente";
+                        header("Location: {$header}");
+                    } else {
+                        $_SESSION['msg'] = "Falha ao agendar servico, tente novamente.";
+                        $header = URL . "Servicos";
+                        header("Location: {$header}");
+                    } 
                 }
                 
-
             } else {
-                echo "DateTime inválido";
+                $_SESSION['msg'] = "Horario ou servico inválido, tente novamente.";
+                $header = URL . "Servicos";
+                header("Location: {$header}");
             }
+
+        } else {
+            $_SESSION['msg'] = "Dados insuficientes, tente novamente.";
+            $header = URL . "Servicos";
+            header("Location: {$header}");
         }
 
     }
@@ -116,11 +137,12 @@ class Agendamento{
         $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
         $result = $diff->invert; // retorna 1 se o dia da URL é passado e 0 se for presente o futuro
 
-        // Se o dia da URL já é passado
+        // se o dia da URL já é passado
         if ($result == 1) {
             return FALSE;
         }
 
+        // se o horario passado estiver fora dos horarios estabelecidos pela clinica
         if ($timeNewEvent < 12 || $timeNewEvent > 18) {
             return FALSE;
         }   
@@ -149,9 +171,6 @@ class Agendamento{
         }
 
         return TRUE;
-
-        
-            
     }
 
 

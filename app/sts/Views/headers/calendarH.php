@@ -32,14 +32,12 @@
                 plugins: [ 'interaction', 'dayGrid' ],
                 selectable: true,
                 editable: true,
-                eventLimit: true, 
-                //weekends: false, // tira o fim de semana
-                
+                //eventLimit: true, 
+                weekends: false, // tira o fim de semana
                 //events:  //echo $this->data,
 
                 
                 
-
                 extraParams: function () {
                     return {
                         cachebuster: new Date().valueOf()
@@ -51,7 +49,7 @@
                 select: function(info) {
 
                     var events = <?= $this->data ?>;
-                    $('#horarios').modal('show');
+                    $('#horarios').modal('show'); // hide -> para fechar
 
                     var dateNow = new Date();
                     var dayNow = String(dateNow.getDate()).padStart(2, '0');
@@ -81,8 +79,6 @@
                             document.getElementById("bnt"+y).classList = "btn btn-outline-success";
                         }
 
-
-
                         for (y = 0; y < events.length; y++) {
 
                             event = events[y];
@@ -93,26 +89,23 @@
                             yearEvent = dateEvent.slice(0,4);
                             monthEvent = dateEvent.slice(5,7);
                             dayEvent = dateEvent.slice(8,10);
-
                             hourEvent = hourEvent.slice(0,2);
+
+                            hourNow = new Date().toLocaleTimeString();
+                            hourNow = hourNow.slice(0,2);
 
                             // caso exista um evento na data selecionada - deixa o botao vermelho total
                             if (yearForm == yearEvent && monthForm == monthEvent && dayForm == dayEvent) {
-
                                 document.getElementById("bnt"+hourEvent).classList = "btn btn-danger";
-
-                                hourNow = new Date().toLocaleTimeString();
-                                hourNow = hourNow.slice(0,2);
-
-                                // caso o horario local já seja maior do que algum do botão - deixa o botao vermelho tranparente
-                                if (hourNow >= 12 && yearForm == yearNow && monthForm == monthNow && dayForm == dayNow) {
-                                    for (x = 12; x <= hourNow; x++) {
-                                        document.getElementById("bnt"+x).classList = "btn btn-outline-danger";
-                                        if (x == 18) { x = hourNow; }
-                                    }
-                                }
-
                             } 
+
+                            // caso já tenha passado do horario do primeiro botão
+                            if (hourNow >= 12 && yearForm == yearNow && monthForm == monthNow && dayForm == dayNow) {
+                                for (x = 12; x <= hourNow; x++) {
+                                    document.getElementById("bnt"+x).classList = "btn btn-outline-danger";
+                                    if (x == 18) { x = hourNow; }
+                                }
+                            }
                         }
                     } 
 
