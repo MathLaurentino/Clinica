@@ -97,7 +97,7 @@ class AdmsConsultasAgendadas{
      *      data -> ['sit_consulta'] = "Confirmado" / "Negado" ...
      *
      */
-    public function alterSit_Consulta($id, $data): bool
+    public function alterSit_Consulta(string $id, array $data): bool
     {
         $admsUpdate = new \Adms\Models\helpers\AdmsUpdate();
         $admsUpdate->exeAlter('consulta', $data, 'idconsulta', $id);

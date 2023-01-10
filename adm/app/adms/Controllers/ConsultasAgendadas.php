@@ -9,6 +9,8 @@ if (!defined('D7E4T2K6F4')) {
 
 include_once 'app/Adms/controllers/helpers/protect.php';
 
+date_default_timezone_set('America/Sao_Paulo');
+
 class ConsultasAgendadas
 {
 
@@ -32,22 +34,29 @@ class ConsultasAgendadas
     public function clientes(): void
     {
 
-        $adms = new \Adms\Models\AdmsConsultasAgendadas();
+        $adms = new \Adms\Models\AdmsConsultasAgendadas(); 
 
         $this->data['aConfirmar'] = $adms->getBasicDataAConfirmar();
         $this->data['outros'] = $adms->getBasicDataOutros(); 
 
+        if (!empty($this->data['aConfirmar'])) {
+
+            $admsConsulta = new \Adms\Models\helpers\AdmsDateConsulta();
+
+            if ($admsConsulta->verifyDayTimeConsulta($this->data['aConfirmar'])) {
+                $this->data['aConfirmar'] = $adms->getBasicDataAConfirmar();
+                $this->data['outros'] = $adms->getBasicDataOutros(); 
+            } 
+
+        }
+         
         $this->view("consulta2");
-        
+
     }
 
 
-
-
-
-
     /**     function consulta()
-     * Carrega as informaçoes extras de uma determinada consulta passada pela URL
+     * Carrega as informaçoes extras de uma determinada consulta pelo id passada pela URL
      */
     public function consulta()
     {
@@ -68,9 +77,10 @@ class ConsultasAgendadas
 
 
 
-
-
     
+
+
+
 
     public function confirmar()
     {
@@ -132,6 +142,10 @@ class ConsultasAgendadas
         $header = URLADM . "ConsultasAgendadas/clientes";
         header("Location: {$header}");
     }
+
+
+
+    
 
     
     /**
