@@ -31,7 +31,7 @@ if (isset($_SESSION['msg']) ) {
 
     <!--CABEÇALHO-->
     <header class="cabecalho-principal">
-        <img class="img" src="<?= IMGADMCLINICA ?>logo.png" alt="logo da clínica">
+        <img class="img" src="<?= URLADM . IMGADMCLINICA ?>logo.png" alt="logo da clínica">
 
         <nav class="menu">
             <a class="item">HOME</a>
@@ -157,23 +157,47 @@ if (isset($_SESSION['msg']) ) {
 
                         <div class="card-body">
 
+                            <?php
+                                for ($x=0; $x < count($this->data['outros']); $x++) {
+
+                                    $consulta = $this->data['outros'][$x];
+                                    extract($consulta);
+
+                                    if (empty($foto_usuario)) { $foto_usuario = "Sem_Foto.png"; }
+
+                                    $day = substr($data_consulta,8) . "/" . substr($data_consulta,5,-3). "/" . substr($data_consulta,0,-6); 
+                                    $time = substr($horario_consulta,0,-6);
+
+                            ?>
+
                             <section class="conteudo-serviçosadm">
 
-                                <img src="../img/icone_vacina.png" alt="icone vacina" class="img-serviços">
+                                <img src="<?= URL . IMGCLIENTEADM . $foto_usuario?>" alt="icone vacina" class="img-serviços">
 
                                 <div class="procedimentoadm">
-                                    <h2 class="título-serviço">Lara Alanis de Araújo </h2>
-                                    <div class="tipoServico">
-                                        <h5>CONSULTA</h5>
-                                    </div>
-                                    <div class="data"> 13 DE JULHO DE 2022 - 08:30 <br> <button class="btn-maisinfo"> MAIS
-                                            INFO </button></div>
 
-                                </div>
+                                    <h2 class="título-serviço">Lara Alanis de Araújo </h2>
+
+                                    <div class="tipoServico">
+                                        <h5> <?= $nome_consulta ?> </h5>
+                                    </div>
+
+                                    <div class="data"> 
+                                        <?= $day ?>   <?= $time ?>h-00m<br> 
+                                        <a href="<?= URLADM . "ConsultasAgendadas/Consulta?idConsulta=" . $idconsulta?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a>
+                                    </div>
+
+                                    <div>
+                                        <h5> <?= $sit_consulta ?> </h5>
+                                    </div>
 
                             </section>
 
                             <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+
+                            <?php
+                                }
+                            ?>
 
 
                             
