@@ -25,15 +25,112 @@ class ConsultasAgendadas
     }
 
 
-    public function clientes()
+    /**     function clientes()
+     * Pega os dados das consultas no BD e carrega a tela consulta2,
+     *      no qual tem os registros de todas as consultas marcadas no BD
+     */ 
+    public function clientes(): void
     {
 
         $adms = new \Adms\Models\AdmsConsultasAgendadas();
-        $this->data = $adms->getDataConsulta();
 
-        $this->view();
+        $this->data['aConfirmar'] = $adms->getBasicDataAConfirmar();
+        $this->data['outros'] = $adms->getBasicDataOutros(); 
+
+        $this->view("consulta2");
         
+    }
 
+
+
+
+
+
+    /**     function consulta()
+     * Carrega as informaçoes extras de uma determinada consulta passada pela URL
+     */
+    public function consulta()
+    {
+        if (isset($_GET['idConsulta'])) {
+
+            $idConsulta = $_GET['idConsulta'];
+
+            $adms = new \Adms\Models\AdmsConsultasAgendadas();
+            $this->data = $adms->getFullDataConsulta($idConsulta);
+
+            $this->view("dadosConsulta");
+
+        } else {
+            $this->clientes();
+        }
+        
+    }
+
+
+
+
+
+    
+
+    public function confirmar()
+    {
+        if (isset($_GET['idConsulta'])) {
+
+            $idConsulta = $_GET['idConsulta'];
+
+            $adms = new \Adms\Models\AdmsConsultasAgendadas();
+
+            if ($adms->verifyIfConsultaExist($idConsulta)) {
+
+                $sit_consulta['sit_consulta'] = "Confirmado";
+                if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
+                    $_SESSION['msg'] = "Consulta confirmada com sucesso";
+                } else {
+                    $_SESSION['msg'] = "Falha ao confirmar consulta";
+                } 
+
+            } else {
+                $_SESSION['msg'] = "Falha ao Identificar consulta";
+            }
+
+        } else {
+            $_SESSION['msg'] = "Falta de dados";
+        }
+
+        $header = URLADM . "ConsultasAgendadas/clientes";
+        header("Location: {$header}");
+    }
+
+
+
+    public function negar(): void
+    {
+        if (isset($_GET['idConsulta'])) {
+
+            $idConsulta = $_GET['idConsulta'];
+
+            $adms = new \Adms\Models\AdmsConsultasAgendadas();
+
+            if ($adms->verifyIfConsultaExist($idConsulta)) {
+
+                $sit_consulta['sit_consulta'] = "Negado";
+                if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
+                    $_SESSION['msg'] = "Consulta negada com sucesso";
+                    
+                } else {
+                    $_SESSION['msg'] = "Falha ao negar consulta";
+                } 
+
+            } else {
+                $_SESSION['msg'] = "Falha ao Identificar consulta";
+            }
+            
+        } else {
+            $_SESSION['msg'] = "Falta de dados";
+        }
+
+        $header = URLADM . "ConsultasAgendadas/clientes";
+        header("Location: {$header}");
     }
 
     
@@ -41,9 +138,9 @@ class ConsultasAgendadas
      * Método chamado pelo método index da classe
      * Carrega a view
      */
-    private function view(): void
+    private function view($page): void
     {
-        $loadView = new \Core\LoadView("adms/Views/bodys/consultasAgendadas/consultas", $this->data, null);
+        $loadView = new \Core\LoadView("adms/Views/bodys/consultasAgendadas/{$page}", $this->data, null);
         $loadView->loadViewAdm();
     }
 

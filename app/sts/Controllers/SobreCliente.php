@@ -44,8 +44,8 @@ private array|null $dataForm; // dados que vem do formulario
         if ($this->verifyIfUserHasAPet()) 
             $this->data['pet'] = $stsSobreCliente->userPet();
 
-        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/sobreCliente", $this->data, null);
-        $loadView->loadView_header('sobre_cliente');
+        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/sobreCliente", $this->data, null); // sobreCliente // areaCliente
+        $loadView->loadView_header('sobre_cliente'); //sobre_cliente //areaClienteH
     }
 
 
@@ -194,7 +194,7 @@ private array|null $dataForm; // dados que vem do formulario
 
                 if (!empty($this->data['pet'])){
                     $this->data['tipo_pet'] = $stsSobreCliente->getRaca($this->data['pet'][0]['tipo_pet']);
-                    $this->view('alterarPet');
+                    $this->view2('alterarPet2');
                 } else {
                     $header = URL . "Erro?case=0"; // Erro 000
                     header("Location: {$header}");

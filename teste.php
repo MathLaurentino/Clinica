@@ -1,7 +1,8 @@
 <?php
-
-$data = explode( '/', '10/02/2014' );
-var_dump( checkdate($data[1], $data[0], $data[2]) );
+$data['sit_consulta'] = "Confirmado";
+var_dump($data);
+// $data = explode( '/', '10/02/2014' );
+// var_dump( checkdate($data[1], $data[0], $data[2]) );
 
 // $date1=date_create("2023-01-03");
 // $date2=date_create("2023-01-01");

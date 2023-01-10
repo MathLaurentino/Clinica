@@ -86,7 +86,7 @@ class SobreClientes
      */
     private function view(): void
     {
-        $loadView = new \Core\LoadView("adms/Views/sobreClientes", $this->data, null);
+        $loadView = new \Core\LoadView("adms/Views/sobreClientes", $this->data, null); //areaCliente
         $loadView->loadViewAdm();
     }
 

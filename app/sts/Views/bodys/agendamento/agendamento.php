@@ -29,7 +29,7 @@ Tempo médio: <?= substr($this->data['servico']['tempo_medio'], 0, -6) . "h" ?> 
     <input type="hidden" name="tipo_consulta" value="<?= $_GET['servico'] ?>">
 
     
-    <select name="idpet">
+    <select name="pet">
         <?php  
             $pets = $this->data['pets'];
             for ($x = 0; $x < count($pets); $x++) {

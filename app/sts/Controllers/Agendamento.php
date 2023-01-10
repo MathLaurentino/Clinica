@@ -81,14 +81,11 @@ class Agendamento{
                 // a nova consulta por padrão aperecera como "AConfirmar" no BD
                 } else {
 
-                    $idpet = $this->dataForm['idpet'];
-
-                    unset($this->dataForm['idpet']);
                     unset($this->dataForm['agendar']);
+                    
+                    $idconsulta = $sts->salvarServico($this->dataForm);
 
-                    $petUpdate['consulta'] = $sts->salvarServico($this->dataForm);
-
-                    if ($sts->consultaPet($petUpdate, $idpet)) {
+                    if (!empty($idconsulta)) {
                         $_SESSION['msg'] = "Consulta agendada com sucesso, aguarde a confirmação da clinica";
                         $header = URL . "Sobre Cliente";
                         header("Location: {$header}");
@@ -96,7 +93,8 @@ class Agendamento{
                         $_SESSION['msg'] = "Falha ao agendar servico, tente novamente.";
                         $header = URL . "Servicos";
                         header("Location: {$header}");
-                    } 
+                    }
+
                 }
                 
             } else {

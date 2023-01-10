@@ -63,6 +63,7 @@ class StsAgendamento{
      *      - horario_consulta
      *      - tipo_consulta
      *      - descricao
+     *      - pet
      */
     public function salvarServico(array $data)
     {
@@ -88,28 +89,5 @@ class StsAgendamento{
 
         return $stsSelect->getResult();
     }
-
-
-
-    /**     function consultaPet
-     * Cadastra a chave estrangeira da tabela pet com consulta 
-     */
-    public function consultaPet(array $data, string $idpet): bool
-    {
-        $stsUpdate = new \Sts\Models\helpers\StsUpdate();
-        $stsUpdate->exeAlter('pet', $data, 'idpet', $idpet);
-        $resultAlter = $stsUpdate->getResult();
-        if(!empty($resultAlter)){
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-
-    
-
-
 
 }
