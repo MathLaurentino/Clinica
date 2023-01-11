@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 10-Jan-2023 às 18:51
+-- Tempo de geração: 11-Jan-2023 às 22:30
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 8.1.6
 
@@ -32,7 +32,7 @@ CREATE TABLE `consulta` (
   `data_consulta` date NOT NULL,
   `horario_consulta` time NOT NULL,
   `descricao` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sit_consulta` enum('A Confirmar','Confirmado','Concluido','Cancelado','Negado') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'A Confirmar',
+  `sit_consulta` enum('A Confirmar','Confirmado','Concluido','Cancelado','Negado','Indeferido') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'A Confirmar',
   `tipo_consulta` int(11) NOT NULL,
   `pet` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -43,9 +43,11 @@ CREATE TABLE `consulta` (
 
 INSERT INTO `consulta` (`idconsulta`, `data_consulta`, `horario_consulta`, `descricao`, `sit_consulta`, `tipo_consulta`, `pet`) VALUES
 (16, '2023-01-10', '14:00:00', ' teagh', 'Concluido', 21, 38),
-(17, '2023-01-11', '17:00:00', ' Aparenta estar com dor nos dentes', 'A Confirmar', 23, 42),
-(18, '2023-01-10', '17:00:00', ' Precisa ser castrada', 'A Confirmar', 27, 42),
-(19, '2023-01-11', '13:00:00', ' Verificação anual', 'Negado', 24, 43);
+(17, '2023-01-11', '17:00:00', ' Aparenta estar com dor nos dentes', 'Confirmado', 23, 42),
+(18, '2023-01-10', '17:00:00', ' Precisa ser castrada', 'Negado', 27, 42),
+(19, '2023-01-11', '13:00:00', ' Verificação anual', 'Negado', 24, 43),
+(20, '2023-01-10', '17:00:00', 'Dor nos dentes', 'Concluido', 21, 40),
+(21, '2023-01-13', '16:00:00', ' Verificação anual apenas', 'A Confirmar', 23, 44);
 
 -- --------------------------------------------------------
 
@@ -103,9 +105,10 @@ INSERT INTO `pet` (`idpet`, `nome_pet`, `idade_pet`, `sexo`, `imagem_pet`, `imag
 (38, 'sofia', 5, 'feminino', NULL, NULL, 24, 90),
 (39, 'Luna Alves', 2, 'feminino', '63b1e2333bfa5.png', NULL, 14, 99),
 (40, 'Luna', 2, 'feminino', NULL, NULL, 14, 90),
-(41, 'sofia', 2, 'feminino', NULL, NULL, 24, 1),
+(41, 'sofia', 2, 'feminino', '63be21dcaa53e.jpg', NULL, 24, 1),
 (42, 'Felinina', 4, 'feminino', '63bc9992c9bb1.jpg', NULL, 24, 100),
-(43, 'Luna', 2, 'feminino', NULL, NULL, 5, 100);
+(43, 'Luna', 2, 'feminino', NULL, NULL, 5, 100),
+(44, 'Galego', 3, 'masculino', NULL, NULL, 17, 90);
 
 -- --------------------------------------------------------
 
@@ -206,8 +209,8 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`idusuario`, `nome_usuario`, `cpf`, `rg`, `data_nascimento`, `email`, `foto_usuario`, `tipo_usuario`, `senha_usuario`, `chave`, `sit_usuario`, `endereco`) VALUES
-(1, 'maria', '123', '123', '2022-09-28', 'maria@maria.com', NULL, 'mantenedor', '$2y$10$Q6pkE2iA9fepKpF6EJqJeufYRIpjSQYxW5pmycYhfGiAbC7FCOQtS', NULL, 'Ativo', 62),
-(90, 'João Pedro Sgobero', '07894971406', '28289054898', '2000-11-29', 'joao@joao.com', '63ab4fb2dfc08.jpg', 'cliente', '$2y$10$0KBkP2jOcze/XeQhXxHeG.n.PE4CNAxLVxv3Oyb8gE5R4v0XnWgMu', '$2y$10$AeyKCfce0ndyuFJk23eKZuaYWcbvLK6J5tU02DqOGbt1NVoa6GREC', 'Ativo', 77),
+(1, 'maria', '123', '123', '2022-09-28', 'maria@maria.com', '63be21ec74b84.jpg', 'mantenedor', '$2y$10$Q6pkE2iA9fepKpF6EJqJeufYRIpjSQYxW5pmycYhfGiAbC7FCOQtS', NULL, 'Ativo', 62),
+(90, 'João Pedro Sgobero', '07894971406', '28289054898', '2000-11-29', 'joao@joao.com', NULL, 'cliente', '$2y$10$0KBkP2jOcze/XeQhXxHeG.n.PE4CNAxLVxv3Oyb8gE5R4v0XnWgMu', '$2y$10$AeyKCfce0ndyuFJk23eKZuaYWcbvLK6J5tU02DqOGbt1NVoa6GREC', 'Ativo', 77),
 (98, 'Marcos Barbosa Vieira', '32311285523', '12344537', '1963-07-25', 'marcos@marcos.com', NULL, 'cliente', '$2y$10$CxdAn1iPbrZ1YbTDGQHJjuUEDes/QmH9J7YcZYPkNJy1SPpfte.1S', '$2y$10$C1M1jEZA6U.sxfdKaaRS.eXJcrUMZvJiCKNQsoE5zvYJJhcow.m6.', 'Ativo', NULL),
 (99, 'Iluska Maria', '08927345', '0789125364', '1975-11-12', 'iluska@iluska.com', NULL, 'cliente', '$2y$10$F2T009VRDk3w7lfbje76z.1RT3y5QCMNxz0FvkRMWJ3F/8G6hs/Iy', '$2y$10$LXkwDBOnuJMH7Uiimb5YNul/qXypQQIsC0FhSgZWhehgMTeaZofIK', 'Ativo', 78),
 (100, 'Matheus Laurentino', '07894971405', '6749209475', '2003-11-29', 'matheus@matheus.com', '63bc9984cab36.jpg', 'cliente', '$2y$10$qPn34zTeSm3jlurOPONB8OVbBYNDCEvvoJHTqnYcQq0knQU7QNGr6', '$2y$10$EIc4yWU2zyZRNpGH4nYs1O2B7pezcFjR.2Pez0BROqISmm5hYFfdC', 'Ativo', 79);
@@ -265,7 +268,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de tabela `endereco`
@@ -277,7 +280,7 @@ ALTER TABLE `endereco`
 -- AUTO_INCREMENT de tabela `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT de tabela `raca_pet`

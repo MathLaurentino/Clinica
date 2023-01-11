@@ -33,8 +33,11 @@
     </p>
 
     <div class="centraliza">
+
       <div class="collapse show" id="infoPessoais">
+
         <div class="card card-body">
+
           <div class="areaCliente">
 
             <img class="imgSCliente" src="/GERAL/Projetos Atuais/Frontend/templades - Lara/img/icone_consulta.png">
@@ -46,6 +49,7 @@
               E-mail: <br>
             </div>
           </div>
+          
           <div>
             <a href=" " class="iconeEdita"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
             <p class="alinhaPadding"> <button class="btn-alterarDados"> alterar dados </button></p>

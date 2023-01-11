@@ -37,8 +37,6 @@ if(isset($this->data)){
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
 
                     <div class="card-body">
-
-                    
                     
                         <?php
 
