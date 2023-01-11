@@ -18,7 +18,7 @@ class Erro{
         }
         
         switch ($this->case) {
-            case 0 :
+            case 0:
                 $this->data['numeroErro'] = "000";
                 $this->data['descricaoErro'] = "Página não encontrada";
                 $this->data['botao'] = "Home";
@@ -35,12 +35,6 @@ class Erro{
                 $this->data['descricaoErro'] =  "Você já está logado, para cadastrar ou logar com outra conta é necessario fazer logout";
                 $this->data['botao'] = "Home";
                 $this->data['descricaoBotao'] = "Ir para a HOME";
-                break;
-            case 3:
-                $this->data['numeroErro'] = "003";
-                $this->data['descricaoErro'] =  "Erro ao cadastrar novo pet, entre em contato com o ADM: " . EMAILADM;
-                $this->data['botao'] = "Cadastro-Pet";
-                $this->data['descricaoBotao'] = "Voltar para tela de Cadastro Pet";
                 break;
             case 4:
                 $this->data['numeroErro'] = "004";
@@ -65,12 +59,6 @@ class Erro{
                 $this->data['descricaoErro']  = "Não é possível acessar essa página pois você não está logado";
                 $this->data['botao'] = "Login/Usuario";
                 $this->data['descricaoBotao'] = "Realizar Login";
-                break;
-            case 8:
-                $this->data['numeroErro'] = "008";
-                $this->data['descricaoErro']  = "Erro ao cadastrar endereço, entre em contato conosco no nosso email: " . EMAILADM;
-                $this->data['botao'] = "Cadastro/Endereco";
-                $this->data['descricaoBotao'] = "Voltar a tela de Cadastro";
                 break;
             case 9:
                 $this->data['numeroErro'] = "009";

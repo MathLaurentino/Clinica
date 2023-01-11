@@ -22,7 +22,7 @@ if (isset($_SESSION['msg'])) {
     <meta name="description" content="Projeto de Conclusão de Curso - Site designado para uma clínica veterinária" >
     <script src="https://kit.fontawesome.com/7f492723e7.js" crossorigin="anonymous"></script>    
     <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>styleNavBar.css"> 
-    <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>style.css">
+    <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>style2.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <!-- <style>
         p{text-align: center;}
@@ -46,13 +46,16 @@ if (isset($_SESSION['msg'])) {
 
             <!--PARTE DE ICONE E LOGIN-->
             <nav class="nav__bar">
+
                 <div class="mobile-menu">
-                <div class="icone"> <i class="fa fa-user-circle-o fa-2x"  aria-hidden="true"></i> </div>
+                    <div class="icone"> 
+                        <i class="fa fa-user-circle-o fa-2x"  aria-hidden="true"></i> 
+                    </div>
                 </div>
+
                 <ul class="nav-list">
-                    
-                        <li><a href="#" class="item-nav">Ver perfil</a></li>
-                        <li><a href="#" class="item-nav">Sair da conta</a></li>            
+                    <li><a href="#" class="item-nav">Ver perfil</a></li>
+                    <li><a href="#" class="item-nav">Sair da conta</a></li>            
                 </ul>
 
             </nav> <!-- fim navbar -->

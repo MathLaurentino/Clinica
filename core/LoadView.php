@@ -34,6 +34,7 @@ class LoadView
         if (file_exists('app/' . $this->nameView . '.php')){
             
             include 'app\sts\Views\headers/' . $header . '.php'; 
+            //include 'app\sts\Views\helpers\aviso.php';
             include 'app\sts\Views\helpers\cabecalho.php';
             include 'app/' . $this->nameView . '.php';
             include 'app/sts/views/footer.php';

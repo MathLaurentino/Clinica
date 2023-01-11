@@ -1,6 +1,24 @@
 <?php
-$data['sit_consulta'] = "Confirmado";
-var_dump($data);
+
+$kay = null;
+
+$array = ['index', 'dados', 'alterarDados'];
+
+$key = array_search("view", $array); 
+
+if ($key != null || $key === 0){
+    echo $key;
+} else {
+    echo "invalido " . $key;
+}
+
+// if (0 === null) {
+//     echo "Verdade";
+// }
+
+
+// $data['sit_consulta'] = "Confirmado";
+// var_dump($data);
 // $data = explode( '/', '10/02/2014' );
 // var_dump( checkdate($data[1], $data[0], $data[2]) );
 

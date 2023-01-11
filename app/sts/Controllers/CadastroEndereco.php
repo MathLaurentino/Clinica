@@ -16,11 +16,14 @@ class CadastroEndereco {
     private array|string|null $dataForm;
 
 
-
+    /**     function index()
+     * Chama a function padão da classe
+     */
     public function index()
     {
         $this->endereco();
     }
+
 
 
     /**     function endereco()
@@ -29,9 +32,10 @@ class CadastroEndereco {
      */
     public function endereco()
     {
-        if (!isset($_SESSION)) 
+        if (!isset($_SESSION)) {
             session_start();
-
+        }
+            
         if (!isset($_SESSION['idendereco']) && isset($_SESSION['idusuario'])) {
             //pega os dados do método post
             $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
@@ -45,10 +49,15 @@ class CadastroEndereco {
                 $loadView = new \Core\LoadView("sts/Views/bodys/cadastros/cadastroEndereco", $this->data, null);
                 $loadView->loadView_header2('cadastro_endereco');
             }
-        } elseif (isset($_SESSION['idendereco'])) {
+
+        } 
+        
+        elseif (isset($_SESSION['idendereco'])) {
             $header = URL . "Erro?case=11"; // Erro 011
-            header("Location: {$header}");
-        } elseif (!isset($_SESSION['idusuario'])) {
+            header("Location: {$header}");   
+        } 
+        
+        elseif (!isset($_SESSION['idusuario'])) {
             $header = URL . "Erro?case=12"; // Erro 012
             header("Location: {$header}");
         }
@@ -67,12 +76,12 @@ class CadastroEndereco {
         $idEndereco= $stsCreate->createAdress($this->data);
         if (!empty($idEndereco)) {
             $_SESSION['idendereco'] = $idEndereco;
-            $header = URL . "Home"; 
-            header("Location: {$header}");
+            $_SESSION['msg'] = "Endereço cadastrado com sucesso";
         } else {
-            $header = URL . "Erro?case=8"; // Erro 008
-            header("Location: {$header}");
+            $_SESSION['msg'] = "Falha ao cadastrar endereço, tente novamente mais tarde";
         }
+        $header = URL . "SobreCliente/Dados"; 
+        header("Location: {$header}");
     }
 
 

@@ -14,10 +14,8 @@ class CadastroPet
 
     private array|null $data = null;
     private array|null $dataForm;
-    private string|null $whichForm = null;
+    private string|null $whichForm = "PetType";
 
-    private string|null $tipoAnimal;
-    private string|null $result;
     
 
     /**     function index()
@@ -29,60 +27,38 @@ class CadastroPet
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        $this->whichForm = "PetType";
-
+        // se for enviado o formulário de qual a raça do pet
         if(isset($this->dataForm['PetType']))
         {
             unset($this->dataForm['PetType']);
+            $tipoAnimal = $this->dataForm['animal'];
 
-            $this->tipoAnimal = $this->dataForm['animal'];
-            $this->getDataPet();
+            $stsPet = new \Sts\Models\StsCadastroPet();
+            $this->data = $stsPet->dataPet($tipoAnimal); 
 
             $this->whichForm = "CreatePet";
             $this->view();
         }
 
+        // se for enviado o formulário de cadastro do pet
         elseif(isset($this->dataForm['CreatePet']))
         {
             unset($this->dataForm['CreatePet']);
             
-            $this->createNewPet();
+            $stsPet = new \Sts\Models\StsCadastroPet();
+            $result = $stsPet->createPet($this->dataForm);
 
-            if(!empty($this->result)){
+            if(!empty($result)){
                 $_SESSION['msg'] = "Pet Cadastrado com sucesso";
-                $header = URL . "Home";
-                header("Location: {$header}");
-            }else{ // erro 003
-                $header = URL . "Erro?case=3";
-                header("Location: {$header}");
+            }else{ 
+                $_SESSION['msg'] = "Falha ao cadastrar pet, tente novamente mais tarde";
             }
+                $header = URL . "SobreCliente/Dados";
+                header("Location: {$header}");
         }else{
             $this->view();
         }
     }
-
-
-
-    /**     function getDataPet()
-     * Function para pegar os dados da tabela tipo_pet 
-     *      por meio de um OBJ StsCadastroPet
-     */
-    private function getDataPet(): void
-    {
-        $stsPet = new \Sts\Models\StsCadastroPet();
-        $this->data = $stsPet->dataPet($this->tipoAnimal); 
-    }
-
-
-
-    /**     function createNewPet()
-     *Function para criar no pet por meio de um OBJ StsCadastroPet
-     */
-    private function createNewPet()
-    {
-        $stsPet = new \Sts\Models\StsCadastroPet();
-        $this->result = $stsPet->createPet($this->dataForm);
-    }   
 
 
 

@@ -137,7 +137,8 @@ class Login{
 
 
     /**     function checkSession()
-     * Undocumented function
+     * Verifica se a session já está ligada e também verifica se o 
+     *      usuario ja está logado
      */
     public function checkSession(): void
     {

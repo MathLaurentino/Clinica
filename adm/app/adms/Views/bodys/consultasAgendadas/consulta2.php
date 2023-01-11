@@ -176,7 +176,7 @@ if (isset($_SESSION['msg']) ) {
 
                                 <div class="procedimentoadm">
 
-                                    <h2 class="título-serviço">Lara Alanis de Araújo </h2>
+                                    <h2 class="título-serviço"><?= $nome_usuario ?> </h2>
 
                                     <div class="tipoServico">
                                         <h5> <?= $nome_consulta ?> </h5>

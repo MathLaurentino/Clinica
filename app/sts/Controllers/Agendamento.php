@@ -25,7 +25,8 @@ class Agendamento{
 
     /**     function horarios()
      * Carrega a tela do Full Calendar 
-     * Manda os dados da tebela consulta para o Full Calendar 
+     * Manda os dados da tebela consulta para o Full Calendar, mostrando ao 
+     *      cliente os horarios disponíveis
      */
     public function horarios(): void
     {
@@ -39,10 +40,6 @@ class Agendamento{
         $loadView->loadView_header3("calendarH");
       
     }
-
-
-
-
 
 
 
@@ -86,8 +83,8 @@ class Agendamento{
                     $idconsulta = $sts->salvarServico($this->dataForm);
 
                     if (!empty($idconsulta)) {
-                        $_SESSION['msg'] = "Consulta agendada com sucesso, aguarde a confirmação da clinica";
-                        $header = URL . "Sobre Cliente";
+                        $_SESSION['msg'] = "Consulta agendada com sucesso, aguarde a confirmação da clinica.";
+                        $header = URL . "SobreCliente";
                         header("Location: {$header}");
                     } else {
                         $_SESSION['msg'] = "Falha ao agendar servico, tente novamente.";
@@ -113,14 +110,8 @@ class Agendamento{
 
 
         
-
-
-
-
-
     /**     function varificarData()
-     * Verifica se a data e hora passada pela URL está 
-     *      disponivel no banco de dados
+     * Verifica se a data e hora passada  está disponivel no banco de dados
      */
     private function varificarData($dayNewEvent, $timeNewEvent): bool
     {

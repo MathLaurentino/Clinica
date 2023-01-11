@@ -43,9 +43,11 @@ private array|null $dataForm; // dados que vem do formulario
         
         if ($this->verifyIfUserHasAPet()) 
             $this->data['pet'] = $stsSobreCliente->userPet();
+        
+        $this->data['agendamentos'] = $stsSobreCliente->userAgendamntos();
 
-        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/sobreCliente", $this->data, null); // sobreCliente // areaCliente
-        $loadView->loadView_header('sobre_cliente'); //sobre_cliente //areaClienteH
+        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/areaCliente2", $this->data, null); // sobreCliente // areaCliente // areaCliente2
+        $loadView->loadView_header('areaCliente2H'); //sobre_cliente //areaClienteH // areaCliente2H
     }
 
 
@@ -291,7 +293,7 @@ private array|null $dataForm; // dados que vem do formulario
      */
     public function pages(): array
     {  
-        return $array = ['index', 'dados', 'alterarDados'];
+        return $array = ['index', 'dados', 'alterarDados', 'alterarDadosPet', 'alterarDadosEndereco', 'apagarDadosPet'];
     }
 
 }

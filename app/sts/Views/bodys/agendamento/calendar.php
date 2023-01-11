@@ -34,12 +34,6 @@
 
             </div>
 
-            <div class="modal-footer">
-                <button class="btn btn-primary" id="segundoModal" type="button" data-bs-toggle="modal" data-bs-target="#secondModal"
-                    data-bs-dismiss="modal">Submit</button>
-                <button class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-            </div>
-
         </div>
     </div>
 </div>

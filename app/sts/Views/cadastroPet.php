@@ -20,7 +20,7 @@
 
 <body>
 
-    <?php if ($this->more == "PetType"){ ?>
+    <?php if ($this->more == "PetType") { ?>
         <!-- Formulario para definir a espécie do animal a ser cadastrado (cachorro, gato ou ave) -->
         <form method="post" action="">
 

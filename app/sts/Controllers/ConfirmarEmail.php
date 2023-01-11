@@ -21,7 +21,7 @@ class ConfirmarEmail{
 
     /**     function verificarChave()
      * Verifica se a chave passada pela URL é a mesma
-     *      que está registrada no abnco de dados da conta
+     *      que está registrada no banco de dados da conta
      *      que está sendo verificada
      */
     public function verificarChave()

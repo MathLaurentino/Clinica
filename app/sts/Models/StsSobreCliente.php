@@ -67,6 +67,33 @@ class StsSobreCliente
         return $stsSelect->getResult();
     }
 
+
+
+
+    /**     function userAgendamntos()
+     * Retorna o historico de agendamonto do  cliente logado
+     */
+    public function userAgendamntos(): array|null
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead( "SELECT c.idconsulta, c.data_consulta, c.horario_consulta, c.sit_consulta,
+                                t.nome_consulta, t.tempo_medio, t.valor_consulta
+                                FROM consulta as c
+                                INNER JOIN tipo_consulta as t
+                                ON c.tipo_consulta = t.idtipo_consulta
+                                INNER JOIN pet as p
+                                ON c.pet = p.idpet
+                                INNER JOIN usuario AS u 
+                                ON p.usuario = u.idusuario
+                                WHERE u.idusuario = :idusuario", "idusuario={$_SESSION['idusuario']}");
+        
+        return $stsSelect->getResult();
+    }
+
+
+
+
+
     public function userPetById($idpet): array|null 
     {
         if ($this->verifyIdPetIsFromUser($idpet)) {

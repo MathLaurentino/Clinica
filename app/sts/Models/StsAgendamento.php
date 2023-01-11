@@ -13,7 +13,9 @@ class StsAgendamento{
         $stsSelect = new \Sts\Models\helpers\StsSelect();
 
         $stsSelect->fullRead("SELECT data_consulta, horario_consulta 
-                            FROM consulta", NULL);
+                            FROM consulta
+                            WHERE sit_consulta = 'A Confirmar' 
+                            OR sit_consulta = 'Confirmado'", NULL);
 
         $resultado =  $stsSelect->getResult();
 

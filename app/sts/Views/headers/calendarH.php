@@ -6,7 +6,6 @@
 
     <link href='<?= CSS ?>core/main.min.css' rel='stylesheet' />
     <link href='<?= CSS ?>daygrid/main.min.css' rel='stylesheet' />
-    <link rel="stylesheet" type="text/css" href='<?= CSS ?>agendamento.css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
 
@@ -19,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
-
+    
     <script>
 
         document.addEventListener('DOMContentLoaded', function() {
@@ -195,12 +194,23 @@
 
         });
 
-
-        
-
-
     </script>
 
+    <!-- <style>
+        body {
+        margin: 40px 10px;
+        padding: 0;
+        font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
+        font-size: 14px;
+        }
+
+        #calendar {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+    </style> -->
+
+    <link rel="stylesheet" type="text/css" href='<?= CSS ?>agendamento.css'>
 
 
 

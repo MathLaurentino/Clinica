@@ -1,0 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+body{
+	font-size: 100%;
+	background-color: white;
+}
+
+.container{
+	position: relative;
+	padding: 15px;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.cabecalho-principal{
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	padding-top: 24px;
+	white-space: nowrap;
+}
+
+.cabecalho-principal .img{
+	height: 65px;
+}
+
+.cabecalho-principal .menu{
+	display: flex;
+	align-items: baseline;
+	gap: 60px;
+}
+
+.cabecalho-principal .item{
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	color: #000;
+
+}
+
+.cabecalho-principal .item-nav{
+	font-family: 'Righteous', cursive;
+	font-size: 13px;
+	color: #000;}
+
+.cabecalho-principal .botao{
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	color: white;
+	background-color: #FFB300;
+	border: none;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 8px;
+}
+
+button:hover{
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+
+
+/* ESTILIZAÇÃO NO ICONE DE LOGIN */ 
+
+.conteudo-principal{
+	border-top: 4px solid black;
+	margin-bottom: 20px;
+}
+
+.conteudo-principal .apresentação{
+	display: flex;	
+	align-items: center;
+	justify-content: space-around;
+}
+
+#circulo{
+	margin-top: 15px;
+	width: 470px;
+	height: 450px;
+	background: #FFB300;
+	border-radius: 66% 34% 38% 62% / 53% 53% 47% 47% ;
+}
+
+.conteudo-principal .introdução{
+	padding: 20px;
+}
+
+.conteudo-principal .título{
+	font-family: 'Righteous', cursive;
+	font-size: 50px;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.conteudo-principal .subtítulo{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	text-align: center;
+}
+
+.conteudo-principal .serviços{
+	font-family: 'Righteous', cursive;
+	text-align: center;
+	padding-left: 30px;
+}
+
+.conteudo-principal .corpoclinico{
+	font-family: 'Righteous', cursive;
+	text-align: center;
+	padding-left: 30px;
+}
+
+.conteudo-principal .descricao{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	margin-left: 30px;
+}
+
+#serviços{
+	display: flex;
+	flex-direction: column;
+}
+
+#corpoclinico{
+	display: flex;
+	align-items: flex-start;
+	/* ALGUMA COISA PARA DEIXAR O TEXTO PARA A ESQUERDA*/
+	flex-direction: column;
+}
+
+.rodape-principal{
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 30px;
+	background-color: #ECEFF1;
+}
+
+.rodape-principal .logo{
+	height: 150px ;
+	margin-bottom: 5px;
+}
+
+.rodape-principal .endereco{
+	font-family: 'Righteous', cursive;
+	font-size: 30px;
+	color: black;
+}
+
+.fa-whatsapp{
+	color: black;
+}
+
+.fa-instagram{
+	color: black;
+}
+
+.fa-envelope-o{
+	color: black; 
+}
+
+.rodape-principal .informações{
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	padding: 20px;
+}
+
+.rodape-principal .direitos{
+	font-family: 'Righteous', cursive;
+	font-size: 15px;
+	padding-bottom: 5px;
+}
+
+/*ESTILIZAÇÃO PÁGINA DE SERVIÇOS - USUÁRIO*/ 
+.linha{
+	border-top: 0.5px solid black;
+	margin-bottom: 30px;
+}
+.conteudo-serviços{
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	padding-top: 60px;
+	gap: 58px;
+}
+ 
+.conteudo-serviços .img-serviços{
+	display: flex;
+	align-self: flex-start;
+	height: 50px; 
+
+}
+
+.conteudo-serviços .procedimento{
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	gap: 20px;
+	padding-bottom: 10px;
+	flex-basis: 55vw;
+
+}
+
+.procedimento .título-serviço{
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	flex-basis: 40vw;
+
+
+}
+
+.procedimento .info{
+	font-family: 'Righteous', cursive;
+	font-size: 15px;
+	text-align: center;
+	flex-basis: 18vw;
+
+}
+
+.procedimento .agendar{
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	text-align: center;
+	color: black;
+	background-color: white;
+	border:solid 5px;
+	border-color: #FFB300;
+	height: 50px;
+	line-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+
+.procedimento .editaexclui{
+	font-family: 'Righteous', cursive;
+	font-size: 15px;
+	text-align: center;
+	color: black;
+	background-color: white;
+	border:solid 5px;
+	border-color: #7711dd;
+	height: 30px;
+	line-height: 25px;
+	padding-left: 15px;
+	padding-right: 15px;
+	flex-basis: 3vw;
+}
+
+/*ESTILIZAÇÃO PÁGINA ÁREA DOS CLIENTES - USUÁRIO*/ 
+
+
+/*ESTILIZAÇÃO PÁGINA AGENDAMENTO - USUÁRIO*/ 
+.conteudo-principal .sub-título{
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	text-align: center;
+}
+
+.calendario .info{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 17px;
+	text-decoration: underline;
+	margin-top: 50px;
+	margin-left: 30px;
+}
+
+.calendario .img-dog{
+	position: absolute;
+	left: 68%;
+}
+
+.addServicos{
+	padding-left: 40vw;
+}
+.addServicosBotao{
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	background-color: #7d59ff;
+	border-color: white;
+	border:solid 1px;
+	height: 50px;
+	line-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+
+}
