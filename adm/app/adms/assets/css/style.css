@@ -418,7 +418,7 @@ button:hover {
 	justify-content: center;
 	align-items: baseline;
 	gap: 58px;
-	height: 9vh;
+	height: 12vh;
 
 }
 
@@ -435,7 +435,8 @@ button:hover {
 .conteudo-serviçosadm .img-serviços {
 	display: flex;
 	align-self: flex-start;
-	height: 50px;
+	height: 10vh;
+	width: 6vw;
 
 }
 
@@ -469,7 +470,7 @@ button:hover {
 	font-family: 'Righteous', cursive;
 	font-size: 15px;
 	text-align: center;
-	flex-basis: 20vw;
+	flex-basis: 16vw;
 
 
 
@@ -491,7 +492,7 @@ button:hover {
 }
 
 .tipoServico {
-	flex-basis: 10vw;
+	flex-basis: 15vw;
 
 }
 
