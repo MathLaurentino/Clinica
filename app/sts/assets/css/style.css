@@ -233,6 +233,7 @@ button:hover {
 	font-family: 'Righteous', cursive;
 	font-size: 25px;
 	flex-basis: 85vw;
+	padding-left: 5vw;
 
 
 }
@@ -241,11 +242,25 @@ button:hover {
 	font-family: 'Righteous', cursive;
 	font-size: 15px;
 	text-align: center;
-	flex-basis: 11vw;
+	flex-basis: 15vw;
 
 }
 
 .procedimento .botões {
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	text-align: center;
+	color: black;
+	background-color: white;
+	border: solid 5px;
+	border-color: #FFB300;
+	height: 50px;
+	line-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+
+}
+.procedimento .agendar {
 	font-family: 'Righteous', cursive;
 	font-size: 20px;
 	text-align: center;
@@ -432,7 +447,7 @@ button:hover {
 	justify-content: center;
 	align-items: baseline;
 	gap: 58px;
-	height: 9vh;
+	height: 12vh;
 
 }
 
@@ -449,7 +464,8 @@ button:hover {
 .conteudo-serviçosadm .img-serviços {
 	display: flex;
 	align-self: flex-start;
-	height: 50px;
+	height: 10vh;
+	width: 6vw;
 
 }
 
@@ -463,12 +479,15 @@ button:hover {
 
 }
 
-.procedimentoadm .título-serviço {
+.procedimentoadm .nome-pet {
 	font-family: 'Righteous', cursive;
 	font-size: 25px;
-	flex-basis: 30vw;
+	flex-basis: 15vw;
+}
 
+.procedimentoadm .botaoCancela {
 
+	flex-basis: 5vw;
 }
 
 .procedimentoadm .info {
@@ -483,7 +502,7 @@ button:hover {
 	font-family: 'Righteous', cursive;
 	font-size: 15px;
 	text-align: center;
-	flex-basis: 20vw;
+	flex-basis: 16vw;
 
 
 
@@ -505,7 +524,7 @@ button:hover {
 }
 
 .tipoServico {
-	flex-basis: 10vw;
+	flex-basis: 15vw;
 
 }
 
@@ -563,8 +582,36 @@ button:hover {
 .conteudo-principal .form-edição2 {
 	margin-top: 10px;
 	font-family: 'Open Sans', sans-serif;
+<<<<<<< Updated upstream
 	font-weight: bolder;
+=======
+	/* font-weight: bolder; */
+}
+>>>>>>> Stashed changes
 
+ .form-edição3 {
+	margin-top: 8vh;
+	font-family: 'Open Sans', sans-serif;
+	/* font-weight: bolder; */
+	text-align: center;
+	
+}
+
+.form-edição3 input {
+	height: 5vh;
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid rgb(41, 41, 41);
+	font-size: 15px;
+	color:  rgb(41, 41, 41);
+	margin: 10px;
+	width: 20vw;
+}
+
+.estilizaP{
+	font-weight: bolder;
+	height: 0vh;
 }
 
 .areaCliente {
@@ -625,7 +672,6 @@ a:visited{
 	margin: 0px;
 	align-items: center;
 	font-weight: bolder;
-
 }
 .btn-addPet {
 	font-family: 'Righteous', cursive;
@@ -700,6 +746,7 @@ text-align: center;
 	width: 165px;
 	align-self: center;
 	margin: 6px;
+	height: 7vh;
 	
 }
 

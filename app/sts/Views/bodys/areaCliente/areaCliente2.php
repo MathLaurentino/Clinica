@@ -98,7 +98,38 @@
 
           <div class="areaCliente">
 
+<<<<<<< Updated upstream
             <img class="imgSCliente" src="/GERAL/Projetos Atuais/Frontend/templades - Lara/img/icone_consulta.png">
+=======
+          <?php
+            if (isset($this->data['pet'])) {
+              for ($x = 0; $x < count($this->data['pet']); $x++) {
+                  $pet = $this->data['pet'][$x];
+                  extract($pet);
+                  if (empty($imagem_pet)) { $imagem_pet = "petSemFoto.png"; }
+          ?>
+
+            <div class="areaCliente">
+
+                <img class="imgSCliente" src="<?= URL . IMG . $imagem_pet ?>">
+
+                <div class="form-edição2">
+                  <b> Nome: </b> <?= $nome_pet ?> <br>
+                  <b> Idade: </b> <?= $idade_pet ?> <br>
+                  <b> Espécie: </b> <?= $tipo_pet ?> <br>
+                  <b> Raça: </b> <?= $raca ?> <br>
+                  <b> Sexo: </b> <?= $sexo ?> <br>
+                  <b> Adicione a Carteira de Vacinação </b> <i class="fa fa-plus-square" aria-hidden="true"></i>
+<br>
+                </div>
+                
+            </div>
+
+            <div>
+              
+              <a href=" " class="iconeEdita"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+              <p class="alinhaPadding"> <a href="<?= URL . "Sobre-Cliente/Alterar-Dados-Pet?id={$idpet}" ?>"> <button class="btn-alterarDados"> alterar dados </button> </a> </p>
+>>>>>>> Stashed changes
 
             <div class="form-edição2">
               Nome: <br>
@@ -149,6 +180,7 @@
 
           </section>
 
+<<<<<<< Updated upstream
           <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
           <section class="conteudo-serviçosadm">
@@ -166,12 +198,20 @@
                 <h5>oi</h5>
             </div>
             </div>
+=======
+              <img class="img-serviços"   src="<?= URLADM . IMGADMSERVICOS . $foto_servico ?>" alt="icone vacina" class="img-serviços">
+>>>>>>> Stashed changes
 
 
+<<<<<<< Updated upstream
+=======
+                <h2 class="nome-pet"><?= $nome_pet ?></h2>
+>>>>>>> Stashed changes
 
           </section>
 
 
+<<<<<<< Updated upstream
           <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
           <section class="conteudo-serviçosadm">
@@ -181,6 +221,18 @@
               <h2 class="título-serviço">NOME DO PET? </h2>
               <div class="tipoServico">
                 <h5>CONSULTA</h5>
+=======
+                <div class="tipoServico">
+                  <h5> Confirmado </h5>
+                </div>
+
+                <div class="botaoCancela"> 
+                  <a href="#" class="icone-cancel"><i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
+                </div>
+
+
+
+>>>>>>> Stashed changes
               </div>
               <div class="data"> 13 DE JULHO DE 2022 - 08:30<button class="btn-maisinfo"> MAIS INFO </button></div>
               <div> <a href="#" class="icone-cancel"><i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
