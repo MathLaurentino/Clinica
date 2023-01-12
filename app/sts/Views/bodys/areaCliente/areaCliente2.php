@@ -215,6 +215,7 @@ if(isset($this->data)){
                 </div>
 
                 <?php
+                echo $sit_consulta;
                   if ($sit_consulta == "A Confirmar" && $sit_consulta == "Confirmado") { //
                 ?>
 

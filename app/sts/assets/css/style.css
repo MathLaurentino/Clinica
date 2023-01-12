@@ -722,4 +722,27 @@ text-align: center;
     height: 10vh;
     width: 6vw;
 }
+.form-edição3 {
+    margin-top: 8vh;
+    font-family: 'Open Sans', sans-serif;
+    /* font-weight: bolder; */
+    text-align: center;
+
+}
+
+.form-edição3 input {
+    height: 5vh;
+    border: none;
+    background: none;
+    outline: none;
+    border-bottom: 2px solid rgb(41, 41, 41);
+    font-size: 15px;
+    color:  rgb(41, 41, 41);
+    margin: 10px;
+    width: 20vw;
+}
+.estilizaP{
+    font-weight: bolder;
+    height: 0vh;
+}
 
