@@ -232,7 +232,7 @@ button:hover {
 .procedimento .título-serviço {
 	font-family: 'Righteous', cursive;
 	font-size: 25px;
-	flex-basis: 85vw;
+	flex-basis: 30vw;
 
 
 }
@@ -504,8 +504,8 @@ button:hover {
 
 }
 
-.tipoServico {
-	flex-basis: 10vw;
+.procedimentoadm .tipoServico {
+	flex-basis: 25vw;
 
 }
 
@@ -715,3 +715,11 @@ text-align: center;
 	left: 70%;
 	top: 5%;
 }
+
+.conteudo-serviçosadm .img-serviços2 {
+    display: flex;
+    align-self: flex-start;
+    height: 10vh;
+    width: 6vw;
+}
+

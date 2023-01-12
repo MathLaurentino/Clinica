@@ -18,7 +18,7 @@ class AdmsConsultasAgendadas{
                             ON c.pet = p.idpet
                             INNER JOIN usuario AS u 
                             ON p.usuario = u.idusuario
-                            WHERE c.pet != 'NULL' AND c.sit_consulta = 'A Confirmar'", NULL);
+                            WHERE c.pet != 'NULL' AND c.sit_consulta = 'A Confirmar' OR c.sit_consulta = 'A Cancelar'", NULL);
 
         $data = $admsSelect->getResult();
         return $data;

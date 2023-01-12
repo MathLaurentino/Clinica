@@ -195,7 +195,7 @@ if(isset($this->data)){
 
             <section class="conteudo-serviçosadm">
 
-              <img src="<?= URLADM . IMGADMSERVICOS . $foto_servico ?>" alt="icone vacina" class="img-serviços">
+              <img src="<?= URLADM . IMGADMSERVICOS . $foto_servico ?>" alt="icone vacina" class="img-serviços2">
 
               <div class="procedimentoadm">
 
@@ -207,12 +207,24 @@ if(isset($this->data)){
 
                 <div class="data"> 
                   <?= $data_consulta . " " . $time ?>h 00m <br>
-                  <button class="btn-maisinfo"> MAIS INFO </button>
+                  <a href="<?= URL . "Sobre-Cliente/Mais-Info-Consulta?idConsulta=" . $idconsulta?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a>
                 </div>
 
-                <div> 
-                  <a href="#" class="icone-cancel"><i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
+                <div class="tipoServico">
+                  <h5> <?= $sit_consulta ?> </h5>
                 </div>
+
+                <?php
+                  if ($sit_consulta == "A Confirmar" && $sit_consulta == "Confirmado") { //
+                ?>
+
+                  <div class="botaoCancela"> 
+                    <a href="<?= URL . "Agendamento/Solicitar-Cancelamento?idConsulta=" . $idconsulta . "&dataConsulta=" . $data_consulta ?>" class="icone-cancel"> <i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
+                  </div>
+
+                <?php
+                  }
+                ?>
 
               </div>
 

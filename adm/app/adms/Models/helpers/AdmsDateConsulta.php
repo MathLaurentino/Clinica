@@ -3,6 +3,8 @@
 
     namespace Adms\Models\helpers;
 
+    date_default_timezone_set('America/Sao_Paulo');
+
     /**     class AdmsFile 
      * Essa classe contem function responsaveis por verificar e manipular as
      *      datas das consultas, podendo fazer modificações no Banco de Dados 
@@ -29,7 +31,7 @@
                 $consulta = $data[$x];
                 extract($consulta);
 
-                if ($sit_consulta == "A Confirmar" || $sit_consulta == "Confirmado") {
+                if ($sit_consulta == "A Confirmar" || $sit_consulta == "A Cancelar" || $sit_consulta == "Confirmado") {
 
                     $time_consulta = substr($horario_consulta,0,-6);
 
@@ -41,9 +43,9 @@
                     $dateDayNew = date_create($data_consulta); 
                     $dateDayNow = date_create($dayNow);
                     $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
-                    $result = $diff->invert; // retorna 1 se o dia da URL é passado e 0 se for presente o futuro
+                    $result = $diff->invert; // retorna 1 se o dia é passado e 0 se for presente o futuro
 
-                    if ($sit_consulta == "A Confirmar") { $sit['sit_consulta'] = "Indeferido";} 
+                    if ($sit_consulta == "A Confirmar" || $sit_consulta == "A Cancelar") { $sit['sit_consulta'] = "Indeferido";} 
                     
                     if ($sit_consulta == "Confirmado") { $sit['sit_consulta'] = "Concluido"; }
 

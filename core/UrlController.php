@@ -146,10 +146,10 @@ class UrlController extends Define
             
             $result = $page->pages(); //retorna o nome das paginas públicas dessa controller
 
-            // verifica se o nome da página passada pelo cliente é pública
-            // retorna o número da posição no array, por isso pode retornar 0
+            /** verifica se o nome da página passada pelo cliente é pública
+              * retorna o número da posição no array, por isso pode retornar 0 */ 
             $key = null;
-            $key = array_search($this->urlMetodo, $result); 
+            $key = array_search($this->urlMetodo, $result);
 
             // se for publica carrega o método, caso contrario vai para a página de erro
             if ($key != null || $key === 0) { 

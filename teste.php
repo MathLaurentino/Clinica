@@ -1,16 +1,45 @@
 <?php
 
-$kay = null;
+date_default_timezone_set('America/Sao_Paulo');
 
-$array = ['index', 'dados', 'alterarDados'];
+$dayTimeNow = date('d/m/Y H:i');
+$dayNow = substr($dayTimeNow, 0, 10); // 01/01/2023
+$dayNow = substr($dayNow,6) . "-" . substr($dayNow, 3, -5) . "-" . substr($dayNow, 0, -8); // 2023-01-01
+$timeNow = substr($dayTimeNow,10, -3);
 
-$key = array_search("view", $array); 
+$dateDayNew = date_create("2023-01-13"); 
+$dateDayNow = date_create($dayNow);
+$diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
 
-if ($key != null || $key === 0){
-    echo $key;
+$diferença = $diff->format("%a");
+$negativo = $diff->invert; // retorna 1 se o dia é passado e 0 se for presente o futuro
+
+
+//echo $diferença . " -> " . $negativo;
+
+if ($diferença != 0 && $negativo ==0 ){
+    echo "pode";
 } else {
-    echo "invalido " . $key;
+    echo "não pode";
 }
+
+
+// $array = ['index', 'dados', 'alterarDados', 'alterarDadosPet', 'alterarDadosEndereco', 'apagarDadosPet', 'maisInfoConsulta'];
+// $pa = array_search("alterarDadosEndereco", $array);
+// echo "aqui: " . $pa;
+
+
+// $kay = null;
+
+// $array = ['index', 'dados', 'alterarDados'];
+
+// $key = array_search("view", $array); 
+
+// if ($key != null || $key === 0){
+//     echo $key;
+// } else {
+//     echo "invalido " . $key;
+// }
 
 // if (0 === null) {
 //     echo "Verdade";

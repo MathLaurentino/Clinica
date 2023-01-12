@@ -2,6 +2,8 @@
 
 namespace Sts\Models;
 
+date_default_timezone_set('America/Sao_Paulo');
+
 class StsAgendamento{
 
 
@@ -24,11 +26,11 @@ class StsAgendamento{
 
 
 
-    public function idServicoExiste($id)
+    public function idServicoExiste($id): bool
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
 
-        $stsSelect->fullRead("SELECT nome_consulta, valor_consulta, tempo_medio
+        $stsSelect->fullRead("SELECT nome_consulta
                             FROM tipo_consulta
                             WHERE idtipo_consulta = :idtipo_consulta", "idtipo_consulta={$id}");
 
@@ -39,6 +41,7 @@ class StsAgendamento{
         else 
             return false; 
     }
+
 
 
     /**     function servicoClinica()
@@ -57,6 +60,8 @@ class StsAgendamento{
 
         return $resultado;
     }
+
+
 
     /**
      * Salva na tebela consulta o servico agendado pelo cliente 
@@ -77,6 +82,7 @@ class StsAgendamento{
     }
 
 
+
     /**     function userPets($idusuario)
      * Retorna os pets do cliente que está logado
      */
@@ -90,6 +96,67 @@ class StsAgendamento{
                             WHERE u.idusuario = :idusuario", "idusuario={$idusuario}" );
 
         return $stsSelect->getResult();
+    }
+
+
+
+    /**     function verifySitConsulta($idConsulta)
+     * Retorna a sit_consulta de uma determinada consulta definida pelo ID
+     */
+    public function verifySitConsulta($idConsulta): string
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT sit_consulta
+                            FROM consulta 
+                            WHERE idconsulta= :idconsulta", "idconsulta={$idConsulta}" );
+
+        $data = $stsSelect->getResult();
+
+        return $data[0]['sit_consulta'];
+    }
+
+
+
+    /**     function alterSitConsulta($id, $data)
+     * Muda a sit_consulta da tabela consulta conforme passado na $data
+     * $data deve ser um array e se comportar da seguinte forma:
+     *      data -> ['sit_consulta'] = "Confirmado" / "Negado" ...
+     */
+    public function alterSitConsulta(string $id, array $data): bool
+    {
+        $stsUpdate = new \Sts\Models\helpers\StsUpdate();
+        $stsUpdate->exeAlter('consulta', $data, 'idconsulta', $id);
+
+        $resultAlter = $stsUpdate->getResult();
+
+        if(!empty($resultAlter))
+            return true;
+        else 
+            return false;
+    }
+
+
+    public function verifyDateConsulta($dateConsulta): bool
+    {
+
+        $dayTimeNow = date('d/m/Y H:i');
+        $dayNow = substr($dayTimeNow, 0, 10); // 01/01/2023
+        $dayNow = substr($dayNow,6) . "-" . substr($dayNow, 3, -5) . "-" . substr($dayNow, 0, -8); // 2023-01-01
+        $timeNow = substr($dayTimeNow,10, -3);
+
+        $dateDayNew = date_create($dateConsulta);
+        $dateDayNow = date_create($dayNow);
+        $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
+
+        $diferença = $diff->format("%a");
+        $negativo = $diff->invert; // retorna 1 se o dia é passado e 0 se for presente o futuro
+
+        if ($diferença != 0 && $negativo ==0 ){
+            return true;
+        } else {
+            return false;
+        }
+
     }
 
 }

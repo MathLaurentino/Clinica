@@ -81,11 +81,6 @@ class ConsultasAgendadas
 
 
 
-    
-
-
-
-
     public function confirmar()
     {
         if (isset($_GET['idConsulta'])) {

@@ -94,7 +94,9 @@ class StsSobreCliente
 
 
 
-
+    /**     function userPetById($idpet)
+     * Retorna dados de um pet específico do cliente pelo ID
+     */
     public function userPetById($idpet): array|null 
     {
         if ($this->verifyIdPetIsFromUser($idpet)) {
@@ -113,6 +115,10 @@ class StsSobreCliente
         
     }
 
+
+    /**     function verifyIdPetIsFromUser($idpet)
+     * Verifica se o id do pet pessado realmente pertence ao usuario logado
+     */
     public function verifyIdPetIsFromUser($idpet): bool
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
@@ -131,6 +137,64 @@ class StsSobreCliente
         
     }
 
+
+    /**     function verifyIdConsultaIsFromUser($idConsulta)
+     * Verifica se a consulta passada pertence ao cliente que está logado
+     */
+    public function verifyIdConsultaIsFromUser($idConsulta): bool
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT u.idusuario
+                                    FROM usuario AS u
+                                    INNER JOIN pet AS p 
+                                    ON u.idusuario = p.usuario 
+                                    INNER JOIN consulta AS c
+                                    ON c.pet = p.idpet
+                                    WHERE c.idconsulta = :idconsulta", 
+                                    "idconsulta={$idConsulta}");
+        $result = $stsSelect->getResult();
+
+        if ($result[0]['idusuario'] == $_SESSION['idusuario']) 
+            return true;
+        else 
+            return false;
+    }
+
+
+    /**
+     * Retorna os dados de determinada consulta, juntamente com informações
+     *      da tabela pet, raca_pet, tipo_consulta e usuario
+     */
+    public function getDataConsulta($idConsulta): array
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta,
+                                p.nome_pet, p.idade_pet, p.sexo,
+                                r.tipo_pet, r.raca,
+                                t.nome_consulta, t.descricao_consulta, t.tempo_medio,
+                                u.nome_usuario, u.email, foto_usuario
+                                FROM consulta as c
+                                INNER JOIN pet as p 
+                                ON c.pet = p.idpet
+                                INNER JOIN raca_pet AS r
+                                ON p.idraca = r.idraca_pet
+                                INNER JOIN tipo_consulta as t
+                                ON c.tipo_consulta = t.idtipo_consulta
+                                INNER JOIN usuario AS u 
+                                ON p.usuario = u.idusuario
+                                WHERE c.idconsulta = :idconsulta", "idconsulta={$idConsulta}");
+        $result = $stsSelect->getResult();
+
+        return $result;
+    }
+
+
+
+    /**
+     * Undocumented function
+     *
+     * @return boolean
+     */
     public function verifyIfPetExist(): bool
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();

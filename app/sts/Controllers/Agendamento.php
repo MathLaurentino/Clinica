@@ -109,6 +109,64 @@ class Agendamento{
     }
 
 
+    /**     function solicitarCancelamento()
+     * Solicita o cancelamento de determinada consulta por ID
+     * So é possivel cancelar se ainda não tiver dado o dia e horario da consulta
+     */
+    public function solicitarCancelamento(): void
+    {
+
+        if (isset($_GET['idConsulta']) && isset($_GET['dataConsulta'])) {
+
+            $idConsulta = $_GET['idConsulta'];
+            $dataConsulta = $_GET['dataConsulta'];
+
+            $stsSobreCliente = new \Sts\Models\StsSobreCliente();
+            $sts = new \Sts\Models\StsAgendamento();
+
+            if ($stsSobreCliente->verifyIdConsultaIsFromUser($idConsulta)) {
+
+
+                $sti_consulta = $sts->verifySitConsulta($idConsulta);
+
+                // if ($sti_consulta == "A Confirmar") {
+                //     $new_sit_consulta['sit_consulta'] = "Cancelado"; 
+                //     $result = $sts->alterSitConsulta($idConsulta, $new_sit_consulta);
+                //     if ($result) {
+                //         $_SESSION['msg'] = "Consulta cancelada com sucesso.";
+                //     } else {
+                //         $_SESSION['msg'] = "Falha ao cancelar consulta, tente novamente mais tarde.";
+                //     }
+                // } 
+                
+                // elseif ($sti_consulta == "Confirmado") {
+                //     $new_sit_consulta['sit_consulta'] = "A Cancelar";
+                //     $result = $sts->alterSitConsulta($idConsulta, $new_sit_consulta);
+                //     if ($result) {
+                //         $_SESSION['msg'] = "Solicitação de cancelamento de consulta realizado com sucesso.";
+                //     } else {
+                //         $_SESSION['msg'] = "Falha ao solicitar cancelamento de consulta, tente novamente mais tarde.";
+                //     }
+                // }
+
+                // else {
+                //     $_SESSION['msg'] = "Não é possivel cancelar essa consulta.";
+                // }
+
+                
+            } else {
+                $_SESSION['msg'] = "Erro, dados incongruentes"; 
+            }
+        }
+        else {
+            $_SESSION['msg'] = "Erro, falta de dados";
+        }
+
+        // $header = URL . "SobreCliente/Dados";
+        // header("Location: {$header}");
+    }
+
+
         
     /**     function varificarData()
      * Verifica se a data e hora passada  está disponivel no banco de dados
@@ -169,7 +227,7 @@ class Agendamento{
      */
     public function pages(): array
     {  
-        return $array = ['index','horarios','agendar'];
+        return $array = ['index','horarios','agendar', 'solicitarCancelamento'];
     }
     
 }
