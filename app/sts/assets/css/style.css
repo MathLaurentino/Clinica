@@ -563,7 +563,7 @@ button:hover {
 .conteudo-principal .form-edição2 {
 	margin-top: 10px;
 	font-family: 'Open Sans', sans-serif;
-	font-weight: bolder;
+	/* font-weight: bolder; */
 
 }
 
@@ -577,6 +577,7 @@ button:hover {
 	margin-top: 10px;
 	width: 8vw;
 	height: 12vh;
+	border-radius: 30px;
 }
 
 .iconeEdita {

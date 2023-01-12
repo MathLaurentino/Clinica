@@ -38,12 +38,16 @@ class ConsultasAgendadas
 
         $this->data['aConfirmar'] = $adms->getBasicDataAConfirmar();
         $this->data['outros'] = $adms->getBasicDataOutros(); 
+        //echo "<pre>"; var_dump($this->data);
 
         if (!empty($this->data['aConfirmar'])) {
 
             $admsConsulta = new \Adms\Models\helpers\AdmsDateConsulta();
 
-            if ($admsConsulta->verifyDayTimeConsulta($this->data['aConfirmar'])) {
+            $veryfiDate1 = $admsConsulta->verifyDayTimeConsulta($this->data['aConfirmar']);
+            $veryfiDate2 = $admsConsulta->verifyDayTimeConsulta($this->data['outros']);
+
+            if ( $veryfiDate1 || $veryfiDate2 ) {
                 $this->data['aConfirmar'] = $adms->getBasicDataAConfirmar();
                 $this->data['outros'] = $adms->getBasicDataOutros(); 
             } 
