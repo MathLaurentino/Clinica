@@ -1,6 +1,6 @@
 <?php
 
-if (isset($_SESSION['msg']) ) {
+if (isset($_SESSION['msg'])) {
     echo $_SESSION['msg'];
     unset($_SESSION['msg']);
 }
@@ -61,118 +61,43 @@ if (isset($_SESSION['msg']) ) {
         <h1 class="título">Painel de Gerenciamento</h1>
 
         <!--COLLAPSE BOOTSTRAP-->
+        <p class="center2">
+            <button class="btn-areaCliente" id="infoP"><a class="btn-areaCliente" data-toggle="collapse" href="#infoPessoais" role="button" aria-expanded="true" aria-controls="infoPessoais">
+                    Solicitações de Agendamento
+                </a>
+            </button>
+
+            <button class="btn-areaCliente" id="agenda"> <a class="btn-areaCliente" data-toggle="collapse" href="#agendamentos" role="button" aria-expanded="true" aria-controls="agendamentos">
+                    Histórico de Agendamentos
+                </a>
+            </button>
+        </p>
+
+        <!--COLLAPSE BOOTSTRAP-->
         <div class="opcoes">
-            <div id="accordion">
-                <div class="card">
-                    <div class="card-header" id="headingOne">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne"
-                                aria-expanded="true" aria-controls="collapseOne">
-                                Solicitações de Agendamento
-                            </button>
-                        </h5>
-
-                    </div>
-                    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                        <div class="card-body">
-
-                            <?php
-                                for ($x=0; $x < count($this->data['aConfirmar']); $x++) {
-
-                                    $consulta = $this->data['aConfirmar'][$x];
-                                    extract($consulta);
-
-                                    if (empty($foto_usuario)) { $foto_usuario = "Sem_Foto.png"; }
-
-                                    $day = substr($data_consulta,8) . "/" . substr($data_consulta,5,-3). "/" . substr($data_consulta,0,-6); 
-                                    $time = substr($horario_consulta,0,-6);
-
-                            ?>
-
-                                <section class="conteudo-serviçosadm">
-
-                                    <img src="<?= URL . IMGCLIENTEADM . $foto_usuario?>" alt="icone vacina" class="img-serviços">
-
-                                    <div class="procedimentoadm">
-
-                                        <h2 class="título-serviço"><?= $nome_usuario ?> </h2>
-
-                                        <div class="tipoServico">
-                                            <h5> <?= $nome_consulta ?> </h5>
-                                        </div>
-
-                                        <div class="data"> 
-                                            <?= $day ?>   <?= $time ?>h-00m<br> 
-                                            <a href="<?= URLADM . "ConsultasAgendadas/Consulta?idConsulta=" . $idconsulta?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a>
-                                        </div>
-                                        
-                                        <div>
-                                            <a href="<?= URLADM . "ConsultasAgendadas/Confirmar?idConsulta=" . $idconsulta?>" class="icone-check"><i class="fa fa-check-circle-o" aria-hidden="true"></i> </a>
-                                        </div>
-
-                                        <div> 
-                                            <a href="<?= URLADM . "ConsultasAgendadas/Negar?idConsulta=" . $idconsulta?>" class="icone-cancel"><i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
-                                        </div>
-
-                                        <div>
-                                            <h5> Esperando Confirmação </h5>
-                                        </div>
-                                    </div>
-
-                                </section>
-
-                                <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
-
-                            <?php 
-                                } 
-                            ?>
-
-                        </div>
-                    </div>
-
-                </div>
+            <div class="centraliza">
+                <div class="collapse show" id="infoPessoais">
+                    <div class="card card-body">
 
 
+                        <?php
+                        for ($x = 0; $x < count($this->data['aConfirmar']); $x++) {
 
+                            $consulta = $this->data['aConfirmar'][$x];
+                            extract($consulta);
 
+                            if (empty($foto_usuario)) {
+                                $foto_usuario = "Sem_Foto.png";
+                            }
 
+                            $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
+                            $time = substr($horario_consulta, 0, -6);
 
-
-
-
-                <div class="card">
-
-                    <div class="card-header" id="headingTwo">
-
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo"
-                                aria-expanded="false" aria-controls="collapseTwo">
-                                Histórico de Agendamentos
-                            </button>
-                        </h5>
-
-                    </div>
-
-                    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-
-                        <div class="card-body">
-
-                            <?php
-                                for ($x=0; $x < count($this->data['outros']); $x++) {
-
-                                    $consulta = $this->data['outros'][$x];
-                                    extract($consulta);
-
-                                    if (empty($foto_usuario)) { $foto_usuario = "Sem_Foto.png"; }
-
-                                    $day = substr($data_consulta,8) . "/" . substr($data_consulta,5,-3). "/" . substr($data_consulta,0,-6); 
-                                    $time = substr($horario_consulta,0,-6);
-
-                            ?>
+                        ?>
 
                             <section class="conteudo-serviçosadm">
 
-                                <img src="<?= URL . IMGCLIENTEADM . $foto_usuario?>" alt="icone vacina" class="img-serviços">
+                                <img src="<?= URL . IMGCLIENTEADM . $foto_usuario ?>" alt="icone vacina" class="img-serviços">
 
                                 <div class="procedimentoadm">
 
@@ -182,12 +107,76 @@ if (isset($_SESSION['msg']) ) {
                                         <h5> <?= $nome_consulta ?> </h5>
                                     </div>
 
-                                    <div class="data"> 
-                                        <?= $day ?>   <?= $time ?>h-00m<br> 
-                                        <a href="<?= URLADM . "ConsultasAgendadas/Consulta?idConsulta=" . $idconsulta?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a>
+                                    <div class="data">
+                                        <?= $day ?> <?= $time ?>h-00m<br>
+                                        <a href="<?= URLADM . "ConsultasAgendadas/Consulta?idConsulta=" . $idconsulta ?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a>
                                     </div>
 
                                     <div>
+                                        <a href="<?= URLADM . "ConsultasAgendadas/Confirmar?idConsulta=" . $idconsulta ?>" class="icone-check"><i class="fa fa-check-circle-o" aria-hidden="true"></i> </a>
+                                    </div>
+
+                                    <div>
+                                        <a href="<?= URLADM . "ConsultasAgendadas/Negar?idConsulta=" . $idconsulta ?>" class="icone-cancel"><i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
+                                    </div>
+
+                                    <div>
+                                        <h5> Esperando Confirmação </h5>
+                                    </div>
+                                </div>
+
+                            </section>
+
+                            <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+
+                        <?php
+                        }
+                        ?>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="centraliza">
+
+                <div class="collapse" id="agendamentos">
+                    <div class="card card-body">
+
+
+
+                        <?php
+                        for ($x = 0; $x < count($this->data['outros']); $x++) {
+
+                            $consulta = $this->data['outros'][$x];
+                            extract($consulta);
+
+                            if (empty($foto_usuario)) {
+                                $foto_usuario = "Sem_Foto.png";
+                            }
+
+                            $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
+                            $time = substr($horario_consulta, 0, -6);
+
+                        ?>
+
+                            <section class="conteudo-serviçosadm">
+
+                                <img class="img-serviços" src="<?= URL . IMGCLIENTEADM . $foto_usuario ?>" alt="icone vacina" class="img-serviços">
+
+                                <div class="procedimentoadm">
+
+                                    <h2 class="título-serviço"><?= $nome_usuario ?> </h2>
+
+                                    <div class="tipoServico">
+                                        <h5> <?= $nome_consulta ?> </h5>
+                                    </div>
+
+                                    <div class="data">
+                                        <?= $day ?> <?= $time ?>h-00m<br>
+                                        <a href="<?= URLADM . "ConsultasAgendadas/Consulta?idConsulta=" . $idconsulta ?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a>
+                                    </div>
+
+                                    <div class="tipoServico">
                                         <h5> <?= $sit_consulta ?> </h5>
                                     </div>
 
@@ -195,17 +184,16 @@ if (isset($_SESSION['msg']) ) {
 
                             <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
-                            <?php
-                                }
-                            ?>
+                        <?php
+                        }
+                        ?>
 
 
-                            
-                        </div>
+
                     </div>
                 </div>
-
             </div>
+
         </div>
 
 
@@ -213,15 +201,9 @@ if (isset($_SESSION['msg']) ) {
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-        crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="../js/navbar.js"> </script>
 </body>
 
