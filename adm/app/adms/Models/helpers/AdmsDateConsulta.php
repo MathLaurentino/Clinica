@@ -22,6 +22,7 @@
          */
         public function verifyDayTimeConsulta(array $data): bool
         {
+            $count = 0; 
 
             for ($x=0; $x < count($data); $x++) {
 
@@ -42,26 +43,31 @@
                     $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
                     $result = $diff->invert; // retorna 1 se o dia da URL é passado e 0 se for presente o futuro
 
+                    if ($sit_consulta == "A Confirmar") { $sit['sit_consulta'] = "Indeferido";} 
+                    
+                    if ($sit_consulta == "Confirmado") { $sit['sit_consulta'] = "Concluido"; }
+
                     $adms = new \Adms\Models\AdmsConsultasAgendadas();
-                    $sit['sit_consulta'] = "Concluido";
 
                     // se o dia já é passado
                     if ($result == 1) {
                         $adms->alterSit_Consulta($idconsulta, $sit);
-                        return true;
+                        $count++;
                     } 
 
                     // se o dia é presente mas o horario já passou
                     elseif ( $result == 0 && $data_consulta == $dayNow && $time_consulta <= $timeNow) {
                         $adms->alterSit_Consulta($idconsulta, $sit);
-                        return true;
+                        $count++;
                     }
 
-                    else {
-                        return false;
-                    }
                 }
             }
+
+            if ($count != 0)
+                return true;
+            else 
+                return false;
 
         }
 

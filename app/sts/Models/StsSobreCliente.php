@@ -22,7 +22,7 @@ class StsSobreCliente
     public function userData(): array|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
-        $stsSelect->fullRead("SELECT nome_usuario, cpf, rg, email, data_nascimento 
+        $stsSelect->fullRead("SELECT nome_usuario, cpf, rg, email, data_nascimento, foto_usuario 
                                     FROM usuario
                                     WHERE idusuario  = :idusuario", 
                                     "idusuario={$_SESSION['idusuario']}");
@@ -38,7 +38,7 @@ class StsSobreCliente
     public function userAdress(): array|null
     { 
         $stsSelect = new \Sts\Models\helpers\StsSelect();
-        $stsSelect->fullRead("SELECT e.cep, e.rua, e.numero_residencial, e.cidade, e.estado
+        $stsSelect->fullRead("SELECT e.cep, e.rua, e.numero_residencial, e.cidade, e.estado, e.bairro
                             FROM endereco as e
                             INNER JOIN usuario as u 
                             ON u.endereco = e.idendereco 
@@ -77,7 +77,8 @@ class StsSobreCliente
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead( "SELECT c.idconsulta, c.data_consulta, c.horario_consulta, c.sit_consulta,
-                                t.nome_consulta, t.tempo_medio, t.valor_consulta
+                                t.nome_consulta, t.tempo_medio, t.valor_consulta, t.foto_servico,
+                                p.nome_pet
                                 FROM consulta as c
                                 INNER JOIN tipo_consulta as t
                                 ON c.tipo_consulta = t.idtipo_consulta
