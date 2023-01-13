@@ -17,7 +17,8 @@ class StsAgendamento{
         $stsSelect->fullRead("SELECT data_consulta, horario_consulta 
                             FROM consulta
                             WHERE sit_consulta = 'A Confirmar' 
-                            OR sit_consulta = 'Confirmado'", NULL);
+                            OR sit_consulta = 'Confirmado'
+                            OR sit_consulta = 'A Cancelar'", NULL);
 
         $resultado =  $stsSelect->getResult();
 
@@ -136,7 +137,11 @@ class StsAgendamento{
     }
 
 
-    public function verifyDateConsulta($dateConsulta): bool
+
+    /**     function verifyDateConsulta($dateConsulta)
+     * Verifica se a data passada pertence a um dia afrente do dia atual (futuro)
+     */
+    public function verifyDateConsulta(string $dateConsulta, string $timeConsulta): bool
     {
 
         $dayTimeNow = date('d/m/Y H:i');
@@ -151,7 +156,7 @@ class StsAgendamento{
         $diferença = $diff->format("%a");
         $negativo = $diff->invert; // retorna 1 se o dia é passado e 0 se for presente o futuro
 
-        if ($diferença != 0 && $negativo ==0 ){
+        if ($diferença != 0 && $negativo == 0 && $timeNow < $timeConsulta){
             return true;
         } else {
             return false;

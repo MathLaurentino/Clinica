@@ -437,6 +437,7 @@ button:hover {
 	align-self: flex-start;
 	height: 10vh;
 	width: 6vw;
+	border-radius: 30px;
 
 }
 

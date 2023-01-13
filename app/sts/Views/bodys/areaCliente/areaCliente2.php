@@ -189,8 +189,9 @@ if(isset($this->data)){
 
                     $agendamentos = $this->data['agendamentos'][$x];
                     extract($agendamentos);
-                    $time = substr($horario_consulta,0, -6);
 
+                    $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
+                    $time = substr($horario_consulta, 0, -6);
           ?>
 
             <section class="conteudo-serviçosadm">
@@ -206,7 +207,7 @@ if(isset($this->data)){
                 </div>
 
                 <div class="data"> 
-                  <?= $data_consulta . " " . $time ?>h 00m <br>
+                  <?= $day . " " . $time ?>h 00m <br>
                   <a href="<?= URL . "Sobre-Cliente/Mais-Info-Consulta?idConsulta=" . $idconsulta?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a>
                 </div>
 
@@ -215,16 +216,23 @@ if(isset($this->data)){
                 </div>
 
                 <?php
-                echo $sit_consulta;
-                  if ($sit_consulta == "A Confirmar" && $sit_consulta == "Confirmado") { //
+                  if ($sit_consulta == "A Confirmar" || $sit_consulta == "Confirmado") { //
                 ?>
 
                   <div class="botaoCancela"> 
-                    <a href="<?= URL . "Agendamento/Solicitar-Cancelamento?idConsulta=" . $idconsulta . "&dataConsulta=" . $data_consulta ?>" class="icone-cancel"> <i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
+                    <a href="<?= URL . "Agendamento/Solicitar-Cancelamento?idConsulta=" . $idconsulta . "&dataConsulta=" . $data_consulta . "&horaConsulta=" . $time ?>" class="icone-cancel"> <i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
                   </div>
 
                 <?php
-                  }
+                  } else {
+                ?>
+
+                  <div class="botaoCancela">   
+                    <p class="icone-check"> <i class="fa fa-check-circle-o" aria-hidden="true"></i> </p> 
+                  </div>
+
+                <?php
+                  } 
                 ?>
 
               </div>
@@ -247,13 +255,7 @@ if(isset($this->data)){
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
-    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-    crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js"
-    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-    crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   <script src="<?= URL . JS ?>areaCliente.js"> </script>

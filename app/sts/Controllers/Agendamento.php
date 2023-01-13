@@ -30,7 +30,6 @@ class Agendamento{
      */
     public function horarios(): void
     {
-
         $sts = new \Sts\Models\StsAgendamento();
         $eventsArray = $sts->horariosDeConsulta();
 
@@ -116,60 +115,66 @@ class Agendamento{
     public function solicitarCancelamento(): void
     {
 
-        if (isset($_GET['idConsulta']) && isset($_GET['dataConsulta'])) {
+        if (isset($_GET['idConsulta']) && isset($_GET['dataConsulta']) && isset($_GET['horaConsulta'])) { 
 
             $idConsulta = $_GET['idConsulta'];
             $dataConsulta = $_GET['dataConsulta'];
+            $horaConsulta = $_GET['horaConsulta'];
 
             $stsSobreCliente = new \Sts\Models\StsSobreCliente();
             $sts = new \Sts\Models\StsAgendamento();
 
             if ($stsSobreCliente->verifyIdConsultaIsFromUser($idConsulta)) {
 
-
                 $sti_consulta = $sts->verifySitConsulta($idConsulta);
 
-                // if ($sti_consulta == "A Confirmar") {
-                //     $new_sit_consulta['sit_consulta'] = "Cancelado"; 
-                //     $result = $sts->alterSitConsulta($idConsulta, $new_sit_consulta);
-                //     if ($result) {
-                //         $_SESSION['msg'] = "Consulta cancelada com sucesso.";
-                //     } else {
-                //         $_SESSION['msg'] = "Falha ao cancelar consulta, tente novamente mais tarde.";
-                //     }
-                // } 
+                if ($sti_consulta == "A Confirmar") {
+                    $new_sit_consulta['sit_consulta'] = "Cancelado"; 
+                    $result = $sts->alterSitConsulta($idConsulta, $new_sit_consulta);
+                    if ($result) {
+                        $_SESSION['msgGreen'] = "Consulta cancelada com sucesso.";
+                    } else {
+                        $_SESSION['msg'] = "Falha ao cancelar consulta, tente novamente mais tarde.";
+                    }
+                } 
                 
-                // elseif ($sti_consulta == "Confirmado") {
-                //     $new_sit_consulta['sit_consulta'] = "A Cancelar";
-                //     $result = $sts->alterSitConsulta($idConsulta, $new_sit_consulta);
-                //     if ($result) {
-                //         $_SESSION['msg'] = "Solicitação de cancelamento de consulta realizado com sucesso.";
-                //     } else {
-                //         $_SESSION['msg'] = "Falha ao solicitar cancelamento de consulta, tente novamente mais tarde.";
-                //     }
-                // }
+                elseif ($sti_consulta == "Confirmado") {
 
-                // else {
-                //     $_SESSION['msg'] = "Não é possivel cancelar essa consulta.";
-                // }
+                    if ($sts->verifyDateConsulta($dataConsulta, $horaConsulta)) {
 
-                
+                        $new_sit_consulta['sit_consulta'] = "A Cancelar";
+                        $result = $sts->alterSitConsulta($idConsulta, $new_sit_consulta);
+                        if ($result) {
+                            $_SESSION['msgGreen'] = "Solicitação de cancelamento de consulta realizado com sucesso.";
+                        } else {
+                            $_SESSION['msgRed'] = "Falha ao solicitar cancelamento de consulta, tente novamente mais tarde.";
+                        }
+
+                    } else {
+                        $_SESSION['msgRed'] = "Erro, consulta selecionada não pode ser cancelada pois já está muito perto da data agendada"; 
+                    }
+                    
+                }
+
+                else {
+                    $_SESSION['msgRed'] = "Não é possivel cancelar essa consulta.";
+                } 
             } else {
-                $_SESSION['msg'] = "Erro, dados incongruentes"; 
-            }
+                $_SESSION['msgRed'] = "Erro, dados incongruentes"; 
+            }  
         }
         else {
-            $_SESSION['msg'] = "Erro, falta de dados";
+            $_SESSION['msgRed'] = "Erro, falta de dados";
         }
 
-        // $header = URL . "SobreCliente/Dados";
-        // header("Location: {$header}");
+        $header = URL . "SobreCliente/Dados";
+        header("Location: {$header}");
     }
 
 
         
     /**     function varificarData()
-     * Verifica se a data e hora passada  está disponivel no banco de dados
+     * Verifica se a data e hora passada está disponivel no banco de dados
      */
     private function varificarData($dayNewEvent, $timeNewEvent): bool
     {

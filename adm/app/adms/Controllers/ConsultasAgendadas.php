@@ -37,6 +37,7 @@ class ConsultasAgendadas
         $adms = new \Adms\Models\AdmsConsultasAgendadas(); 
 
         $this->data['aConfirmar'] = $adms->getBasicDataAConfirmar();
+        $this->data['aCancelar'] = $adms->getBasicDataACancelar();
         $this->data['outros'] = $adms->getBasicDataOutros(); 
         //echo "<pre>"; var_dump($this->data);
 

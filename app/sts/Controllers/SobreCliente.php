@@ -85,7 +85,7 @@ private array|null $dataForm; // dados que vem do formulario
 
                     if(!empty($result)) // Se os dados foram alterados com sucesso
                     {
-                        $_SESSION['msg'] = "Dados do usuario alterados com sucesso";
+                        $_SESSION['msgGreen'] = "Dados do usuario alterados com sucesso";
                         $header = URL . "Sobre-Cliente/Dados"; 
                         header("Location: {$header}");
                     } else {
@@ -131,7 +131,7 @@ private array|null $dataForm; // dados que vem do formulario
                 $result = $stsSobreCliente->alterAdress($this->dataForm);
 
                 if (!empty($result)) {
-                    $_SESSION['msg'] = "Dados de endereço alterados com sucesso";
+                    $_SESSION['msgGreen'] = "Dados de endereço alterados com sucesso";
                     $header = URL . "Sobre-Cliente/Dados"; 
                     header("Location: {$header}");
                 } else {
@@ -174,13 +174,13 @@ private array|null $dataForm; // dados que vem do formulario
                     $this->data['tipo_pet'] = $stsSobreCliente->getRaca($this->data['pet'][0]['tipo_pet']);
                     $this->view2('alterarPet2');
                 } else {
-                    $_SESSION['msg'] = "Erro, dados incorretos";
+                    $_SESSION['msgRed'] = "Erro, dados incorretos";
                     $header = URL . "Sobre-Cliente/Dados"; 
                     header("Location: {$header}");
                 }
 
             } else {
-                $_SESSION['msg'] = "Erro, falta de dados";
+                $_SESSION['msgRed'] = "Erro, falta de dados";
                 $header = URL . "Sobre-Cliente/Dados"; 
                 header("Location: {$header}");
             }
@@ -196,9 +196,9 @@ private array|null $dataForm; // dados que vem do formulario
             $resultPet = $stsSobreCliente->alterPet($this->dataForm);
 
             if (!empty($resultPet)) {
-                $_SESSION['msg'] = "Dados do pet alterados com sucesso";
+                $_SESSION['msgGreen'] = "Dados do pet alterados com sucesso";
             } else {
-                $_SESSION['msg'] = "Falha ao alterar dados do pet, tente novamente mais tarde";
+                $_SESSION['msgRed'] = "Falha ao alterar dados do pet, tente novamente mais tarde";
             }
 
             $header = URL . "Sobre-Cliente/Dados"; 
@@ -226,11 +226,11 @@ private array|null $dataForm; // dados que vem do formulario
                 $resultD =  $stsSobreCliente-> deleteAll("pet","idpet",$idpet);
 
                 if (!empty($resultD)){
-                    $_SESSION['msg'] = "Dados do pet apagados com sucesso";
+                    $_SESSION['msgGreen'] = "Dados do pet apagados com sucesso";
                     $header = URL . "Sobre-Cliente/Dados"; 
                     header("Location: {$header}");
                 } else {
-                    $_SESSION['msg'] = "Falha ao apagar dados";
+                    $_SESSION['msgRed'] = "Falha ao apagar dados";
                     $header = URL . "Sobre-Cliente/Dados"; 
                     header("Location: {$header}");
                 }
@@ -241,7 +241,7 @@ private array|null $dataForm; // dados que vem do formulario
             }
             
         } else {
-            $_SESSION['msg'] = "Erro, falta de dados";
+            $_SESSION['msgRed'] = "Erro, falta de dados";
             $header = URL . "SobreCliente/Dados";
             header("Location: {$header}");
         }
@@ -265,14 +265,14 @@ private array|null $dataForm; // dados que vem do formulario
                 $this->view2('maisInfo');
 
             } else {
-                $_SESSION['msg'] = "Erro, dados incongruentes";
+                $_SESSION['msgRed'] = "Erro, dados incongruentes";
                 $header = URL . "SobreCliente/Dados";
                 header("Location: {$header}");
             }
         }  
     
         else {
-            $_SESSION['msg'] = "Erro, falta de dados";
+            $_SESSION['msgRed'] = "Erro, falta de dados";
             $header = URL . "SobreCliente/Dados";
             header("Location: {$header}"); 
         }

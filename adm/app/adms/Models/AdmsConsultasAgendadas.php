@@ -4,7 +4,12 @@ namespace Adms\Models;
 
 class AdmsConsultasAgendadas{
 
-    public function getBasicDataAConfirmar()
+
+
+    /**     function getBasicDataACancelar()
+     * Retorna as informações das consultas com sit_consulta = 'A Confirmar' 
+     */
+    public function getBasicDataAConfirmar(): array
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
@@ -18,7 +23,8 @@ class AdmsConsultasAgendadas{
                             ON c.pet = p.idpet
                             INNER JOIN usuario AS u 
                             ON p.usuario = u.idusuario
-                            WHERE c.pet != 'NULL' AND c.sit_consulta = 'A Confirmar' OR c.sit_consulta = 'A Cancelar'", NULL);
+                            WHERE c.pet != 'NULL' AND c.sit_consulta = 'A Confirmar'
+                            ORDER BY c.data_consulta", NULL);
 
         $data = $admsSelect->getResult();
         return $data;
@@ -26,7 +32,11 @@ class AdmsConsultasAgendadas{
     }
 
 
-    public function getBasicDataOutros()
+
+    /**     function getBasicDataACancelar()
+     * Retorna as informações das consultas com sit_consulta = 'A Cancelar' 
+     */
+    public function getBasicDataACancelar(): array
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
@@ -40,14 +50,46 @@ class AdmsConsultasAgendadas{
                             ON c.pet = p.idpet
                             INNER JOIN usuario AS u 
                             ON p.usuario = u.idusuario
-                            WHERE c.pet != 'NULL' AND c.sit_consulta != 'A Confirmar'
+                            WHERE c.pet != 'NULL' AND c.sit_consulta = 'A Cancelar'
+                            ORDER BY c.sit_consulta ASC", NULL);
+
+        $data = $admsSelect->getResult();
+        return $data;
+        
+    }
+
+
+
+    /**     function getBasicDataACancelar()
+     * Retorna as informações das consultas com sit_consulta != 'A Confirmar' 
+     */
+    public function getBasicDataOutros(): array
+    {
+        $admsSelect = new \Adms\Models\helpers\AdmsSelect();
+
+        $admsSelect->fullRead("SELECT c.idconsulta, c.data_consulta, c.horario_consulta, c.sit_consulta, c.tipo_consulta,
+                            t.nome_consulta,
+                            u.nome_usuario, u.foto_usuario
+                            FROM consulta as c
+                            INNER JOIN tipo_consulta as t
+                            ON c.tipo_consulta = t.idtipo_consulta
+                            INNER JOIN pet as p
+                            ON c.pet = p.idpet
+                            INNER JOIN usuario AS u 
+                            ON p.usuario = u.idusuario
+                            WHERE c.pet != 'NULL' AND c.sit_consulta != 'A Confirmar' AND c.sit_consulta != 'A Cancelar'
                             ORDER BY c.sit_consulta", NULL);
 
         $data = $admsSelect->getResult();
         return $data;
     }
 
-    public function getFullDataConsulta($idConsulta)
+
+
+    /**     function getFullDataConsulta($idConsulta)
+     * Retorna varias informações sobre determinada consulta selecionada pelo ID
+     */
+    public function getFullDataConsulta($idConsulta): array
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 

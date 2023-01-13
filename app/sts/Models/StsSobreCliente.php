@@ -86,7 +86,8 @@ class StsSobreCliente
                                 ON c.pet = p.idpet
                                 INNER JOIN usuario AS u 
                                 ON p.usuario = u.idusuario
-                                WHERE u.idusuario = :idusuario", "idusuario={$_SESSION['idusuario']}");
+                                WHERE u.idusuario = :idusuario
+                                ORDER BY c.data_consulta", "idusuario={$_SESSION['idusuario']}");
         
         return $stsSelect->getResult();
     }
