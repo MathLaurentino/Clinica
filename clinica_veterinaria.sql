@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 11-Jan-2023 às 22:30
--- Versão do servidor: 10.4.24-MariaDB
--- versão do PHP: 8.1.6
+-- Tempo de geração: 16-Jan-2023 às 17:52
+-- Versão do servidor: 10.4.27-MariaDB
+-- versão do PHP: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -31,8 +31,8 @@ CREATE TABLE `consulta` (
   `idconsulta` int(11) NOT NULL,
   `data_consulta` date NOT NULL,
   `horario_consulta` time NOT NULL,
-  `descricao` varchar(500) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `sit_consulta` enum('A Confirmar','Confirmado','Concluido','Cancelado','Negado','Indeferido') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'A Confirmar',
+  `descricao` varchar(500) NOT NULL,
+  `sit_consulta` enum('A Confirmar','Confirmado','Concluido','Cancelado','Negado','Indeferido','A Cancelar') NOT NULL DEFAULT 'A Confirmar',
   `tipo_consulta` int(11) NOT NULL,
   `pet` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -47,7 +47,7 @@ INSERT INTO `consulta` (`idconsulta`, `data_consulta`, `horario_consulta`, `desc
 (18, '2023-01-10', '17:00:00', ' Precisa ser castrada', 'Negado', 27, 42),
 (19, '2023-01-11', '13:00:00', ' Verificação anual', 'Negado', 24, 43),
 (20, '2023-01-10', '17:00:00', 'Dor nos dentes', 'Concluido', 21, 40),
-(21, '2023-01-13', '16:00:00', ' Verificação anual apenas', 'A Confirmar', 23, 44);
+(21, '2023-01-13', '16:00:00', ' Verificação anual apenas', 'Indeferido', 23, 44);
 
 -- --------------------------------------------------------
 
@@ -57,12 +57,12 @@ INSERT INTO `consulta` (`idconsulta`, `data_consulta`, `horario_consulta`, `desc
 
 CREATE TABLE `endereco` (
   `idendereco` int(11) NOT NULL,
-  `cep` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rua` varchar(90) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `numero_residencial` varchar(9) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `bairro` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cidade` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `estado` varchar(90) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `cep` varchar(45) NOT NULL,
+  `rua` varchar(90) NOT NULL,
+  `numero_residencial` varchar(9) NOT NULL,
+  `bairro` varchar(100) NOT NULL,
+  `cidade` varchar(90) DEFAULT NULL,
+  `estado` varchar(90) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -88,11 +88,11 @@ INSERT INTO `endereco` (`idendereco`, `cep`, `rua`, `numero_residencial`, `bairr
 
 CREATE TABLE `pet` (
   `idpet` int(11) NOT NULL,
-  `nome_pet` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nome_pet` varchar(45) NOT NULL,
   `idade_pet` int(11) NOT NULL,
-  `sexo` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `imagem_pet` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `imagem_carteira_pet` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `sexo` varchar(10) NOT NULL,
+  `imagem_pet` varchar(100) DEFAULT NULL,
+  `imagem_carteira_pet` varchar(100) DEFAULT NULL,
   `idraca` int(11) NOT NULL,
   `usuario` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -102,10 +102,9 @@ CREATE TABLE `pet` (
 --
 
 INSERT INTO `pet` (`idpet`, `nome_pet`, `idade_pet`, `sexo`, `imagem_pet`, `imagem_carteira_pet`, `idraca`, `usuario`) VALUES
-(38, 'sofia', 5, 'feminino', NULL, NULL, 24, 90),
+(38, 'sofia', 5, 'feminino', '63c47a5d9a53f.jpg', NULL, 24, 90),
 (39, 'Luna Alves', 2, 'feminino', '63b1e2333bfa5.png', NULL, 14, 99),
 (40, 'Luna', 2, 'feminino', NULL, NULL, 14, 90),
-(41, 'sofia', 2, 'feminino', '63be21dcaa53e.jpg', NULL, 24, 1),
 (42, 'Felinina', 4, 'feminino', '63bc9992c9bb1.jpg', NULL, 24, 100),
 (43, 'Luna', 2, 'feminino', NULL, NULL, 5, 100),
 (44, 'Galego', 3, 'masculino', NULL, NULL, 17, 90);
@@ -118,8 +117,8 @@ INSERT INTO `pet` (`idpet`, `nome_pet`, `idade_pet`, `sexo`, `imagem_pet`, `imag
 
 CREATE TABLE `raca_pet` (
   `idraca_pet` int(11) NOT NULL,
-  `raca` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `tipo_pet` enum('cachorro','gato','ave') COLLATE utf8mb4_unicode_ci NOT NULL
+  `raca` varchar(45) NOT NULL,
+  `tipo_pet` enum('cachorro','gato','ave') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -166,11 +165,11 @@ INSERT INTO `raca_pet` (`idraca_pet`, `raca`, `tipo_pet`) VALUES
 
 CREATE TABLE `tipo_consulta` (
   `idtipo_consulta` int(11) NOT NULL,
-  `nome_consulta` varchar(45) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nome_consulta` varchar(45) NOT NULL,
   `valor_consulta` float NOT NULL,
-  `descricao_consulta` varchar(220) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `descricao_consulta` varchar(220) NOT NULL,
   `tempo_medio` time NOT NULL,
-  `foto_servico` varchar(220) COLLATE utf8mb4_unicode_ci DEFAULT NULL
+  `foto_servico` varchar(220) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -191,16 +190,16 @@ INSERT INTO `tipo_consulta` (`idtipo_consulta`, `nome_consulta`, `valor_consulta
 
 CREATE TABLE `usuario` (
   `idusuario` int(11) NOT NULL,
-  `nome_usuario` varchar(90) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `cpf` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `rg` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `nome_usuario` varchar(90) NOT NULL,
+  `cpf` varchar(15) NOT NULL,
+  `rg` varchar(15) NOT NULL,
   `data_nascimento` date NOT NULL,
-  `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `foto_usuario` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `tipo_usuario` enum('mantenedor','cliente') COLLATE utf8mb4_unicode_ci NOT NULL,
-  `senha_usuario` varchar(300) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `chave` varchar(220) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `sit_usuario` enum('Ativo','Inativo','Confirmando') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'Confirmando',
+  `email` varchar(100) NOT NULL,
+  `foto_usuario` varchar(100) DEFAULT NULL,
+  `tipo_usuario` enum('mantenedor','cliente') NOT NULL,
+  `senha_usuario` varchar(300) NOT NULL,
+  `chave` varchar(220) DEFAULT NULL,
+  `sit_usuario` enum('Ativo','Inativo','Confirmando') NOT NULL DEFAULT 'Confirmando',
   `endereco` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
@@ -210,7 +209,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idusuario`, `nome_usuario`, `cpf`, `rg`, `data_nascimento`, `email`, `foto_usuario`, `tipo_usuario`, `senha_usuario`, `chave`, `sit_usuario`, `endereco`) VALUES
 (1, 'maria', '123', '123', '2022-09-28', 'maria@maria.com', '63be21ec74b84.jpg', 'mantenedor', '$2y$10$Q6pkE2iA9fepKpF6EJqJeufYRIpjSQYxW5pmycYhfGiAbC7FCOQtS', NULL, 'Ativo', 62),
-(90, 'João Pedro Sgobero', '07894971406', '28289054898', '2000-11-29', 'joao@joao.com', NULL, 'cliente', '$2y$10$0KBkP2jOcze/XeQhXxHeG.n.PE4CNAxLVxv3Oyb8gE5R4v0XnWgMu', '$2y$10$AeyKCfce0ndyuFJk23eKZuaYWcbvLK6J5tU02DqOGbt1NVoa6GREC', 'Ativo', 77),
+(90, 'João Pedro Sgobero', '07894971406', '28289054898', '2000-11-29', 'joao@joao.com', NULL, 'cliente', '$2y$10$0KBkP2jOcze/XeQhXxHeG.n.PE4CNAxLVxv3Oyb8gE5R4v0XnWgMu', '$2y$10$AeyKCfce0ndyuFJk23eKZuaYWcbvLK6J5tU02DqOGbt1NVoa6GREC', 'Ativo', NULL),
 (98, 'Marcos Barbosa Vieira', '32311285523', '12344537', '1963-07-25', 'marcos@marcos.com', NULL, 'cliente', '$2y$10$CxdAn1iPbrZ1YbTDGQHJjuUEDes/QmH9J7YcZYPkNJy1SPpfte.1S', '$2y$10$C1M1jEZA6U.sxfdKaaRS.eXJcrUMZvJiCKNQsoE5zvYJJhcow.m6.', 'Ativo', NULL),
 (99, 'Iluska Maria', '08927345', '0789125364', '1975-11-12', 'iluska@iluska.com', NULL, 'cliente', '$2y$10$F2T009VRDk3w7lfbje76z.1RT3y5QCMNxz0FvkRMWJ3F/8G6hs/Iy', '$2y$10$LXkwDBOnuJMH7Uiimb5YNul/qXypQQIsC0FhSgZWhehgMTeaZofIK', 'Ativo', 78),
 (100, 'Matheus Laurentino', '07894971405', '6749209475', '2003-11-29', 'matheus@matheus.com', '63bc9984cab36.jpg', 'cliente', '$2y$10$qPn34zTeSm3jlurOPONB8OVbBYNDCEvvoJHTqnYcQq0knQU7QNGr6', '$2y$10$EIc4yWU2zyZRNpGH4nYs1O2B7pezcFjR.2Pez0BROqISmm5hYFfdC', 'Ativo', 79);

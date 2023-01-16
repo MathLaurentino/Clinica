@@ -49,9 +49,9 @@ class CadastroPet
             $result = $stsPet->createPet($this->dataForm);
 
             if(!empty($result)){
-                $_SESSION['msg'] = "Pet Cadastrado com sucesso";
+                $_SESSION['msgGreen'] = "Pet Cadastrado com sucesso.";
             }else{ 
-                $_SESSION['msg'] = "Falha ao cadastrar pet, tente novamente mais tarde";
+                $_SESSION['msgRed'] = "Falha ao cadastrar pet, tente novamente mais tarde.";
             }
                 $header = URL . "SobreCliente/Dados";
                 header("Location: {$header}");

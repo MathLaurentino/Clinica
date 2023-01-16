@@ -76,9 +76,9 @@ class CadastroEndereco {
         $idEndereco= $stsCreate->createAdress($this->data);
         if (!empty($idEndereco)) {
             $_SESSION['idendereco'] = $idEndereco;
-            $_SESSION['msg'] = "Endereço cadastrado com sucesso";
+            $_SESSION['msgGreen'] = "Endereço cadastrado com sucesso";
         } else {
-            $_SESSION['msg'] = "Falha ao cadastrar endereço, tente novamente mais tarde";
+            $_SESSION['msgRed'] = "Falha ao cadastrar endereço, tente novamente mais tarde";
         }
         $header = URL . "SobreCliente/Dados"; 
         header("Location: {$header}");

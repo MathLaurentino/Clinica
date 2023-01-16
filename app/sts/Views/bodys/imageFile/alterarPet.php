@@ -6,10 +6,21 @@
     }
 ?>
 
+<?php
+
+if (!empty($this->data[0]['imagem_pet'])) {  
+    echo "<img height='100' src= ' ../". IMG . $this->data[0]['imagem_pet'] ." '> <br> <br>"; 
+} 
+else { 
+    echo "<img height='100' src= ' ". IMGERRO ." '> <br> <br>"; 
+}
+
+?>  
+
 
 <form method="post" enctype="multipart/form-data" action="">
 
-    <h2> ADICIONAR FOTO DE PET </h2>
+    <h2> ALTERAR FOTO DE PET </h2>
 
     <label>Foto do Pet: </label>
     <input name="arquivo" type="file"> <br> <br> 

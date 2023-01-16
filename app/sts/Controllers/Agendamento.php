@@ -31,12 +31,33 @@ class Agendamento{
     public function horarios(): void
     {
         $sts = new \Sts\Models\StsAgendamento();
-        $eventsArray = $sts->horariosDeConsulta();
 
-        $this->data = json_encode($eventsArray);
+        // verifica se o usuário já tem um endereço cadastrado
+        if ($sts->verifyUserAdress($_SESSION['idusuario'])) {
 
-        $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/calendar", $this->data , NULL);
-        $loadView->loadView_header3("calendarH");
+            // verifica se o usuário tem algum pet cadastrado na sua conta
+            if ($sts->verifyUserPets($_SESSION['idusuario'])) {
+
+                $sts = new \Sts\Models\StsAgendamento();
+                $eventsArray = $sts->horariosDeConsulta();
+
+                $this->data = json_encode($eventsArray);
+
+                $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/calendar", $this->data , NULL);
+                $loadView->loadView_header3("calendarH");
+
+            } else {
+                $_SESSION['msgRed'] = "Erro. Necessário cadastrar algum pet antes de agendar uma consulta.";
+                $header = URL . "SobreCliente/Dados";
+                header("Location: {$header}");
+            }
+ 
+        } else {
+            $_SESSION['msgRed'] = "Erro. Necessário cadastrar algum endereço antes de agendar uma consulta.";
+            $header = URL . "SobreCliente/Dados";
+            header("Location: {$header}");
+        }
+        
       
     }
 
@@ -56,10 +77,11 @@ class Agendamento{
             $timeNewEvent = $_GET['horario'];
             $idServico = $_GET['servico'];
 
-            $sts = new \Sts\Models\StsAgendamento();            
+            $sts = new \Sts\Models\StsAgendamento(); 
+            $stsVerifyDate = new \Sts\Models\helpers\StsVerifyDateConsulta();            
 
             // se os dados passados na URL são válidos (consulta no BD)
-            if ($this->varificarData($dayNewEvent, $timeNewEvent) && $sts->idServicoExiste($idServico)) {
+            if ($stsVerifyDate->varificarData($dayNewEvent, $timeNewEvent) && $sts->idServicoExiste($idServico)) {
 
                 $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
                 
@@ -71,7 +93,7 @@ class Agendamento{
                     $this->data['pets'] = $sts->userPets($_SESSION['idusuario']);
                     
                     $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/agendamento", $this->data , NULL);
-                    $loadView->loadView_header3("agendamentoH");
+                    $loadView->loadView_header("agendamentoH");
                 
                 // caso já tenha mandado o formulário de agendar servico, cadastre a consulta no banco de dados
                 // a nova consulta por padrão aperecera como "AConfirmar" no BD
@@ -82,11 +104,11 @@ class Agendamento{
                     $idconsulta = $sts->salvarServico($this->dataForm);
 
                     if (!empty($idconsulta)) {
-                        $_SESSION['msg'] = "Consulta agendada com sucesso, aguarde a confirmação da clinica.";
+                        $_SESSION['msgGreen'] = "Consulta agendada com sucesso, aguarde a confirmação da clinica.";
                         $header = URL . "SobreCliente";
                         header("Location: {$header}");
                     } else {
-                        $_SESSION['msg'] = "Falha ao agendar servico, tente novamente.";
+                        $_SESSION['msgRed'] = "Falha ao agendar servico, tente novamente.";
                         $header = URL . "Servicos";
                         header("Location: {$header}");
                     }
@@ -94,13 +116,13 @@ class Agendamento{
                 }
                 
             } else {
-                $_SESSION['msg'] = "Horario ou servico inválido, tente novamente.";
+                $_SESSION['msgRed'] = "Horario ou servico inválido, tente novamente.";
                 $header = URL . "Servicos";
                 header("Location: {$header}");
             }
 
         } else {
-            $_SESSION['msg'] = "Dados insuficientes, tente novamente.";
+            $_SESSION['msgRed'] = "Dados insuficientes, tente novamente.";
             $header = URL . "Servicos";
             header("Location: {$header}");
         }
@@ -134,7 +156,7 @@ class Agendamento{
                     if ($result) {
                         $_SESSION['msgGreen'] = "Consulta cancelada com sucesso.";
                     } else {
-                        $_SESSION['msg'] = "Falha ao cancelar consulta, tente novamente mais tarde.";
+                        $_SESSION['msgRed'] = "Falha ao cancelar consulta, tente novamente mais tarde.";
                     }
                 } 
                 
@@ -169,60 +191,6 @@ class Agendamento{
 
         $header = URL . "SobreCliente/Dados";
         header("Location: {$header}");
-    }
-
-
-        
-    /**     function varificarData()
-     * Verifica se a data e hora passada está disponivel no banco de dados
-     */
-    private function varificarData($dayNewEvent, $timeNewEvent): bool
-    {
-
-        $dayTimeNow = date('d/m/Y H:i');
-        $dayNow = substr($dayTimeNow, 0, 10); // 01/01/2023
-        $dayNow = substr($dayNow,6) . "-" . substr($dayNow, 3, -5) . "-" . substr($dayNow, 0, -8); // 2023-01-01
-        $timeNow = substr($dayTimeNow,10, -3);
-
-        $dateDayNew = date_create($dayNewEvent); 
-        $dateDayNow = date_create($dayNow);
-        $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
-        $result = $diff->invert; // retorna 1 se o dia da URL é passado e 0 se for presente o futuro
-
-        // se o dia da URL já é passado
-        if ($result == 1) {
-            return FALSE;
-        }
-
-        // se o horario passado estiver fora dos horarios estabelecidos pela clinica
-        if ($timeNewEvent < 12 || $timeNewEvent > 18) {
-            return FALSE;
-        }   
-
-        // se tiver no mesmo dia mas o horario já é passado
-        if ($dayNewEvent == $dayNow && $timeNewEvent <= $timeNow) {
-            return FALSE;
-        }
-
-        $sts = new \Sts\Models\StsAgendamento();
-        $eventsArray = $sts->horariosDeConsulta();
-
-        for ($x = 0; $x <count($eventsArray); $x++) {
-
-            $event = $eventsArray[$x];
-
-            $dayEventDB = $event['data_consulta'];
-            $timeEventDB = $event['horario_consulta'];
-            $timeEventDB = substr($timeEventDB, 0, 2);
-
-            // se tiver um evento no mesmo dia e mesmo horario
-            if ($dayEventDB == $dayNewEvent && $timeEventDB == $timeNewEvent) {
-                return FALSE;
-            }
-        
-        }
-
-        return TRUE;
     }
 
 

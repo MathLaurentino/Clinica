@@ -73,7 +73,7 @@ class StsSobreCliente
     /**     function userAgendamntos()
      * Retorna o historico de agendamonto do  cliente logado
      */
-    public function userAgendamntos(): array|null
+    public function userAgendamentos(): array|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead( "SELECT c.idconsulta, c.data_consulta, c.horario_consulta, c.sit_consulta,

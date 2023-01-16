@@ -34,17 +34,21 @@ private array|null $dataForm; // dados que vem do formulario
     public function dados(): void
     {
         $stsSobreCliente = new \Sts\Models\StsSobreCliente();
+        $stsVerifyDate = new \Sts\Models\helpers\StsVerifyDateConsulta(); 
 
         $this->data['user'] = $stsSobreCliente->userData();
         
         if (isset($_SESSION['idendereco'])) 
             $this->data['adress'] = $stsSobreCliente->userAdress(); 
 
-        
         if ($this->verifyIfUserHasAPet()) 
             $this->data['pet'] = $stsSobreCliente->userPet();
         
-        $this->data['agendamentos'] = $stsSobreCliente->userAgendamntos();
+        $this->data['agendamentos'] = $stsSobreCliente->userAgendamentos();
+
+        if ($stsVerifyDate->verifyDayTimeConsulta($this->data['agendamentos'])) {
+            $this->data['agendamentos'] = $stsSobreCliente->userAgendamentos();
+        }
 
         $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/areaCliente2", $this->data, null); // sobreCliente // areaCliente2
         $loadView->loadView_header('areaCliente2H'); //sobre_cliente // areaCliente2H
@@ -94,7 +98,7 @@ private array|null $dataForm; // dados que vem do formulario
                     }
 
                 } else {
-                    $_SESSION['msg'] = "CPF informado já possui cadastro no banco de dados";
+                    $_SESSION['msgRed'] = "CPF informado já possui cadastro no sistema";
                     $this->data = $this->dataForm;
                     $this->view2('alterarDados');
                 } 

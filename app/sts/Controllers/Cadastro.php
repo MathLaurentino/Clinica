@@ -95,7 +95,7 @@ class Cadastro{
                             $mail->send();
 
                             $_SESSION['email_para_verificar'] = $this->dataForm['email'];
-                            $_SESSION['msg'] = "<p style='color:green;'>Usuario cadastrado com sucesso</p> <p style='color:green;'>Confirme seu Email para acessar sua conta</p>";
+                            $_SESSION['msgGreen'] = "Usuario cadastrado com sucesso. Confirme seu Email para acessar sua conta";
                             $header = URL . "Home";
                             header("Location: {$header}");
             
@@ -109,7 +109,7 @@ class Cadastro{
                     }
     
                 } else {
-                    $_SESSION['msg'] = "<p style='color:red;'>Dados fornecidos já possuem cadastro no sistema. Tente com outros dados</p>";
+                    $_SESSION['msgRed'] = "<p style='color:red;'>Dados fornecidos já possuem cadastro no sistema. Tente com outros dados</p>";
                     $this->view();
                 } 
 

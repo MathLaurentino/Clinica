@@ -41,33 +41,33 @@ class ConfirmarEmail{
                 if (!empty($id)){
     
                     if ($stsKey->alterSituation($id[0]['idusuario'])) {
-                        $_SESSION['msg'] = "Email confirmado com sucesso";
+                        $_SESSION['msgGreen'] = "Email confirmado com sucesso";
                         $header = URL . "Login";
                         header("Location: {$header}");
                     }
     
                 } else {
-                    $_SESSION['msg'] = "Chave de confirmação invalida";
+                    $_SESSION['msgRed'] = "Chave de confirmação invalida";
                     $header = URL . "Home";
                     header("Location: {$header}");
                 }
 
             } elseif ($userSituation == "Inativo") {
 
-                $_SESSION['msg'] = "Conta Inativa ou com falha";
+                $_SESSION['msgRed'] = "Conta Inativa ou com falha";
                 $header = URL . "Login";
                 header("Location: {$header}");
 
             } elseif ($userSituation == "Ativo") {
 
-                $_SESSION['msg'] = "Conta Ativada";
+                $_SESSION['msgGreen'] = "Conta Ativada";
                 $header = URL . "Login";
                 header("Location: {$header}");
 
             }
 
         } else { 
-            $_SESSION['msg'] = "Falha ao indentificar chave de ativação";
+            $_SESSION['msgRed'] = "Falha ao indentificar chave de ativação";
             $header = URL . "Home";
             header("Location: {$header}");
         }
@@ -114,7 +114,7 @@ class ConfirmarEmail{
 
                 $mail->send();
 
-                $_SESSION['msg'] = "<p style='color:green;'>Chave reenviada com sucesso, confirme no seu email</p> <p style='color:green;'>Confirme seu Email para acessar sua conta</p>";
+                $_SESSION['msgGreen'] = "Chave reenviada com sucesso, confirme no seu email. Confirme seu Email para acessar sua conta";
                 $header = URL . "Login";
                 header("Location: {$header}");
 
@@ -139,7 +139,7 @@ class ConfirmarEmail{
                         header("Location: {$header}");
                     } elseif ($userSituation == "Inativo") {
 
-                        $_SESSION['msg'] = "Conta Inativa ou com falha";
+                        $_SESSION['msgRed'] = "Conta Inativa ou com falha";
                         $header = URL . "Login";
                         header("Location: {$header}");
         
@@ -152,7 +152,7 @@ class ConfirmarEmail{
                     }
 
                 } else {
-                    $_SESSION['msg'] = "Email informado é inválido";
+                    $_SESSION['msgRed'] = "Email informado é inválido";
                     $this->data['email'] = $this->dataForm['email'];
                     $loadView = new \Core\LoadView("sts/Views/bodys/sendEmail/sendEmail", $this->data, null);
                     $loadView->loadView_header2();

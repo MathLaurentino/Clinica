@@ -8,6 +8,7 @@
     <script src="https://kit.fontawesome.com/7f492723e7.js" crossorigin="anonymous"></script>   
     <!-- <link rel="stylesheet" type="text/css" href="app\sts\assets\css\styleNavBar.css"> --> 
     <link rel="stylesheet" type="text/css" href="<?= CSS ?>style.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <title>Clínica Veterinária</title>
 </head>

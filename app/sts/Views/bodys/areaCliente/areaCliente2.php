@@ -70,6 +70,7 @@ if(isset($this->data)){
 
 
           <div>
+            <!-- Botão de alterar foto cliente -->
             <a href="<?php if (isset($_SESSION['foto_usuario'])) { echo URL . 'FotoUsuario/alterar'; } else { echo URL . 'FotoUsuario/adicionar'; } ?>" class="iconeEdita"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
             <p class="alinhaPadding"> <a href="<?= URL ?>Sobre-Cliente/Alterar-Dados"> <button class="btn-alterarDados"> alterar dados </button> </a></p>
           </div>
@@ -97,25 +98,30 @@ if(isset($this->data)){
                 <b> Nº Residencial: </b> <?= $numero_residencial ?> <br>
               </div>
 
+          </div>
+
+              <p class="alinhaPadding"> <a href="<?= URL ?>Sobre-Cliente/Alterar-Dados-Endereco"> <button class="btn-alterarDados"> alterar dados </button> </a> </p>
+
             <?php 
               }else {
             ?>
 
-              <div class="form-edição2">
                 Você ainda não tem um endereço cadastrado <br>
-                <a href='<?= URL ?>CadastroEndereco/endereco'> Ir Cadastrar Endereço </a> <br>
-              </div>
+              
+          </div>
+
+          <p class="alinhaPadding"> <a href="<?= URL ?>CadastroEndereco/Endereco"> <button class="btn-alterarDados"> adicionar endereço </button> </a> </p>
 
             <?php 
               }
             ?>
 
-          </div>
+          
+
+          
 
 
-
-
-          <p class="alinhaPadding"> <a href="<?= URL ?>Sobre-Cliente/Alterar-Dados-Endereco"> <button class="btn-alterarDados"> alterar dados </button> </a> </p>
+          <!-- PETS DO CLIENTE -->
 
           <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
@@ -127,14 +133,15 @@ if(isset($this->data)){
               for ($x = 0; $x < count($this->data['pet']); $x++) {
                   $pet = $this->data['pet'][$x];
                   extract($pet);
-                  if (empty($imagem_pet)) { $imagem_pet = "petSemFoto.png"; }
+                  if (empty($imagem_pet)) { $img_pet = "petSemFoto.png"; } else { $img_pet = $imagem_pet; }
           ?>
 
             <div class="areaCliente">
 
-                <img class="imgSCliente" src="<?= URL . IMG . $imagem_pet ?>">
+                <img class="imgSCliente" src="<?= URL . IMG . $img_pet ?>">
 
                 <div class="form-edição2">
+                  id : <?= $idpet ?>
                   <b> Nome: </b> <?= $nome_pet ?> <br>
                   <b> Idade: </b> <?= $idade_pet ?> <br>
                   <b> Espécie: </b> <?= $tipo_pet ?> <br>
@@ -147,7 +154,7 @@ if(isset($this->data)){
 
             <div>
               
-              <a href=" " class="iconeEdita"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+              <a href="<?php if ($img_pet == 'petSemFoto.png') { echo URL . 'FotoPet/adicionar?id=' . $idpet; } else { echo URL . 'FotoPet/alterar?id=' . $idpet; } ?>" class="iconeEdita"><i class="fa fa-pencil-square" aria-hidden="true"></i></a> <!-- botão de alterar foto pet --> 
               <p class="alinhaPadding"> <a href="<?= URL . "Sobre-Cliente/Alterar-Dados-Pet?id={$idpet}" ?>"> <button class="btn-alterarDados"> alterar dados </button> </a> </p>
 
             </div>
@@ -155,18 +162,25 @@ if(isset($this->data)){
             <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
           <?php
-            }}
+            }
+          ?>
+
+            <p class="center"> <a href="<?= URL .'cadastroPet'?>"> <button class="btn-addPet"> ADICIONAR PET </button> </a> </p>
+          
+          <?php
+          }
             else { 
           ?>
 
-            Você ainda não tem nunhum PET cadastrado <br>;
-            <a href="<?= URL .'cadastroPet'?>" > Ir Cadastrar PET </a> <br>
+            Você ainda não tem nunhum PET cadastrado <br>
+            <p class="alinhaPadding"> <a href="<?= URL ?>cadastroPet"> <button class="btn-alterarDados"> cadastrar pet </button> </a> </p>
+
 
           <?php
             }
           ?>
 
-          <p class="center"> <a href="<?= URL .'cadastroPet'?>"> <button class="btn-addPet"> ADICIONAR PET </button> </a> </p>
+          
 
         </div>
       </div>
@@ -174,7 +188,7 @@ if(isset($this->data)){
 
 
 
-
+    <!-- HISTORICO DE AGENDAMENTO DO CLIENTE -->
 
 
     <div class="centraliza">
@@ -184,7 +198,7 @@ if(isset($this->data)){
 
           <?php
                         
-            if (isset($this->data['agendamentos'])) {
+            if (!empty($this->data['agendamentos'])) {
                 for ($x = 0; $x < count($this->data['agendamentos']); $x++) {
 
                     $agendamentos = $this->data['agendamentos'][$x];
@@ -243,6 +257,10 @@ if(isset($this->data)){
 
           <?php
               }
+            } else {
+          ?>
+            Você ainda não tem nenhum serviço agendado!
+          <?php
             }
           ?>
 

@@ -72,7 +72,7 @@ class ConsultasAgendadas
             $adms = new \Adms\Models\AdmsConsultasAgendadas();
             $this->data = $adms->getFullDataConsulta($idConsulta);
 
-            $this->view("dadosConsulta");
+            $this->view("infoExtra");
 
         } else {
             $this->clientes();

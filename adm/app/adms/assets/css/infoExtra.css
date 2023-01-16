@@ -1,0 +1,801 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap');
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+}
+
+body {
+	font-size: 100%;
+	background-color: white;
+}
+
+.container {
+	position: relative;
+	padding: 15px;
+	max-width: 600px;
+	margin: 0 auto;
+}
+
+.cabecalho-principal {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	padding-top: 24px;
+	white-space: nowrap;
+	background-color: #FFF;
+}
+
+.cabecalho-principal .img {
+	height: 65px;
+}
+
+.cabecalho-principal .menu {
+	display: flex;
+	align-items: baseline;
+	gap: 60px;
+}
+
+.cabecalho-principal .item {
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	color: #000;
+
+}
+
+.cabecalho-principal .item-nav {
+	font-family: 'Righteous', cursive;
+	font-size: 13px;
+	color: #000;
+}
+
+.cabecalho-principal .botao {
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	color: white;
+	background-color: #FFB300;
+	border: none;
+	height: 40px;
+	line-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+	border-radius: 8px;
+}
+
+button:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+
+
+/* ESTILIZAÇÃO NO ICONE DE LOGIN */
+
+.conteudo-principal {
+	border-top: 4px solid black;
+	margin-bottom: 20px;
+}
+
+.conteudo-principal .apresentação {
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+}
+
+#circulo {
+	margin-top: 15px;
+	width: 470px;
+	height: 450px;
+	background: #FFB300;
+	border-radius: 66% 34% 38% 62% / 53% 53% 47% 47%;
+}
+
+.conteudo-principal .introdução {
+	padding: 20px;
+}
+
+.conteudo-principal .título {
+	font-family: 'Righteous', cursive;
+	font-size: 50px;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.conteudo-principal .subtítulo {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	text-align: center;
+}
+
+.conteudo-principal .serviços {
+	font-family: 'Righteous', cursive;
+	text-align: center;
+	padding-left: 30px;
+}
+
+.conteudo-principal .corpoclinico {
+	font-family: 'Righteous', cursive;
+	text-align: center;
+	padding-left: 30px;
+}
+
+.conteudo-principal .descricao {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	margin-left: 30px;
+}
+
+#serviços {
+	display: flex;
+	flex-direction: column;
+}
+
+.corpoclinico {
+	display: flex;
+	align-items: flex-start;
+	/* ALGUMA COISA PARA DEIXAR O TEXTO PARA A ESQUERDA*/
+	flex-direction: column;
+}
+
+.corpoclinico .descricao{
+	text-align: left;
+	
+
+}
+
+.rodape-principal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding-bottom: 30px;
+	background-color: #ECEFF1;
+}
+
+.rodape-principal .logo {
+	height: 150px;
+	margin-bottom: 5px;
+}
+
+.rodape-principal .endereco {
+	font-family: 'Righteous', cursive;
+	font-size: 30px;
+	color: black;
+}
+
+.fa-whatsapp {
+	color: black;
+}
+
+.fa-instagram {
+	color: black;
+}
+
+.fa-envelope-o {
+	color: black;
+}
+
+.rodape-principal .informações {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	padding: 20px;
+}
+
+.rodape-principal .direitos {
+	font-family: 'Righteous', cursive;
+	font-size: 15px;
+	padding-bottom: 5px;
+}
+
+/*ESTILIZAÇÃO PÁGINA DE SERVIÇOS - USUÁRIO*/
+.linha {
+	border-top: 0.5px solid black;
+	margin-bottom: 30px;
+
+}
+
+/*ESTILIZAÇÃO PÁGINA DE SERVIÇOS - USUÁRIO*/
+.linha2 {
+	border-top: 0.5px solid black;
+	margin-bottom: 10px;
+
+}
+
+.conteudo-serviços {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	padding-top: 60px;
+	gap: 58px;
+}
+
+.conteudo-serviços .img-serviços {
+	display: flex;
+	align-self: center;
+	height: 50px;
+
+}
+
+.conteudo-serviços .procedimento {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	gap: 20px;
+	padding-bottom: 10px;
+	flex-basis: 55vw;
+
+}
+
+.procedimento .título-serviço {
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	flex-basis: 85vw;
+
+
+}
+
+.procedimento .info {
+	font-family: 'Righteous', cursive;
+	font-size: 15px;
+	text-align: center;
+	flex-basis: 11vw;
+
+}
+
+.procedimento .botões {
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	text-align: center;
+	color: black;
+	background-color: white;
+	border: solid 5px;
+	border-color: #FFB300;
+	height: 50px;
+	line-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+
+}
+
+/*ESTILIZAÇÃO PÁGINA ÁREA DOS CLIENTES - USUÁRIO*/
+
+
+/*ESTILIZAÇÃO PÁGINA AGENDAMENTO - USUÁRIO*/
+.conteudo-principal .sub-título {
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	text-align: center;
+}
+
+.calendario .info {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 17px;
+	text-decoration: underline;
+	margin-top: 50px;
+	margin-left: 30px;
+}
+
+.calendario .img-dog {
+	position: absolute;
+	left: 68%;
+}
+
+/*ESTILIZAÇÃO PÁGINA SERVICOS - ADM*/
+.addServicos {
+	padding-left: 40vw;
+}
+
+.addServicosBotao {
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+	background-color: #7d59ff;
+	border-color: white;
+	border: solid 1px;
+	height: 50px;
+	line-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+
+}
+
+/*----------------*/
+
+/*SLIDER*/
+
+
+.slider {
+	margin-left: 60px;
+	width: 250px;
+	height: 250px;
+	overflow: hidden;
+	border-radius: 120px;
+
+}
+
+.slides {
+	width: 400%;
+	height: 250px;
+	display: flex;
+
+}
+
+.slides input {
+	display: none;
+
+}
+
+.slide {
+	width: 25%;
+	position: relative;
+	transition: 2s;
+	border-radius: 10px;
+
+
+}
+
+#img-corpo {
+	width: 250px;
+	height: 250px;
+	border-radius: 10px;
+
+}
+
+.manual-navigation {
+	padding-left: 140px;
+	position: absolute;
+	width: 400px;
+	margin-top: -244.5px;
+	display: flex;
+	justify-content: center;
+}
+
+.manual-btn {
+	border: 0.5px solid rgb(0, 0, 0);
+	padding: 8px;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: 1s;
+}
+
+.manual-btn:not(:last-child) {
+	/*nao aplica no ultimo*/
+	margin-right: 20px;
+}
+
+
+.manual-btn:hover {
+	background-color: rgb(184, 118, 245);
+}
+
+
+
+
+#radio2:checked~.first {
+	margin-left: -25%;
+}
+
+#radio3:checked~.first {
+	margin-left: -50%;
+}
+
+#radio4:checked~.first {
+	margin-left: -75%;
+}
+
+.navigation-auto div {
+	border: 0.5px solid #000000;
+	padding: 8px;
+	border-radius: 10px;
+	cursor: pointer;
+	transition: 1s;
+}
+
+.navigation-auto {
+	padding-left: 140px;
+
+	position: absolute;
+	width: 400px;
+	margin-top: 5px;
+	display: flex;
+	justify-content: center;
+}
+
+.navigation-auto div:not(:last-child) {
+	margin-right: 20px;
+}
+
+#radio1:checked~.navigation-auto .auto-btn1 {
+	background-color: rgb(255, 255, 255);
+}
+
+#radio2:checked~.navigation-auto .auto-btn2 {
+	background-color: rgb(255, 255, 255);
+}
+
+#radio3:checked~.navigation-auto .auto-btn3 {
+	background-color: rgb(255, 255, 255);
+}
+
+#radio4:checked~.navigation-auto .auto-btn4 {
+	background-color: rgb(255, 255, 255);
+}
+
+/*ESTILIZACAO GERENCIAMENTO ADM*/
+
+.conteudo-serviçosadm {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	gap: 58px;
+	height: 9vh;
+
+}
+
+@media (max-width: 999px) {
+	.conteudo-serviçosadm {
+		overflow: scroll;
+	}
+}
+
+.btn-meio {
+	align-items: center;
+}
+
+.conteudo-serviçosadm .img-serviços {
+	display: flex;
+	align-self: flex-start;
+	height: 50px;
+
+}
+
+.conteudo-serviçosadm .procedimentoadm {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	gap: 20px;
+	padding-bottom: 10px;
+	flex-basis: 65vw;
+
+}
+
+.procedimentoadm .título-serviço {
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	flex-basis: 30vw;
+
+
+}
+
+.procedimentoadm .info {
+	font-family: 'Righteous', cursive;
+	font-size: 15px;
+	text-align: center;
+	flex-basis: 10vw;
+
+}
+
+.procedimentoadm .data {
+	font-family: 'Righteous', cursive;
+	font-size: 15px;
+	text-align: center;
+	flex-basis: 20vw;
+
+
+
+}
+
+.procedimentoadm .agendar {
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	text-align: center;
+	color: black;
+	background-color: white;
+	border: solid 5px;
+	border-color: #FFB300;
+	height: 50px;
+	line-height: 40px;
+	padding-left: 20px;
+	padding-right: 20px;
+
+}
+
+.tipoServico {
+	flex-basis: 10vw;
+
+}
+
+.icone-check {
+	color: rgb(27, 223, 21);
+	font-size: 2rem;
+	text-decoration: none;
+}
+
+
+
+
+
+.icone-cancel {
+	color: rgb(223, 21, 21);
+	font-size: 2rem;
+
+}
+
+.btn-maisinfo {
+	font-family: 'Righteous', cursive;
+	background-color: rgb(184, 118, 245);
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	padding: 5px 5px;
+	align-items: center;
+
+}
+
+/*Telas de Edição de Dados: Cliente, Endereço e Pet */
+#edição_dados {
+	background-color: #ECEFF1;
+	font-size: 100%;
+
+}
+
+.conteudo-principal .form-edição {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 80%;
+	margin-top: 30px;
+}
+
+.conteudo-principal .form-edição1 {
+	display: flex;
+	align-items: center;
+	flex-direction: column;
+	width: 100%;
+	margin-top: 30px;
+}
+
+.conteudo-principal .form-edição2 {
+	margin-top: 10px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bolder;
+
+}
+
+.conteudo-principal .dadospet{
+	display: flex;
+	font-size: 17px;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bolder;
+
+}
+
+.cabecalho-principal .inputsexo{
+	width: 20px;;
+	height: 25px; 
+}
+
+
+
+.areaCliente {
+	gap: 3vw;
+	display: flex;
+
+}
+
+.imgSCliente {
+	margin-top: 10px;
+	width: 8vw;
+	height: 12vh;
+}
+
+.iconeEdita {
+	font-size: 25px;
+	color: #7d59ff;
+;
+}
+a,
+a:hover,
+a:active,
+a:link,
+a:visited{
+	text-decoration: none;
+}
+.form-edição input {
+	height: 7vh;
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+	margin: 8px;
+	width: 20vw;
+}
+
+.form-edição1 input {
+	height: 7vh;
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+	margin: 8px;
+	width: 20vw;
+}
+
+.form-edição2 input {
+	height: 3vh;
+	border: none;
+	background: none;
+	outline: none;
+	font-size: 15px;
+	color: black;
+	margin: 0px;
+	align-items: center;
+	font-weight: bolder;
+
+}
+.btn-addPet {
+	font-family: 'Righteous', cursive;
+	background-color: rgb(35, 219, 90);
+	border: none;
+	border-radius: 17px;
+	color: #fff;
+	font-size: 20px;
+	padding: 5px 8px;
+	align-items: center;
+}
+
+.btn-alterarDados {
+	font-family: 'Righteous', cursive;
+	background-color:#A487D5;
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	padding: 5px 5px;
+	align-items: left;
+	margin-top: 3vh;
+}
+
+.alinhaPadding{
+	padding-left: 20vw;
+
+}
+
+.conteudo-principal .btn-areaCliente {
+	font-family: 'Righteous', cursive;
+	background-color: #A487D5;
+	border: none;
+	font-style: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	padding: 5px 5px;
+	align-items: center;
+	text-decoration: none;
+	margin: 6px;
+}
+
+
+.fundoBody{
+	background-color: rgb(247, 247, 247);
+}
+
+.centraliza{
+	width: 90vw;
+	padding-left: 10vw;
+}
+
+.center{
+	text-align: center;
+}
+.center2{
+text-align: center;
+}
+
+
+
+.conteudo-principal .botao {
+	font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 165px;
+	align-self: center;
+	margin: 6px;
+	
+}
+
+.conteudo-principal .img-donopet {
+	position: absolute;
+	left: 68%;
+	top: 5%;
+}
+
+.conteudo-principal .img-pet {
+	position: absolute;
+	left: 70%;
+	top: 5%;
+}
+
+/* ESTILIZAÇÃO TELA DE RESUMO DE AGENDAMENTO*/ 
+
+.conteudo-principal .linha-agendamento{
+	display: flex;
+	align-items: baseline;
+	column-gap: 600px;
+}
+
+.info-principal {
+	display: flex;
+	justify-content: flex-start;	
+	flex-direction: column;
+	padding-top: 40px;
+	padding-inline-start: 70px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+}
+
+select{
+	background-color: white;
+	border: none;
+}
+ 
+
+
+.info-agendamento .título-agen{
+	display: flex;
+	justify-content: flex-end;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	text-decoration: underline;
+}
+
+.info-descrição{
+	text-align: center;
+}
+
+.info-descrição .título-desc{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	font-weight: bold;
+	text-align: center;
+}
+
+.botão-confi{
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	color: white;
+	background-color: #7DE04A;
+	border: none;
+	padding: 8px 10px;
+    cursor: pointer;
+    width: 130px;
+    align-self: center;
+	margin: 10px;
+}
+
+.botão-canc{
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	color: white;
+	background-color: #FF0000;
+	border: none;
+	padding: 8px 10px;
+    cursor: pointer;
+    width: 130px;
+    align-self: center;
+	margin: 10px;
+}

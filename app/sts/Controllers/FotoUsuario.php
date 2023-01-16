@@ -48,7 +48,7 @@ class FotoUsuario
 
                         if ($result) { // se salvar corretamente no BD
                             $_SESSION['foto_usuario'] = $this->data['foto_usuario'];
-                            $_SESSION['msg'] = "Foto salva com sucesso";
+                            $_SESSION['msgGreen'] = "Foto salva com sucesso";
                             $header = URL . "Sobre-Cliente/Dados"; 
                             header("Location: {$header}");
                         } else { // se não salvar corretamente no BD
@@ -96,7 +96,7 @@ class FotoUsuario
             $this->view("alteraFotoUsuario"); // carrega a view 
         }
         
-        else {
+        else { // caso tenha enviado o arquivo file e já tenha uma foto cadastrada
             $StsFile = new \Sts\Models\helpers\StsFile();
                 
             if ($StsFile->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
@@ -119,7 +119,7 @@ class FotoUsuario
 
                         if ($resultCadastra) { // se salvar corretamente no BD
                             $_SESSION['foto_usuario'] = $this->data['foto_usuario'];
-                            $_SESSION['msg'] = "Foto salva com sucesso";
+                            $_SESSION['msgGreen'] = "Foto salva com sucesso";
                             $header = URL . "Sobre-Cliente/Dados"; 
                             header("Location: {$header}");
                         } else { // se não salvar corretamente no BD
@@ -128,7 +128,7 @@ class FotoUsuario
                         }
 
                     } else {
-                        $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
+                        $_SESSION['msgRed'] = "Erro ao apagar foto no banco de dados";
                     }
 
                 } else { // se não conseguiu salvar na pasta assets/imagens
@@ -160,9 +160,9 @@ class FotoUsuario
             if ($result) {
                 unlink( IMG . $_SESSION['foto_usuario'] );
                 unset($_SESSION['foto_usuario']);
-                $_SESSION['msg'] = "Foto apagada com sucesso";
+                $_SESSION['msgGreen'] = "Foto apagada com sucesso";
             } else {
-                $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
+                $_SESSION['msgRed'] = "Erro ao apagar foto no banco de dados";
             }
 
             $header = URL . "SobreCliente/Dados"; // Erro 014

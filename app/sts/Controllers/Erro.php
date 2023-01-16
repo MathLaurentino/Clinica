@@ -69,7 +69,7 @@ class Erro{
             case 10:
                 $this->data['numeroErro'] = "010";
                 $this->data['descricaoErro']  = "Você não pode alterar os dados do endereço antes de cadastralo";
-                $this->data['botao'] = "Cadastro/Endereco";
+                $this->data['botao'] = "CadastroEndereco/Endereco";
                 $this->data['descricaoBotao'] = "Ir para a tela de Cadastro de Endereço";
                 break;
             case 11:

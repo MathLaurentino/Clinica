@@ -67,6 +67,24 @@ class StsFotoPet
 
 
 
+    /**     function verificarFoto()
+     * Retorna o nome da Foto do pet no BD
+     */
+    public function getFotoPet($idpet): array
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT imagem_pet
+                                    FROM pet
+                                    WHERE idpet  = :idpet", 
+                                    "idpet={$idpet}");
+        
+        $result = $stsSelect->getResult();
+
+        return $result;
+    }
+
+
+
     /**     function verificaDonoPet()
      * Verifica se o ID do pet passado pela URL pertence ao usuario logado 
      * true para verdadeiro e false para falso (meio obvio)

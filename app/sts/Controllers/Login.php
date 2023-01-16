@@ -92,13 +92,13 @@ class Login{
                 
 
             } else { // se a senha estiver errada 
-                $_SESSION['msg'] = "Email ou senha incorreta";
+                $_SESSION['msgRed'] = "Email ou senha incorreta";
                 $header = URL . "Login";
                 header("Location: {$header}");
             }
 
         } else { // se não existir conta
-            $_SESSION['msg'] = "Email ou senha incorreta";
+            $_SESSION['msgRed'] = "Email ou senha incorreta";
             $header = URL . "Login";
             header("Location: {$header}");
         }
@@ -131,7 +131,7 @@ class Login{
         if (isset($_SESSION['email_para_verificar'])) 
             unset($_SESSION['email_para_verificar']);
         
-        $_SESSION['msg'] = "Login realizado com sucesso";
+        $_SESSION['msgGreen'] = "Login realizado com sucesso";
     }
 
 

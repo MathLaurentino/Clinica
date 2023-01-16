@@ -52,11 +52,10 @@ class FotoCarteira
                         if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
                             $this->data = ['imagem_carteira_pet' => $nameInDB];
 
-                            $stsCreate= new \Sts\Models\StsFotoCarteira();
-                            $result = $stsCreate->cadastroFotoCarteira($this->data, $this->id);
+                            $result = $stsFotoPet->cadastroFotoCarteira($this->data, $this->id);
 
                             if ($result) { // se salvar corretamente no BD
-                                $_SESSION['msg'] = "Foto da carteira de vacina salva com sucesso";
+                                $_SESSION['msgGreen'] = "Foto da carteira de vacina salva com sucesso";
                                 $header = URL . "Sobre-Cliente/Dados"; 
                                 header("Location: {$header}");
                             } else { // se não salvar corretamente no BD
@@ -93,6 +92,86 @@ class FotoCarteira
     }
 
 
+    /**     function alterar()
+     * Altera a foto de perfil do usuario 
+     */
+    public function alterar(): void
+    {
+
+        if(!isset($_GET['id'])){
+            $_SESSION['magRed'] = "Erro, falta de informações";
+            $header = URL . "SobreCliente/Dados"; 
+            header("Location: {$header}");
+        } 
+
+        else {
+
+            $this->id = $_GET['id'];
+
+            $stsFotoPet = new \Sts\Models\StsFotoCarteira();
+
+            // verifica se id do pet passado pela URL pertence ao usuario da sessão
+            if ($stsFotoPet->verificaDonoPet($this->id)) {
+
+                //verifica se ja existe uma foto de pet no BD
+                if (!$stsFotoPet->verificarFotoCarteira($this->id)) { 
+
+                    if (isset($_FILES['arquivo'])) { // se o usuario mandou o arquivo de foto 
+
+                        $StsFile = new \Sts\Models\helpers\StsFile();
+                        
+                        if ($StsFile->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
+
+                            $nameInDB = $StsFile->saveFile($_FILES['arquivo']);
+
+                            if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
+
+                                unlink( IMG .  $stsFotoPet->enderecoFotoCarteira($this->id));
+                                $result = $stsFotoPet->apagarFotoCarteira($this->id);
+
+                                $this->data = ['imagem_carteira_pet' => $nameInDB];
+
+                                $result = $stsFotoPet->cadastroFotoCarteira($this->data, $this->id);
+
+                                if ($result) { // se salvar corretamente no BD
+                                    $_SESSION['msgGreen'] = "Foto da carteira de vacina salva com sucesso";
+                                    $header = URL . "Sobre-Cliente/Dados"; 
+                                    header("Location: {$header}");
+                                } else { // se não salvar corretamente no BD
+                                    $header = URL . "Erro?case=13"; // Erro 013
+                                    header("Location: {$header}");
+                                }
+
+                            } else { // se não conseguiu salvar na pasta assets/imagens
+                                // recarrega a pagina mostrando o erro pro usuario 
+                                $header = URL . "Foto/Usuario"; 
+                                header("Location: {$header}");
+                            }
+
+                        } else { // se a foto não segue as regras de negocio
+                            $header = URL . "Foto/Usuario"; 
+                            header("Location: {$header}");
+                        } 
+
+                    } else { // caso n tenha arquivo enviado, carrega a tela
+                        $this->data = $stsFotoPet->getFotoPet($this->id);
+                        $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/alterarPet", $this->data, null);
+                        $loadView->loadView_header2();
+                    }
+
+                } else {
+                    $header = URL . "Erro?case=17"; // Erro 017
+                    header("Location: {$header}");
+                }
+
+            } else {
+                $header = URL . "Erro?case=20"; // Erro 020
+                header("Location: {$header}");
+            }  
+        }         
+    }
+
+
 
     /**     function apagar()
      * Responsavel por apagar a foto de perfil do usuario
@@ -116,9 +195,9 @@ class FotoCarteira
                 $result = $stsFotoCarteira->apagarFotoCarteira($this->id);
 
                 if ($result) {
-                    $_SESSION['msg'] = "Foto apagada com sucesso";
+                    $_SESSION['msgGreen'] = "Foto apagada com sucesso";
                 } else {
-                    $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
+                    $_SESSION['msgRed'] = "Erro ao apagar foto no banco de dados";
                 }
     
                 $header = URL . "SobreCliente/Dados";

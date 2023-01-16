@@ -164,4 +164,44 @@ class StsAgendamento{
 
     }
 
+
+    /**     function verifyUserAdress(): bool
+     * Verifica se o usuário tem um endereço cadastrado
+     */
+    public function verifyUserAdress($idusuario): bool
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT endereco
+                            FROM usuario 
+                            WHERE idusuario= :idusuario", "idusuario={$idusuario}" );
+
+        $endereco = $stsSelect->getResult(); 
+
+        if (!empty($endereco[0]['endereco'])) 
+            return true;
+        else 
+            return false;
+    }
+
+
+
+
+    /**     function verifyUserPets(): bool
+     * Verifica se o usuário tem algum pet cadastrado
+     */
+    public function verifyUserPets($idusuario): bool
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT idpet
+                            FROM pet 
+                            WHERE usuario = :usuario", "usuario={$idusuario}" );
+
+        $pet = $stsSelect->getResult();
+
+        if (!empty($pet)) 
+            return true;
+        else 
+            return false;
+    }
+
 }

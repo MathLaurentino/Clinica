@@ -17,7 +17,7 @@ abstract class Define
 
         // foto de perfil /foto dos pets / carteiras dos pets -> dos usuários
         define('IMGCLIENTEADM', 'app/sts/assets/imagens/'); //../app/sts/assets/imagens/
-        define('IMGCLIENTEERRO', '..\app\sts\assets\imagens\Sem_Foto.png');
+        define('IMGCLIENTEERRO', 'app\sts\assets\imagens\Sem_Foto.png');
         // ------------------------------------------------------------------
 
         define('IMGADMSER', 'app/adms/assets/imagens_servicos/');
