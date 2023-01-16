@@ -9,8 +9,6 @@
     <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-
-
     <script src='<?= URL ?>app/sts/assets/js/core/main.min.js'></script>
     <script src='<?= URL ?>app/sts/assets/js/interaction/main.min.js'></script>
     <script src='<?= URL ?>app/sts/assets/js/daygrid/main.min.js'></script>
@@ -50,6 +48,7 @@
                 select: function(info) {
 
                     var events = <?= $this->data ?>;
+
                     $('#horarios').modal('show'); // hide -> para fechar
 
                     var dateNow = new Date();
@@ -66,6 +65,9 @@
                     var dateFormCount = yearForm + "-" + monthForm + "-" + dayForm;
                     var difInM = new Date(dateNowCount) - new Date(dateFormCount);
                     var difInD = difInM / (1000 * 60 * 60 * 24);
+
+                    var hourNow = new Date().toLocaleTimeString();
+                    var hourNow = hourNow.slice(0,2);
 
                     // caso tenha clicado em um dia que já passou - deixa o botao vermelho tranparente
                     if (difInD > 0) {
@@ -92,22 +94,21 @@
                             dayEvent = dateEvent.slice(8,10);
                             hourEvent = hourEvent.slice(0,2);
 
-                            hourNow = new Date().toLocaleTimeString();
-                            hourNow = hourNow.slice(0,2);
-
                             // caso exista um evento na data selecionada - deixa o botao vermelho total
                             if (yearForm == yearEvent && monthForm == monthEvent && dayForm == dayEvent) {
                                 document.getElementById("bnt"+hourEvent).classList = "btn btn-danger";
                             } 
 
-                            // caso já tenha passado do horario do primeiro botão
-                            if (hourNow >= 12 && yearForm == yearNow && monthForm == monthNow && dayForm == dayNow) {
-                                for (x = 12; x <= hourNow; x++) {
-                                    document.getElementById("bnt"+x).classList = "btn btn-outline-danger";
-                                    if (x == 18) { x = hourNow; }
-                                }
+                        }
+
+                        // caso já tenha passado do horario do primeiro botão
+                        if (hourNow >= 12 && yearForm == yearNow && monthForm == monthNow && dayForm == dayNow) {
+                            for (x = 12; x <= hourNow; x++) {
+                                document.getElementById("bnt"+x).classList = "btn btn-outline-danger";
+                                if (x == 18) { x = hourNow; }
                             }
                         }
+
                     } 
 
                     
@@ -188,6 +189,12 @@
 
                     })
 
+                    const refrech = document.querySelector('#refresh') 
+                    
+                    refresh.addEventListener('click', () =>{
+                        location.reload()
+                    })
+
                 },
 
             });
@@ -198,23 +205,7 @@
 
     </script>
 
-    <!-- <style>
-        body {
-        margin: 40px 10px;
-        padding: 0;
-        font-family: Arial, Helvetica Neue, Helvetica, sans-serif;
-        font-size: 14px;
-        }
-
-        #calendar {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-    </style> -->
-
     <link rel="stylesheet" type="text/css" href='<?= CSS ?>agendamento.css'>
-
-
 
 </head>
 

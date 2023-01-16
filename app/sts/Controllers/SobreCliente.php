@@ -38,20 +38,24 @@ private array|null $dataForm; // dados que vem do formulario
 
         $this->data['user'] = $stsSobreCliente->userData();
         
-        if (isset($_SESSION['idendereco'])) 
+        if (isset($_SESSION['idendereco'])) {
             $this->data['adress'] = $stsSobreCliente->userAdress(); 
-
-        if ($this->verifyIfUserHasAPet()) 
-            $this->data['pet'] = $stsSobreCliente->userPet();
-        
-        $this->data['agendamentos'] = $stsSobreCliente->userAgendamentos();
-
-        if ($stsVerifyDate->verifyDayTimeConsulta($this->data['agendamentos'])) {
-            $this->data['agendamentos'] = $stsSobreCliente->userAgendamentos();
         }
 
+        if ($this->verifyIfUserHasAPet()) {
+            $this->data['pet'] = $stsSobreCliente->userPet();
+        }
+        
+        $this->data['agendamentos'] = $stsSobreCliente->getBasicDataConsultas();
+        $stsVerifyDate->verifyDayTimeConsulta($this->data['agendamentos']);
+        $this->data['agendamentos'] = $stsSobreCliente->getBasicDataConsultas();
+        //unset($this->data['agendamentos']);
+
+        $this->data['conusultaEmAndamento'] = $stsSobreCliente->getDataConsultaEmAndamento();
+        $this->data['consultasFinalizadas'] = $stsSobreCliente->getDataConsultasFinalizadas();
+            
         $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/areaCliente2", $this->data, null); // sobreCliente // areaCliente2
-        $loadView->loadView_header('areaCliente2H'); //sobre_cliente // areaCliente2H
+        $loadView->loadView_header('areaCliente/areaCliente'); //sobre_cliente // areaCliente2H
     }
 
 
@@ -265,7 +269,7 @@ private array|null $dataForm; // dados que vem do formulario
             $stsCliente = new \Sts\Models\StsSobreCliente();
             if ($stsCliente->verifyIdConsultaIsFromUser($idConsulta)) {
 
-                $this->data = $stsCliente->getDataConsulta($idConsulta);
+                $this->data = $stsCliente->getFullDataConsulta($idConsulta);
                 $this->view2('maisInfo');
 
             } else {

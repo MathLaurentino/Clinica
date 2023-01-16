@@ -3,8 +3,8 @@
     <img class="img" src="<?= URL ?>app\sts\assets\imagens_clinica\logo.png" alt="logo da clínica">
 
     <nav class="menu">
-        <a class="item">HOME</a>
-        <a class="item">SERVIÇOS</a>
+        <a href="<?= URL ?>Home" class="item">HOME</a>
+        <a href="<?= URL ?>Servicos" class="item">SERVIÇOS</a>
         <a class="item">CORPO CLÍNICO</a>
         <a href="#"> <button class="botao">AGENDE AQUI!</button> </a> 
 

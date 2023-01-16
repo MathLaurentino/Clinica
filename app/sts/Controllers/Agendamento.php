@@ -32,32 +32,36 @@ class Agendamento{
     {
         $sts = new \Sts\Models\StsAgendamento();
 
-        // verifica se o usuário já tem um endereço cadastrado
-        if ($sts->verifyUserAdress($_SESSION['idusuario'])) {
-
-            // verifica se o usuário tem algum pet cadastrado na sua conta
-            if ($sts->verifyUserPets($_SESSION['idusuario'])) {
-
-                $sts = new \Sts\Models\StsAgendamento();
-                $eventsArray = $sts->horariosDeConsulta();
-
-                $this->data = json_encode($eventsArray);
-
-                $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/calendar", $this->data , NULL);
-                $loadView->loadView_header3("calendarH");
-
-            } else {
-                $_SESSION['msgRed'] = "Erro. Necessário cadastrar algum pet antes de agendar uma consulta.";
-                $header = URL . "SobreCliente/Dados";
-                header("Location: {$header}");
-            }
- 
-        } else {
-            $_SESSION['msgRed'] = "Erro. Necessário cadastrar algum endereço antes de agendar uma consulta.";
-            $header = URL . "SobreCliente/Dados";
+        // verifica se o o id do servico foi passado na url
+        if (!isset($_GET['servico'])) {
+            $_SESSION['msgRed'] = "Erro: dados insuficientes.";
+            $header = URL . "Servicos/Clinica";
             header("Location: {$header}");
         }
-        
+
+        // verifica se o usuário já tem um endereço cadastrado
+        elseif (!$sts->verifyUserAdress($_SESSION['idusuario'])) {
+            $_SESSION['msgRed'] = "Erro: necessário cadastrar algum endereço antes de agendar uma consulta.";
+            $header = URL . "Home";
+            header("Location: {$header}");
+        }
+
+        // verifica se o usuário tem algum pet cadastrado na sua conta
+        elseif (!$sts->verifyUserPets($_SESSION['idusuario'])) {
+            $_SESSION['msgRed'] = "Erro: necessário cadastrar algum pet antes de agendar uma consulta.";
+            $header = URL . "Home";
+            header("Location: {$header}");
+        }
+
+        else {
+            $sts = new \Sts\Models\StsAgendamento();
+            $eventsArray = $sts->horariosDeConsulta();
+
+            $this->data = json_encode($eventsArray);
+
+            $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/calendar", $this->data , NULL);
+            $loadView->loadView_header3("calendarH");
+        }        
       
     }
 
@@ -69,6 +73,9 @@ class Agendamento{
      */
     public function agendar(): void
     {
+        if (isset($_SESSION['msgRed'])) {
+            unset($_SESSION['msgRed']);
+        }
 
         // se o dados de dia, horario e servico forem passados na URL
         if (isset($_GET['dia']) && isset($_GET['horario']) && isset($_GET['servico'])) {
@@ -146,6 +153,7 @@ class Agendamento{
             $stsSobreCliente = new \Sts\Models\StsSobreCliente();
             $sts = new \Sts\Models\StsAgendamento();
 
+            // verifica se o id da consulta realmente pertence ao cliente
             if ($stsSobreCliente->verifyIdConsultaIsFromUser($idConsulta)) {
 
                 $sti_consulta = $sts->verifySitConsulta($idConsulta);
@@ -162,6 +170,7 @@ class Agendamento{
                 
                 elseif ($sti_consulta == "Confirmado") {
 
+                    // verifica se ainda restão 24 horas antes do horario marcado (so pode cancelar ate 24 horas de antecedência)
                     if ($sts->verifyDateConsulta($dataConsulta, $horaConsulta)) {
 
                         $new_sit_consulta['sit_consulta'] = "A Cancelar";
@@ -174,11 +183,9 @@ class Agendamento{
 
                     } else {
                         $_SESSION['msgRed'] = "Erro, consulta selecionada não pode ser cancelada pois já está muito perto da data agendada"; 
-                    }
+                    } 
                     
-                }
-
-                else {
+                } else {
                     $_SESSION['msgRed'] = "Não é possivel cancelar essa consulta.";
                 } 
             } else {

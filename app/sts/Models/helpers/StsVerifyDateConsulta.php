@@ -6,6 +6,8 @@ if (!isset($_SESSION)) {
     session_start();
 } 
 
+date_default_timezone_set('America/Sao_Paulo');
+
 /**     class StsVerifyDateConsulta 
  * Nessa classe se encontra function responsaveis por verificar 
  *      dados de cadastro, como o de verificar idade (maior de 18)
@@ -79,7 +81,7 @@ class StsVerifyDateConsulta
      *      - data_consulta
      *      - idconsulta
      */
-    public function verifyDayTimeConsulta(array $data): bool
+    public function verifyDayTimeConsulta(array $data)
     {
         $count = 0; 
 
@@ -123,10 +125,10 @@ class StsVerifyDateConsulta
             }
         }
 
-        if ($count != 0)
-            return true;
-        else 
-            return false;
+        // if ($count != 0)
+        //     return true;
+        // else 
+        //     return false;
 
     }
 

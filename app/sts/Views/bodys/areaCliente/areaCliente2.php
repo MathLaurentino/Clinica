@@ -194,18 +194,22 @@ if(isset($this->data)){
     <div class="centraliza">
 
       <div class="collapse" id="agendamentos">
+
         <div class="card card-body">
 
-          <?php
-                        
-            if (!empty($this->data['agendamentos'])) {
-                for ($x = 0; $x < count($this->data['agendamentos']); $x++) {
 
-                    $agendamentos = $this->data['agendamentos'][$x];
-                    extract($agendamentos);
+          <div class="texth2"> <h2> Em Andamento </h2> <div>
+          <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
-                    $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
-                    $time = substr($horario_consulta, 0, -6);
+          <?php      
+            if (!empty($this->data['conusultaEmAndamento'])) {
+              for ($x = 0; $x < count($this->data['conusultaEmAndamento']); $x++) {
+
+                  $agendamentos = $this->data['conusultaEmAndamento'][$x];
+                  extract($agendamentos);
+
+                  $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
+                  $time = substr($horario_consulta, 0, -6);
           ?>
 
             <section class="conteudo-serviçosadm">
@@ -260,6 +264,63 @@ if(isset($this->data)){
             } else {
           ?>
             Você ainda não tem nenhum serviço agendado!
+          <?php
+            }
+          ?>
+
+
+
+          
+          <div class="texth2"> <h2> Concluidos </h2> <div>
+          <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+
+          <?php      
+            if (!empty($this->data['consultasFinalizadas'])) {
+              for ($x = 0; $x < count($this->data['consultasFinalizadas']); $x++) {
+
+                  $agendamentos = $this->data['consultasFinalizadas'][$x];
+                  extract($agendamentos);
+
+                  $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
+                  $time = substr($horario_consulta, 0, -6);
+          ?>
+
+            <section class="conteudo-serviçosadm">
+
+              <img src="<?= URLADM . IMGADMSERVICOS . $foto_servico ?>" alt="icone vacina" class="img-serviços2">
+
+              <div class="procedimentoadm">
+
+                <h2 class="título-serviço"><?= $nome_pet ?></h2>
+
+                <div class="tipoServico">
+                  <h5> <?= $nome_consulta ?> </h5>
+                </div>
+
+                <div class="data"> 
+                  <?= $day . " " . $time ?>h 00m <br>
+                  <a href="<?= URL . "Sobre-Cliente/Mais-Info-Consulta?idConsulta=" . $idconsulta?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a>
+                </div>
+
+                <div class="tipoServico">
+                  <h5> <?= $sit_consulta ?> </h5>
+                </div>
+
+                <div class="botaoCancela">   
+                  <p class="icone-check"> <i class="fa fa-check-circle-o" aria-hidden="true"></i> </p> 
+                </div>
+
+              </div>
+
+            </section>
+
+            <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+
+          <?php
+              }
+            } else {
+          ?>
+            Sem servicos concluidos
           <?php
             }
           ?>
