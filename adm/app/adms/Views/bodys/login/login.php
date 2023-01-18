@@ -1,43 +1,19 @@
-<?php
-    if(!isset($_SESSION)){ session_start(); }
+<!--CONTEÚDO PRINCIPAL-->
+<div class="main-container">
 
-    if(isset($_SESSION['msg'])){
-        echo $_SESSION['msg'] . "<br>";
-        unset($_SESSION['msg']);    
-    }
-?>
+    <div class="conteudo-principal">
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="Projeto de Conclusão de Curso - Site designado para uma clínica veterinária">
-    <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>loginstyle.css">
+        <h1 class="título">Administração</h1>
 
-    <title>Login Administração</title>
-</head>
+        <form class="form-login" method="post" action="">
+            <input type="email" placeholder="E-mail" name="email" value="maria@maria.com">
 
-<body>
-    <!--CONTEÚDO PRINCIPAL-->
-    <div class="main-container">
+            <input type="password" placeholder="Senha" name="senha_usuario" value="123">
 
-        <div class="conteudo-principal">
-
-            <h1 class="título">Administração</h1>
-
-            <form class="form-login" method="post" action="">
-                <input type="email" placeholder="E-mail" name="email" value="maria@maria.com">
-
-                <input type="password" placeholder="Senha" name="senha_usuario" value="123">
-
-                <!-- <button class="botao-adm"> login </button> --> 
-                <input  class="botao-adm" type="submit" value="Enviar" name="AddContMsg">
-            </form>
-
-        </div>
+            <!-- <button class="botao-adm"> login </button> --> 
+            <input  class="botao-adm" type="submit" value="Enviar" name="AddContMsg">
+        </form>
 
     </div>
-    
-</body>
-</html>
+
+</div>

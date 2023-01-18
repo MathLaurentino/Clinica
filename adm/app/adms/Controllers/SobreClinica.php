@@ -72,7 +72,9 @@ class SobreClinica
         }
 
         else {
-            $this->view();
+            $this->data = $modelsClinica->dadosClinica();
+            $loadView = new \Core\LoadView("adms/Views/bodys/servicosClinica/servicos", $this->data, null); //servicosadm -> pagina com css clinica
+            $loadView->loadView_headerAdm("servicosClinica/servicosH");
         }
 
     }
@@ -106,29 +108,6 @@ class SobreClinica
             $header = URLADM . "Sobre-Clinica"; 
             header("Location: {$header}");
         }
-    }
-
-
-
-    /**     function getData()
-     * Pega os dados no BD necessarios para a tela "clinica.php"
-     */
-    private function getData(): void
-    {   
-        $modelsClinica = new \Adms\Models\AdmsSobreClinica();
-        $this->data = $modelsClinica->dadosClinica();
-    }
-
-
-
-    /**
-     * Carrega a tela "clinica.php"
-     */
-    private function view(): void
-    {
-        $this->getData();
-        $loadView = new \Core\LoadView("adms/Views/servicosadm", $this->data, null); //servicosadm -> pagina com css clinica
-        $loadView->loadViewAdm();
     }
 
 }

@@ -54,29 +54,9 @@ class ConsultasAgendadas
             } 
 
         }
-         
-        $this->view("consulta");
 
-    }
-
-
-    /**     function consulta()
-     * Carrega as informaçoes extras de uma determinada consulta pelo id passada pela URL
-     */
-    public function consulta()
-    {
-        if (isset($_GET['idConsulta'])) {
-
-            $idConsulta = $_GET['idConsulta'];
-
-            $adms = new \Adms\Models\AdmsConsultasAgendadas();
-            $this->data = $adms->getFullDataConsulta($idConsulta);
-            $this->view("dadosConsulta");
-
-        } else {
-            $this->clientes();
-        }
-        
+        $loadView = new \Core\LoadView("adms/Views/bodys/consultasAgendadas/consulta", $this->data, null);
+        $loadView->loadView_headerAdm("consultasAgendadas/consultasAgendadasH");
     }
 
 
@@ -184,23 +164,5 @@ class ConsultasAgendadas
         header("Location: {$header}");
     }
 
-
-
-    
-
-    
-    /**
-     * Método chamado pelo método index da classe
-     * Carrega a view
-     */
-    private function view($page): void
-    {
-        $loadView = new \Core\LoadView("adms/Views/bodys/consultasAgendadas/{$page}", $this->data, null);
-        $loadView->loadViewAdm();
-    }
-
-
-
-
-    }
-    ?>
+}
+?>

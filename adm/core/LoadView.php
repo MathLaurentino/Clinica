@@ -27,6 +27,39 @@ class LoadView
             die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador sssssssss" . EMAILADM);
         }
     }
+
+
+    public function loadView_headerAdm($header)
+    {
+        if (file_exists('app/' . $this->nameView . '.php')){
+            
+            include 'app\adms\Views\headers/' . $header . '.php'; 
+            // include 'app\sts\Views\helpers\aviso.php';
+            // include 'app\sts\Views\helpers\cabecalho.php';
+            include 'app/' . $this->nameView . '.php';
+            include 'app/adms/views/helpers/footer.php';
+            // include 'app\sts\Views\helpers\fastTravel.php';
+
+        } else {
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 2" . EMAILADM);
+        }
+    }
+
+
+    public function loadView_Login_Adm($header)
+    {
+        if (file_exists('app/' . $this->nameView . '.php')){
+            
+            include 'app\adms\Views\headers/' . $header . '.php'; 
+            // include 'app\sts\Views\helpers\aviso.php';
+            include 'app/' . $this->nameView . '.php';
+            include 'app/adms/views/helpers/footer.php';
+
+        } else {
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 2" . EMAILADM);
+        }
+    }
+
 }
 
 ?>
