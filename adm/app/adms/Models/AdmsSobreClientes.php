@@ -100,10 +100,10 @@ class AdmsSobreClientes{
 
 
 
-    /**     function verifyTypeUser($idUser)
+    /**     function getTypeUser($idUser)
      * Retorna o tipo_usuario do id passado 
      */
-    public function verifyTypeUser($idUser): string 
+    public function getTypeUser($idUser): string 
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
         $admsSelect->fullRead("SELECT tipo_usuario
@@ -112,6 +112,22 @@ class AdmsSobreClientes{
 
         $result = $admsSelect->getResult();
         return $result[0]['tipo_usuario'];
+        
+    }
+
+
+    /**     function getSitUser($idUser)
+     * Retorna o sit_usuario do id passado 
+     */
+    public function getSitUser($idUser): string 
+    {
+        $admsSelect = new \Adms\Models\helpers\AdmsSelect();
+        $admsSelect->fullRead("SELECT sit_usuario
+                                FROM usuario 
+                                WHERE idusuario = :idusuario", "idusuario={$idUser}");
+
+        $result = $admsSelect->getResult();
+        return $result[0]['sit_usuario'];
         
     }
 }

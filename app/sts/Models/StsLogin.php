@@ -5,12 +5,12 @@ namespace Sts\Models;
 class StsLogin
 {
 
-    /**     function login()
+    /**     function getDataUser()
      * Chamda pela controller Login, serve para pegar a senha,
      *      o id e a chave estrangeira de endereco do usuário que
      *      tiver o email passado pelo $data
      */
-    public function login(array $data): array|null
+    public function getDataUser(array $data): array|null
     {
         extract($data);
         

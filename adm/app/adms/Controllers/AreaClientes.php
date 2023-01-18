@@ -50,10 +50,9 @@ class AreaClientes
 
                 $idUser = $_GET['idUser'];
                 $tipo = $_GET['tipo'];
+                $modelSobreCliente = new \Adms\Models\AdmsSobreClientes();
 
-                if ($tipo == "mantenedor" || $tipo == "cliente") {
-
-                    $modelSobreCliente = new \Adms\Models\AdmsSobreClientes();
+                if ($tipo == $modelSobreCliente->getTypeUser($idUser)) {
                     // verifica se o usuário existe && se o ususário não está com sit_usuario == Confirmando && $idUser != id mantenedorBOSS && $idUser != usuário logado
                     if ($modelSobreCliente->verifyIfUserExist($idUser) && $modelSobreCliente->verifyIfUserIsNotConfirmando($idUser) && $idUser != 1 && $_SESSION['idusuario'] != $idUser) {
 
@@ -103,8 +102,9 @@ class AreaClientes
 
             $idUser = $_GET['idUser'];
             $sit = $_GET['sit'];
+            $modelSobreCliente = new \Adms\Models\AdmsSobreClientes();
 
-            if ($sit == "Ativo" || $sit == "Inativo") {
+            if ($sit == "Ativo" || $sit == "Inativo" && $sit == $modelSobreCliente->getSitUser($idUser)) {
 
                 if ($sit == "Ativo") 
                 $converte = "Inativo";
@@ -112,8 +112,6 @@ class AreaClientes
                 elseif($sit == "Inativo")
                     $converte = "Ativo";
                     
-                $modelSobreCliente = new \Adms\Models\AdmsSobreClientes();
-
                 if ($modelSobreCliente->verifyIfUserExist($idUser) && $modelSobreCliente->verifyIfUserIsNotConfirmando($idUser) && $idUser != 1 && $_SESSION['idusuario'] != $idUser) {
 
                     $alterSit['sit_usuario'] = $converte;

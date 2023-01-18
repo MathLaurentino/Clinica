@@ -62,7 +62,7 @@ class Login{
     private function createLogin(): void
     {
         $stsLogin = new \Sts\Models\StsLogin();
-        $result = $stsLogin->login($this->dataForm);
+        $result = $stsLogin->getDataUser($this->dataForm);
 
         if (!empty($result)) {
 
@@ -76,6 +76,7 @@ class Login{
 
                     if ($this->data['tipo_usuario'] == "cliente") { // se a conta for de cliente
                         $this->sessionVars(); 
+                        $_SESSION['msgGreen'] = "Login realizado com sucesso";
                         $header = URL . "Home";
                         header("Location: {$header}");
                     } else { // se a conta for de mantenedor
@@ -84,7 +85,15 @@ class Login{
                         header("Location: {$header}");
                     }
 
-                } else {
+                } 
+                
+                elseif ($sitUser == "Inativo") {
+                    $_SESSION['msgRed'] = "Conta inativada. Entre em contato com adm para mais informações: " . EMAILADM;
+                    $header = URL . "Login";
+                    header("Location: {$header}");
+                } 
+                
+                else {
                     $_SESSION['msg'] = "Email aguardando confirmação";
                     $header = URL . "Login";
                     header("Location: {$header}");
@@ -130,8 +139,6 @@ class Login{
            depois do login já não é necessária */
         if (isset($_SESSION['email_para_verificar'])) 
             unset($_SESSION['email_para_verificar']);
-        
-        $_SESSION['msgGreen'] = "Login realizado com sucesso";
     }
 
 
