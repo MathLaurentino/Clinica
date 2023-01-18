@@ -208,7 +208,7 @@ button:hover{
 	flex-direction: row;
 	gap: 20px;
 	padding-bottom: 10px;
-	flex-basis: 55vw;
+	flex-basis: 70vw;
 
 }
 
@@ -216,8 +216,6 @@ button:hover{
 	font-family: 'Righteous', cursive;
 	font-size: 25px;
 	flex-basis: 40vw;
-
-
 }
 
 .procedimento .info{

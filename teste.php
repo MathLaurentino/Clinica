@@ -2,26 +2,39 @@
 
 date_default_timezone_set('America/Sao_Paulo');
 
-$dayTimeNow = date('d/m/Y H:i');
-$dayNow = substr($dayTimeNow, 0, 10); // 01/01/2023
-$dayNow = substr($dayNow,6) . "-" . substr($dayNow, 3, -5) . "-" . substr($dayNow, 0, -8); // 2023-01-01
-$timeNow = substr($dayTimeNow,10, -3);
+// Array com os dias da semana
+$diasemana = array('Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sabado');
 
-$dateDayNew = date_create("2023-01-13"); 
-$dateDayNow = date_create($dayNow);
-$diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
+//  Aqui podemos usar a data atual ou qualquer outra data no formato Ano-mês-dia (2014-02-28)
+$data = date('Y-m-d');
 
-$diferença = $diff->format("%a");
-$negativo = $diff->invert; // retorna 1 se o dia é passado e 0 se for presente o futuro
+//  Varivel que recebe o dia da semana (0 = Domingo, 1 = Segunda ...)
+$diasemana_numero = date('w', strtotime($data));
+
+// Exibe o dia da semana com o Array
+echo $diasemana_numero; //$diasemana[$diasemana_numero];
 
 
-//echo $diferença . " -> " . $negativo;
+// $dayTimeNow = date('d/m/Y H:i');
+// $dayNow = substr($dayTimeNow, 0, 10); // 01/01/2023
+// $dayNow = substr($dayNow,6) . "-" . substr($dayNow, 3, -5) . "-" . substr($dayNow, 0, -8); // 2023-01-01
+// $timeNow = substr($dayTimeNow,10, -3);
 
-if ($diferença != 0 && $negativo ==0 ){
-    echo "pode";
-} else {
-    echo "não pode";
-}
+// $dateDayNew = date_create("2023-01-13"); 
+// $dateDayNow = date_create($dayNow);
+// $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
+
+// $diferença = $diff->format("%a");
+// $negativo = $diff->invert; // retorna 1 se o dia é passado e 0 se for presente o futuro
+
+
+// //echo $diferença . " -> " . $negativo;
+
+// if ($diferença != 0 && $negativo ==0 ){
+//     echo "pode";
+// } else {
+//     echo "não pode";
+// }
 
 
 // $array = ['index', 'dados', 'alterarDados', 'alterarDadosPet', 'alterarDadosEndereco', 'apagarDadosPet', 'maisInfoConsulta'];

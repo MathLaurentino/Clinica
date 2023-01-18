@@ -245,7 +245,7 @@ button:hover {
 
 }
 
-.procedimento .botões {
+.procedimento .botoes {
 	font-family: 'Righteous', cursive;
 	font-size: 20px;
 	text-align: center;
@@ -511,6 +511,12 @@ button:hover {
 
 .icone-check {
 	color: rgb(27, 223, 21);
+	font-size: 2rem;
+	text-decoration: none;
+}
+
+.icone-tipo {
+	color: rgb(0, 0, 0);
 	font-size: 2rem;
 	text-decoration: none;
 }

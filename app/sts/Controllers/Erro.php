@@ -80,7 +80,7 @@ class Erro{
                 break;
             case 12:
                 $this->data['numeroErro'] = "012";
-                $this->data['descricaoErro']  = "Você não pode alterar um endereço sem antes realizar o login";
+                $this->data['descricaoErro']  = "Você não pode cadastrar um endereço sem antes realizar o login";
                 $this->data['botao'] = "Login/Usuario";
                 $this->data['descricaoBotao'] = "Ir para a tela de Login";
                 break;

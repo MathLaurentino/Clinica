@@ -31,60 +31,113 @@ class AreaClientes
         $this->data['mantenedores'] = $modelSobreCliente->getManagerUsers();
         $this->data['clientes'] = $modelSobreCliente->getClientUsers();
 
-        $loadView = new \Core\LoadView("adms/Views/sobreClientes", $this->data, null); //areaCliente
+        $loadView = new \Core\LoadView("adms/Views/bodys/areaCliente/areaCliente", $this->data, null); //areaCliente
         $loadView->loadViewAdm();
     }
 
 
+
+    /**     function alterarTipoUsuario()
+     * Muda o tipo de usuário 
+     * Cliente -> Mantenedor
+     * Mantenedor -> Cliente
+     */
     public function alterarTipoUsuario(): void
     {
-        if (isset($_GET['idUser']) && isset($_GET['tipo'])) {
+        if ($_SESSION['idusuario'] == 1) {
 
-            $idUser = $_GET['idUser'];
-            $tipo = $_GET['tipo'];
+            if (isset($_GET['idUser']) && isset($_GET['tipo'])) {
 
-            if ($tipo == "mantenedor") 
-                $converter = "cliente";
+                $idUser = $_GET['idUser'];
+                $tipo = $_GET['tipo'];
 
-            elseif($tipo == "cliente")
-                $converter = "mantenedor";
+                if ($tipo == "mantenedor" || $tipo == "cliente") {
 
-            $modelSobreCliente = new \Adms\Models\AdmsSobreClientes();
+                    $modelSobreCliente = new \Adms\Models\AdmsSobreClientes();
+                    // verifica se o usuário existe && se o ususário não está com sit_usuario == Confirmando && $idUser != id mantenedorBOSS && $idUser != usuário logado
+                    if ($modelSobreCliente->verifyIfUserExist($idUser) && $modelSobreCliente->verifyIfUserIsNotConfirmando($idUser) && $idUser != 1 && $_SESSION['idusuario'] != $idUser) {
 
-            if ($modelSobreCliente->verifyIfUserExist($idUser)) {
+                        if ($tipo == "mantenedor") {
+                            $converter = "cliente";
+                        } elseif ($tipo == "cliente") {
+                            $converter = "mantenedor";
+                        }
 
-                if ($tipo == $modelSobreCliente->verifyTypeUser($idUser)) {
-                    $tipo_usuario['tipo_usuario'] = $converter;
-                    $result = $modelSobreCliente->changeTypeUser($idUser, $tipo_usuario);
+                        $tipo_usuario['tipo_usuario'] = $converter;
 
-                    if ($result) { $_SESSION['msg'] = "Tipo usuario convertido com sucesso"; }
-                    
-                    else { $_SESSION['msg'] = "Falha ao converte tipo usuario"; } 
+                        if ($modelSobreCliente->changeUserAttributes($idUser, $tipo_usuario))
+                            $_SESSION['msg'] = "Cargo do usuario convertido com sucesso!";
+                        else
+                            $_SESSION['msg'] = "Falha ao converte tipo usuario!"; 
+        
+                    } else {
+                        $_SESSION['msg'] = "Erro, usuário inválido!";  
+                    }
 
                 } else {
-                    $_SESSION['msg'] = "Erro, dados inválidos";  
+                    $_SESSION['msg'] = "Erro, informações inválidas!";
                 }
-
+    
             } else {
-                $_SESSION['msg'] = "Erro, usuário não existe";  
+                $_SESSION['msg'] = "Erro, falta de informações!";
             }
-        } else {
-            $_SESSION['msg'] = "Erro, falta de informações";
-        }
 
+        } else {
+            $_SESSION['msg'] = "Erro, Nivel de mantenedor insuficiente!";
+        }
+        
         $header = URLADM . "AreaClientes/dados"; 
         header("Location: {$header}");
     }
 
-    
+
+
     /**
-     * Método chamado pelo método index da classe
-     * Carrega a view
+     * Altera a sit_usuario do usuário selecionado
+     * Ativo -> Inativo
+     * Inativo -> Ativo
      */
-    private function view(): void
+    public function alterarSitUsuario(): void
     {
-        $loadView = new \Core\LoadView("adms/Views/sobreClientes", $this->data, null); //areaCliente
-        $loadView->loadViewAdm();
+        if (isset($_GET['idUser']) && isset($_GET['sit'])) {
+
+            $idUser = $_GET['idUser'];
+            $sit = $_GET['sit'];
+
+            if ($sit == "Ativo" || $sit == "Inativo") {
+
+                if ($sit == "Ativo") 
+                $converte = "Inativo";
+
+                elseif($sit == "Inativo")
+                    $converte = "Ativo";
+                    
+                $modelSobreCliente = new \Adms\Models\AdmsSobreClientes();
+
+                if ($modelSobreCliente->verifyIfUserExist($idUser) && $modelSobreCliente->verifyIfUserIsNotConfirmando($idUser) && $idUser != 1 && $_SESSION['idusuario'] != $idUser) {
+
+                    $alterSit['sit_usuario'] = $converte;
+
+                    if ($modelSobreCliente->changeUserAttributes($idUser, $alterSit)) 
+                        $_SESSION['msg'] = "Sit_Usuario alterado com sucesso!"; 
+
+                    else 
+                        $_SESSION['msg'] = "Falha ao alterar Sit_Usuario!";  
+                    
+                } else {
+                    $_SESSION['msg'] = "Erro, usuário inválido!";  
+                }
+
+            } else {
+                $_SESSION['msg'] = "Erro, informações inválidas!";
+            }
+
+        } else {
+            $_SESSION['msg'] = "Erro, falta de informações!";
+        }
+
+        $header = URLADM . "AreaClientes/dados"; 
+        header("Location: {$header}");
     }
 
 

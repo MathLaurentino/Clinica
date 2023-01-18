@@ -76,7 +76,7 @@ class FotoCarteira
 
                 } else { // caso n tenha arquivo enviado, carrega a tela
                     $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/carteira", $this->data, null);
-                    $loadView->loadView_header2();
+                    $loadView->loadView_header3("files/fileHeader");
                 }
 
             } else {
@@ -114,7 +114,7 @@ class FotoCarteira
             if ($stsFotoPet->verificaDonoPet($this->id)) {
 
                 //verifica se ja existe uma foto de pet no BD
-                if (!$stsFotoPet->verificarFotoCarteira($this->id)) { 
+                if (!$stsFotoPet->verificarFotoCarteira($this->id)) { // se já existir entra no if
 
                     if (isset($_FILES['arquivo'])) { // se o usuario mandou o arquivo de foto 
 
@@ -153,14 +153,13 @@ class FotoCarteira
                             header("Location: {$header}");
                         } 
 
-                    } else { // caso n tenha arquivo enviado, carrega a tela
-                        $this->data = $stsFotoPet->getFotoPet($this->id);
-                        $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/alterarPet", $this->data, null);
-                        $loadView->loadView_header2();
+                    } else { // caso n tenha arquivo enviado, carrega a tela);
+                        $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/alterarCarteira", $this->data, null);
+                        $loadView->loadView_header3("files/fileHeader");
                     }
 
                 } else {
-                    $header = URL . "Erro?case=17"; // Erro 017
+                    $header = URL . "Erro?case=18"; // Erro 018
                     header("Location: {$header}");
                 }
 
@@ -225,7 +224,7 @@ class FotoCarteira
      */
     public function pages(): array
     {  
-        return $array = ['index','adicionar','apagar'];
+        return $array = ['index','adicionar','apagar','alterar'];
     }
 }
 

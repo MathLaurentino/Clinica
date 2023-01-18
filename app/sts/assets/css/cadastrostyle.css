@@ -7,7 +7,10 @@
 	text-decoration: none;
 }
 
+.bgColor{
+    background-color: #ECEFF1;
 
+}
 .main-container{
     display: flex;
     justify-content: center;
@@ -22,16 +25,96 @@
     align-items: center;
     background-color: white;
     border-radius: 20px;
-    width: 860px;
-    height: 78%;
+    width: 55vw;
+    height: 70vh;
     position: relative;
+}
+
+.main-container2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+    background-color: #ECEFF1;
+}
+.main-container2 .conteudoImg{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    width: 50vw;
+    height: 70vh;
+    position: relative;
+    border: 2px dotted black;
+
+}
+
+.main-container2 .conteudoPrincipal{
+    text-align: center;
+    width: 40%;
+}
+
+.conteudoPrincipal .botao{
+    font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+    cursor: pointer;
+    width: 120px;
+    align-self: center;
+    margin: 5px;
+    text-align: center;
+    
+}
+
+.colorImg{
+    font-size: 80px;
+    color: #A487D5;
+    text-decoration: none;
+}
+
+.inputImg{
+	font-family: 'Righteous', cursive;
+	background-color: rgb(35, 219, 90);
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	padding: 5px 8px;
+	align-items: center;
+    outline: 0;
+    cursor: pointer;
+}
+
+input[type="file"]{
+    display: none;
+}
+
+
+.tituloAdd{
+    font-family: 'Righteous', cursive;
+    font-size: 40px;
+    color: rgb(0, 0, 0);
+    padding-top: 5vh;
+    text-align: center;
+}
+.subtituloAdd{
+    font-family: 'Righteous', cursive;
+    font-size: 25px;
+    color: rgb(0, 0, 0);   
+    text-align: center;
+
+    
 }
 
 .main-container .conteudo::before{
     content:"";
     position:absolute;
-    background-color:#A487D5;
-    width: 40%;
+    background-color:#B9F2FE;
+    width: 50%;
     height: 100%;
     border-top-left-radius: 15px;
     border-bottom-left-radius: 15px;
@@ -47,7 +130,7 @@
 
 .main-container .primeiracoluna{
     text-align: center;
-    width: 40%;
+    width: 50%;
 }
 
 .conteudo01 .primeiracoluna{
@@ -65,6 +148,17 @@
     padding-top: 125px;
 }
 
+.primeiracoluna .imagemPet{
+    width: 25vw;
+    height: 65vh;
+    margin-top: 5vh;
+}
+
+.primeiracoluna .imagemPet2{
+    width: 22vw;
+    height: 60vh;
+    margin-top: 5vh;
+}
 .primeiracoluna .subtítulo{
     font-family: 'Open Sans', sans-serif;
     font-size: 15px;
@@ -90,40 +184,76 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 60%;
+    width: 50%;
+    height: 100%;
+    overflow: auto;
 }
 
 .segundacoluna .título{
     font-family: 'Righteous', cursive;
-    font-size: 25px;
+    font-size: 35px;
     color: black;
     padding-top: 25px;
 }
 
-.main-container .form-login{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.segundacoluna .subtítulo{
+    font-family: 'Righteous', cursive;
+    font-size: 20px;
+    color: rgb(0, 0, 0);   
+    
+}
+
+.main-container .form-cadastroPet{
+    font-family: 'Open Sans', sans-serif;
     width: 70%;
+ font-size: 20px;
+ margin-top: 4vh;
+
+}
+
+.form-cadastroPet input{
+    border: none;
+    background: none;
+    margin: 10px;
+
+}
+.center{
+    text-align: center;
+    
+}
+.padLeft{
+    padding-left: 3vw;
+}
+.main-container .form-login{
+    font-family: 'Open Sans', sans-serif;
+    width: 55%;
+    height: 40%;
+     font-size: 15px;
 }
 
 .form-login input{
-    height: 45px;
     border: none;
     background: none;
     outline: none;
     border-bottom: 2px solid black;
     font-size: 15px;
     color: black;
-    margin: 8px;
-    width: 20vw;
+    margin: 5px;
 }
+
+
+.tamanhoForm{
+    width: 15vw;
+}
+
+
+
 
 .segundacoluna .botao{
     font-family: 'Righteous', cursive;
 	font-size: 17px;
 	color: white;
-	background-color: #7DE04A;
+	background-color: #A487D5;
 	border: none;
 	padding: 8px 10px;
 	border-radius: 5px;
@@ -131,6 +261,7 @@
     width: 120px;
     align-self: center;
     margin: 5px;
+    text-align: center;
     
 }
 
@@ -155,22 +286,3 @@
     align-items: flex-start;
     position: absolute;
 }
-
-.conteudo02 .primeiracoluna{
-    order: 2;
-    z-index: -1;
-}
-
-.conteudo02 .segundacoluna{
-    order: 1;
-    z-index: -1;
-}
-
-.segundacoluna .senha{
-    font-family: 'Open Sans', sans-serif;
-    text-decoration: underline;
-    font-size: 15px;
-    color: black;
-    padding: 20px;
-}
-

@@ -55,7 +55,7 @@ class ConsultasAgendadas
 
         }
          
-        $this->view("consulta2");
+        $this->view("consulta");
 
     }
 
@@ -71,8 +71,7 @@ class ConsultasAgendadas
 
             $adms = new \Adms\Models\AdmsConsultasAgendadas();
             $this->data = $adms->getFullDataConsulta($idConsulta);
-
-            $this->view("infoExtra");
+            $this->view("dadosConsulta");
 
         } else {
             $this->clientes();
@@ -82,7 +81,7 @@ class ConsultasAgendadas
 
 
 
-    public function confirmar()
+    public function confirmarAgendamento(): void
     {
         if (isset($_GET['idConsulta'])) {
 
@@ -113,7 +112,7 @@ class ConsultasAgendadas
 
 
 
-    public function negar(): void
+    public function negarAgendamento(): void
     {
         if (isset($_GET['idConsulta'])) {
 
@@ -137,6 +136,48 @@ class ConsultasAgendadas
             
         } else {
             $_SESSION['msg'] = "Falta de dados";
+        }
+
+        $header = URLADM . "ConsultasAgendadas/clientes";
+        header("Location: {$header}");
+    }
+
+
+
+    /**     function aceitarCancelamento()
+     * 
+     */
+    public function aceitarCancelamento(): void
+    {
+        if (isset($_GET['idConsulta'])) {
+
+            $idConsulta = $_GET['idConsulta'];
+
+            $adms = new \Adms\Models\AdmsConsultasAgendadas();
+
+            if ($adms->verifyIfConsultaExist($idConsulta)) {
+
+                if ($adms->verifyIfConsultaIsACancelar($idConsulta)) {
+
+                    $sit_consulta['sit_consulta'] = "Cancelado";
+
+                    if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
+                        $_SESSION['msg'] = "Confirmação de cancelamento finalizada com sucesso";
+                        
+                    } else {
+                        $_SESSION['msg'] = "Falha ao confirmar cancelamento";
+                    } 
+
+                } else {
+                    $_SESSION['msg'] = "Sit_consulta não condiz com a função chamada";
+                }
+
+            } else {
+                $_SESSION['msg'] = "Falha ao Identificar consulta";
+            }  
+
+        } else {
+            $_SESSION['msg'] = "Erro: falta de dados";
         }
 
         $header = URLADM . "ConsultasAgendadas/clientes";

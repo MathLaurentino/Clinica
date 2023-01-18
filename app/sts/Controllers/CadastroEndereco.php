@@ -30,7 +30,7 @@ class CadastroEndereco {
      * Carrega a tela cadastroEndereco.php e cadastra os dados 
      *      referentes ao endereço do usuario
      */
-    public function endereco()
+    public function endereco(): void
     {
         if (!isset($_SESSION)) {
             session_start();

@@ -10,9 +10,11 @@
     Erro 007: Usuario tentou acessar uma pagina sem estar logado;
 ----Erro 008: Falha ao cadastrar endereço do usuario----
     Erro 009: Usuario tento acessar um action da página SobreCliente-AlterarDados que não existe
+
     Erro 010: Usuario tentou acessar alterarDadosEndereco da página SobreCliente mas não possui endereço cadastrado
     Erro 011: Usuario tentou cadastrar um endereço na conta mas já existe um endereço cadastrado na conta
-    Erro 012: Usuario tentou alterar um endereço mas ele ainda não está logado em uma conta
+    Erro 012: Usuario tentou cadastrar um endereço mas ele ainda não está logado
+
     Erro 013: Falha ao cadastrar foto do usuario ou pet
     Erro 014: Usuario tentou acessar a página de cadastro de foto de perfil mas já tem uma foto cadastrada
     Erro 015: Usuario tentou acessar a página de alterar a foto de perfil mas não tem uma foto cadastrada

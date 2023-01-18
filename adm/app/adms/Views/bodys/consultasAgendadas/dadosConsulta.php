@@ -22,44 +22,44 @@ if (isset($_SESSION['msg']) ) {
 
 <?php
 
-for ($x = 0; $x < count($this->data); $x++) {
+    for ($x = 0; $x < count($this->data); $x++) {
 
-    $consulta = $this->data[$x];
-    extract($consulta);
-    //echo "<pre>";var_dump($consulta);echo "</pre>";
+        $consulta = $this->data[$x];
+        extract($consulta);
+        //echo "<pre>";var_dump($consulta);echo "</pre>";
 
-    echo "<br><br>";
+        echo "<br><br>";
 
-    echo "<b> Data: </b>" . $data_consulta . "<br>"; 
-    echo "<b> Horario: </b>" . $horario_consulta . "<br>"; 
-    echo "<b> Descricao: </b>" . $descricao . "<br>"; 
-    echo "<b> Tipo consulta: </b>" . $tipo_consulta . "<br> "; 
-    echo "<b> Situação: </b>" . $sit_consulta . "<br>"; 
+        echo "<b> Data: </b>" . $data_consulta . "<br>"; 
+        echo "<b> Horario: </b>" . $horario_consulta . "<br>"; 
+        echo "<b> Descricao: </b>" . $descricao . "<br>"; 
+        echo "<b> Tipo consulta: </b>" . $tipo_consulta . "<br> "; 
+        echo "<b> Situação: </b>" . $sit_consulta . "<br>"; 
 
-    echo "<br><br>";
+        echo "<br><br>";
 
-    echo "<b> Nome da Consulta Marcada: </b>" . $nome_consulta . "<br>"; 
-    echo "<b> Descrição da necessidade: </b>" . $descricao_consulta . "<br>"; 
-    echo "<b> Tempo Médio da Consulta: </b>" . $tempo_medio . "<br>"; 
+        echo "<b> Tipo Marcada: </b>" . $nome_consulta . "<br>"; 
+        echo "<b> Descrição da necessidade: </b>" . $descricao_consulta . "<br>"; 
+        echo "<b> Tempo Médio da Consulta: </b>" . $tempo_medio . "<br>"; 
 
-    echo "<br><br>";
+        echo "<br><br>";
 
-    echo "<b> Nome do usuario: </b>" . $nome_usuario . "<br>"; 
-    echo "<b> Email do usuario: </b>" . $email . "<br>"; 
+        echo "<b> Nome do usuario: </b>" . $nome_usuario . "<br>"; 
+        echo "<b> Email do usuario: </b>" . $email . "<br>"; 
 
-    echo "<br><br>"; 
+        echo "<br><br>"; 
 
-    echo "<b> Nome do Pet: </b>" . $nome_pet . "<br>"; 
-    echo "<b> Idade Pet: </b>" . $idade_pet . "<br>";
-    echo "<b> Sexo Pet: </b>" . $sexo . "<br>"; 
-    echo "<b> Tipo Pet: </b>" . $tipo_pet . "<br>"; 
-    echo "<b> Raca Pet: </b>" . $raca . "<br>"; 
+        echo "<b> Nome do Pet: </b>" . $nome_pet . "<br>"; 
+        echo "<b> Idade Pet: </b>" . $idade_pet . "<br>";
+        echo "<b> Sexo Pet: </b>" . $sexo . "<br>"; 
+        echo "<b> Tipo Pet: </b>" . $tipo_pet . "<br>"; 
+        echo "<b> Raca Pet: </b>" . $raca . "<br>"; 
 
-    echo "<br><br>";
+        echo "<br><br>";
 
-    echo "<img src='" . URL . IMGCLIENTEADM . $foto_usuario . "' alt='icone vacina'>";
+        echo "<img src='" . URL . IMGCLIENTEADM . $foto_usuario . "' alt='icone vacina'>";
 
-}
+    }
 
 ?>
 

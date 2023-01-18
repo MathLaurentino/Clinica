@@ -37,7 +37,9 @@ class CadastroPet
             $this->data = $stsPet->dataPet($tipoAnimal); 
 
             $this->whichForm = "CreatePet";
-            $this->view();
+
+            $loadView = new \Core\LoadView('sts/Views/bodys/cadastroPet/cadastroPet', $this->data, $this->whichForm);
+            $loadView->loadView_header3('cadastroPet/cadastroPetH');
         }
 
         // se for enviado o formulário de cadastro do pet
@@ -53,10 +55,13 @@ class CadastroPet
             }else{ 
                 $_SESSION['msgRed'] = "Falha ao cadastrar pet, tente novamente mais tarde.";
             }
-                $header = URL . "SobreCliente/Dados";
-                header("Location: {$header}");
+
+            $header = URL . "SobreCliente/Dados";
+            header("Location: {$header}");
+
         }else{
-            $this->view();
+            $loadView = new \Core\LoadView('sts/Views/bodys/cadastroPet/cadastroPet', $this->data, $this->whichForm);
+            $loadView->loadView_header3('cadastroPet/cadastroPetH');
         }
     }
 

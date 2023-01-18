@@ -7,7 +7,7 @@
 
 <!-- <div class="tituloAdd"> Adicione foto da carteira de vacina do pet</div> -->
 
-<div class="tituloAdd"> Adicione Foto</div>
+<div class="tituloAdd"> Alterar Foto</div>
 <div class="subtituloAdd"> da carteira de vacina do pet</div>
 
 <!-- CONTEÚDO PRINCIPAL-->

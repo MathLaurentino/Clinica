@@ -26,7 +26,7 @@ class Home{
             session_destroy();
         }
         
-        $loadView = new \Core\LoadView('adms/Views/home', null, null);
+        $loadView = new \Core\LoadView('adms/Views/bodys/home/home', null, null);
         $loadView->loadViewAdm();
     }
 

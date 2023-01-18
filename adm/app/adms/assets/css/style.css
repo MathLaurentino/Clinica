@@ -565,6 +565,7 @@ button:hover {
 	margin-top: 10px;
 	width: 7vw;
 	height: 10vh;
+	border-radius: 20px;
 }
 
 .iconeEdita {
@@ -673,3 +674,79 @@ text-align: center;
 	left: 70%;
 	top: 5%;
 }
+
+.texth2 {
+	text-align: center;
+}
+
+.conteudo-principal1 {
+	border-top: 4px solid black;
+}
+
+.conteudo-principal1 .imgHomeAdm{
+	padding-left: 65vw;
+	margin-top: -10vh;
+
+}
+.conteudo-principal1 .imgHomeAdm{
+	height: 84vh;
+}
+.conteudo-principal1 .título {
+	font-family: 'Righteous', cursive;
+	font-size: 50px;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.conteudo-principal1 .subtítulo {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	text-align: center;
+}
+
+.usuariosAdm {
+	gap: 3vw;
+	padding-left: 6vw;
+	display: flex;
+	padding-top: 5vh;
+
+}
+
+.alinhaPadding2{
+	padding-left: 16.5vw;
+
+}
+
+.estilizaUsuariosAdm{
+	display: flex;
+}
+.btn-usuariosAdm {
+	font-family: 'Righteous', cursive;
+	background-color: rgb(92, 236, 123);
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	padding: 5px 8px;
+	margin-top: 3vh;
+	margin: 7px;
+}
+
+.btn-usuariosAdmBlock {
+	font-family: 'Righteous', cursive;
+	background-color: rgb(243, 94, 94);
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	padding: 5px 8px;
+	margin-top: 3vh;
+	margin: 7px;
+}
+
+
+.t-modal .modal-title {
+	padding-left: 10vw;
+	/* align-items: center; */
+}
+

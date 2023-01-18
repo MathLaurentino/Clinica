@@ -156,9 +156,9 @@ class UrlController extends Define
                 $method = $this->urlMetodo;
                 $page->$method();
             } else {
-                die("Página não encontrada");
-                // $header = URL ."Erro?case=404"; // Erro 404
-                // header("Location: {$header}");
+                //die("Página não encontrada");
+                $header = URL ."Erro?case=404"; // Erro 404
+                header("Location: {$header}");
             }
             
         } else {

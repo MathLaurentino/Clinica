@@ -32,12 +32,19 @@ class StsVerifyDateConsulta
         $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
         $result = $diff->invert; // retorna 1 se o dia da URL é passado e 0 se for presente o futuro
 
-        // se o dia da URL já é passado
+        $diasemana_numero = date('w', strtotime($dayNewEvent));
+
+        // se o dia é fim de semana
+        if ($diasemana_numero == 0 ||$diasemana_numero == 6) {
+            return FALSE;
+        }
+
+        // se o dia já é passado
         if ($result == 1) {
             return FALSE;
         }
 
-        // se o horario passado estiver fora dos horarios estabelecidos pela clinica
+        // se o horario estiver fora dos horarios estabelecidos pela clinica (das 12 as 18)
         if ($timeNewEvent < 12 || $timeNewEvent > 18) {
             return FALSE;
         }   

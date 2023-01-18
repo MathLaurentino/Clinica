@@ -39,19 +39,11 @@
                 echo "E-mail:" . "$email" ."<br>"; 
                 
                 if ($_SESSION['idusuario'] == 1) {
-                    if ($tipo_usuario == 'mantenedor' && $idusuario != '1') {
 
-                        ?>
-                            <a href='<?= URLADM ?>Area-Clientes/Alterar-Tipo-Usuario?idUser=<?= $idusuario ?>&tipo=mantenedor '> tornar cliente </a> 
-                        <?php
+                ?>
+                    <a href='<?= URLADM ?>Area-Clientes/Alterar-Tipo-Usuario?idUser=<?= $idusuario ?>&tipo=tipo_usuario '> tornar mantenedor </a>
 
-                    } elseif($tipo_usuario == 'cliente') {
-                        
-                        ?>
-                            <a href='<?= URLADM ?>Area-Clientes/Alterar-Tipo-Usuario?idUser=<?= $idusuario ?>&tipo=cliente '> tornar mantenedor </a>
-                        <?php
-
-                    }
+                <?php    
                 } 
                 echo "<br> <hr> <br>";
             }

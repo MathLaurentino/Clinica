@@ -141,7 +141,6 @@ if(isset($this->data)){
                 <img class="imgSCliente" src="<?= URL . IMG . $img_pet ?>">
 
                 <div class="form-edição2">
-                  id : <?= $idpet ?>
                   <b> Nome: </b> <?= $nome_pet ?> <br>
                   <b> Idade: </b> <?= $idade_pet ?> <br>
                   <b> Espécie: </b> <?= $tipo_pet ?> <br>
@@ -246,7 +245,10 @@ if(isset($this->data)){
                 ?>
 
                   <div class="botaoCancela">   
-                    <p class="icone-check"> <i class="fa fa-check-circle-o" aria-hidden="true"></i> </p> 
+                    <!-- <i class="fa fa-times-circle-o" aria-hidden="true"> </i> -->
+                    <!-- <i class="fa-regular fa-timer"></i> -->
+                    <p class="icone-tipo"> <i class="fa fa-clock-o" aria-hidden="true"></i> </p>
+                    <!-- <p class="icone-check"> <i class="fa-solid fa-timer" aria-hidden="true"></i> </p>  -->
                   </div>
 
                 <?php

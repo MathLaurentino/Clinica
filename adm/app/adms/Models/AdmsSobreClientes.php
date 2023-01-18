@@ -5,22 +5,23 @@ namespace Adms\Models;
 class AdmsSobreClientes{
 
 
-    /**     function changeTypeUser(array $data)
-     * Modifica a sit_usuario no banco de dados
-     *
+    /**     function changeSitUser(string $id, array $data)
+     * Muda qualquer atributo específico do usuario. 
+     * Exemplos:
+     *      $data['tipo_usuario'] = "mantenedor" OR "cliente";
+     *      $data['sit_usuario'] = "Inativo" OR "Ativo"
      */
-    public function changeTypeUser(string $id, array $data): bool
+    public function changeUserAttributes(string $id, array $data)
     {
         $admsUpdate = new \Adms\Models\helpers\AdmsUpdate();
         $admsUpdate->exeAlter('usuario', $data, 'idusuario', $id);
         $result = $admsUpdate->getResult();
 
-        if (empty($resul)) 
+        if (!empty($result)) 
             return true;
         else 
             return false;
     }
-
 
     
 
@@ -51,7 +52,7 @@ class AdmsSobreClientes{
         $admsSelect->fullRead("SELECT  idusuario, nome_usuario, tipo_usuario, email, foto_usuario, 	data_nascimento, sit_usuario
                                 FROM usuario 
                                 WHERE tipo_usuario  = 'cliente' 
-                                ORDER BY nome_usuario ASC",
+                                ORDER BY idusuario ASC",
                                 null);
 
         $userData = $admsSelect->getResult();
@@ -59,22 +60,10 @@ class AdmsSobreClientes{
     }
 
 
-    public function mostrarClientes(): array|null
-    {
-        
-        $AdmsSelect = new \Adms\Models\helpers\AdmsSelect();
-        $AdmsSelect->fullRead("SELECT  idusuario, nome_usuario, tipo_usuario, email, foto_usuario
-                                FROM usuario order by tipo_usuario DESC",null);
-
-        $userDate = $AdmsSelect->getResult();
-        if(!empty($userDate)){
-            return $userDate;//retorna um array
-        }else{
-            return null;
-        }
-    }
-
-
+    /**     function verifyIfUserExist($idUser)
+     * Verifica se o id passado realmente pertence a um usuário cadastrado no BD
+     * Retorna true se existir e false se não
+     */
     public function verifyIfUserExist($idUser): bool
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
@@ -91,6 +80,29 @@ class AdmsSobreClientes{
     }
 
 
+
+    /**     function verifyIfUserIsNotConfirmando()
+     * Verifica se a conta passada tem a sit_usuario diferente de "Confirmando"
+     */
+    public function verifyIfUserIsNotConfirmando($isUser): bool
+    {
+        $admsSelect = new \Adms\Models\helpers\AdmsSelect();
+        $admsSelect->fullRead("SELECT  sit_usuario
+                                FROM usuario 
+                                WHERE idusuario = :idusuario", "idusuario={$idUser}");
+        $sit_usuario = $admsSelect->getResult();
+
+        if ($sit_usuario[0]['sit_usuario'] != "Confirmando") 
+            return true;
+        else
+            return false;
+    }
+
+
+
+    /**     function verifyTypeUser($idUser)
+     * Retorna o tipo_usuario do id passado 
+     */
     public function verifyTypeUser($idUser): string 
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
@@ -102,63 +114,6 @@ class AdmsSobreClientes{
         return $result[0]['tipo_usuario'];
         
     }
-
-
-
-
-
-    // /**     function getUserAtivo()
-    //  * Retorna todos os usuários com sit_usuario == 'Ativo'
-    //  */
-    // public function getUserAtivo(): array|null
-    // {
-    //     $admsSelect = new \Adms\Models\helpers\AdmsSelect();
-    //     $admsSelect->fullRead("SELECT   sit_usuario, nome_usuario, tipo_usuario, email, foto_usuario, 	data_nascimento, idusuario
-    //                             FROM usuario 
-    //                             WHERE sit_usuario  = 'Ativo' 
-    //                             ORDER BY tipo_usuario DESC, nome_usuario",
-    //                             null);
-
-    //     $userData = $admsSelect->getResult();
-    //     return $userData;
-    // }
-
-
-    // /**     function getUserAtivo()
-    //  * Retorna todos os usuários com sit_usuario == 'Inativo'
-    //  */
-    // public function getUserInativo(): array|null
-    // {
-    //     $admsSelect = new \Adms\Models\helpers\AdmsSelect();
-    //     $admsSelect->fullRead("SELECT  idusuario, nome_usuario, tipo_usuario, email, foto_usuario, 	data_nascimento, sit_usuario
-    //                             FROM usuario 
-    //                             WHERE sit_usuario  = 'Inativo' 
-    //                             ORDER BY tipo_usuario DESC, nome_usuario",
-    //                             null);
-
-    //     $userData = $admsSelect->getResult();
-    //     return $userData;
-    // }
-
-
-
-    // /**     function getUserAtivo()
-    //  * Retorna todos os usuários com sit_usuario == 'Confirmando' 
-    //  */
-    // public function getUserConfirmando(): array|null
-    // {
-    //     $admsSelect = new \Adms\Models\helpers\AdmsSelect();
-    //     $admsSelect->fullRead("SELECT  idusuario, nome_usuario, tipo_usuario, email, foto_usuario, 	data_nascimento, sit_usuario
-    //                             FROM usuario 
-    //                             WHERE sit_usuario  = 'Confirmando' 
-    //                             ORDER BY nome_usuario ASC",
-    //                             null);
-
-    //     $userData = $admsSelect->getResult();
-    //     return $userData;
-    // }
-    
-
 }
 
 
