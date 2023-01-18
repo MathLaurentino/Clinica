@@ -44,7 +44,7 @@ class Login{
             $this->createLogin();
         } else { // carrega a view
             $loadView = new \Core\LoadView('sts/Views/bodys/login/login', null, null);
-            $loadView->loadView_header3('login');
+            $loadView->loadView_header('login/loginH');
         }
 
     }

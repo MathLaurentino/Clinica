@@ -24,7 +24,7 @@ class Login
 
     
     /**     function setLogin()
-     * Carrega a view, pega as infromações do usuario e 
+     * Carrega a view, pega as informações do usuario e 
      *      verifica se ele já esta logado
      */
     private function setLogin(): void
@@ -42,7 +42,6 @@ class Login
                 $header = URL . "Home";
                 header("Location: {$header}");
             } elseif ($_SESSION['tipo_usuario'] == 'mantenedor') {
-                $_SESSION['msg'] = "Você já esta logado como mantenedor";
                 $header = URLADM . "Home";
                 header("Location: {$header}");
             }   

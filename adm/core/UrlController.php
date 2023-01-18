@@ -2,6 +2,10 @@
 
 namespace Core;
 
+if(!isset($_SESSION)) {
+    session_start();
+}
+
 class UrlController extends Define
 {
     
@@ -15,8 +19,6 @@ class UrlController extends Define
 
     private string $urlSlugController;
     private string $urlSlugMetodo;
-
-
 
     /**
      * Recebe a URL do .htaccess
@@ -38,7 +40,7 @@ class UrlController extends Define
             if(isset($this->urlArray[0])) {
                 $this->urlController = $this->slugController($this->urlArray[0]);
             }else{
-                $this->urlController = CONTROLLER; //login
+                $this->urlController = CONTROLLER;
             }
 
             // Se tiver passado o método da controller na URL
@@ -49,7 +51,7 @@ class UrlController extends Define
             }
 
         }else{
-            $this->urlController = CONTROLLERERRO; //login
+            $this->urlController = CONTROLLER; 
             $this->urlMetodo = METODO; //index
         }
     }

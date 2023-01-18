@@ -200,10 +200,10 @@ class Cadastro{
     }
 
 
-    private function view() 
+    private function view(): void
     {
         $loadView = new \Core\LoadView("sts/Views/bodys/cadastros/cadastro_cliente", $this->data, null);
-        $loadView->loadView_header3("cadastro_cliente");
+        $loadView->loadView_header("cadastros/cadastro_clienteH");
     }
         
 

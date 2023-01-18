@@ -76,7 +76,7 @@ class FotoCarteira
 
                 } else { // caso n tenha arquivo enviado, carrega a tela
                     $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/carteira", $this->data, null);
-                    $loadView->loadView_header3("files/fileHeader");
+                    $loadView->loadView_header("imageFile/fileHeader");
                 }
 
             } else {
@@ -155,7 +155,7 @@ class FotoCarteira
 
                     } else { // caso n tenha arquivo enviado, carrega a tela);
                         $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/alterarCarteira", $this->data, null);
-                        $loadView->loadView_header3("files/fileHeader");
+                        $loadView->loadView_header("imageFile/fileHeader");
                     }
 
                 } else {

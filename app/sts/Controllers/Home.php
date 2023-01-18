@@ -24,7 +24,7 @@ class Home{
         }
         
         $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
-        $loadView->loadView_header('index');
+        $loadView->loadView_cabecalho('home/index');
     }
 
 

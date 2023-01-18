@@ -53,9 +53,8 @@ private array|null $dataForm; // dados que vem do formulario
 
         $this->data['conusultaEmAndamento'] = $stsSobreCliente->getDataConsultaEmAndamento();
         $this->data['consultasFinalizadas'] = $stsSobreCliente->getDataConsultasFinalizadas();
-            
-        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/areaCliente2", $this->data, null); // sobreCliente // areaCliente2
-        $loadView->loadView_header('areaCliente/areaCliente'); //sobre_cliente // areaCliente2H
+
+        $this->view('areaCliente2');
     }
 
 
@@ -104,17 +103,17 @@ private array|null $dataForm; // dados que vem do formulario
                 } else {
                     $_SESSION['msgRed'] = "CPF informado já possui cadastro no sistema";
                     $this->data = $this->dataForm;
-                    $this->view2('alterarDados');
+                    $this->view('alterarDados');
                 } 
 
             } else {
                 $this->data = $this->dataForm;
-                $this->view2('alterarDados');
+                $this->view('alterarDados');
             }
             
         } else {
             $this->getData('usuario');
-            $this->view2('alterarDados');
+            $this->view('alterarDados');
         }
     }
 
@@ -149,7 +148,7 @@ private array|null $dataForm; // dados que vem do formulario
 
             } else {
                 $this->getData('endereco');
-                $this->view2('alterarEndereco');
+                $this->view('alterarEndereco');
             }
 
         } else { 
@@ -180,7 +179,7 @@ private array|null $dataForm; // dados que vem do formulario
 
                 if (!empty($this->data['pet'])) {
                     $this->data['tipo_pet'] = $stsSobreCliente->getRaca($this->data['pet'][0]['tipo_pet']);
-                    $this->view2('alterarPet2');
+                    $this->view('alterarPet2');
                 } else {
                     $_SESSION['msgRed'] = "Erro, dados incorretos";
                     $header = URL . "Sobre-Cliente/Dados"; 
@@ -270,7 +269,7 @@ private array|null $dataForm; // dados que vem do formulario
             if ($stsCliente->verifyIdConsultaIsFromUser($idConsulta)) {
 
                 $this->data = $stsCliente->getFullDataConsulta($idConsulta);
-                $this->view2('maisInfo');
+                $this->view('maisInfo');
 
             } else {
                 $_SESSION['msgRed'] = "Erro, dados incongruentes";
@@ -307,18 +306,12 @@ private array|null $dataForm; // dados que vem do formulario
     }
 
 
-    
+
 
     private function view(string $view): void
     {
         $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/" . $view, $this->data, null);
-        $loadView->loadView_header2();
-    }
-
-    private function view2(string $view): void
-    {
-        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/" . $view, $this->data, null);
-        $loadView->loadView_header3("alterarDados");
+        $loadView->loadView_header3("areaCliente/alterarDadosH");
     }
 
 

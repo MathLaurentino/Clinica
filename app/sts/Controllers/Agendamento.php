@@ -60,7 +60,7 @@ class Agendamento{
             $this->data = json_encode($eventsArray);
 
             $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/calendar", $this->data , NULL);
-            $loadView->loadView_header3("calendarH");
+            $loadView->loadView_header("agendamento/calendarH");
         }        
       
     }
@@ -91,35 +91,40 @@ class Agendamento{
             if ($stsVerifyDate->varificarData($dayNewEvent, $timeNewEvent) && $sts->idServicoExiste($idServico)) {
 
                 $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-                
-                // se não mandou o formulário de agendar servico, então carrega a tela de agendamento
-                if (!isset($this->dataForm['agendar'])) {
 
-                    $this->data['servico'] = $sts->servicoClinica($idServico);
-                    $this->data['servico'] = $this->data['servico'][0];
-                    $this->data['pets'] = $sts->userPets($_SESSION['idusuario']);
-                    
-                    $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/agendamento", $this->data , NULL);
-                    $loadView->loadView_header("agendamentoH");
-                
                 // caso já tenha mandado o formulário de agendar servico, cadastre a consulta no banco de dados
-                // a nova consulta por padrão aperecera como "AConfirmar" no BD
-                } else {
-
+                // a nova consulta por padrão aperecera como "A Confirmar" no BD
+                if (isset($this->dataForm['agendar'])) {
                     unset($this->dataForm['agendar']);
                     
                     $idconsulta = $sts->salvarServico($this->dataForm);
 
                     if (!empty($idconsulta)) {
-                        $_SESSION['msgGreen'] = "Consulta agendada com sucesso, aguarde a confirmação da clinica.";
+                        $_SESSION['msgGreen'] = "Consulta agendada com sucesso, aguarde a confirmação da clinica!";
                         $header = URL . "SobreCliente";
                         header("Location: {$header}");
                     } else {
-                        $_SESSION['msgRed'] = "Falha ao agendar servico, tente novamente.";
+                        $_SESSION['msgRed'] = "Falha ao agendar servico, tente novamente mais tarde!";
                         $header = URL . "Servicos";
                         header("Location: {$header}");
                     }
+                }
 
+                elseif (isset($this->dataForm['cancelar'])) {
+                    unset($this->dataForm);
+                    $_SESSION['msgGreen'] = "Solicitação de agendamento cancelada com sucesso!";
+                    $header = URL . "Servicos";
+                    header("Location: {$header}");
+                }
+                
+                // se não mandou o formulário de agendar nem de cancelar servico, então carrega a tela de agendamento
+                else {
+                    $this->data['servico'] = $sts->servicoClinica($idServico);
+                    $this->data['servico'] = $this->data['servico'][0];
+                    $this->data['pets'] = $sts->userPets($_SESSION['idusuario']);
+                    
+                    $loadView = new \Core\LoadView("sts/Views/bodys/agendamento/agendamento", $this->data , NULL);
+                    $loadView->loadView_header("agendamento/agendamentoH"); 
                 }
                 
             } else {

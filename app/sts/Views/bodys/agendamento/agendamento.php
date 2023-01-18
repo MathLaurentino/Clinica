@@ -1,54 +1,67 @@
-<?php
+<!--CONTEÚDO PRINCIPAL-->
+<main class="conteudo-principal"> 
 
-    if(!isset($_SESSION)){
-        session_start();
-    }
-    
-    if(isset($_SESSION['msg']))
-    {
-        echo $_SESSION['msg'] . "<br>"; 
-        unset($_SESSION['msg']);   
-    }
+    <h1 class="título">Agendamento</h1>
+    <p class="subtítulo">confira se todas as informações estão corretas</p>
 
-    echo "<pre>"; var_dump($this->data); echo "</pre>";
+    <section class="linha-agendamento"> 
+        <!--Informações Tutor + Pet-->
 
-?>
+        <div class="info-principal">
+            <b> Nome tutor: </b><?= $_SESSION['nome_usuario'] ?> <br>
+            <b> E-mail: </b> <?= $_SESSION['email_usuario'] ?> <br>
+        </div>
 
-<br> 
+        <!--Resumo do Agendamento-->
+        <div class="info-agendamento">
+            <p class="título-agen"> Resumo do Agendamento </p>
+            <strong> <?= $this->data['servico']['nome_consulta'] ?> </strong> <br> 
 
-Servico selecionado: <?= $this->data['servico']['nome_consulta'] ?> <br>
-Valor consulta: <?= $this->data['servico']['valor_consulta'] . "R$" ?> <br>
-Tempo médio: <?= substr($this->data['servico']['tempo_medio'], 0, -6) . "h" ?> <br> <br>
+            <strong> <?= $_GET['dia'] ?>  <?= $_GET['horario'] . "h 00m" ?> </strong> <br> 
+            <strong> <?= $this->data['servico']['valor_consulta'] ?>R$ </strong>
+        </div>
 
-<form method="post" action="">
+    </section>
 
-    <input type="hidden" name="data_consulta" value="<?= $_GET['dia'] ?>">
+    <br>
 
-    <input type="hidden" name="horario_consulta" value="<?= $_GET['horario'] . ":00:00"?>">
 
-    <input type="hidden" name="tipo_consulta" value="<?= $_GET['servico'] ?>">
+    <!--FORMULÁRIO-->
+    <form method="post" action="" class="info-descrição"> 
 
-    
-    <select name="pet">
-        <?php  
-            $pets = $this->data['pets'];
-            for ($x = 0; $x < count($pets); $x++) {
-                $pet = $pets[$x];
-                extract($pet);
-                echo "<option value='$idpet'>$nome_pet</option>";
-                //var_dump($pet);
-            }   
-        ?>
-    </select> <br> <br>
+        <input type="hidden" name="data_consulta" value="<?= $_GET['dia'] ?>">
+        <input type="hidden" name="horario_consulta" value="<?= $_GET['horario'] . ":00:00"?>">
+        <input type="hidden" name="tipo_consulta" value="<?= $_GET['servico'] ?>">
+        
+        <div class="petescolhido"> 
+            Nome pet: 
+            <select name="pet" size="" >
 
-    Descreva o motivo da consulta para o seu pet: <br>
-    <textarea name="descricao"> </textarea>  <br>
+                <i class="fa-solid fa-sort-down"></i> 
+                    <!--pets cadastrados pelo usuário: pode ser um ou vários-->
+                <?php  
+                    $pets = $this->data['pets'];
+                    for ($x = 0; $x < count($pets); $x++) {
+                        $pet = $pets[$x];
+                        extract($pet);            
+                ?>
+                    <option value='<?= $idpet ?>'><?= $nome_pet ?></option>
+                <?php
+                    }
+                ?>
 
-    
+            </select>
+        </div> 
 
-    <input name="agendar" type="submit" value="agendar">
+        <!--Descrição Opcional-->
+        <div class="form-group">
+            <label class="título-desc">Descrição Opcional: </label>
+            <textarea name="descricao" rows="4" cols="4" class="form-control"> Se desejar descreva o motivo do agendamento</textarea>
+        </div>
 
-</form>
+        <input type="submit" name="agendar" value="CONFIRMAR" class="botão-confi">
+        <input type="submit" name="cancelar" value="CANCELAR" class="botão-canc"> 
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </form>
+
+</main>

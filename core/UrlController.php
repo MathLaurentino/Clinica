@@ -17,7 +17,6 @@ class UrlController extends Define
     private string $urlSlugMetodo;
 
 
-
     /**
      * Recebe a URL do .htaccess
      * Validar a URL
@@ -162,9 +161,9 @@ class UrlController extends Define
             }
             
         } else {
-            die("Página não encontrada");
-            // $header = URL ."Erro?case=404"; // Erro 404
-            // header("Location: {$header}");
+            //die("Página não encontrada");
+            $header = URL ."Erro?case=404"; // Erro 404
+            header("Location: {$header}");
         }
     }
 }

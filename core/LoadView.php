@@ -14,30 +14,23 @@ class LoadView
     }
     
 
-    /**     function loadView()
-     * Carrega a view requerida pela controller
+
+    /**
+     * Carrega a tela juntamente com o seu respequitivo header
+     * Adiciona também: 
+     *  'helpers\cabecalho.php'
+     *  'helpers\alerts.php'
+     *  'helpers\footer.php''
      */
-    public function loadView(): void
-    {
-        if (file_exists('app/' . $this->nameView . '.php')){
-    
-            include 'app/' . $this->nameView . '.php';
-
-        } else {
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 1" . EMAILADM);
-        }
-    }
-
-
-    public function loadView_header($header)
+    public function loadView_cabecalho($header)
     {
         if (file_exists('app/' . $this->nameView . '.php')){
             
             include 'app\sts\Views\headers/' . $header . '.php'; 
-            include 'app\sts\Views\helpers\aviso.php';
+            include 'app\sts\Views\helpers\alerts.php';
             include 'app\sts\Views\helpers\cabecalho.php';
             include 'app/' . $this->nameView . '.php';
-            include 'app/sts/views/footer.php';
+            include 'app\sts\views\helpers\footer.php';
             include 'app\sts\Views\helpers\fastTravel.php';
 
         } else {
@@ -45,7 +38,34 @@ class LoadView
         }
     }
 
-    public function loadView_header2()
+
+
+    /**
+     * Carrega a tela juntamente com o seu respequitivo header
+     * Adiciona também: 
+     *  'helpers\alerts.php'
+     *  'helpers\footer.php''
+     */
+    public function loadView_header($header)
+    {
+        if (file_exists('app/' . $this->nameView . '.php')){
+            
+            include 'app\sts\Views\headers/' . $header . '.php'; 
+            include 'app\sts\Views\helpers\alerts.php';
+            include 'app/' . $this->nameView . '.php';
+            include 'app\sts\views\helpers\footer.php';
+
+        } else {
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 2" . EMAILADM);
+        }
+    }
+
+
+
+    /**
+     * Sem header definido
+     */
+    public function loadView_header2() // cadastroEndereco, confirmarEmail, erro, sobreCliente/infoConsulta
     {
         if (file_exists('app/' . $this->nameView . '.php')){
             
@@ -59,15 +79,6 @@ class LoadView
             die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 3" . EMAILADM);
         }
     }
-
-
-    public function loadView_header3($header)
-    {
-        include 'app\sts\Views\headers/' . $header . '.php'; 
-        include 'app\sts\Views\helpers\aviso.php';
-        include 'app/' . $this->nameView . '.php';
-        include 'app/sts/views/footer.php';
-    } 
 
 }
 

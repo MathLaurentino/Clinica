@@ -18,13 +18,19 @@ class Servicos{
         $this->clinica();
     }
 
-    public function clinica()
+
+
+    /**     function clinica()
+     * Pega as informações da tabela tipo_consulta (os seriços ofertados pela clinica)
+     * Após isso carrega a página servicos
+     */
+    public function clinica(): void
     {
         $servico = new \Sts\Models\StsServicos();
         $this->data = $servico->dataServicos();
 
         $loadView = new \Core\LoadView("sts/Views/bodys/servicos/servicos", $this->data, null);
-        $loadView->loadView_header('servicos');
+        $loadView->loadView_cabecalho('servicos/servicosH');
     }
 
 

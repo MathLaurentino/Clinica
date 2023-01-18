@@ -82,7 +82,7 @@ class FotoPet
 
                     } else { // caso n tenha arquivo enviado, carrega a tela
                         $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/pet", $this->data, null);
-                        $loadView->loadView_header3("files/fileHeader");
+                        $loadView->loadView_header("imageFile/fileHeader");
                     }
 
                 } else {
@@ -164,7 +164,7 @@ class FotoPet
                     } else { // caso n tenha arquivo enviado, carrega a tela
                         $this->data = $stsFotoPet->getFotoPet($this->id);
                         $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/alterarPet", $this->data, null);
-                        $loadView->loadView_header3("files/fileHeader");
+                        $loadView->loadView_header("imageFile/fileHeader");
                     }
 
                 } else {

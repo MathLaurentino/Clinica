@@ -39,7 +39,7 @@ class CadastroPet
             $this->whichForm = "CreatePet";
 
             $loadView = new \Core\LoadView('sts/Views/bodys/cadastroPet/cadastroPet', $this->data, $this->whichForm);
-            $loadView->loadView_header3('cadastroPet/cadastroPetH');
+            $loadView->loadView_header('cadastroPet/cadastroPetH');
         }
 
         // se for enviado o formulário de cadastro do pet
@@ -61,20 +61,8 @@ class CadastroPet
 
         }else{
             $loadView = new \Core\LoadView('sts/Views/bodys/cadastroPet/cadastroPet', $this->data, $this->whichForm);
-            $loadView->loadView_header3('cadastroPet/cadastroPetH');
+            $loadView->loadView_header('cadastroPet/cadastroPetH');
         }
-    }
-
-
-
-    /**     function view()
-     * Function para carregar a view cadastroPet 
-     *      por meio de um OBJ LoadView
-     */
-    private function view(): void
-    {
-        $loadView = new \Core\LoadView('sts/Views/cadastroPet', $this->data, $this->whichForm);
-        $loadView->loadView();
     }
 
 

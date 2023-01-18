@@ -93,7 +93,7 @@ class FotoUsuario
 
         // se o usuario ainda não mandou o arquivo da foto
         elseif (!isset($_FILES['arquivo'])) {
-            $this->view("alteraFotoUsuario"); // carrega a view 
+            $this->view("alterarUsuario"); // carrega a view 
         }
         
         else { // caso tenha enviado o arquivo file e já tenha uma foto cadastrada
@@ -182,7 +182,7 @@ class FotoUsuario
     private function view($view) 
     {
         $loadView = new \Core\LoadView("sts/Views/bodys/imageFile/" . $view, $this->data, null);
-        $loadView->loadView_header3('files/fileHeader');
+        $loadView->loadView_header('imageFile/fileHeader');
     }
 
     /**     function pages()

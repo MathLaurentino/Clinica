@@ -31,6 +31,7 @@ body {
 
 .cabecalho-principal .img {
 	height: 65px;
+
 }
 
 .cabecalho-principal .menu {
@@ -140,9 +141,9 @@ button:hover {
 	flex-direction: column;
 }
 
-.corpoclinico .descricao{
+.corpoclinico .descricao {
 	text-align: left;
-	
+
 
 }
 
@@ -567,7 +568,7 @@ button:hover {
 
 }
 
-.conteudo-principal .dadospet{
+.conteudo-principal .dadospet {
 	display: flex;
 	font-size: 17px;
 	font-family: 'Open Sans', sans-serif;
@@ -575,9 +576,10 @@ button:hover {
 
 }
 
-.cabecalho-principal .inputsexo{
-	width: 20px;;
-	height: 25px; 
+.cabecalho-principal .inputsexo {
+	width: 20px;
+	;
+	height: 25px;
 }
 
 
@@ -597,15 +599,17 @@ button:hover {
 .iconeEdita {
 	font-size: 25px;
 	color: #7d59ff;
-;
+	;
 }
+
 a,
 a:hover,
 a:active,
 a:link,
-a:visited{
+a:visited {
 	text-decoration: none;
 }
+
 .form-edição input {
 	height: 7vh;
 	border: none;
@@ -642,6 +646,7 @@ a:visited{
 	font-weight: bolder;
 
 }
+
 .btn-addPet {
 	font-family: 'Righteous', cursive;
 	background-color: rgb(35, 219, 90);
@@ -655,7 +660,7 @@ a:visited{
 
 .btn-alterarDados {
 	font-family: 'Righteous', cursive;
-	background-color:#A487D5;
+	background-color: #A487D5;
 	border: none;
 	border-radius: 5px;
 	color: #fff;
@@ -665,7 +670,7 @@ a:visited{
 	margin-top: 3vh;
 }
 
-.alinhaPadding{
+.alinhaPadding {
 	padding-left: 20vw;
 
 }
@@ -685,20 +690,21 @@ a:visited{
 }
 
 
-.fundoBody{
+.fundoBody {
 	background-color: rgb(247, 247, 247);
 }
 
-.centraliza{
+.centraliza {
 	width: 90vw;
 	padding-left: 10vw;
 }
 
-.center{
+.center {
 	text-align: center;
 }
-.center2{
-text-align: center;
+
+.center2 {
+	text-align: center;
 }
 
 
@@ -715,8 +721,28 @@ text-align: center;
 	width: 165px;
 	align-self: center;
 	margin: 6px;
-	
+
 }
+
+.conteudo-principal .botaoEnviar {
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 5px 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 7vw;
+	align-self: center;
+	margin: 7vh;
+}
+
+.botaoEnviar:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
 
 .conteudo-principal .img-donopet {
 	position: absolute;
@@ -730,32 +756,45 @@ text-align: center;
 	top: 5%;
 }
 
-/* ESTILIZAÇÃO TELA DE RESUMO DE AGENDAMENTO*/ 
+.conteudo-principal .img-pet08 {
+	position: absolute;
+	left: 70.1vw;
+	top: 5.7vh;
+}
 
-.conteudo-principal .linha-agendamento{
+/* ESTILIZAÇÃO TELA DE RESUMO DE AGENDAMENTO*/
+
+.conteudo-principal .linha-agendamento {
 	display: flex;
 	align-items: baseline;
-	column-gap: 600px;
+	column-gap: 750px;
 }
 
 .info-principal {
 	display: flex;
-	justify-content: flex-start;	
+	justify-content: flex-start;
 	flex-direction: column;
 	padding-top: 40px;
-	padding-inline-start: 70px;
+	padding-inline-start: 80px;
 	font-family: 'Open Sans', sans-serif;
 	font-size: 25px;
 }
 
-select{
+.info-descrição .petescolhido {
+	display: flex;
+	align-items: flex-start;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	margin-left: 80px;
+}
+
+select {
 	background-color: white;
 	border: none;
 }
- 
 
 
-.info-agendamento .título-agen{
+.info-agendamento .título-agen {
 	display: flex;
 	justify-content: flex-end;
 	font-family: 'Open Sans', sans-serif;
@@ -763,39 +802,198 @@ select{
 	text-decoration: underline;
 }
 
-.info-descrição{
+.info-descrição {
 	text-align: center;
 }
 
-.info-descrição .título-desc{
+.info-descrição .título-desc {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 25px;
 	font-weight: bold;
 	text-align: center;
 }
 
-.botão-confi{
+.botão-confi {
 	font-family: 'Righteous', cursive;
 	font-size: 20px;
 	color: white;
 	background-color: #7DE04A;
 	border: none;
 	padding: 8px 10px;
-    cursor: pointer;
-    width: 130px;
-    align-self: center;
+	cursor: pointer;
+	width: 130px;
+	align-self: center;
 	margin: 10px;
 }
 
-.botão-canc{
+.botão-canc {
 	font-family: 'Righteous', cursive;
 	font-size: 20px;
 	color: white;
 	background-color: #FF0000;
 	border: none;
 	padding: 8px 10px;
-    cursor: pointer;
-    width: 130px;
-    align-self: center;
+	cursor: pointer;
+	width: 130px;
+	align-self: center;
 	margin: 10px;
+}
+
+
+/************* apos edit****************/
+
+.conteudo-principal1 {
+	border-top: 4px solid black;
+}
+
+.conteudo-principal1 .imgHomeAdm {
+	padding-left: 65vw;
+	margin-top: -23vh;
+
+}
+
+.conteudo-principal1 .imgHomeAdm {
+	height: 84vh;
+}
+
+.conteudo-principal1 .título {
+	font-family: 'Righteous', cursive;
+	font-size: 50px;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.conteudo-principal1 .subtítulo {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	text-align: center;
+}
+
+.usuariosAdm {
+	gap: 3vw;
+	padding-left: 6vw;
+	display: flex;
+	padding-top: 5vh;
+
+}
+
+.alinhaPadding2 {
+	padding-left: 16.5vw;
+
+}
+
+.estilizaUsuariosAdm {
+	display: flex;
+}
+
+.btn-usuariosAdm {
+	font-family: 'Righteous', cursive;
+	background-color: rgb(92, 236, 123);
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	padding: 5px 8px;
+	margin-top: 3vh;
+	margin: 7px;
+}
+
+.btn-usuariosAdmBlock {
+	font-family: 'Righteous', cursive;
+	background-color: rgb(243, 94, 94);
+	border: none;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 20px;
+	padding: 5px 8px;
+	margin-top: 3vh;
+	margin: 7px;
+}
+
+
+/************** css tela alterar dados pet ***********/
+.tamanhoForm {
+	width: 20vw;
+	height: 3vh;
+}
+
+.center {
+	text-align: center;
+
+}
+
+
+
+.conteudo-principal4 .form-edição4 {
+	font-family: 'Open Sans', sans-serif;
+	width: 55%;
+	height: 40%;
+	font-size: 18px;
+	text-align: center;
+	margin-top: 10vh;
+}
+
+.form-edição4 input {
+	
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+	/*margin: 0px;*/
+}
+
+.conteudo-principal4 .form-email {
+	font-family: 'Open Sans', sans-serif;
+
+}
+
+.form-email input {
+	margin-top: 30vh;
+	border: none;
+	width: 30vw;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+}
+
+
+.conteudo-principal4 {
+	border-top: 4px solid black;
+}
+
+.conteudo-principal4 .título {
+	font-family: 'Righteous', cursive;
+	font-size: 50px;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.conteudo-principal4 .subtítulo {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	text-align: center;
+}
+.conteudo-principal4 .img-pet {
+	position: absolute;
+	left: 68vw;
+	top: 11vh;
+}
+
+.conteudo-principal4 .botao {
+	font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 165px;
+	align-self: center;
+	margin: 6px;
+
 }
