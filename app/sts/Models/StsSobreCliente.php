@@ -76,7 +76,7 @@ class StsSobreCliente
     /**     function getBasicDataConsultas()
      * Retorna o historico de agendamonto do  cliente logado
      */
-    public function getBasicDataConsultas(): array|null
+    public function getBasicDataConsultas($idUsuario): array|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead( "SELECT c.idconsulta, c.data_consulta, c.horario_consulta, c.sit_consulta,
@@ -90,19 +90,20 @@ class StsSobreCliente
                                 INNER JOIN usuario AS u 
                                 ON p.usuario = u.idusuario
                                 WHERE u.idusuario = :idusuario
-                                ORDER BY c.data_consulta", "idusuario={$_SESSION['idusuario']}");
+                                ORDER BY c.data_consulta", "idusuario={$idUsuario}");
         
         return $stsSelect->getResult();
     }
 
 
 
-    public function getDataConsultaEmAndamento(): array|null
+    public function getDataConsultaEmAndamento($idUsuario): array|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead( "SELECT c.sit_consulta, c.idconsulta, c.data_consulta, c.horario_consulta,
                                 t.nome_consulta, t.tempo_medio, t.valor_consulta, t.foto_servico,
-                                p.nome_pet
+                                p.nome_pet,
+                                u.idusuario
                                 FROM consulta as c
                                 INNER JOIN tipo_consulta as t
                                 ON c.tipo_consulta = t.idtipo_consulta
@@ -111,17 +112,18 @@ class StsSobreCliente
                                 INNER JOIN usuario AS u 
                                 ON p.usuario = u.idusuario
                                 WHERE u.idusuario = :idusuario
-                                AND c.sit_consulta = 'A Confirmar'
-                                OR  c.sit_consulta = 'Confirmado'
-                                OR  c.sit_consulta = 'A Cancelar'
-                                ORDER BY c.data_consulta", "idusuario={$_SESSION['idusuario']}");
+                                AND c.sit_consulta != 'Concluido'
+                                AND  c.sit_consulta != 'Cancelado'
+                                AND  c.sit_consulta != 'Negado'
+                                AND  c.sit_consulta != 'Indeferido'
+                                ORDER BY c.data_consulta", "idusuario={$idUsuario}");
         
         return $stsSelect->getResult();
     }
 
 
 
-    public function getDataConsultasFinalizadas(): array|null
+    public function getDataConsultasFinalizadas($idUsuario): array|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead( "SELECT c.sit_consulta, c.idconsulta, c.data_consulta, c.horario_consulta,
@@ -138,7 +140,7 @@ class StsSobreCliente
                                 AND c.sit_consulta != 'A Confirmar'
                                 AND  c.sit_consulta != 'Confirmado'
                                 AND  c.sit_consulta != 'A Cancelar'
-                                ORDER BY c.data_consulta", "idusuario={$_SESSION['idusuario']}");
+                                ORDER BY c.data_consulta", "idusuario={$idUsuario}");
         
         return $stsSelect->getResult();
     }
@@ -226,7 +228,7 @@ class StsSobreCliente
     /**     function verifyIdConsultaIsFromUser($idConsulta)
      * Verifica se a consulta passada pertence ao cliente que está logado
      */
-    public function verifyIdConsultaIsFromUser($idConsulta): bool
+    public function verifyIdConsultaIsFromUser($idConsulta)
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead("SELECT u.idusuario

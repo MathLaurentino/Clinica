@@ -42,26 +42,19 @@ private array|null $dataForm; // dados que vem do formulario
             $this->data['adress'] = $stsSobreCliente->userAdress(); 
         }
 
-        if ($this->verifyIfUserHasAPet()) {
+        if ($stsSobreCliente->verifyIfPetExist()) {
             $this->data['pet'] = $stsSobreCliente->userPet();
         }
         
-        $this->data['agendamentos'] = $stsSobreCliente->getBasicDataConsultas();
+        $this->data['agendamentos'] = $stsSobreCliente->getBasicDataConsultas($_SESSION['idusuario']);
         $stsVerifyDate->verifyDayTimeConsulta($this->data['agendamentos']);
-        $this->data['agendamentos'] = $stsSobreCliente->getBasicDataConsultas();
-        //unset($this->data['agendamentos']);
+        unset($this->data['agendamentos']);
 
-        $this->data['conusultaEmAndamento'] = $stsSobreCliente->getDataConsultaEmAndamento();
-        $this->data['consultasFinalizadas'] = $stsSobreCliente->getDataConsultasFinalizadas();
+        $this->data['conusultaEmAndamento'] = $stsSobreCliente->getDataConsultaEmAndamento($_SESSION['idusuario']);
+        $this->data['consultasFinalizadas'] = $stsSobreCliente->getDataConsultasFinalizadas($_SESSION['idusuario']);
 
-        $this->view('areaCliente2');
-    }
-
-
-    private function verifyIfUserHasAPet(): bool
-    {
-        $stsSobreCliente = new \Sts\Models\StsSobreCliente();
-        return $stsSobreCliente->verifyIfPetExist();
+        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/areaCliente2", $this->data, null);
+        $loadView->loadView_cabecalho("areaCliente/areaClienteH");
     }
 
 
@@ -266,6 +259,7 @@ private array|null $dataForm; // dados que vem do formulario
             $idConsulta = $_GET['idConsulta'];
 
             $stsCliente = new \Sts\Models\StsSobreCliente();
+
             if ($stsCliente->verifyIdConsultaIsFromUser($idConsulta)) {
 
                 $this->data = $stsCliente->getFullDataConsulta($idConsulta);
@@ -311,7 +305,7 @@ private array|null $dataForm; // dados que vem do formulario
     private function view(string $view): void
     {
         $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/" . $view, $this->data, null);
-        $loadView->loadView_header3("areaCliente/alterarDadosH");
+        $loadView->loadView_cabecalho("areaCliente/alterarDadosH");
     }
 
 

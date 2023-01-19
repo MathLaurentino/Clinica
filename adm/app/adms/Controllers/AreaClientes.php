@@ -65,24 +65,24 @@ class AreaClientes
                         $tipo_usuario['tipo_usuario'] = $converter;
 
                         if ($modelSobreCliente->changeUserAttributes($idUser, $tipo_usuario))
-                            $_SESSION['msg'] = "Cargo do usuario convertido com sucesso!";
+                            $_SESSION['msgGreen'] = "Cargo do usuario convertido com sucesso!";
                         else
-                            $_SESSION['msg'] = "Falha ao converte tipo usuario!"; 
+                            $_SESSION['msgRed'] = "Falha ao converte tipo usuario!"; 
         
                     } else {
-                        $_SESSION['msg'] = "Erro, usuário inválido!";  
+                        $_SESSION['msgRed'] = "Erro, usuário inválido!";  
                     }
 
                 } else {
-                    $_SESSION['msg'] = "Erro, informações inválidas!";
+                    $_SESSION['msgRed'] = "Erro, informações inválidas!";
                 }
     
             } else {
-                $_SESSION['msg'] = "Erro, falta de informações!";
+                $_SESSION['msgRed'] = "Erro, falta de informações!";
             }
 
         } else {
-            $_SESSION['msg'] = "Erro, Nivel de mantenedor insuficiente!";
+            $_SESSION['msgRed'] = "Erro, Nivel de mantenedor insuficiente!";
         }
         
         $header = URLADM . "AreaClientes/dados"; 
@@ -117,21 +117,21 @@ class AreaClientes
                     $alterSit['sit_usuario'] = $converte;
 
                     if ($modelSobreCliente->changeUserAttributes($idUser, $alterSit)) 
-                        $_SESSION['msg'] = "Sit_Usuario alterado com sucesso!"; 
+                        $_SESSION['msgGreen'] = "Sit_Usuario alterado com sucesso!"; 
 
                     else 
-                        $_SESSION['msg'] = "Falha ao alterar Sit_Usuario!";  
+                        $_SESSION['msgRed'] = "Falha ao alterar Sit_Usuario!";  
                     
                 } else {
-                    $_SESSION['msg'] = "Erro, usuário inválido!";  
+                    $_SESSION['msgRed'] = "Erro, usuário inválido!";  
                 }
 
             } else {
-                $_SESSION['msg'] = "Erro, informações inválidas!";
+                $_SESSION['msgRed'] = "Erro, informações inválidas!";
             }
 
         } else {
-            $_SESSION['msg'] = "Erro, falta de informações!";
+            $_SESSION['msgRed'] = "Erro, falta de informações!";
         }
 
         $header = URLADM . "AreaClientes/dados"; 

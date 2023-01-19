@@ -38,7 +38,7 @@ class Login
         if (isset($_SESSION['tipo_usuario'])) {
 
             if ($_SESSION['tipo_usuario'] == 'cliente') {
-                $_SESSION['msg'] = "Não é possivel fazer login como administrador";
+                $_SESSION['msgRed'] = "Não é possivel fazer login como administrador";
                 $header = URL . "Home";
                 header("Location: {$header}");
             } elseif ($_SESSION['tipo_usuario'] == 'mantenedor') {
@@ -86,22 +86,23 @@ class Login
 
                 if ($tipo_usuario == "mantenedor") { // se a conta for de mantenedor
                     $this->sessionVars();
+                    $_SESSION['msgGreen'] = "Login realizado com sucesso";
                     $header = URLADM . "Home";
                     header("Location: {$header}");
                 } else { // se a conta for de cliente
-                    $_SESSION['msg'] = "Essa conta não possui registro como ADM";
+                    $_SESSION['msgRed'] = "Essa conta não possui registro como ADM!";
                     $header = URLADM . "Login";
                     header("Location: {$header}");
                 }
     
             } else { // se a senha estiver errada 
-                $_SESSION['msg'] = "Email ou senha incorreta2";
+                $_SESSION['msgRed'] = "Email ou senha incorreta!";
                 $header = URLADM . "Login";
                 header("Location: {$header}");
             }
 
         } else { // se não existir conta
-            $_SESSION['msg'] = "Email ou senha incorreta3";
+            $_SESSION['msgRed'] = "Email ou senha incorreta!";
             $header = URLADM . "Login";
             header("Location: {$header}");
         }
@@ -121,8 +122,6 @@ class Login
         $_SESSION['nome_usuario'] = $nome_usuario; 
         $_SESSION['tipo_usuario'] = $tipo_usuario; // cliente ou mantenedor
         $_SESSION['idendereco'] = $endereco; //enderecoUsuario
-
-        $_SESSION['msg'] = "Login realizado com sucesso";
     }
 }
 ?>

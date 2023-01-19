@@ -30,11 +30,12 @@ class LoadView
             include 'app\sts\Views\helpers\alerts.php';
             include 'app\sts\Views\helpers\cabecalho.php';
             include 'app/' . $this->nameView . '.php';
+            include 'app\sts\views\helpers\rodape.php';
             include 'app\sts\views\helpers\footer.php';
             include 'app\sts\Views\helpers\fastTravel.php';
 
         } else {
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 2" . EMAILADM);
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
         }
     }
 
@@ -56,7 +57,7 @@ class LoadView
             include 'app\sts\views\helpers\footer.php';
 
         } else {
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador 2" . EMAILADM);
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
         }
     }
 
@@ -70,9 +71,9 @@ class LoadView
         if (file_exists('app/' . $this->nameView . '.php')){
             
             include 'app\sts\Views\headers/padrao.php'; 
-            include 'app\sts\Views\helpers\aviso.php';
+            include 'app\sts\Views\helpers\alerts.php';
             include 'app/' . $this->nameView . '.php';
-            include 'app/sts/views/footer.php';
+            include 'app\sts\views\helpers\footer.php';
             include 'app\sts\Views\helpers\fastTravel.php';
 
         } else {

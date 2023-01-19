@@ -73,17 +73,17 @@ class ConsultasAgendadas
 
                 $sit_consulta['sit_consulta'] = "Confirmado";
                 if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
-                    $_SESSION['msg'] = "Consulta confirmada com sucesso";
+                    $_SESSION['msgGreen'] = "Consulta confirmada com sucesso!";
                 } else {
-                    $_SESSION['msg'] = "Falha ao confirmar consulta";
+                    $_SESSION['msgRed'] = "Falha ao confirmar consulta!";
                 } 
 
             } else {
-                $_SESSION['msg'] = "Falha ao Identificar consulta";
+                $_SESSION['msgRed'] = "Falha ao Identificar consulta!";
             }
 
         } else {
-            $_SESSION['msg'] = "Falta de dados";
+            $_SESSION['msgRed'] = "Erro: Falta de dados!";
         }
 
         $header = URLADM . "ConsultasAgendadas/clientes";
@@ -104,18 +104,18 @@ class ConsultasAgendadas
 
                 $sit_consulta['sit_consulta'] = "Negado";
                 if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
-                    $_SESSION['msg'] = "Consulta negada com sucesso";
+                    $_SESSION['msgGreen'] = "Consulta negada com sucesso!";
                     
                 } else {
-                    $_SESSION['msg'] = "Falha ao negar consulta";
+                    $_SESSION['msgRed'] = "Falha ao negar consulta!";
                 } 
 
             } else {
-                $_SESSION['msg'] = "Falha ao Identificar consulta";
+                $_SESSION['msgRed'] = "Falha ao Identificar consulta!";
             }
             
         } else {
-            $_SESSION['msg'] = "Falta de dados";
+            $_SESSION['msgRed'] = "Erro: Falta de dados!";
         }
 
         $header = URLADM . "ConsultasAgendadas/clientes";
@@ -142,22 +142,22 @@ class ConsultasAgendadas
                     $sit_consulta['sit_consulta'] = "Cancelado";
 
                     if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
-                        $_SESSION['msg'] = "Confirmação de cancelamento finalizada com sucesso";
+                        $_SESSION['msgGreen'] = "Confirmação de cancelamento finalizada com sucesso";
                         
                     } else {
-                        $_SESSION['msg'] = "Falha ao confirmar cancelamento";
+                        $_SESSION['msgRed'] = "Falha ao confirmar cancelamento";
                     } 
 
                 } else {
-                    $_SESSION['msg'] = "Sit_consulta não condiz com a função chamada";
+                    $_SESSION['msgRed'] = "Sit_consulta não condiz com a função chamada";
                 }
 
             } else {
-                $_SESSION['msg'] = "Falha ao Identificar consulta";
+                $_SESSION['msgRed'] = "Falha ao Identificar consulta";
             }  
 
         } else {
-            $_SESSION['msg'] = "Erro: falta de dados";
+            $_SESSION['msgRed'] = "Erro: falta de dados";
         }
 
         $header = URLADM . "ConsultasAgendadas/clientes";

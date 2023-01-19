@@ -17,13 +17,18 @@ class CadastroPet
     private string|null $whichForm = "PetType";
 
     
+    public function index()
+    {
+        $this->cadastro();
+    }
 
-    /**     function index()
+
+    /**     function cadastro()
      * Chamda pela UrlController
      * Responsavel por carregar e pegar as informações de dois formularios
      *      diferentes da view sobreCliente
      */
-    public function index(): void
+    public function cadastro(): void
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -73,7 +78,7 @@ class CadastroPet
      */
     public function pages(): array
     {  
-        return $array = ['index'];
+        return $array = ['index', 'cadastro'];
     }
 }
 

@@ -61,7 +61,7 @@ class FotoServico
                         $result = $admsCreate->cadastroFoto($this->data, $this->idservico);
 
                         if ($result) { // se salvar corretamente no BD
-                            $_SESSION['msg'] = "Foto salva com sucesso";
+                            $_SESSION['msgGreen'] = "Foto salva com sucesso";
                             $header = URLADM . "SobreClinica"; 
                             header("Location: {$header}");
                         } else { // se não salvar corretamente no BD
@@ -76,14 +76,14 @@ class FotoServico
                     }
 
                 } else {
-                    $_SESSION['msg'] = "Arquivo com problemas, tente outro";
+                    $_SESSION['msgRed'] = "Arquivo com problemas, tente outro";
                     $header = URLADM . "FotoServico/adicionar"; 
                     header("Location: {$header}");
                 }
             }
 
         } else {
-            $_SESSION['msg'] = "id de serviço não encontrado";
+            $_SESSION['msgRed'] = "id de serviço não encontrado";
             $header = URLADM . "SobreClinica"; 
             header("Location: {$header}");
         }
@@ -111,13 +111,13 @@ class FotoServico
 
             if ($result) {
                 unlink( IMGADMSER .  $enderecoFoto);
-                $_SESSION['msg'] = "Foto apagada com sucesso";
+                $_SESSION['msgGreen'] = "Foto apagada com sucesso";
             } else {
-                $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
+                $_SESSION['msgRed'] = "Erro ao apagar foto no banco de dados";
             }
             
         } else {
-            $_SESSION['msg'] = "Esse serviço não existe";
+            $_SESSION['msgRed'] = "Esse serviço não existe";
         }
         
         $header = URLADM . "SobreClinica/index"; 
@@ -135,7 +135,7 @@ class FotoServico
         $admsFotoServico = new \Adms\Models\AdmsFotoServico();
 
         if (!$admsFotoServico->verifyIdServico($this->idservico)) {
-            $_SESSION['msg'] = "Id serviço inválida, tente novamente";
+            $_SESSION['msgRed'] = "Id serviço inválida, tente novamente";
             $header = URL . "SobreClinica/index"; 
             header("Location: {$header}");
         }
@@ -166,21 +166,21 @@ class FotoServico
                         $resultCadastra = $admsFotoServico->cadastroFoto($this->data, $this->idservico);
 
                         if ($resultCadastra) { // se salvar corretamente no BD
-                            $_SESSION['msg'] = "Foto alterada com sucesso";
+                            $_SESSION['msgGreen'] = "Foto alterada com sucesso";
                         } else { // se não salvar corretamente no BD
-                            $_SESSION['msg'] = "Falha ao alterar foto";
+                            $_SESSION['msgRed'] = "Falha ao alterar foto";
                         }
 
                     } else { // não conseguiu apagar dados no banco de dados
-                        $_SESSION['msg'] = "Erro ao apagar foto no banco de dados";
+                        $_SESSION['msgRed'] = "Erro ao apagar foto no banco de dados";
                     }
 
                 } else { // se não conseguiu salvar na pasta assets/imagens
-                    $_SESSION['msg'] = "falha ao salvar arquivo";
+                    $_SESSION['msgRed'] = "falha ao salvar arquivo";
                 }
 
             } else { // se o arquinvo não segue as regras de negócio
-                $_SESSION['msg'] = "Arquivo com problemas, tente outro";
+                $_SESSION['msgRed'] = "Arquivo com problemas, tente outro";
             }
 
             $header = URLADM . "SobreClinica/index"; 

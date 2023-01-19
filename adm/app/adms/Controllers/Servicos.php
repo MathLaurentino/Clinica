@@ -44,9 +44,9 @@ class Servicos
             $result = $modelsClinica->createServico($this->dataForm);
 
             if($result){
-                $_SESSION['msg'] = "Serviço cadastrado com sucesso";
+                $_SESSION['msgGreen'] = "Serviço cadastrado com sucesso!";
             }else{
-                $_SESSION['msg'] = "Erro ao cadastrar serviço";
+                $_SESSION['msgRed'] = "Erro ao cadastrar serviço!";
             }
 
             $header = URLADM . "Servicos/Clinica";   
@@ -61,10 +61,10 @@ class Servicos
             $result = $modelsClinica->updateServico($this->dataForm);
         
             if ($result) {
-                $_SESSION['msg'] = "Serviço alterado com sucesso";
+                $_SESSION['msgGreen'] = "Serviço alterado com sucesso";
 
             } else {
-                $_SESSION['msg'] = "Problema ao alterar serviço";
+                $_SESSION['msgRed'] = "Problema ao alterar serviço";
             }
 
             $header = URLADM . "Servicos/Clinica"; 
@@ -84,7 +84,7 @@ class Servicos
     /**     function delete()
      * Apaga o serviço selecionando pelo ID na URL
      */
-    public function delete()
+    public function delete(): void
     {
         if (isset($_GET['idServico'])) {
 
@@ -94,17 +94,17 @@ class Servicos
             $result = $modelsClinica->deleteAll('tipo_consulta', 'idtipo_consulta', $idServico);
 
             if ($result) {
-                $_SESSION['msg'] = "Serviço deletado com sucesso";
+                $_SESSION['msgGreen'] = "Serviço deletado com sucesso";
                 $header = URLADM . "Servicos/Clinica"; 
                 header("Location: {$header}");
             } else {
-                $_SESSION['msg'] = "Falha ao deletar serviço";
+                $_SESSION['msgRed'] = "Falha ao deletar serviço";
                 $header = URLADM . "Servicos/Clinica"; 
                 header("Location: {$header}");
             }
 
         } else {
-            $_SESSION['msg'] = "Falha ao identificar ID da consulta";
+            $_SESSION['msgRed'] = "Falha ao identificar ID da consulta";
             $header = URLADM . "Servicos/Clinica"; 
             header("Location: {$header}");
         }
