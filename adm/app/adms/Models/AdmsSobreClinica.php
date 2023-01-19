@@ -70,6 +70,37 @@ class AdmsSobreClinica{
         
         return $admsUpdate->getResult();
     }
+
+
+    public function getSitTipoConsulta($idServico): array
+    {
+        $admsSelect = new \Adms\Models\helpers\AdmsSelect();
+        $admsSelect->fullRead("SELECT sit_tipo_consulta
+                                FROM tipo_consulta
+                                WHERE idtipo_consulta = :idtipo_consulta", 
+                                "idtipo_consulta={$idServico}");
+
+        $sit = $admsSelect->getResult();
+        return $sit;
+    }
+
+
+    /**     function changeTipoConsultaAttributes(string $id, array $data)
+     * Muda qualquer atributo específico do tipo_consulta. 
+     * Exemplos:
+     *      $data['sit_tipo_consulta'] = "Inativo" OR "Ativo";
+     */
+    public function changeTipoConsultaAttributes(string $id, array $data): bool
+    {
+        $admsUpdate = new \Adms\Models\helpers\AdmsUpdate();
+        $admsUpdate->exeAlter('tipo_consulta', $data, 'idtipo_consulta', $id);
+        $result = $admsUpdate->getResult();
+
+        if (!empty($result)) 
+            return true;
+        else 
+            return false;
+    }
     
 
 }

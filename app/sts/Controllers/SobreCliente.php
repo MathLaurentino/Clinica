@@ -160,7 +160,7 @@ private array|null $dataForm; // dados que vem do formulario
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-        /** Os dados dos formulário de alterar dados pet NÃO foi enviado, carrega a tela 'alterarPet'
+        /** Se os dados dos formulário de alterar dados pet NÃO foi enviado, carrega a tela 'alterarPet'
          *  Verifica se o id pet passado realmente existe e se pertence ao cliente logado */
         if (empty($this->dataForm['AlterPet'])) {
 

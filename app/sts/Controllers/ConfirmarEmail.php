@@ -155,12 +155,12 @@ class ConfirmarEmail{
                     $_SESSION['msgRed'] = "Email informado é inválido";
                     $this->data['email'] = $this->dataForm['email'];
                     $loadView = new \Core\LoadView("sts/Views/bodys/sendEmail/sendEmail", $this->data, null);
-                    $loadView->loadView_header2();
+                    $loadView->loadView_header("sendEmail/sendEmailH");
                 }
 
             } else {
                 $loadView = new \Core\LoadView("sts/Views/bodys/sendEmail/sendEmail", null, null);
-                $loadView->loadView_header2();
+                $loadView->loadView_header("sendEmail/sendEmailH");
             }
             
         }

@@ -66,7 +66,8 @@
 
             <a> <button type="button" class="agendar" data-bs-toggle="modal" data-bs-target="#alterServiceModal<?= $idtipo_consulta ?>"> Alterar </button> </a> 
 
-            <a href="<?= URLADM . "Servicos/Delete?idServico={$idtipo_consulta}" ?>"> <button class="agendar">EXCLUIR</button> </a>
+            <a href="<?=  URLADM . "Servicos/Alterar-Sit-Servico?idServico={$idtipo_consulta}&sitServico={$sit_tipo_consulta}" ?>"> <button class="agendar">PRIVAR</button> </a>
+            <!-- <a href="<?php  //URLADM . "Servicos/Delete?idServico={$idtipo_consulta}" ?>"> <button class="agendar">EXCLUIR</button> </a> -->
             
         </div>
 

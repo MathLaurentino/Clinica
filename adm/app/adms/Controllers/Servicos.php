@@ -110,6 +110,53 @@ class Servicos
         }
     }
 
+
+
+    /**     unction alterarSitServico()
+     * Responsavel por alterar as a sit_tipo_consulta da tabela tipo_consulta
+     * Verifica se o id passado pela URL realmente existe e se o sit também 
+     *      passado pela URL corresponde ao que está no BD
+     * Retorna para a tela de Servicos/Clinica em qualquer situação
+     */
+    public function alterarSitServico(): void
+    {
+        if (isset($_GET['idServico']) && $_GET['sitServico']) {
+
+            $idServico = $_GET['idServico'];
+            $sitServico = $_GET['sitServico'];
+
+            $admsClinica = new \Adms\Models\AdmsSobreClinica();
+
+            $sit = $admsClinica->getSitTipoConsulta($idServico);
+
+            if (!empty($sit) && $sitServico == $sit[0]['sit_tipo_consulta']) {
+
+                if ($sitServico == "Ativo") {
+                    $converter = "Inativo";
+                } elseif ($sitServico == "Inativo") {
+                    $converter = "Ativo";
+                }
+
+                $alterSit['sit_tipo_consulta'] = $converter;
+
+                if ($admsClinica->changeTipoConsultaAttributes($idServico, $alterSit)) {
+                    $_SESSION['msgGreen'] = "Sit_Tipo_Consulta convertido com sucesso!";
+                } else {
+                    $_SESSION['msgRed'] = "Falha ao alterar Sit_Tipo_Consulta!";
+                }
+
+            } else {
+                $_SESSION['msgRed'] = "Erro: dados incongruentes!";
+            }
+            
+        } else {
+            $_SESSION['msgRed'] = "Erro, falta de informações!";
+        }
+        
+        $header = URLADM . "Servicos/Clinica"; 
+        header("Location: {$header}");
+    }
+
 }
 
 

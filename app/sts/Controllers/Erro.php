@@ -148,7 +148,7 @@ class Erro{
         }
 
         $loadView = new \Core\LoadView("sts/Views/bodys/erro/erro", $this->data, null);
-        $loadView->loadView_header2();
+        $loadView->loadView_cabecalho("erro/erroH");
 
     }
 

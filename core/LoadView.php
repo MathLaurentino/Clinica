@@ -30,7 +30,7 @@ class LoadView
             include 'app\sts\Views\helpers\alerts.php';
             include 'app\sts\Views\helpers\cabecalho.php';
             include 'app/' . $this->nameView . '.php';
-            include 'app\sts\views\helpers\rodape.php';
+            //include 'app\sts\views\helpers\rodape.php';
             include 'app\sts\views\helpers\footer.php';
             include 'app\sts\Views\helpers\fastTravel.php';
 
@@ -65,8 +65,8 @@ class LoadView
 
     /**
      * Sem header definido
-     */
-    public function loadView_header2() // cadastroEndereco, confirmarEmail, erro, sobreCliente/infoConsulta
+     */ 
+    public function loadView_header2() // cadastroEndereco, sobreCliente/infoConsulta //confirmarEmail, erro
     {
         if (file_exists('app/' . $this->nameView . '.php')){
             
