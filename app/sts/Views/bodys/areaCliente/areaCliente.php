@@ -32,7 +32,9 @@ if (!isset($_SESSION)) {
 
             <?php
               extract($this->data['user'][0]);
+              $nascimento = substr($data_nascimento,8) . "/" . substr($data_nascimento, 5, -3) . "/" . substr($data_nascimento, 0, -6);
               if (isset($_SESSION['foto_usuario'])) {
+                
             ?>
 
               <img class="imgSCliente" src="<?= URL . IMG . $foto_usuario?>">
@@ -50,7 +52,7 @@ if (!isset($_SESSION)) {
                 <b> Nome: </b> <?= $nome_usuario ?> <br>
                 <b> CPF: </b> <?= $cpf ?> <br>           
                 <b> RG: </b> <?= $rg ?> <br>
-                <b> Data Nasc: </b> <?= $data_nascimento ?> <br>
+                <b> Data Nasc: </b> <?= $nascimento ?> <br>
                 <b> E-mail: </b> <?= $email ?> <br> 
               </div>
 
@@ -123,6 +125,8 @@ if (!isset($_SESSION)) {
               for ($x = 0; $x < count($this->data['pet']); $x++) {
                   $pet = $this->data['pet'][$x];
                   extract($pet);
+                  $nascimento = substr($data_nascimento_pet,8) . "/" . substr($data_nascimento_pet, 5, -3) . "/" . substr($data_nascimento_pet, 0, -6);
+
                   if (empty($imagem_pet)) { $img_pet = "petSemFoto.png"; } else { $img_pet = $imagem_pet; }
           ?>
 
@@ -132,7 +136,7 @@ if (!isset($_SESSION)) {
 
                 <div class="form-edição2">
                   <b> Nome: </b> <?= $nome_pet ?> <br>
-                  <b> Idade: </b> <?= $idade_pet ?> <br>
+                  <b> Idade: </b> <?= $nascimento ?> <br>
                   <b> Espécie: </b> <?= $tipo_pet ?> <br>
                   <b> Raça: </b> <?= $raca ?> <br>
                   <b> Sexo: </b> <?= $sexo ?> <br>

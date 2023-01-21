@@ -19,13 +19,8 @@ if (!defined('D7E4T2K6F4')) {
  */
 class Cadastro{
 
-    private array|string|null $data = [];
+    private array|string|null $data = null;
     private array|string|null $dataForm;
-
-    private array|null $dataFile = null;
-    private string|null $path = null;
-
-    private object $stsCadastro;
 
 
     /**     function index()
@@ -57,14 +52,16 @@ class Cadastro{
             
             $stsVeriry = new \Sts\Models\helpers\StsVerifyRegistrationData();
 
-            // se os dados não estão informados corretamente
+            // se os dados não estão informados corretamente (cpf, idade ou email)
             if (!$stsVeriry->verifyCpf($this->data['cpf']) || !$stsVeriry->verifyAge($this->data['data_nascimento']) || !$stsVeriry->verifyEmail($this->data['email'])) { 
 
                 $this->view();
 
             } else {
 
-                if ($this->checkIfAccountExist()) {
+                $stsCadastro = new \Sts\Models\StsCadastro();
+
+                if ($stsCadastro->verifyAccount($this->data)) {
 
                     if ($this->createNewAccount()) {
 
@@ -94,7 +91,6 @@ class Cadastro{
             
                             $mail->send();
 
-                            $_SESSION['email_para_verificar'] = $this->dataForm['email'];
                             $_SESSION['msgGreen'] = "Usuario cadastrado com sucesso. Confirme seu Email para acessar sua conta";
                             $header = URL . "Home";
                             header("Location: {$header}");
@@ -109,7 +105,7 @@ class Cadastro{
                     }
     
                 } else {
-                    $_SESSION['msgRed'] = "<p style='color:red;'>Dados fornecidos já possuem cadastro no sistema. Tente com outros dados</p>";
+                    $_SESSION['msgRed'] = "Dados fornecidos já possuem cadastro no sistema. Tente com outros dados";
                     $this->view();
                 } 
 
@@ -117,25 +113,10 @@ class Cadastro{
             
 
         } else {   
-            $this->data=[];
+            $this->data=null;
             $this->view();
         }
 
-    }
-
-
-
-    /**     function checkIfAccountExist()
-     * Verifica se a conta com dados do CPF, RG ou Email fornecidos pelo
-     *      cliente já existem no banco de dados
-     */
-    private function checkIfAccountExist(): bool
-    {
-        $stsCadastro = new \Sts\Models\StsCadastro();
-        $resultVerify = $stsCadastro->verifyAccount($this->data);
-        
-        // retorna true caso não tenha registro no BD com esse email, rg ou cpf
-        return $resultVerify; 
     }
 
 
@@ -145,8 +126,10 @@ class Cadastro{
      */
     private function createNewAccount(): bool
     {   
+        // criptografia de senha
         $this->data['senha_usuario'] = password_hash($this->data['senha_usuario'], PASSWORD_DEFAULT);
-        $this->data['nome_usuario'] = ucwords(strtolower($this->data['nome_usuario']));
+        // primeiras letras para maiusculo
+        $this->data['nome_usuario'] = ucwords(strtolower($this->data['nome_usuario'])); 
         
         $this->createKey();
 
@@ -185,7 +168,7 @@ class Cadastro{
 
 
     /**     function checkSession()
-     * Undocumented function
+     * Verifica se já existe a $_SESSION['idusuario'], se existir o usuário já está logado
      */
     public function checkSession() 
     {

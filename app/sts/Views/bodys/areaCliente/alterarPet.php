@@ -1,53 +1,49 @@
 <?php
+if(!isset($_SESSION)){
+    session_start();
+}
+if (isset($this->data)) {
+    //extract($this->data);
+    //echo "<pre>";var_dump($this->data);echo "</pre>";
+}
+?>
+<!--CONTEÚDO PRINCIPAL-->
+<main class="conteudo-principal4">
+    <h1 class="título">Atualizar Cadastro</h1>
+    <p class="subtítulo">atualize os dados do seu pet abaixo</p>
 
-    if(!isset($_SESSION)){
-        session_start();
-    }
-    
-    if(isset($_SESSION['msg']))
-    {
-        echo "Mensagem: " . $_SESSION['msg'] . "<br>"; 
-        unset($_SESSION['msg']);   
-    }
-    
-    if (isset($this->data)) {
-        extract($this->data);
-        //echo "<pre>";var_dump($this->data);echo "</pre>";
-    }
+    <?php
+        for($x = 0; $x < count($this->data['pet']); $x++){
+            $pet = $this->data['pet'][$x];
+            extract($pet);
+    ?>
+    <form method="post" class="form-edição4" action="">
 
-    for($x = 0; $x < count($this->data['pet']); $x++){
-        $pet = $this->data['pet'][$x];
-        extract($pet);
-        echo "<h4> Pet: " . $nome_pet . "</h4>";
-?> 
+        <div class="center"><label>Nome: </label></div>
 
-<form method="post" action="">
-
-        <?php echo " idPet: " . $idpet . "<br> <br>" ?>
-
-        <label>Nome: </label>
-        <input name="nome_pet" type="text" value="<?php if(isset($nome_pet)) { echo $nome_pet; } ?>"> <br> <br>
-
-        <label>Idade Pet: </label>
-        <input name="idade_pet" type="text" value="<?php if(isset($idade_pet)) {echo $idade_pet; } ?>"> <br> <br>
-
-        <label>Sexo: </label>
-        <select name="sexo">
-            <option value="<?php echo $sexo ?>"> <?php echo $sexo ?> </option>
-            <option value="masculino"> Masculino </option>
-            <option value="feminino"> Feminino </option>
-        </select> <br> <br>
-            
+        <input type="text" name="nome_pet" value="<?php if(isset($nome_pet)) { echo $nome_pet; } ?>" placeholder="Nome" class="tamanhoForm">
 
         <input type="hidden" name="idpet" value="<?php echo $idpet ?>">
 
-         <!-- <label>Espécie: </label>
-        <input name="raca" type="text" value="<?php //if(isset($tipo_pet)) { echo $tipo_pet; } ?>"> <br> <br> -->
+        <div class="center"><label> Idade Pet: </label> </div>
+        <input type="date" name="data_nascimento_pet" class="tamanhoForm" placeholder="Data de Nascimento" value="<?php if(isset($data_nascimento_pet)) {echo $data_nascimento_pet; } ?>"> 
 
-        <label>Raca: </label>
 
-        <select name="idraca" >
-            <option value="<?php echo $idraca; ?>"> <?php echo $raca; ?> </option>
+        <br><br>
+        
+        <select name="sexo">
+            <option value="<?= $sexo ?>"> <?= $sexo ?> </option>
+            <option value="Macho"> Macho </option>
+            <option value="Fêmea"> Fêmea </option>
+        </select> 
+
+        <br><br>
+
+        <label>Raça:</label> <br>
+        <select class="tamanhoForm" name="idraca" size="1" placeholder="Raça:">
+
+            <option value="<?= $idraca_pet; ?>" > <?= $raca; ?> </option>
+
             <?php 
                 $arrayTipo = $this->data['tipo_pet'];
                 for($y = 0; $y < count($arrayTipo); $y++){
@@ -63,15 +59,18 @@
                     }
                 }
             ?>
-        </select> <br> <br>
-        
-        <input name="AlterPet" type="submit" value="Alterar" >
-        <input name="DeleteU" type="submit" value="Delete" >
 
-        <hr>
-</form>
+        </select> 
 
-<?php } ?>
+        <br> <br>
+        <p class="center"><input class="botao" name="AlterPet" type="submit" value="salvar alterações" > </p>
 
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </form>
+
+    <?php } ?>
+
+
+
+    <img src="<?= URL . IMGCLINICA ?>img03.png" class="img-pet" alt="imagem de cão"> 
+
+</main>    

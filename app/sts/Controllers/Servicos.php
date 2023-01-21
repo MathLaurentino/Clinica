@@ -27,7 +27,7 @@ class Servicos{
     public function clinica(): void
     {
         $servico = new \Sts\Models\StsServicos();
-        $this->data = $servico->dataServicos();
+        $this->data = $servico->getServicosAtivos();
 
         $loadView = new \Core\LoadView("sts/Views/bodys/servicos/servicos", $this->data, null);
         $loadView->loadView_cabecalho('servicos/servicosH');

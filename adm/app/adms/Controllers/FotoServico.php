@@ -62,7 +62,7 @@ class FotoServico
 
                         if ($result) { // se salvar corretamente no BD
                             $_SESSION['msgGreen'] = "Foto salva com sucesso";
-                            $header = URLADM . "SobreClinica"; 
+                            $header = URLADM . "Servicos/Clinica"; 
                             header("Location: {$header}");
                         } else { // se não salvar corretamente no BD
                             $header = URLADM . "Erro?case=13"; // Erro 013
@@ -120,12 +120,15 @@ class FotoServico
             $_SESSION['msgRed'] = "Esse serviço não existe";
         }
         
-        $header = URLADM . "SobreClinica/index"; 
+        $header = URLADM . "Servicos/Clinica"; 
         header("Location: {$header}");
     }
 
 
 
+    /**     function alterar()
+     * Responsavel por alterar a imagem de determinado servico
+     */
     public function alterar(): void
     {
         if(isset($_GET['idservico'])){
@@ -183,7 +186,7 @@ class FotoServico
                 $_SESSION['msgRed'] = "Arquivo com problemas, tente outro";
             }
 
-            $header = URLADM . "SobreClinica/index"; 
+            $header = URLADM . "Servicos/Clinica"; 
             header("Location: {$header}");
 
         } 
@@ -193,7 +196,7 @@ class FotoServico
     private function view($view) 
     {
         $loadView = new \Core\LoadView("Adms/Views/bodys/files/" . $view, $this->data, null);
-        $loadView->loadViewAdm();
+        $loadView->loadView_adm("files/fileHeader");
     }
 }
 

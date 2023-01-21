@@ -28,14 +28,14 @@
 
         <form class="form-login" method="post" action=""> 
             
-            <input type="email" placeholder="E-mail" name="email" value="joao@joao.com"> 
+            <input type="email" placeholder="E-mail" name="email" value="joao@clinica.com"> 
 
             <input type="password" placeholder="Senha" name="senha_usuario" value="123">
 
             <input class="botao" type="submit" value="Enviar" name="Login">
 
             <a href="#" class="senha">Esqueceu sua senha?</a>
-            <a href="<?= URL ?>ConfirmarEmail/Reenviar-Email" class="senha"> Reenviar e-mail de confirmação</a> <br>
+            <a href="<?= URL ?>ConfirmarEmail/Informar-Email" class="senha"> Reenviar e-mail de confirmação</a> <br>
 
         </form>
     </div>

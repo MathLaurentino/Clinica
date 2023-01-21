@@ -29,9 +29,11 @@ class StsVerifyRegistrationData
         
         if ($idade >= 18)
             return true;
-        else 
-            //$_SESSION['msg'] = "Idade invalida";
-            return true;
+        else {
+            $_SESSION['msgRed'] = "Idade invalida";
+            return false;
+        }
+            
     }
 
 

@@ -1,18 +1,3 @@
-<!--CABEÇALHO-->
-<header class="cabecalho-principal">
-    <img class="img" src="../img/logo.png" alt="logo da clínica">
-    <nav class="menu">
-        <a class="item">SOBRE CLIENTES</a>
-        <a class="item">SOBRE CLÍNICA</a>
-        <a href="serviços.html"> <button class="botao">SOLICITAÇÕES</button> </a>
-
-        <!--PARTE DE ICONE E LOGIN-->
-        <a href="login.html" class="login-user"> <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></a>
-    </nav>
-</header>
-
-
-
 <!--CONTEÚDO PRINCIPAL-->
 <main class="conteudo-principal1">
 

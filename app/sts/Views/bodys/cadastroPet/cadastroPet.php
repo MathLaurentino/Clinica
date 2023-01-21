@@ -64,25 +64,28 @@
                 
                 <form method="post" class="form-login">
 
-
                     <input type="text" name="nome_pet" placeholder="Nome" class="tamanhoForm"> 
+
                     <br>
-                    <div class="center"><label>Data de Nascimento: </label></div>
-                    <input type="date" name="idade_pet" class="tamanhoForm"> 
-                        <br>
-              
-                        <label name="sexo"> Sexo: </label> 
-                        <br>
 
-                        <input type="radio" name="sexo" value="masculino"> <label> masculino </label>
-                        <input type="radio" name="sexo" value="feminino"> <label> feminino </label>
+                    <div class="center"> <label>Data de Nascimento: </label> </div>
 
-                        <br><br>
+                    <input type="date" name="data_nascimento_pet" class="tamanhoForm" placeholder="Data de Nascimento"> 
+                    <br>
+            
+                    <label name="sexo"> Sexo: </label> 
+                    <br>
 
-                        <input type="hidden" name="usuario" value="<?php echo $_SESSION['idusuario']; ?>">
-                 
-                        <label>Raça:</label> 
-                        <select class="tamanhoForm" name="idraca" size="1" placeholder="Raça:"> 
+                    <input type="radio" name="sexo" value="Macho"> <label> Macho </label>
+                    <input type="radio" name="sexo" value="Fêmea"> <label> Fêmea </label>
+
+                    <br><br>
+
+                    <input type="hidden" name="usuario" value="<?php echo $_SESSION['idusuario']; ?>">
+                
+                    <label>Raça:</label> 
+                    
+                    <select class="tamanhoForm" name="idraca" size="1" placeholder="Raça:"> 
 
                         <?php 
                             for($y = 0; $y < count($this->data); $y++){
@@ -99,7 +102,7 @@
                             }
                         ?>
 
-                        </select> 
+                    </select> 
                
                     <br> <br>
                     <p class="center"><input class="botao" name="CreatePet" type="submit" value="Criar conta" > </p>

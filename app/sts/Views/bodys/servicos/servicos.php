@@ -4,18 +4,19 @@
 
 
     <?php
+        if (!empty($this->data)) {
+            for ($x = 0; $x < sizeof($this->data); $x++) {
 
-        for ($x = 0; $x < sizeof($this->data['tipo_consulta']); $x++) {
-
-            $servico = $this->data['tipo_consulta'];
-            extract($servico[$x]);
-            $tempo = explode(":", $tempo_medio); // $tempo_medio === "02:30:00"
+                $servico = $this->data;
+                extract($servico[$x]);
+                $tempo = explode(":", $tempo_medio); // $tempo_medio === "02:30:00"
+                if (empty($foto_servico)) { $foto_servico = "logo.png"; }
 
     ?>
 
         <section class="conteudo-serviços">
-
-            <?php if (!empty($foto_servico)) { echo "<img class='img' src='" . URLADM . IMGADMSERVICOS . $foto_servico . "' class=''>"; } else { echo "<img class='img' src='" . URL . IMGCLINICA . 'logo.pn' . "' class=''>"; } ?>
+            
+            <img class='img' src="<?= URLADM . IMGADMSERVICOS . $foto_servico ?>">
 
             <div class="procedimento">
                 <h3 class="título-serviço"> <?= $nome_consulta ?> </h3>
@@ -29,7 +30,14 @@
 
         <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
-    <?php } ?>
+    <?php 
+            }
+        } else {
+    ?>
+           <h2> Sem servicos disponíveis! </h2>
+    <?php 
+        }
+    ?>
 
 </main>
 

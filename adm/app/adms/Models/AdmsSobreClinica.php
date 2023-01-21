@@ -5,16 +5,15 @@ namespace Adms\Models;
 class AdmsSobreClinica{
 
 
-    /**     function dadosClinica()
+    /**     function getDataServicosAtivo()
      * Undocumented function
-     *
-     * @return void
      */
-    public function dadosClinica(): array|null
+    public function getDataServicos($sit_tipo_consulta): array|null
     {   
         $AdmsSelect = new \Adms\Models\helpers\AdmsSelect();
         $AdmsSelect->fullRead("SELECT * 
-                                FROM tipo_consulta", null);
+                                FROM tipo_consulta
+                                WHERE sit_tipo_consulta = :sit_tipo_consulta", "sit_tipo_consulta={$sit_tipo_consulta}");
 
         $userDate = $AdmsSelect->getResult();
         if(!empty($userDate)){

@@ -1,31 +1,4 @@
-
-<header class="cabecalho-principal">
-    <img class="img" src="<?= URLADM . IMGADMCLINICA ?>logo.png" alt="logo da clínica">
-
-    <nav class="menu">
-        <a class="item">HOME</a>
-        <a class="item">SERVIÇOS</a>
-        <a class="item">CORPO CLÍNICO</a>
-        <a href="#"> <button class="botao">AGENDE AQUI!</button> </a>
-
-        <!--PARTE DE ICONE E LOGIN-->
-        <nav class="nav__bar">
-            <div class="mobile-menu">
-                <div class="icone"> <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> </div>
-            </div>
-            <ul class="nav-list">
-
-                <li><a href="#" class="item-nav">Ver perfil</a></li>
-                <li><a href="#" class="item-nav">Sair da conta</a></li>
-            </ul>
-
-        </nav> <!-- fim navbar -->
-
-    </nav>
-</header>
-
 <!--CONTEÚDO PRINCIPAL-->
-
 <main class="conteudo-principal">
     <h1 class="título">Painel de Gerenciamento</h1>
 
@@ -80,15 +53,13 @@
                             $consulta = $this->data['aConfirmar'][$x];
                             extract($consulta);
 
-                            if (empty($foto_usuario)) {
-                                $foto_usuario = "Sem_Foto.png";
-                            }
-
+                            if (empty($foto_usuario)) { $foto_usuario = "Sem_Foto.png"; }
                             if ($sit_consulta == "A Confirmar") { $sit = "Esperando Confirmação"; }
 
                             $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
-                            $time = substr($horario_consulta, 0, -6);
+                            $time = substr($horario_consulta, 0, -6) . "h-00m";
 
+                            $NascPet = substr($data_nascimento_pet, 8) . "/" . substr($data_nascimento_pet, 5, -3) . "/" . substr($data_nascimento_pet, 0, -6);
                     ?>
 
                         <section class="conteudo-serviçosadm">
@@ -104,7 +75,7 @@
                                 </div>
 
                                 <div class="data">
-                                    <?= $day ?> <?= $time ?>h-00m<br>
+                                    <?= $day ?> <?= $time ?><br>
                                     <button type="button" class="btn-maisinfo" data-bs-toggle="modal" data-bs-target="#agendamento<?= $idconsulta ?>"> MAIS INFO </button>    
                                     <!-- <a href="<?php // URLADM . "ConsultasAgendadas/Consulta?idConsulta=" . $idconsulta ?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a> -->
                                 </div>
@@ -140,13 +111,13 @@
                                         Email usuario: <?= $email ?> <br><br>
 
                                         Nome do Pet: <?= $nome_pet ?> <br>
-                                        Idade Pet: <?= $idade_pet ?> <br>
+                                        Data Nasc. Pet: <?= $NascPet ?> <br> <!-- data_nascimento_pet -->
                                         Sexo Pet: <?= $sexo ?> <br>
                                         Tipo Pet: <?= $tipo_pet ?> <br>
                                         Raca Pet: <?= $raca ?> <br><br>
 
-                                        Data: <?= $data_consulta ?> <br>
-                                        Horario: <?= $horario_consulta ?> <br>
+                                        Data: <?= $day ?> <br>
+                                        Horario: <?= $time ?> <br>
                                         Descricao: <?= $descricao ?> <br>
                                         Tipo consulta: <?= $tipo_consulta ?> <br>
                                         Situação: <?= $sit_consulta ?> <br><br>
@@ -168,7 +139,7 @@
                         }
                     } else {
                     ?>
-                            <h3 class="texth2"> vazio <h3> 
+                            <h3 class="serviços"> vazio <h3> 
                     <?php
                         }
                     ?>
@@ -206,7 +177,9 @@
                             if ($sit_consulta == "A Cancelar") { $sit = "Solicitação de Cancelamento"; }
 
                             $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
-                            $time = substr($horario_consulta, 0, -6);
+                            $time = substr($horario_consulta, 0, -6) . "h-00m";
+
+                            $NascPet = substr($data_nascimento_pet, 8) . "/" . substr($data_nascimento_pet, 5, -3) . "/" . substr($data_nascimento_pet, 0, -6);
                     ?>
 
                         <section class="conteudo-serviçosadm">
@@ -253,13 +226,13 @@
                                         Email usuario: <?= $email ?> <br><br>
 
                                         Nome do Pet: <?= $nome_pet ?> <br>
-                                        Idade Pet: <?= $idade_pet ?> <br>
+                                        Data Nasc. Pet: <?= $NascPet ?> <br>
                                         Sexo Pet: <?= $sexo ?> <br>
                                         Tipo Pet: <?= $tipo_pet ?> <br>
                                         Raca Pet: <?= $raca ?> <br><br>
 
-                                        Data: <?= $data_consulta ?> <br>
-                                        Horario: <?= $horario_consulta ?> <br>
+                                        Data: <?= $day ?> <br>
+                                        Horario: <?= $time ?> <br>
                                         Descricao: <?= $descricao ?> <br>
                                         Tipo consulta: <?= $tipo_consulta ?> <br>
                                         Situação: <?= $sit_consulta ?> <br><br>
@@ -281,7 +254,7 @@
                         }
                     } else {
                     ?>
-                            <h3 class="texth2"> vazio <h3> 
+                            <h3 class="serviços"> vazio <h3> 
                     <?php
                         }
                     ?>
@@ -304,18 +277,128 @@
 
                 <div class="card card-body">
 
+                    <h3 class='serviços'>Em Andamento</h3> 
+                    <hr class='linha'> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+                    <br>
                     <?php
-                    for ($x = 0; $x < count($this->data['outros']); $x++) {
+                    if (!empty($this->data['confirmados'])) {
+                        for ($x = 0; $x < count($this->data['confirmados']); $x++) {
 
-                        $consulta = $this->data['outros'][$x];
-                        extract($consulta);
+                            $consulta = $this->data['confirmados'][$x];
+                            extract($consulta);
 
-                        if (empty($foto_usuario)) {
-                            $foto_usuario = "Sem_Foto.png";
+                            if (empty($foto_usuario)) {
+                                $foto_usuario = "Sem_Foto.png";
+                            }
+
+                            $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
+                            $time = substr($horario_consulta, 0, -6) . "h-00m";
+
+                            $NascPet = substr($data_nascimento_pet, 8) . "/" . substr($data_nascimento_pet, 5, -3) . "/" . substr($data_nascimento_pet, 0, -6);
+                    ?>
+
+                        <section class="conteudo-serviçosadm">
+
+                            <img class="img-serviços" src="<?= URL . IMGCLIENTEADM . $foto_usuario ?>" alt="icone vacina" class="img-serviços">
+
+                            <div class="procedimentoadm">
+
+                                <h2 class="título-serviço"><?= $nome_usuario ?> </h2>
+
+                                <div class="tipoServico">
+                                    <h5> <?= $nome_consulta ?> </h5>
+                                </div>
+
+                                <div class="data">
+                                    <?= $day ?> <?= $time ?><br>
+                                    <button type="button" class="btn-maisinfo" data-bs-toggle="modal" data-bs-target="#historico<?= $idconsulta ?>"> MAIS INFO </button>    
+                                </div>
+
+                                <div class="tipoServico">
+                                    <h5> <?= $sit_consulta ?> </h5>
+                                </div>
+
+                            </div>
+
+                        </section>
+
+                        <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+
+                        <div class="modal t-modal fade" id="historico<?= $idconsulta ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Mais Informações</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+
+                                    <div class="modal-body">
+                                        <b> Nome Usuário: </b> <?= $nome_usuario ?> <br>
+                                        Email usuario: <?= $email ?> <br><br>
+
+                                        Nome do Pet: <?= $nome_pet ?> <br>
+                                        Data Nasc. Pet: <?= $NascPet ?> <br>
+                                        Sexo Pet: <?= $sexo ?> <br>
+                                        Tipo Pet: <?= $tipo_pet ?> <br>
+                                        Raca Pet: <?= $raca ?> <br><br>
+
+                                        Data: <?= $day ?> <br>
+                                        Horario: <?= $time ?> <br>
+                                        Descricao: <?= $descricao ?> <br>
+                                        Tipo consulta: <?= $tipo_consulta ?> <br>
+                                        Situação: <?= $sit_consulta ?> <br><br>
+
+                                        Tipo Marcada: <?= $nome_consulta ?> <br>
+                                        <!-- Descrição Tipo Consulta: <?= $descricao_consulta ?> <br>
+                                        Tempo Médio: <?= $tempo_medio ?> <br> -->
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    
+                    <?php
+                        }} else {
+                    ?>
+                        <h3 class="serviços"> vazio <h3> 
+                        <hr class='linha'> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+                    <?php
                         }
+                    ?>
 
-                        $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
-                        $time = substr($horario_consulta, 0, -6);
+
+
+
+
+
+
+
+
+                        <h3 class='serviços'>Concluídos</h3> 
+                        <hr class='linha'> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+                        <br>
+                    <?php
+
+                    if (!empty($this->data['outros'])) {
+
+                        for ($x = 0; $x < count($this->data['outros']); $x++) {
+
+                            $consulta = $this->data['outros'][$x];
+                            extract($consulta);
+
+                            if (empty($foto_usuario)) {
+                                $foto_usuario = "Sem_Foto.png";
+                            }
+
+                            $day = substr($data_consulta, 8) . "/" . substr($data_consulta, 5, -3) . "/" . substr($data_consulta, 0, -6);
+                            $time = substr($horario_consulta, 0, -6) . "h-00m";
+
+                            $NascPet = substr($data_nascimento_pet, 8) . "/" . substr($data_nascimento_pet, 5, -3) . "/" . substr($data_nascimento_pet, 0, -6);
 
                     ?>
 
@@ -332,13 +415,14 @@
                                 </div>
 
                                 <div class="data">
-                                    <?= $day ?> <?= $time ?>h-00m<br>
+                                    <?= $day ?> <?= $time ?><br>
                                     <button type="button" class="btn-maisinfo" data-bs-toggle="modal" data-bs-target="#historico<?= $idconsulta ?>"> MAIS INFO </button>    
                                 </div>
 
                                 <div class="tipoServico">
                                     <h5> <?= $sit_consulta ?> </h5>
                                 </div>
+                            </div>
 
                         </section>
 
@@ -359,13 +443,13 @@
                                         Email usuario: <?= $email ?> <br><br>
 
                                         Nome do Pet: <?= $nome_pet ?> <br>
-                                        Idade Pet: <?= $idade_pet ?> <br>
+                                        Data Nasc. Pet: <?= $NascPet ?> <br>
                                         Sexo Pet: <?= $sexo ?> <br>
                                         Tipo Pet: <?= $tipo_pet ?> <br>
                                         Raca Pet: <?= $raca ?> <br><br>
 
-                                        Data: <?= $data_consulta ?> <br>
-                                        Horario: <?= $horario_consulta ?> <br>
+                                        Data: <?= $day ?> <br>
+                                        Horario: <?= $time ?> <br>
                                         Descricao: <?= $descricao ?> <br>
                                         Tipo consulta: <?= $tipo_consulta ?> <br>
                                         Situação: <?= $sit_consulta ?> <br><br>
@@ -383,18 +467,13 @@
                             </div>
                         </div>
 
-                        <!-- <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-
-                                    
-                                    
-                                </div>
-                            </div>
-                        </div> -->
-
                     <?php
-                    }
+                    }} else {
+                    ?>
+                        <h3 class="serviços"> vazio <h3> 
+                        <hr class='linha'> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
+                    <?php
+                        }
                     ?>
 
                 </div>

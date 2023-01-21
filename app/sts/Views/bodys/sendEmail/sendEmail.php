@@ -9,9 +9,6 @@ if(!empty($this->data)){
     <h1 class="título">Informe seu E-mail</h1>
     <p class="subtítulo">caso não tenha recebido um e-mail de verificação</p>
 
-    
-    
-
     <form method="post" action="" class="form-email">
         <div class="center"> 
             <input type="text" name="email" placeholder="E-mail" class="tamanhoForm" value="<?php if (isset($email)) { echo $email; } else{echo "";} ?>">

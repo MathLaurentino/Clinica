@@ -15,7 +15,7 @@ class ConsultasAgendadas
 {
 
     private array|null $data;
-    private array|null $dataForm;
+    private array|null $consultas;
 
 
     /**     function index()
@@ -38,29 +38,52 @@ class ConsultasAgendadas
 
         $this->data['aConfirmar'] = $adms->getBasicDataAConfirmar();
         $this->data['aCancelar'] = $adms->getBasicDataACancelar();
+        $this->data['confirmados'] = $adms->getBasicDataConfirmados();
         $this->data['outros'] = $adms->getBasicDataOutros(); 
-        //echo "<pre>"; var_dump($this->data);
 
-        if (!empty($this->data['aConfirmar'])) {
+        $admsConsulta = new \Adms\Models\helpers\AdmsDateConsulta();
 
-            $admsConsulta = new \Adms\Models\helpers\AdmsDateConsulta();
-
-            $veryfiDate1 = $admsConsulta->verifyDayTimeConsulta($this->data['aConfirmar']);
-            $veryfiDate2 = $admsConsulta->verifyDayTimeConsulta($this->data['outros']);
-
-            if ( $veryfiDate1 || $veryfiDate2 ) {
-                $this->data['aConfirmar'] = $adms->getBasicDataAConfirmar();
-                $this->data['outros'] = $adms->getBasicDataOutros(); 
-            } 
-
-        }
+        $verify1 = $admsConsulta->verifyDayTimeConsulta($this->data['aConfirmar']);
+        $verify2 = $admsConsulta->verifyDayTimeConsulta($this->data['confirmados']);
+        $verify3 = $admsConsulta->verifyDayTimeConsulta($this->data['aCancelar']);
+        $verify4 = $admsConsulta->verifyDayTimeConsulta($this->data['outros']);
+        
+        if ( $verify1 || $verify2 || $verify3 || $verify4) {
+            $this->data['aConfirmar'] = $adms->getBasicDataAConfirmar();
+            $this->data['aCancelar'] = $adms->getBasicDataACancelar();
+            $this->data['confirmados'] = $adms->getBasicDataConfirmados();
+            $this->data['outros'] = $adms->getBasicDataOutros(); 
+        } 
 
         $loadView = new \Core\LoadView("adms/Views/bodys/consultasAgendadas/consulta", $this->data, null);
-        $loadView->loadView_headerAdm("consultasAgendadas/consultasAgendadasH");
+        $loadView->loadView_cabecalho_adm("consultasAgendadas/consultasAgendadasH");
+
+
+        // $this->data = $adms->getEveryting();
+
+        // if (!empty($this->data)) {
+        //    if ($admsConsulta->verifyDayTimeConsulta($this->data)) {
+        //         $this->data = $adms->getEveryting();
+        //    }
+        // }
+
+        // for ($x = 0; $x < count($this->data); $x++) {
+        //     extract($this->data[$x]);
+
+        //     if ($sit_consulta == "Concluido") 
+        //         $num = count($this->consultas['concluidos']);
+        //         $this->consultas['concluidos'][$num] = $this->data[$x];
+
+            
+        // }
+        // echo "<pre>"; var_dump($this->consultas);
     }
 
 
 
+    /**     function confirmarAgendamento()
+     * Undocumented function
+     */
     public function confirmarAgendamento(): void
     {
         if (isset($_GET['idConsulta'])) {
@@ -69,18 +92,27 @@ class ConsultasAgendadas
 
             $adms = new \Adms\Models\AdmsConsultasAgendadas();
 
+            /** verifica se o id passado realmente é de uma consulta registrada no BD */
             if ($adms->verifyIfConsultaExist($idConsulta)) {
 
-                $sit_consulta['sit_consulta'] = "Confirmado";
-                if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
-                    $_SESSION['msgGreen'] = "Consulta confirmada com sucesso!";
+                /** Verifica se a sit_consulta no banco de dados coresponde com "A Confirmar"
+                 *  So se pode registrar como "Confirmado" se antes for "A Confirmar" */
+                if ($adms->verifySitConsulta($idConsulta, "A Confirmar")) {
+
+                    $sit_consulta['sit_consulta'] = "Confirmado";
+                    if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
+                        $_SESSION['msgGreen'] = "Consulta confirmada com sucesso!";
+                    } else {
+                        $_SESSION['msgRed'] = "Falha ao confirmar consulta!";
+                    } 
+
                 } else {
-                    $_SESSION['msgRed'] = "Falha ao confirmar consulta!";
-                } 
+                    $_SESSION['msgRed'] = "Sit_consulta não condiz com a função chamada";
+                }
 
             } else {
                 $_SESSION['msgRed'] = "Falha ao Identificar consulta!";
-            }
+            } 
 
         } else {
             $_SESSION['msgRed'] = "Erro: Falta de dados!";
@@ -92,6 +124,9 @@ class ConsultasAgendadas
 
 
 
+    /**     function negarAgendamento()
+     * Quando o mantenedor não aceitar a solicitação de um agendamento essa function é chamada 
+     */
     public function negarAgendamento(): void
     {
         if (isset($_GET['idConsulta'])) {
@@ -100,15 +135,23 @@ class ConsultasAgendadas
 
             $adms = new \Adms\Models\AdmsConsultasAgendadas();
 
+            /** verifica se o id passado realmente é de uma consulta registrada no BD */
             if ($adms->verifyIfConsultaExist($idConsulta)) {
 
-                $sit_consulta['sit_consulta'] = "Negado";
-                if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
-                    $_SESSION['msgGreen'] = "Consulta negada com sucesso!";
-                    
+                /** Verifica se a sit_consulta no banco de dados coresponde com "A Confirmar"
+                 *  So se pode registrar como "Negado" se antes for "A Confirmar" */
+                if ($adms->verifySitConsulta($idConsulta, "A Confirmar")) {
+                    $sit_consulta['sit_consulta'] = "Negado";
+
+                    if ($adms->alterSit_Consulta($idConsulta, $sit_consulta)) {
+                        $_SESSION['msgGreen'] = "Consulta negada com sucesso!";
+                        
+                    } else {
+                        $_SESSION['msgRed'] = "Falha ao negar consulta!";
+                    } 
                 } else {
-                    $_SESSION['msgRed'] = "Falha ao negar consulta!";
-                } 
+                    $_SESSION['msgRed'] = "Sit_consulta não condiz com a função chamada";
+                }
 
             } else {
                 $_SESSION['msgRed'] = "Falha ao Identificar consulta!";
@@ -125,7 +168,8 @@ class ConsultasAgendadas
 
 
     /**     function aceitarCancelamento()
-     * 
+     * Muda a sit_consulta da tabela consulta de "A Cancelar" para "Cancelado"
+     * Verifica se o id da consulta realmente existe e se está como "A Cancelar"
      */
     public function aceitarCancelamento(): void
     {
@@ -135,9 +179,12 @@ class ConsultasAgendadas
 
             $adms = new \Adms\Models\AdmsConsultasAgendadas();
 
+            /** verifica se o id passado realmente é de uma consulta registrada no BD */
             if ($adms->verifyIfConsultaExist($idConsulta)) {
 
-                if ($adms->verifyIfConsultaIsACancelar($idConsulta)) {
+                /** Verifica se a sit_consulta no banco de dados coresponde com "A Cancelar"
+                 *  So se pode registrar como "Cancelado" se antes for "A Cancelar" */
+                if ($adms->verifySitConsulta($idConsulta, "A Cancelar")) {
 
                     $sit_consulta['sit_consulta'] = "Cancelado";
 

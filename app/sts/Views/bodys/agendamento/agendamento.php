@@ -1,3 +1,9 @@
+<?php
+    $dia = $_GET['dia'];
+    $dia = substr($dia,8) . "/" . substr($dia, 5, -3) . "/" . substr($dia, 0, -6);
+    $hora = $_GET['horario'] . "h00m";
+?>
+
 <!--CONTEÚDO PRINCIPAL-->
 <main class="conteudo-principal"> 
 
@@ -17,7 +23,7 @@
             <p class="título-agen"> Resumo do Agendamento </p>
             <strong> <?= $this->data['servico']['nome_consulta'] ?> </strong> <br> 
 
-            <strong> <?= $_GET['dia'] ?>  <?= $_GET['horario'] . "h 00m" ?> </strong> <br> 
+            <strong> <?= $dia ?>  <?= $hora ?> </strong> <br> 
             <strong> <?= $this->data['servico']['valor_consulta'] ?>R$ </strong>
         </div>
 

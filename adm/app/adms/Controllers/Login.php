@@ -55,7 +55,7 @@ class Login
                 $this->createLogin();
             } else { // carrega a view
                 $loadView = new \Core\LoadView('adms/Views/bodys/login/login', null, null);
-                $loadView->loadView_Login_Adm("login/loginH");
+                $loadView->loadView_adm("login/loginH");
             }
         }
         

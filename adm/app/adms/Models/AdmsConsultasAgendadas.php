@@ -9,12 +9,12 @@ class AdmsConsultasAgendadas{
     /**     function getBasicDataACancelar()
      * Retorna as informações das consultas com sit_consulta = 'A Confirmar' 
      */
-    public function getBasicDataAConfirmar(): array
+    public function getBasicDataAConfirmar(): array|null
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
         $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
-                            p.nome_pet, p.idade_pet, p.sexo,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo,
                             r.tipo_pet, r.raca,
                             t.nome_consulta, t.descricao_consulta, t.tempo_medio,
                             u.nome_usuario, u.email, foto_usuario
@@ -40,12 +40,12 @@ class AdmsConsultasAgendadas{
     /**     function getBasicDataACancelar()
      * Retorna as informações das consultas com sit_consulta = 'A Cancelar' 
      */
-    public function getBasicDataACancelar(): array
+    public function getBasicDataACancelar(): array|null
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
         $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
-                            p.nome_pet, p.idade_pet, p.sexo,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo,
                             r.tipo_pet, r.raca,
                             t.nome_consulta, t.descricao_consulta, t.tempo_medio,
                             u.nome_usuario, u.email, foto_usuario
@@ -66,44 +66,17 @@ class AdmsConsultasAgendadas{
         
     }
 
-    /**     function getFullDataConsulta($idConsulta)
-     * Retorna varias informações sobre determinada consulta selecionada pelo ID
+
+
+    /**     function getBasicDataConfirmados()
+     * Retorna as informações das consultas com sit_consulta = 'Confirmado' 
      */
-    public function getFullDataConsulta($idConsulta): array
+    public function getBasicDataConfirmados(): array|null
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
         $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
-                            p.nome_pet, p.idade_pet, p.sexo,
-                            r.tipo_pet, r.raca,
-                            t.nome_consulta, t.descricao_consulta, t.tempo_medio,
-                            u.nome_usuario, u.email, foto_usuario
-                            FROM consulta as c
-                            INNER JOIN pet as p 
-                            ON c.pet = p.idpet
-                            INNER JOIN raca_pet AS r
-                            ON p.idraca = r.idraca_pet
-                            INNER JOIN tipo_consulta as t
-                            ON c.tipo_consulta = t.idtipo_consulta
-                            INNER JOIN usuario AS u 
-                            ON p.usuario = u.idusuario
-                            WHERE c.idconsulta = :idconsulta", "idconsulta={$idConsulta}");
-
-        $data = $admsSelect->getResult();
-        return $data;
-    }
-
-
-
-    /**     function getBasicDataACancelar()
-     * Retorna as informações das consultas com sit_consulta != 'A Confirmar' 
-     */
-    public function getBasicDataOutros(): array
-    {
-        $admsSelect = new \Adms\Models\helpers\AdmsSelect();
-
-        $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
-                            p.nome_pet, p.idade_pet, p.sexo,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo,
                             r.tipo_pet, r.raca,
                             t.nome_consulta, t.descricao_consulta, t.tempo_medio,
                             u.nome_usuario, u.email, foto_usuario
@@ -116,7 +89,7 @@ class AdmsConsultasAgendadas{
                             ON p.idraca = r.idraca_pet
                             INNER JOIN usuario AS u 
                             ON p.usuario = u.idusuario
-                            WHERE c.pet != 'NULL' AND c.sit_consulta != 'A Confirmar' AND c.sit_consulta != 'A Cancelar'
+                            WHERE c.pet != 'NULL' AND c.sit_consulta = 'Confirmado'
                             ORDER BY c.sit_consulta", NULL);
 
         $data = $admsSelect->getResult();
@@ -125,7 +98,64 @@ class AdmsConsultasAgendadas{
 
 
 
-    
+    /**     function getBasicDataACancelar()
+     * Retorna as informações das consultas com sit_consulta != 'A Confirmar' != 'A Cancelar' != 'Confirmado'
+     */
+    public function getBasicDataOutros(): array|null
+    {
+        $admsSelect = new \Adms\Models\helpers\AdmsSelect();
+
+        $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo,
+                            r.tipo_pet, r.raca,
+                            t.nome_consulta, t.descricao_consulta, t.tempo_medio,
+                            u.nome_usuario, u.email, foto_usuario
+                            FROM consulta as c
+                            INNER JOIN tipo_consulta as t
+                            ON c.tipo_consulta = t.idtipo_consulta
+                            INNER JOIN pet as p
+                            ON c.pet = p.idpet
+                            INNER JOIN raca_pet AS r
+                            ON p.idraca = r.idraca_pet
+                            INNER JOIN usuario AS u 
+                            ON p.usuario = u.idusuario
+                            WHERE c.pet != 'NULL' AND c.sit_consulta != 'A Confirmar' AND c.sit_consulta != 'A Cancelar' AND c.sit_consulta != 'Confirmado'
+                            ORDER BY c.sit_consulta", NULL);
+
+        $data = $admsSelect->getResult();
+        return $data;
+    }
+
+
+    /**     function getBasicDataACancelar()
+     * Retorna as informações das consultas com sit_consulta != 'A Confirmar' != 'A Cancelar' != 'Confirmado'
+     */
+    public function getEveryting(): array|null
+    {
+        $admsSelect = new \Adms\Models\helpers\AdmsSelect();
+
+        $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo,
+                            r.tipo_pet, r.raca,
+                            t.nome_consulta, t.descricao_consulta, t.tempo_medio,
+                            u.nome_usuario, u.email, foto_usuario
+                            FROM consulta as c
+                            INNER JOIN tipo_consulta as t
+                            ON c.tipo_consulta = t.idtipo_consulta
+                            INNER JOIN pet as p
+                            ON c.pet = p.idpet
+                            INNER JOIN raca_pet AS r
+                            ON p.idraca = r.idraca_pet
+                            INNER JOIN usuario AS u 
+                            ON p.usuario = u.idusuario
+                            WHERE c.pet != 'NULL'
+                            ORDER BY c.sit_consulta", NULL);
+
+        $data = $admsSelect->getResult();
+        return $data;
+    }
+
+
 
 
     /**     function verifyIfConsultaExist($idConsulta)
@@ -148,10 +178,10 @@ class AdmsConsultasAgendadas{
 
 
 
-    /**     function verifyIfConsultaIsACancelar($idConsulta)
-     * Verifica se o id da consulta passada realmente existe
+    /**     function verifySitConsulta($idConsulta)
+     * Compara a sitConsulta registrada no BD com a que for passsado pela $sitVerify
      */
-    public function verifyIfConsultaIsACancelar($idConsulta)
+    public function verifySitConsulta($idConsulta, $sitVerify): bool
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
@@ -160,7 +190,7 @@ class AdmsConsultasAgendadas{
 
         $sit_consulta = $admsSelect->getResult();
 
-        if ($sit_consulta[0]['sit_consulta'] == "A Cancelar")
+        if ($sit_consulta[0]['sit_consulta'] == $sitVerify)
             return true;
         else
             return false;

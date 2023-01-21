@@ -5,17 +5,17 @@ namespace Sts\Models;
 class StsServicos{
 
 
-    /**     function dataServicos()
-     * Retorna todos so dados da tabela tipo_consulta
+    /**     function getServicosAtivos()
+     * Retorna todos os servicos que emtão com sit = Ativo
      */
-    public function dataServicos():array|null
+    public function getServicosAtivos(): array|null
     {
-        
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         
-        $stsSelect->fullRead("SELECT * FROM tipo_consulta ", null); //nome_consulta, valor_consulta
+        $stsSelect->fullRead("SELECT * FROM tipo_consulta
+                             WHERE sit_tipo_consulta = 'Ativo'", null); //nome_consulta, valor_consulta
 
-        $result['tipo_consulta'] = $stsSelect->getResult();
+        $result= $stsSelect->getResult();
         
         return $result;
     }

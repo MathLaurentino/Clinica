@@ -20,7 +20,7 @@ class StsConfirmarEmail
 
 
     /**     alterSituation($id)
-     * Muda o estado da conta para ativo
+     * Muda o estado da conta para de confirmando para ativo
      */
     public function alterSituation($id): bool
     {
@@ -42,7 +42,7 @@ class StsConfirmarEmail
      * Pega qual o estado da conta
      *      Ativa, Inativa ou Confirmando
      */
-    public function getSituation($condition, $value): string|null
+    public function getSituation(string $condition, string $value): string|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead("SELECT sit_usuario FROM usuario WHERE {$condition} = :{$condition}", "{$condition}={$value}");

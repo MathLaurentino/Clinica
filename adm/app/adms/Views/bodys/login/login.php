@@ -6,7 +6,7 @@
         <h1 class="título">Administração</h1>
 
         <form class="form-login" method="post" action="">
-            <input type="email" placeholder="E-mail" name="email" value="maria@maria.com">
+            <input type="email" placeholder="E-mail" name="email" value="maria@clinica.com">
 
             <input type="password" placeholder="Senha" name="senha_usuario" value="123">
 

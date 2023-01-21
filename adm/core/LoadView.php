@@ -14,28 +14,17 @@ class LoadView
     }
     
 
-    /**     function loadView()
-     * Carrega a view requerida pela controller
+
+    /**     function loadView_cabecalho_adm()
+     * Carrega a view com o cabecalho do site
      */
-    public function loadViewAdm(): void
-    {
-        if (file_exists('app/' . $this->nameView . '.php')){
-    
-            include 'app/' . $this->nameView . '.php';
-
-        } else {
-            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador sssssssss" . EMAILADM);
-        }
-    }
-
-
-    public function loadView_headerAdm($header)
+    public function loadView_cabecalho_adm($header)
     {
         if (file_exists('app/' . $this->nameView . '.php')){
             
             include 'app\adms\Views\headers/' . $header . '.php'; 
             include 'app\adms\Views\helpers\alerts.php';
-            // include 'app\sts\Views\helpers\cabecalho.php';
+            include 'app\adms\Views\helpers\cabecalho.php';
             include 'app/' . $this->nameView . '.php';
             include 'app/adms/views/helpers/footer.php';
             // include 'app\sts\Views\helpers\fastTravel.php';
@@ -46,7 +35,10 @@ class LoadView
     }
 
 
-    public function loadView_Login_Adm($header)
+    /**     function loadView_adm($header)
+     * Carrega view sem o cabecalho do site
+     */
+    public function loadView_adm($header)
     {
         if (file_exists('app/' . $this->nameView . '.php')){
             

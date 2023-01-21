@@ -32,7 +32,7 @@ class AreaClientes
         $this->data['clientes'] = $modelSobreCliente->getClientUsers();
 
         $loadView = new \Core\LoadView("adms/Views/bodys/areaCliente/areaCliente", $this->data, null); //areaCliente
-        $loadView->loadView_headerAdm("areaCliente/areaClienteH");
+        $loadView->loadView_cabecalho_adm("areaCliente/areaClienteH");
     }
 
 

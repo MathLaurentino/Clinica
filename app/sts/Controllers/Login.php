@@ -88,7 +88,7 @@ class Login{
                 } 
                 
                 elseif ($sitUser == "Inativo") {
-                    $_SESSION['msgRed'] = "Conta inativada. Entre em contato com adm para mais informações: " . EMAILADM;
+                    $_SESSION['msgRed'] = "Conta bloqueada! Entre em contato com adm para mais informações: " . EMAILADM;
                     $header = URL . "Login";
                     header("Location: {$header}");
                 } 

@@ -53,7 +53,7 @@ private array|null $dataForm; // dados que vem do formulario
         $this->data['conusultaEmAndamento'] = $stsSobreCliente->getDataConsultaEmAndamento($_SESSION['idusuario']);
         $this->data['consultasFinalizadas'] = $stsSobreCliente->getDataConsultasFinalizadas($_SESSION['idusuario']);
 
-        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/areaCliente2", $this->data, null);
+        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/areaCliente", $this->data, null);
         $loadView->loadView_cabecalho("areaCliente/areaClienteH");
     }
 
@@ -172,7 +172,7 @@ private array|null $dataForm; // dados que vem do formulario
 
                 if (!empty($this->data['pet'])) {
                     $this->data['tipo_pet'] = $stsSobreCliente->getRaca($this->data['pet'][0]['tipo_pet']);
-                    $this->view('alterarPet2');
+                    $this->view('alterarPet');
                 } else {
                     $_SESSION['msgRed'] = "Erro, dados incorretos";
                     $header = URL . "Sobre-Cliente/Dados"; 

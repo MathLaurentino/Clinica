@@ -27,6 +27,10 @@ class StsAgendamento{
 
 
 
+    /**     function idServicoExiste($id)
+     * Verifica se o id passado realmente corresponde a um servico cadastrado no BD
+     * Retorna true se o servico existir e false se não
+     */
     public function idServicoExiste($id): bool
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
@@ -41,6 +45,28 @@ class StsAgendamento{
             return true;
         else 
             return false; 
+    }
+
+
+
+    /**     function getSitSertico($id)
+     * Retorna a situação do servico selecionado
+     *      se é Ativo ou Inativo
+     */
+    public function getSitSertico($id): bool
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+
+        $stsSelect->fullRead("SELECT sit_tipo_consulta
+                            FROM tipo_consulta
+                            WHERE idtipo_consulta = :idtipo_consulta", "idtipo_consulta={$id}");
+
+        $resultado =  $stsSelect->getResult();
+
+        if ($resultado[0]['sit_tipo_consulta'] == "Ativo")
+            return true; 
+        else 
+            return false;
     }
 
 
@@ -141,22 +167,22 @@ class StsAgendamento{
     /**     function verifyDateConsulta($dateConsulta)
      * Verifica se a data passada pertence a um dia afrente do dia atual (futuro)
      */
-    public function verifyDateConsulta(string $dateConsulta, string $timeConsulta): bool
+    // verifica se ainda restão 24 horas antes do horario marcado (so pode cancelar ate 24 horas de antecedência)
+    public function verifyDateConsulta(string $dateConsulta): bool
     {
 
         $dayTimeNow = date('d/m/Y H:i');
         $dayNow = substr($dayTimeNow, 0, 10); // 01/01/2023
         $dayNow = substr($dayNow,6) . "-" . substr($dayNow, 3, -5) . "-" . substr($dayNow, 0, -8); // 2023-01-01
-        $timeNow = substr($dayTimeNow,10, -3);
 
         $dateDayNew = date_create($dateConsulta);
         $dateDayNow = date_create($dayNow);
         $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
 
-        $diferença = $diff->format("%a");
+        $diferença = $diff->format("%a"); // retorna a diferença de dias entre uma data e outra
         $negativo = $diff->invert; // retorna 1 se o dia é passado e 0 se for presente o futuro
 
-        if ($diferença != 0 && $negativo == 0 && $timeNow < $timeConsulta){
+        if ($diferença != 0 && $negativo == 0){
             return true;
         } else {
             return false;

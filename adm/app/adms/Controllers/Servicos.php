@@ -72,9 +72,10 @@ class Servicos
         }
 
         else {
-            $this->data = $modelsClinica->dadosClinica();
+            $this->data['Ativos'] = $modelsClinica->getDataServicos("Ativo");
+            $this->data['Inativos'] = $modelsClinica->getDataServicos("Inativo");
             $loadView = new \Core\LoadView("adms/Views/bodys/servicosClinica/servicos", $this->data, null); //servicosadm -> pagina com css clinica
-            $loadView->loadView_headerAdm("servicosClinica/servicosH");
+            $loadView->loadView_cabecalho_adm("servicosClinica/servicosH");
         }
 
     }
@@ -94,17 +95,17 @@ class Servicos
             $result = $modelsClinica->deleteAll('tipo_consulta', 'idtipo_consulta', $idServico);
 
             if ($result) {
-                $_SESSION['msgGreen'] = "Serviço deletado com sucesso";
+                $_SESSION['msgGreen'] = "Serviço deletado com sucesso!";
                 $header = URLADM . "Servicos/Clinica"; 
                 header("Location: {$header}");
             } else {
-                $_SESSION['msgRed'] = "Falha ao deletar serviço";
+                $_SESSION['msgRed'] = "Falha ao deletar serviço!";
                 $header = URLADM . "Servicos/Clinica"; 
                 header("Location: {$header}");
             }
 
         } else {
-            $_SESSION['msgRed'] = "Falha ao identificar ID da consulta";
+            $_SESSION['msgRed'] = "Falha ao identificar ID da consulta!";
             $header = URLADM . "Servicos/Clinica"; 
             header("Location: {$header}");
         }

@@ -85,10 +85,10 @@ class Agendamento{
             $idServico = $_GET['servico'];
 
             $sts = new \Sts\Models\StsAgendamento(); 
-            $stsVerifyDate = new \Sts\Models\helpers\StsVerifyDateConsulta();            
+            $stsVerifyDate = new \Sts\Models\helpers\StsVerifyDateConsulta();  
 
             // se os dados passados na URL são válidos (consulta no BD)
-            if ($stsVerifyDate->varificarData($dayNewEvent, $timeNewEvent) && $sts->idServicoExiste($idServico)) {
+            if ($stsVerifyDate->varificarData($dayNewEvent, $timeNewEvent) && $sts->idServicoExiste($idServico) && $sts->getSitSertico($idServico)) {
 
                 $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
@@ -128,7 +128,7 @@ class Agendamento{
                 }
                 
             } else {
-                $_SESSION['msgRed'] = "Horario ou servico inválido, tente novamente.";
+                $_SESSION['msgRed'] = "Horario ou servico inválido, tente novamente!";
                 $header = URL . "Servicos";
                 header("Location: {$header}");
             }
@@ -140,6 +140,7 @@ class Agendamento{
         }
 
     }
+
 
 
     /**     function solicitarCancelamento()
@@ -176,7 +177,7 @@ class Agendamento{
                 elseif ($sti_consulta == "Confirmado") {
 
                     // verifica se ainda restão 24 horas antes do horario marcado (so pode cancelar ate 24 horas de antecedência)
-                    if ($sts->verifyDateConsulta($dataConsulta, $horaConsulta)) {
+                    if ($sts->verifyDateConsulta($dataConsulta)) {
 
                         $new_sit_consulta['sit_consulta'] = "A Cancelar";
                         $result = $sts->alterSitConsulta($idConsulta, $new_sit_consulta);
