@@ -51,7 +51,9 @@ class CadastroPet
         elseif(isset($this->dataForm['CreatePet']))
         {
             unset($this->dataForm['CreatePet']);
-            
+
+            $this->dataForm['nome_pet'] = ucwords(strtolower($this->dataForm['nome_pet'])); 
+
             $stsPet = new \Sts\Models\StsCadastroPet();
             $result = $stsPet->createPet($this->dataForm);
 
