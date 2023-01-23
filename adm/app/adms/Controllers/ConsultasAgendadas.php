@@ -58,25 +58,6 @@ class ConsultasAgendadas
         $loadView = new \Core\LoadView("adms/Views/bodys/consultasAgendadas/consulta", $this->data, null);
         $loadView->loadView_cabecalho_adm("consultasAgendadas/consultasAgendadasH");
 
-
-        // $this->data = $adms->getEveryting();
-
-        // if (!empty($this->data)) {
-        //    if ($admsConsulta->verifyDayTimeConsulta($this->data)) {
-        //         $this->data = $adms->getEveryting();
-        //    }
-        // }
-
-        // for ($x = 0; $x < count($this->data); $x++) {
-        //     extract($this->data[$x]);
-
-        //     if ($sit_consulta == "Concluido") 
-        //         $num = count($this->consultas['concluidos']);
-        //         $this->consultas['concluidos'][$num] = $this->data[$x];
-
-            
-        // }
-        // echo "<pre>"; var_dump($this->consultas);
     }
 
 

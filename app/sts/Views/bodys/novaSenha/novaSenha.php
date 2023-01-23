@@ -2,7 +2,7 @@
     <div class="child">
 
         <h1 class="tituloE">Informe seu E-mail</h1>
-        <p class="subtituloE">caso não tenha recebido um e-mail de verificação</p>
+        <p class="subtituloE">para redefinir sua senha</p>
 
     </div>
 
@@ -18,16 +18,17 @@
 
                 <form method="post" class="form-enviaEmail" action="">
                     <div class="center"> 
-                        <input type="text" name="email" placeholder="E-mail"class="tamanhoForm" value="<?php if (isset($this->data['email'])) { echo $this->data['email']; }  ?>"> 
-                        <p class="center"><input class="botaoEnviaEmail" name="send" type="submit" value="enviar"> </p>
+                        <input type="text" name="email" placeholder="E-mail" class="tamanhoForm" value="<?php if (isset($this->data['email'])) { echo $this->data['email']; }  ?>"> 
                     </div>
-                    
+                    <p class="center"><input class="botaoEnviaEmail" name="send" type="submit" value="enviar"> </p>
                 </form>
 
+                
             </div>
 
             <div class="child">
-                <img src="<?= URL . IMGCLINICA ?>img08.png" class="img-pet08" alt="imagem de cão">
+                <div class="vazio"></div>
+                <!-- <img src="<?= URL . IMGCLINICA ?>img08.png" class="img-pet08" alt="imagem de cão"> -->
             </div>
 
         </div>

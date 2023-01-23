@@ -22,9 +22,17 @@ class Home{
             unset($dataForm['session_destroy']);
             session_destroy();
         }
+
+
+        if (isset($_SESSION['idusuario'])) {
+            $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
+            $loadView->loadView_cabecalho('home/index');
+        } else {
+            $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
+            $loadView->loadView_cabecalhoOff('home/index');
+        }
         
-        $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
-        $loadView->loadView_cabecalho('home/index');
+        
     }
 
 

@@ -28,6 +28,12 @@ if (!isset($_SESSION)) {
 
         <div class="card card-body">
 
+
+          <!-- ------------------------------------------------------------------------ -->
+          <!-- --------------------------- DADOS DO CLIENTE --------------------------- -->
+          <!-- ------------------------------------------------------------------------ -->
+
+
           <div class="areaCliente">
 
             <?php
@@ -58,9 +64,6 @@ if (!isset($_SESSION)) {
 
           </div>
 
-
-
-
           <div>
             <!-- Botão de alterar foto cliente -->
             <a href="<?php if (isset($_SESSION['foto_usuario'])) { echo URL . 'FotoUsuario/alterar'; } else { echo URL . 'FotoUsuario/adicionar'; } ?>" class="iconeEdita"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
@@ -68,10 +71,16 @@ if (!isset($_SESSION)) {
           </div>
 
           <hr class="linha2"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
-          <h3> Endereço</h3>
 
 
 
+          <!-- --------------------------------------------------------------------------- -->
+          <!-- --------------------------- ENDEREÇO DO CLIENTE --------------------------- -->
+          <!-- --------------------------------------------------------------------------- -->
+
+
+     
+          <h3> Endereço </h3>
 
           <div class="areaCliente">
 
@@ -92,14 +101,13 @@ if (!isset($_SESSION)) {
 
           </div>
 
-              <p class="alinhaPadding"> <a href="<?= URL ?>Sobre-Cliente/Alterar-Dados-Endereco"> <button class="btn-alterarDados"> alterar dados </button> </a> </p>
-
+            <p class="alinhaPadding"> <a href="<?= URL ?>Sobre-Cliente/Alterar-Dados-Endereco"> <button class="btn-alterarDados"> alterar dados </button> </a> </p>
+            
             <?php 
               }else {
             ?>
 
-                Você ainda não tem um endereço cadastrado <br>
-              
+            Você ainda não tem um endereço cadastrado <br>
           </div>
 
           <p class="alinhaPadding"> <a href="<?= URL ?>CadastroEndereco/Endereco"> <button class="btn-alterarDados"> adicionar endereço </button> </a> </p>
@@ -111,9 +119,11 @@ if (!isset($_SESSION)) {
           
 
           
+          <!-- -------------------------------------------------------------------------->
+          <!-- --------------------------- PETS DO CLIENTE --------------------------- -->
+          <!-- -------------------------------------------------------------------------->
 
 
-          <!-- PETS DO CLIENTE -->
 
           <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
@@ -181,10 +191,32 @@ if (!isset($_SESSION)) {
 
 
 
-    <!-- HISTORICO DE AGENDAMENTO DO CLIENTE -->
 
+
+
+
+
+    <!-- ------------------------------------------------------------------------------------------- -->
+    <!-- --------------------------- HISTORICO DE AGENDAMENTO DO CLIENTE --------------------------- -->
+    <!-- ------------------------------------------------------------------------------------------- -->
+
+
+
+
+
+
+
+    
 
     <div class="centraliza">
+
+
+
+      <!-- -------------------------------------------------------- -->
+      <!-- --------------------- EM ANDAMENTO --------------------- -->
+      <!-- -------------------------------------------------------- -->
+
+
 
       <div class="collapse" id="agendamentos">
 
@@ -266,8 +298,13 @@ if (!isset($_SESSION)) {
 
 
 
+          <!-- ------------------------------------------------------- -->
+          <!-- --------------------- CONCLUOÍDOS --------------------- -->
+          <!-- ------------------------------------------------------- -->
+
+
           
-          <div class="texth2"> <h2> Concluidos </h2> <div>
+          <div class="texth2"> <h2> Concluídos </h2> <div>
           <hr class="linha"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 
           <?php      

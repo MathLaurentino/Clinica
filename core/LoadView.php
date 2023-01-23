@@ -32,7 +32,25 @@ class LoadView
             include 'app/' . $this->nameView . '.php';
             //include 'app\sts\views\helpers\rodape.php';
             include 'app\sts\views\helpers\footer.php';
-            include 'app\sts\Views\helpers\fastTravel.php';
+            //include 'app\sts\Views\helpers\fastTravel.php';
+
+        } else {
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+        }
+    }
+
+
+    public function loadView_cabecalhoOff($header)
+    {
+        if (file_exists('app/' . $this->nameView . '.php')){
+            
+            include 'app\sts\Views\headers/' . $header . '.php'; 
+            include 'app\sts\Views\helpers\alerts.php';
+            include 'app\sts\Views\helpers\cabecalhoOff.php';
+            include 'app/' . $this->nameView . '.php';
+            //include 'app\sts\views\helpers\rodape.php';
+            include 'app\sts\views\helpers\footer.php';
+            //include 'app\sts\Views\helpers\fastTravel.php';
 
         } else {
             die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);

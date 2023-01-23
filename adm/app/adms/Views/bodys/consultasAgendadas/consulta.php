@@ -107,28 +107,21 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <b> Nome Usuário: </b> <?= $nome_usuario ?> <br>
-                                        Email usuario: <?= $email ?> <br><br>
-
-                                        Nome do Pet: <?= $nome_pet ?> <br>
-                                        Data Nasc. Pet: <?= $NascPet ?> <br> <!-- data_nascimento_pet -->
-                                        Sexo Pet: <?= $sexo ?> <br>
-                                        Tipo Pet: <?= $tipo_pet ?> <br>
-                                        Raca Pet: <?= $raca ?> <br><br>
-
-                                        Data: <?= $day ?> <br>
-                                        Horario: <?= $time ?> <br>
-                                        Descricao: <?= $descricao ?> <br>
-                                        Tipo consulta: <?= $tipo_consulta ?> <br>
-                                        Situação: <?= $sit_consulta ?> <br><br>
-
-                                        Tipo Marcada: <?= $nome_consulta ?> <br>
-                                        <!-- Descrição Tipo Consulta: <?= $descricao_consulta ?> <br>
-                                        Tempo Médio: <?= $tempo_medio ?> <br> -->
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <ul class="list-group">
+                                            <li class="list-group-item"> <b> Usuário: </b> <?= $nome_usuario ?> </li>
+                                            <!-- <li class="list-group-item"> <b> Email: </b> <?= $email ?> </li>  -->
+                                            <br>
+                                            <li class="list-group-item"> <b> Pet: </b> <?= $nome_pet ?> </li>
+                                            <li class="list-group-item"> <b> Data Nasc: </b> <?= $NascPet ?> </li>
+                                            <li class="list-group-item"> <b> Sexo: </b> <?= $sexo ?> </li>
+                                            <li class="list-group-item"> <b> Espécie: </b> <?= $tipo_pet ?> </li>
+                                            <li class="list-group-item"> <b> Raça: </b> <?= $raca ?> </li>
+                                            <br>
+                                            <li class="list-group-item"> <b> Data: </b> <?= $day ?> </li>
+                                            <li class="list-group-item"> <b> Horário: </b> <?= $time ?> </li>
+                                            <li class="list-group-item"> <b> Serviço: </b> <?= $nome_consulta ?> </li>
+                                            <li class="list-group-item"> <b> Descriçao: </b> <?= $descricao ?> </li>
+                                        </ul>
                                     </div>
 
                                 </div>
@@ -222,28 +215,21 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <b> Nome Usuário: </b> <?= $nome_usuario ?> <br>
-                                        Email usuario: <?= $email ?> <br><br>
-
-                                        Nome do Pet: <?= $nome_pet ?> <br>
-                                        Data Nasc. Pet: <?= $NascPet ?> <br>
-                                        Sexo Pet: <?= $sexo ?> <br>
-                                        Tipo Pet: <?= $tipo_pet ?> <br>
-                                        Raca Pet: <?= $raca ?> <br><br>
-
-                                        Data: <?= $day ?> <br>
-                                        Horario: <?= $time ?> <br>
-                                        Descricao: <?= $descricao ?> <br>
-                                        Tipo consulta: <?= $tipo_consulta ?> <br>
-                                        Situação: <?= $sit_consulta ?> <br><br>
-
-                                        Tipo Marcada: <?= $nome_consulta ?> <br>
-                                        <!-- Descrição Tipo Consulta: <?= $descricao_consulta ?> <br>
-                                        Tempo Médio: <?= $tempo_medio ?> <br> -->
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <ul class="list-group">
+                                            <li class="list-group-item"> <b> Usuário: </b> <?= $nome_usuario ?> </li>
+                                            <!-- <li class="list-group-item"> <b> Email: </b> <?= $email ?> </li>  -->
+                                            <br>
+                                            <li class="list-group-item"> <b> Pet: </b> <?= $nome_pet ?> </li>
+                                            <li class="list-group-item"> <b> Data Nasc: </b> <?= $NascPet ?> </li>
+                                            <li class="list-group-item"> <b> Sexo: </b> <?= $sexo ?> </li>
+                                            <li class="list-group-item"> <b> Espécie: </b> <?= $tipo_pet ?> </li>
+                                            <li class="list-group-item"> <b> Raça: </b> <?= $raca ?> </li>
+                                            <br>
+                                            <li class="list-group-item"> <b> Data: </b> <?= $day ?> </li>
+                                            <li class="list-group-item"> <b> Horário: </b> <?= $time ?> </li>
+                                            <li class="list-group-item"> <b> Serviço: </b> <?= $nome_consulta ?> </li>
+                                            <li class="list-group-item"> <b> Descriçao: </b> <?= $descricao ?> </li>
+                                        </ul>
                                     </div>
 
                                 </div>
@@ -334,28 +320,21 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <b> Nome Usuário: </b> <?= $nome_usuario ?> <br>
-                                        Email usuario: <?= $email ?> <br><br>
-
-                                        Nome do Pet: <?= $nome_pet ?> <br>
-                                        Data Nasc. Pet: <?= $NascPet ?> <br>
-                                        Sexo Pet: <?= $sexo ?> <br>
-                                        Tipo Pet: <?= $tipo_pet ?> <br>
-                                        Raca Pet: <?= $raca ?> <br><br>
-
-                                        Data: <?= $day ?> <br>
-                                        Horario: <?= $time ?> <br>
-                                        Descricao: <?= $descricao ?> <br>
-                                        Tipo consulta: <?= $tipo_consulta ?> <br>
-                                        Situação: <?= $sit_consulta ?> <br><br>
-
-                                        Tipo Marcada: <?= $nome_consulta ?> <br>
-                                        <!-- Descrição Tipo Consulta: <?= $descricao_consulta ?> <br>
-                                        Tempo Médio: <?= $tempo_medio ?> <br> -->
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <ul class="list-group">
+                                            <li class="list-group-item"> <b> Usuário: </b> <?= $nome_usuario ?> </li>
+                                            <!-- <li class="list-group-item"> <b> Email: </b> <?= $email ?> </li>  -->
+                                            <br>
+                                            <li class="list-group-item"> <b> Pet: </b> <?= $nome_pet ?> </li>
+                                            <li class="list-group-item"> <b> Data Nasc: </b> <?= $NascPet ?> </li>
+                                            <li class="list-group-item"> <b> Sexo: </b> <?= $sexo ?> </li>
+                                            <li class="list-group-item"> <b> Espécie: </b> <?= $tipo_pet ?> </li>
+                                            <li class="list-group-item"> <b> Raça: </b> <?= $raca ?> </li>
+                                            <br>
+                                            <li class="list-group-item"> <b> Data: </b> <?= $day ?> </li>
+                                            <li class="list-group-item"> <b> Horário: </b> <?= $time ?> </li>
+                                            <li class="list-group-item"> <b> Serviço: </b> <?= $nome_consulta ?> </li>
+                                            <li class="list-group-item"> <b> Descriçao: </b> <?= $descricao ?> </li>
+                                        </ul>
                                     </div>
 
                                 </div>
@@ -439,28 +418,21 @@
                                     </div>
 
                                     <div class="modal-body">
-                                        <b> Nome Usuário: </b> <?= $nome_usuario ?> <br>
-                                        Email usuario: <?= $email ?> <br><br>
-
-                                        Nome do Pet: <?= $nome_pet ?> <br>
-                                        Data Nasc. Pet: <?= $NascPet ?> <br>
-                                        Sexo Pet: <?= $sexo ?> <br>
-                                        Tipo Pet: <?= $tipo_pet ?> <br>
-                                        Raca Pet: <?= $raca ?> <br><br>
-
-                                        Data: <?= $day ?> <br>
-                                        Horario: <?= $time ?> <br>
-                                        Descricao: <?= $descricao ?> <br>
-                                        Tipo consulta: <?= $tipo_consulta ?> <br>
-                                        Situação: <?= $sit_consulta ?> <br><br>
-
-                                        Tipo Marcada: <?= $nome_consulta ?> <br>
-                                        <!-- Descrição Tipo Consulta: <?= $descricao_consulta ?> <br>
-                                        Tempo Médio: <?= $tempo_medio ?> <br> -->
-                                    </div>
-
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <ul class="list-group">
+                                            <li class="list-group-item"> <b> Usuário: </b> <?= $nome_usuario ?> </li>
+                                            <!-- <li class="list-group-item"> <b> Email: </b> <?= $email ?> </li>  -->
+                                            <br>
+                                            <li class="list-group-item"> <b> Pet: </b> <?= $nome_pet ?> </li>
+                                            <li class="list-group-item"> <b> Data Nasc: </b> <?= $NascPet ?> </li>
+                                            <li class="list-group-item"> <b> Sexo: </b> <?= $sexo ?> </li>
+                                            <li class="list-group-item"> <b> Espécie: </b> <?= $tipo_pet ?> </li>
+                                            <li class="list-group-item"> <b> Raça: </b> <?= $raca ?> </li>
+                                            <br>
+                                            <li class="list-group-item"> <b> Data: </b> <?= $day ?> </li>
+                                            <li class="list-group-item"> <b> Horário: </b> <?= $time ?> </li>
+                                            <li class="list-group-item"> <b> Serviço: </b> <?= $nome_consulta ?> </li>
+                                            <li class="list-group-item"> <b> Descriçao: </b> <?= $descricao ?> </li>
+                                        </ul>
                                     </div>
 
                                 </div>

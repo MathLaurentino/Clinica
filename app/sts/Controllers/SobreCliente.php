@@ -101,12 +101,12 @@ private array|null $dataForm; // dados que vem do formulario
 
             } else {
                 $this->data = $this->dataForm;
-                $this->view('alterarDados');
+                $this->view2('alterarDados');
             }
             
         } else {
             $this->getData('usuario');
-            $this->view('alterarDados');
+            $this->view2('alterarDados');
         }
     }
 
@@ -141,7 +141,7 @@ private array|null $dataForm; // dados que vem do formulario
 
             } else {
                 $this->getData('endereco');
-                $this->view('alterarEndereco');
+                $this->view2('alterarEndereco');
             }
 
         } else { 
@@ -172,7 +172,7 @@ private array|null $dataForm; // dados que vem do formulario
 
                 if (!empty($this->data['pet'])) {
                     $this->data['tipo_pet'] = $stsSobreCliente->getRaca($this->data['pet'][0]['tipo_pet']);
-                    $this->view('alterarPet');
+                    $this->view2('alterarPet');
                 } else {
                     $_SESSION['msgRed'] = "Erro, dados incorretos";
                     $header = URL . "Sobre-Cliente/Dados"; 
@@ -306,7 +306,14 @@ private array|null $dataForm; // dados que vem do formulario
     {
         $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/" . $view, $this->data, null);
         $loadView->loadView_cabecalho("areaCliente/alterarDadosH");
-    }
+    } // loadView_header
+
+
+    private function view2(string $view): void
+    {
+        $loadView = new \Core\LoadView("sts/Views/bodys/areaCliente/" . $view, $this->data, null);
+        $loadView->loadView_header("areaCliente/alterarDadosH");
+    } 
 
 
     

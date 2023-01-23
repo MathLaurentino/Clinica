@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Righteous&display=swap');
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+
+}
+
+a,
+a:hover,
+a:active,
+a:link,
+a:visited{
+    text-decoration: none;
+    color: #000;
+}
+
+.menu-bg{
+    background-color: rgb(255, 255, 255);
+}
+
+.menu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    white-space: nowrap;
+
+}
+
+.menu__logo{
+    margin: 10px;
+}
+
+.espaco{
+    width: 10vw;
+}
+.img-logo{
+    height: 65px;
+}
+
+
+.nav__list{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    font-family: 'Righteous', cursive;
+	font-size: 25px;
+	color: #000;
+
+}
+
+.nav__link{
+    padding: 3vh 2vw;
+
+
+}
+.botaoCab{
+    
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	color: white;
+	background-color: #FFB300;
+	border: none;
+	padding-left: 20px;
+	padding-right: 20px;
+    height: 40px;
+	border-radius: 8px;
+}
+button:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+.cabecalho-principal {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-around;
+	white-space: nowrap;
+	background-color: #FFF;
+    flex-wrap: wrap;
+
+    
+}
+
+.cabecalho-principal .img {
+	height: 65px;
+
+}
+
+.cabecalho-principal .menu {
+	display: flex;
+	align-items: baseline;
+	gap: 60px;
+}
+
+.menu .item {
+	font-family: 'Righteous', cursive;
+	font-size: 20px;
+	color: #000;
+
+}
+
+.cabecalho-principal .item-nav {
+	font-family: 'Righteous', cursive;
+	font-size: 13px;
+	color: #000;
+}

@@ -11,6 +11,8 @@ if (!defined('D7E4T2K6F4')) {
     header("Location: {$header}");
 }
 
+include_once 'app/sts/Controllers/helpers/protectLogin.php';
+
 /**     class Cadastro
  * Responsavel por realizar o cadastro dos dados pessoas do cliente
  *      e também pelos dados do endereço

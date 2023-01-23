@@ -144,8 +144,8 @@ class UrlController extends Define
             $page->$method();
         }else{
             //die("Erro: pagina não encontrada");
-            echo $methodo;
-            echo $page;
+            $header = URLADM . "Erro?case=404";
+            header("Location: {$header}");
         }
     }
 }

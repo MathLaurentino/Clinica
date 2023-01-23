@@ -761,7 +761,7 @@ text-align: center;
 
 /************** css tela alterar dados pet ***********/
 .tamanhoForm {
-	width: 30vw;
+	width: 20vw;
 	height: 3vh;
 }
 
@@ -848,12 +848,7 @@ text-align: center;
 	cursor: pointer;
 }
 
-.conteudo-principal .img-pet08 {
-	position: absolute;
-	left: 72.8vw;
-	top: 17.7vh;
 
-}
 
 .conteudo-principal .img-pet07 {
 	position: absolute;
@@ -869,6 +864,7 @@ text-align: center;
 .form-email input {
 	margin-top: 30vh;
 	border: none;
+	width: 30vw;
 	background: none;
 	outline: none;
 	border-bottom: 2px solid black;
@@ -876,11 +872,10 @@ text-align: center;
 	color: black;
 }
 
-.conteudo-principal .telaErro{
-	padding-left: 55vw;
-	margin-top: 10vw;
+.telaErro{
+	padding-left: 20vw;
+	margin-top: 2vh;
 }
-
 .telaErro .tituloErro {
 	font-family: 'Righteous', cursive;
 	font-size: 50px;
@@ -896,7 +891,111 @@ text-align: center;
 
 }
 
-.conteudo-principal .botaoTelaErro {
+.botaoTelaErro {
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 5px 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	align-self: center;
+}
+
+
+
+/************ css das telas com imagens ***********/
+
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.containerImg{
+	display: flex;
+	flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+.containerImg3{
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+	align-items: center;
+}
+
+
+
+
+.img-pet07 {
+	width: 40vw;
+}
+.img-pet08 {
+	width: 25vw;
+}
+
+.vazio{
+	width: 25vw;
+}
+
+
+.linhaCab{
+	border: 1px solid rgb(0, 0, 0);
+
+}
+
+
+.containerImg2{
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.child2{
+	background-color: #ff0000;
+	border: 1px solid rgb(0, 0, 0);
+	height: 10vh;
+	width: 10vw;
+	background-color: #ECEFF1;
+
+}
+
+.corBg{
+	background-color: #ECEFF1;
+}
+
+/******* tela email ******/
+
+.tituloE {
+	font-family: 'Righteous', cursive;
+	font-size: 50px;
+	text-align: center;
+
+}
+
+.subtituloE{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	text-align: center;
+}
+
+.form-enviaEmail {
+	font-family: 'Open Sans', sans-serif;
+
+}
+
+.form-enviaEmail input {
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+}
+
+.form-enviaEmail .botaoEnviaEmail {
 	font-family: 'Righteous', cursive;
 	font-size: 25px;
 	color: white;
@@ -907,4 +1006,10 @@ text-align: center;
 	cursor: pointer;
 	align-self: center;
 	margin: 7vh;
+	
+}
+
+.botaoEnviaEmail:hover {
+	transform: scale(1.1);
+	cursor: pointer;
 }

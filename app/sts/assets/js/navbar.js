@@ -1,4 +1,3 @@
-
 class MobileNavBar{
     constructor(mobileMenu,navList,navLinks){
         this.mobileMenu = document.querySelector(mobileMenu);
@@ -44,7 +43,3 @@ const mobileNavBar = new MobileNavBar(
     ".nav-list li",
 );
 mobileNavBar.init();
-
-
-
-

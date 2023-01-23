@@ -34,7 +34,7 @@
 
             <input class="botao" type="submit" value="Enviar" name="Login">
 
-            <a href="#" class="senha">Esqueceu sua senha?</a>
+            <a href="<?= URL ?>RecuperarSenha/Informar-Email" class="senha">Esqueceu sua senha?</a>
             <a href="<?= URL ?>ConfirmarEmail/Informar-Email" class="senha"> Reenviar e-mail de confirmação</a> <br>
 
         </form>

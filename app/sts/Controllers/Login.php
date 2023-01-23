@@ -2,8 +2,6 @@
 
 namespace Sts\Controllers;
 
-include_once 'app/sts/Controllers/helpers/protectLogin.php';
-
 if (!defined('D7E4T2K6F4')) {
     $header = "http://localhost/Clinica/Erro?case=404"; // Erro 404
     header("Location: {$header}");
@@ -17,6 +15,7 @@ class Login{
     private array|null $data = null;
 
 
+    
     /**     function index()
      * Chama a function padão da classe
      */

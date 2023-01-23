@@ -750,3 +750,36 @@ text-align: center;
 	/* align-items: center; */
 }
 
+.conteudo-principal .telaErro{
+	padding-left: 55vw;
+	margin-top: 10vw;
+}
+
+.telaErro .tituloErro {
+	font-family: 'Righteous', cursive;
+	font-size: 50px;
+	text-align: center;
+
+}
+
+.telaErro .subtituloErro {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	text-align: center;
+
+
+}
+
+.conteudo-principal .botaoTelaErro {
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 5px 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	align-self: center;
+	margin: 7vh;
+}
+
