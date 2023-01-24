@@ -71,3 +71,5 @@
     </form>
 
 </main>
+<script src="<?= URL . JS ?>navbar.js"> </script>
+

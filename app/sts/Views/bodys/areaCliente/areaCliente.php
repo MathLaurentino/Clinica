@@ -156,8 +156,23 @@ if (!isset($_SESSION)) {
             </div>
 
             <div>
+              <?php
+                if (empty($imagem_pet)) {
+              ?>
+
+                <a  href="<?= URL . 'FotoPet/adicionar?id=' . $idpet; ?>" class="iconeEdita"> <i class="fa fa-plus-square" aria-hidden="true"></i> </a>
               
-              <a href="<?php if ($img_pet == 'petSemFoto.png') { echo URL . 'FotoPet/adicionar?id=' . $idpet; } else { echo URL . 'FotoPet/alterar?id=' . $idpet; } ?>" class="iconeEdita"><i class="fa fa-pencil-square" aria-hidden="true"></i></a> <!-- botão de alterar foto pet --> 
+              <?php
+                } else {
+              ?>
+
+                <a href="<?= URL . 'FotoPet/alterar?id=' . $idpet; ?>" class="iconeEdita"><i class="fa fa-pencil-square" aria-hidden="true"></i></a> 
+                <a href="<?= URL . 'FotoPet/apagar?id=' . $idpet; ?>" class="iconeEdita"><i class="fa fa-trash" aria-hidden="true"></i></a> 
+              
+              <?php
+                } 
+              ?>
+
               <p class="alinhaPadding"> <a href="<?= URL . "Sobre-Cliente/Alterar-Dados-Pet?id={$idpet}" ?>"> <button class="btn-alterarDados"> alterar dados </button> </a> </p>
 
             </div>
@@ -368,6 +383,7 @@ if (!isset($_SESSION)) {
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
+  <script src="<?= URL . JS ?>navbar.js"> </script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

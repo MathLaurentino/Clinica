@@ -22,6 +22,22 @@ class StsRecuperarSenha{
 
 
 
+    /**     function verifyKeyUser()
+     * Informa se email informado realmente existe no BD
+     */
+    public function verifyKeyUser($key): array|null
+    {   
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+
+        $stsSelect->fullRead("SELECT idusuario
+                            FROM usuario
+                            WHERE recuperar_senha = :recuperar_senha", "recuperar_senha={$key}");
+
+        return $stsSelect->getResult();
+    }
+
+
+
     /**     function alterSitConsulta($id, $data)
      * Altera qualquer informação da tabela usuario
      * $data deve ser um array e se comportar da seguinte forma

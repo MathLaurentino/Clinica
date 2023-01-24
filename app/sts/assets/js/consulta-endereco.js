@@ -19,11 +19,13 @@ function popularForm(resposta) {
 
     if ('erro' in resposta) {
         alert('CEP não encontrado');
+    } else {
+        rua.value = resposta.logradouro;
+        bairro.value = resposta.bairro;
+        cidade.value = resposta.localidade;
+        estado.value = resposta.uf;
+
     }
 
-    rua.value = resposta.logradouro;
-    bairro.value = resposta.bairro;
-    cidade.value = resposta.localidade;
-    estado.value = resposta.uf;
-    
 }
+

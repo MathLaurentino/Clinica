@@ -588,7 +588,9 @@ button:hover {
 	border-radius: 30px;
 }
 
+
 .iconeEdita {
+	
 	font-size: 25px;
 	color: #7d59ff;
 ;
@@ -599,6 +601,7 @@ a:active,
 a:link,
 a:visited{
 	text-decoration: none;
+	color: #7d59ff;
 }
 .form-edição input {
 	height: 7vh;
@@ -740,14 +743,14 @@ text-align: center;
 }
 
 .form-edição3 input {
-    height: 5vh;
+    height: 4vh;
     border: none;
     background: none;
     outline: none;
     border-bottom: 2px solid rgb(41, 41, 41);
     font-size: 15px;
     color:  rgb(41, 41, 41);
-    margin: 10px;
+    margin: 5px;
     width: 20vw;
 }
 .estilizaP{
@@ -926,6 +929,44 @@ text-align: center;
 	align-items: center;
 }
 
+.containerImgSenha{
+	display: flex;
+	flex-direction: column;
+    
+    height: 100vh;
+
+}
+
+.form-enviaSenha {
+	font-family: 'Open Sans', sans-serif;
+	padding-top: 20vh;
+
+}
+
+.form-enviaSenha input {
+	
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+}
+
+.form-enviaSenha .botaoEnviaSenha {
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 5px 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	align-self: center;
+	margin: 7vh;
+	
+}
+
 
 
 
@@ -1012,4 +1053,46 @@ text-align: center;
 .botaoEnviaEmail:hover {
 	transform: scale(1.1);
 	cursor: pointer;
+}
+
+/**** alterar dados pet ****/
+
+
+.form-alteraDadosPet {
+	font-family: 'Open Sans', sans-serif;
+	width: 50vw;
+	height: 40%;
+	font-size: 18px;
+	text-align: center;
+	margin-top: 10vh;
+}
+
+.form-alteraDadosPet input {
+	
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+	/*margin: 0px;*/
+}
+
+.form-alteraDadosPet .botaoAlterar {
+	font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 165px;
+	align-self: center;
+	margin: 6px;
+
+}
+
+.containerImg .img-pet {
+	margin: 0;
 }

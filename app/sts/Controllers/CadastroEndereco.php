@@ -40,14 +40,15 @@ class CadastroEndereco {
             //pega os dados do método post
             $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
+            
             if (!empty($this->dataForm['createAdress'])) {
                 unset($this->dataForm['createAdress']);
                 $this->data = $this->dataForm;
                 $this->createEndereco();
             } else {
                 $this->data = null; 
-                $loadView = new \Core\LoadView("sts/Views/bodys/cadastros/cadastroEndereco", $this->data, null);
-                $loadView->loadView_header2('cadastro_endereco');
+                $loadView = new \Core\LoadView("sts/Views/bodys/cadastros/cadastroEndereco2", $this->data, null);
+                $loadView->loadView_header('cadastros/cadsatro_enderecoH');
             }
 
         } 
