@@ -3,93 +3,115 @@
         session_start();
     }
 ?>
-    <!--CONTEÚDO PRINCIPAL-->
-    <main class="conteudo-principal">
-        <section id="" class="apresentação">
-            
 
-            <img src="app\sts\assets\imagens_clinica\img01.png" alt="img cães" class="img" id="circulo"> 
-             
-            <div class="introdução">
-                <h1 class="título"> Invista na saúde e bem estar <br> do seu pet! </h1> <br> <br> 
 
-                <p class="subtítulo"> Agendamento fácil e rápido pelo site </p>
-            </div>
+<!--CONTEÚDO PRINCIPAL-->
+<main class="conteudo-principal">
+    <section id="" class="apresentação">
 
-        </section>
-    
-        <section id="serviços" class="">
-            
-            <h2 class="serviços">CONHEÇA <br> NOSSOS SERVIÇOS</h1>
 
-                <!-- CARROSSEL 
-                <div class="container">
-                    <script type="text/javascript" src="/carrossel.js"></script>
-                    botões
-                    <button class="arrow-left control" aria-label="Previous image">◀</button>
-                    
-                    <button class="arrow-right control" aria-label="Next Image">▶</button>
+        <img src="<?= URL . IMGCLINICA ?>img01.png" alt="img cães" class="img" id="circulo">
 
-                    <div class="gallery-wrapper">
-                        <div class="gallery">
+        <div class="introdução">
+            <h1 class="título"> Invista na saúde e bem estar <br> do seu pet! </h1> <br> <br>
 
-                            <div class="serviço01"> 
-                                <img src="https://source.unsplash.com/random/100x100/?arara" alt="icone vacina" class="item">
-                                <h4> VACINAÇÃO </h4>
-                                <p> descrição do serviço </p>
-                            </div>
-                            
-                            <div class="serviço02"> 
-                                <img src="https://source.unsplash.com/random/100x100/?puppy" alt="icone exames" class="item">
-                                <h4> EXAMES </h4>
-                                <p> descrição do serviço </p>
-                            </div>
+            <p class="subtítulo"> Agendamento fácil e rápido pelo site </p>
+        </div>
 
-                            <div class="serviço03"> 
-                                <img src="https://source.unsplash.com/random/100x100/?pet" alt="icone consulta" class="item">
-                                <h4> CONSULTAS </h4>
-                                <p> descrição do serviço </p>
-                            </div>
+    </section>
 
-                            <div class="serviço04"> 
-                                <img src="https://source.unsplash.com/random/100x100/?bird" alt="icone raio-x" class="item">
-                                <h4>DIAGNÓSTICO POR IMAGEM</h4>
-                                <p> descrição do serviço</p>
-                            </div>
+    <section id="opções" class="serviços">
 
-                            <div class="serviço05"> 
-                                <img src="https://source.unsplash.com/random/100x100/?dog" alt="icone cirurgia" class="item">
-                                <h4>PROCEDIMENTOS CIRÚRGICOS</h4>
-                                <p> descrição do serviço</p>
-                            </div>
+        <h2 class="serviços">CONHEÇA <br> NOSSOS SERVIÇOS</h1>
 
-                            <div class="serviço06">  
-                                <img src="https://source.unsplash.com/random/100x100/?cat" alt="icone gato" class="item">
-                                <h4> ESPECIALISTAS EM FELINOS</h4>
-                                <p> descrição do serviço</p>
-                            </div>
-                        </div>
+            <!-- Bot Carrossel-->
+            <div id="carouselExampleIndicators" class="carousel" data-ride="carousel">
+                <!--classe que deu problema na configuração do carrossel: class="carousel slide" -->
+                <div class="carousel-inner">
 
+                    <div class="carousel-item active">
+                        <img src="<?= URL . IMGCLINICA ?>serviços01.png" alt="serviços oferecidos" class="">
                     </div>
 
-                    <script src="/Frontend/ClinicaNova/carrossel.js"></script>
-                </div>   --> 
+                    <div class="carousel-item">
+                        <img src="<?= URL . IMGCLINICA ?>serviços02.png" alt="serviços oferecidos" class="">
+                    </div>
+
+                </div>
+
+            </div>
+
+    </section>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <section class="corpoclinico" id="corpoclinico">
         
-        </section>
-<br>
-        <section id="corpoclinico" class="">
-            <h2 class="corpoclinico">CONHEÇA <br> NOSSO CORPO CLÍNICO</h2> 
-           
-                <!-- slider - imagem com capa médico com opção de selecionar para o prox, sem andar sozinho --> 
-           
-            <p class="descricao"> descrição do profissional, especificações</p>
-        </section> 
-    </main> 
+        <div class="alinhamentoCorpo"> 
+        <h2 class="corpoclinico">CONHEÇA <br> NOSSO CORPO CLÍNICO</h2>
+        <p class="descricao"> Trabalhar com medicina <br> veterinária é preciso amar e <br> respeitar os
+            animais, tendo <br> como objetivo priorizar seu <br> bem-estar físico e emocional. <br> Nossos
+            profissionais fazem o <br> máximo para alcançar esse <br> objetivo</p>
+        </div>
+        <div class="gapCorpo"></div>
+        <div class="slider">
+            <div class="slides">
+                <input type="radio" name="radio-btn" id="radio1"><br>
+                <input type="radio" name="radio-btn" id="radio2">
+                <input type="radio" name="radio-btn" id="radio3">
+                <input type="radio" name="radio-btn" id="radio4">
 
-    <!--RODAPÉ-->
+                <div class="slide first">
+                    <img src="<?= URL . IMGCLINICA ?>paulinho.png" id="img-corpo" alt="">
+                </div>
+                <div class="slide">
+                    <img src="<?= URL . IMGCLINICA ?>paulinho.png" id="img-corpo" alt="">
+                </div>
+                <div class="slide">
+                    <img src="<?= URL . IMGCLINICA ?>paulinho.png" id="img-corpo" alt="">
+                </div>
+                <div class="slide">
+                    <img src="<?= URL . IMGCLINICA ?>paulinho.png" id="img-corpo" alt="">
+                </div>
 
-    <script src="<?= URL . JS ?>navbar.js"> </script>
+                <div class="navigation-auto">
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  
+                    <div class="auto-btn1"> </div>
+
+
+                        <div class="auto-btn2 afastab2"> </div>
+
+
+                    <div class="auto-btn3 afastab3"> </div>
+                    <div class="auto-btn4 afastab4"> </div>
+
+                </div>
+            </div>
+
+            <div class="manual-navigation">
+                <label for="radio1" class="manual-btn"></label>
+                
+                <div class="afasta2">
+                    <label for="radio2" class="manual-btn"></label>
+                </div>
+
+                <div class="afasta3">
+                    <label for="radio3" class="manual-btn"></label>
+                </div>
+
+                <div class="afasta4">
+                    <label for="radio4" class="manual-btn"></label>
+                </div>
+            </div>
+        </div>
+
+    </section></main>
+
+
+<script src="<?= URL . JS ?>navbar.js"> </script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

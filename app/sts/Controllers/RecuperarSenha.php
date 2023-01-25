@@ -35,40 +35,55 @@ class RecuperarSenha{
     public function informarEmail (): void
     {
         $this->dataForm = filter_input_array(INPUT_POST, FILTER_DEFAULT);
-
         $this->checkSession();
 
         /** Se o formulário com o email foi enviado */
         if (isset($this->dataForm['send'])) {
-
             unset($this->dataForm['send']);
 
             $stsSenha = new \Sts\Models\StsRecuperarSenha();
 
             $userData = $stsSenha->getUserData($this->dataForm['email']);
             $idUser = $userData[0]['idusuario'];
+            $sitUser = $userData[0]['sit_usuario'];
 
-            if ($userData) {
-                
-                $this->data['recuperar_senha'] = password_hash($idUser, PASSWORD_DEFAULT);
+            if ($sitUser == "Ativo") {
 
-                if ($stsSenha->alterUserData($idUser, $this->data)) {
-
-                    $this->enviarEmailSenha($this->dataForm['email'], $this->data['recuperar_senha'], $userData[0]['nome_usuario']);
-
+                if ($userData) {
+                    $this->data['recuperar_senha'] = password_hash($idUser, PASSWORD_DEFAULT);
+    
+                    if ($stsSenha->alterUserData($idUser, $this->data)) {
+    
+                        $this->enviarEmailSenha($this->dataForm['email'], $this->data['recuperar_senha'], $userData[0]['nome_usuario']);
+    
+                    } else {
+                        $_SESSION['msgRed'] = "Falha ao gerar chave!";
+                        $header = URL . "RecuperarSenha/Informar-Email";
+                        header("Location: {$header}");
+                    }
+                    
                 } else {
-                    $_SESSION['msgRed'] = "Falha ao gerar chave!";
+                    $_SESSION['msgRed'] = "Email informado é inválido!";
                     $header = URL . "RecuperarSenha/Informar-Email";
                     header("Location: {$header}");
                 }
+
+            } elseif($sitUser == "Inativo") {
+                $_SESSION['msgRed'] = "Conta bloqueada!";
+                $header = URL . "Login/Usuario";
+                header("Location: {$header}");
+
+            } elseif ($sitUser == "Confirmando") {
+                $_SESSION['msgRed'] = "É necessário confirma o endereço de email antes de mudar a senha!";
+                $header = URL . "Login/Usuario";
+                header("Location: {$header}");
                 
             } else {
-                $_SESSION['msgRed'] = "Email informado é inválido!";
-                $this->data['email'] = $this->dataForm['email'];
-
-                $header = URL . "RecuperarSenha/Informar-Email";
+                $header = URL . "Home";
                 header("Location: {$header}");
             }
+
+           
 
         } else {
             $loadView = new \Core\LoadView("sts/Views/bodys/novaSenha/informarEmail", null, null);
@@ -149,15 +164,15 @@ class RecuperarSenha{
             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->CharSet = "UTF-8";
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.mailtrap.io';                     //Set the SMTP server to send through
+            $mail->Host       = HOSTTRAP;                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = '5b0b0de0c72429';                     //SMTP username
-            $mail->Password   = '1dcc7c242ab250';                               //SMTP password
+            $mail->Username   = USERNAME;                     //SMTP username
+            $mail->Password   = PASSWORD;                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-            $mail->Port       = 2525;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->Port       = PORTTRAP;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('matheuscalifornia29@gmail.com', 'Matheus');
+            $mail->setFrom(EMAILTRAP, NOME);
             $mail->addAddress($email);
 
             $mail->isHTML(true);                                  //Set email format to HTML

@@ -230,4 +230,20 @@ class StsAgendamento{
             return false;
     }
 
+
+
+    /**     function verifySitUser($idUser)
+     * Retorna a sit_usuario do usuário logado
+     */
+    public function verifySitUser($idUser): string
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT sit_usuario
+                            FROM usuario 
+                            WHERE idusuario = :idusuario ", "idusuario={$idUser}" );
+
+        $data = $stsSelect->getResult();
+        return $data[0]['sit_usuario'];
+    }
+
 }

@@ -202,6 +202,7 @@ button:hover {
 	display: flex;
 	align-self: flex-start;
 	height: 50px;
+	border: 1px solid #000;
 
 }
 
@@ -438,6 +439,7 @@ button:hover {
 	height: 10vh;
 	width: 6vw;
 	border-radius: 30px;
+	border: 1px solid #000;
 
 }
 
@@ -566,6 +568,7 @@ button:hover {
 	width: 7vw;
 	height: 10vh;
 	border-radius: 20px;
+	border: 1px solid #000;
 }
 
 .iconeEdita {
@@ -722,7 +725,7 @@ text-align: center;
 }
 .btn-usuariosAdm {
 	font-family: 'Righteous', cursive;
-	background-color: rgb(92, 236, 123);
+	background-color: rgb(27, 223, 21);
 	border: none;
 	border-radius: 5px;
 	color: #fff;
@@ -755,14 +758,14 @@ text-align: center;
 	margin-top: 10vw;
 }
 
-.telaErro .tituloErro {
+.tituloErro {
 	font-family: 'Righteous', cursive;
 	font-size: 50px;
 	text-align: center;
 
 }
 
-.telaErro .subtituloErro {
+.subtituloErro {
 	font-family: 'Open Sans', sans-serif;
 	font-size: 25px;
 	text-align: center;
@@ -783,3 +786,254 @@ text-align: center;
 	margin: 7vh;
 }
 
+/************ css das telas com imagens ***********/
+
+
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+.containerImg{
+	display: flex;
+	flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+.containerImg3{
+	display: flex;
+	flex-direction: row;
+    justify-content: space-between;
+	align-items: center;
+}
+
+.containerImgSenha{
+	display: flex;
+	flex-direction: column;
+    
+    height: 100vh;
+
+}
+
+.form-enviaSenha {
+	font-family: 'Open Sans', sans-serif;
+	padding-top: 20vh;
+
+}
+
+.form-enviaSenha input {
+	
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+}
+
+.form-enviaSenha .botaoEnviaSenha {
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 5px 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	align-self: center;
+	margin: 7vh;
+	
+}
+
+
+
+
+.img-pet07 {
+	width: 40vw;
+}
+.img-pet08 {
+	width: 25vw;
+}
+
+.vazio{
+	width: 25vw;
+}
+
+
+.linhaCab{
+	border: 1px solid rgb(0, 0, 0);
+
+}
+
+
+.containerImg2{
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.child2{
+	background-color: #ff0000;
+	border: 1px solid rgb(0, 0, 0);
+	height: 10vh;
+	width: 10vw;
+	background-color: #ECEFF1;
+
+}
+
+.corBg{
+	background-color: #ECEFF1;
+}
+
+/******* tela email ******/
+
+.tituloE {
+	font-family: 'Righteous', cursive;
+	font-size: 50px;
+	text-align: center;
+
+}
+
+.subtituloE{
+	font-family: 'Open Sans', sans-serif;
+	font-size: 25px;
+	text-align: center;
+}
+
+.form-enviaEmail {
+	font-family: 'Open Sans', sans-serif;
+
+}
+
+.form-enviaEmail input {
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+}
+
+.form-enviaEmail .botaoEnviaEmail {
+	font-family: 'Righteous', cursive;
+	font-size: 25px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 5px 5px;
+	border-radius: 5px;
+	cursor: pointer;
+	align-self: center;
+	margin: 7vh;
+	
+}
+
+.botaoEnviaEmail:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+
+/**** alterar dados pet ****/
+
+
+.form-alteraDadosPet {
+	font-family: 'Open Sans', sans-serif;
+	width: 50vw;
+	height: 40%;
+	font-size: 18px;
+	text-align: center;
+	margin-top: 10vh;
+}
+
+.form-alteraDadosPet input {
+	
+	border: none;
+	background: none;
+	outline: none;
+	border-bottom: 2px solid black;
+	font-size: 15px;
+	color: black;
+	/*margin: 0px;*/
+}
+
+.form-alteraDadosPet .botaoAlterar {
+	font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 165px;
+	align-self: center;
+	margin: 6px;
+
+}
+
+.containerImg .img-pet {
+	margin: 0;
+}
+
+/* ATUALIZAÇÕES INDEX */
+
+.alinhamentoCorpo{
+	margin-left: 2vw;
+
+}
+
+
+.corpoclinico {
+	display: flex;
+	align-items: flex-start;
+	/* ALGUMA COISA PARA DEIXAR O TEXTO PARA A ESQUERDA*/
+	flex-direction: row;
+	flex-wrap: wrap;
+    white-space: nowrap;
+}
+
+.conteudo-principal .descricao {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	text-align: left;
+	margin-left: 2vw;
+
+}
+
+.gapCorpo{
+	width: 5vw;
+}
+/***********************/
+
+/*BOTÃO DA TELA DE ALTERAR DADOS CLIENTE*/
+.form-edição3 .botaoAlterar {
+	font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 165px;
+	align-self: center;
+	margin: 12px;
+	height: 5vh;
+	
+}
+
+.botaoAlterar:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+/***********************/
+
+.img-TelaAlterar{
+	width: 28vw;
+}
+
+.imgDogHome{
+	width: 30vw;
+	margin-left: 65vw;
+
+}

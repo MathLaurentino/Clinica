@@ -100,7 +100,7 @@ class StsSobreCliente
     public function getDataConsultaEmAndamento($idUsuario): array|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
-        $stsSelect->fullRead( "SELECT c.sit_consulta, c.idconsulta, c.data_consulta, c.horario_consulta,
+        $stsSelect->fullRead( "SELECT c.sit_consulta, c.idconsulta, c.data_consulta, c.horario_consulta, c.descricao,
                                 t.nome_consulta, t.tempo_medio, t.valor_consulta, t.foto_servico,
                                 p.nome_pet,
                                 u.idusuario
@@ -126,7 +126,7 @@ class StsSobreCliente
     public function getDataConsultasFinalizadas($idUsuario): array|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
-        $stsSelect->fullRead( "SELECT c.sit_consulta, c.idconsulta, c.data_consulta, c.horario_consulta,
+        $stsSelect->fullRead( "SELECT c.sit_consulta, c.idconsulta, c.data_consulta, c.horario_consulta, c.descricao,
                                 t.nome_consulta, t.tempo_medio, t.valor_consulta, t.foto_servico,
                                 p.nome_pet
                                 FROM consulta as c

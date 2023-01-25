@@ -26,10 +26,10 @@ class Home{
 
         if (isset($_SESSION['idusuario'])) {
             $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
-            $loadView->loadView_cabecalho('home/index');
+            $loadView->loadView_index('home/index');
         } else {
             $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
-            $loadView->loadView_cabecalhoOff('home/index');
+            $loadView->loadView_index_Off('home/index');
         }
         
         

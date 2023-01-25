@@ -36,15 +36,21 @@ class ConfirmarEmail{
 
             if ($userSituation == "Confirmando") {
 
-                $id = $stsKey->verifyKey($chave);
+                $idUser = $stsKey->getIdUser($chave);
     
-                if (!empty($id)){
+                if (!empty($idUser)){
     
-                    if ($stsKey->alterSituation($id[0]['idusuario'])) {
+                    $this->data['sit_usuario'] = "Ativo";
+                    $this->data['chave'] = NULL;
+
+                    if ($stsKey->alterDataUsuario($idUser, $this->data)) {
                         $_SESSION['msgGreen'] = "Email confirmado com sucesso";
-                        $header = URL . "Login";
-                        header("Location: {$header}");
+                    } else {
+                        $_SESSION['msgRed'] = "Falha ao confirmar Email";  
                     }
+
+                    $header = URL . "Login";
+                    header("Location: {$header}");
     
                 } else {
                     $_SESSION['msgRed'] = "Chave de confirmação invalida";
@@ -64,6 +70,10 @@ class ConfirmarEmail{
                 $header = URL . "Login";
                 header("Location: {$header}");
 
+            } else { // caso chave não tenha registro no BD
+                $_SESSION['msgRed'] = "Chave de ativação incorreta!";
+                $header = URL . "Home";
+                header("Location: {$header}");
             }
 
         } else { 
@@ -88,15 +98,27 @@ class ConfirmarEmail{
 
             $stsEmail = new \Sts\Models\StsConfirmarEmail();
             /** Se o email realmente existir */
-            if ($stsEmail->verifyIfEmailExist($this->dataForm['email'])){
+            $idUser = $stsEmail->verifyIfEmailExist($this->dataForm['email']);
+            if (!empty($idUser)){
+
+                $idUsuario = $idUser[0]['idusuario'];
 
                 $stsKey = new \Sts\Models\StsConfirmarEmail();
                 $userSituation = $stsKey->getSituation("email", $this->dataForm['email']);
 
                 if ($userSituation == "Confirmando") {
 
-                    $this->reenviarEmail($this->dataForm['email']);
+                    $key = password_hash($this->dataForm['email'] . date("Y-m-d H:i:s"), PASSWORD_DEFAULT);
+                    $sit = array('chave' => $key);
 
+                    if ($stsKey->alterDataUsuario($idUsuario, $sit)) {
+                        $this->reenviarEmail($this->dataForm['email'], $key);
+                    } else {
+                        $_SESSION['msgRed'] = "Falha ao reenviar email!";
+                        $header = URL . "Login";
+                        header("Location: {$header}");
+                    }
+   
                 } elseif ($userSituation == "Inativo") {
 
                     $_SESSION['msgRed'] = "Lamentamos, mas essa conta foi bloqueada!";
@@ -130,13 +152,9 @@ class ConfirmarEmail{
     /**
      * Reenvia o email de ativação de conta 
      */
-    private function reenviarEmail($emailUser)
+    private function reenviarEmail($email, $chave)
     {
-        $email = $emailUser;
 
-        $stsEmail = new \Sts\Models\StsConfirmarEmail();
-        $chave = $stsEmail->getKey($email);
-        
         $mail = new PHPMailer(true);
         
         try {
@@ -144,15 +162,15 @@ class ConfirmarEmail{
             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->CharSet = "UTF-8";
             $mail->isSMTP();                                            //Send using SMTP
-            $mail->Host       = 'smtp.mailtrap.io';                     //Set the SMTP server to send through
+            $mail->Host       = HOSTTRAP;                     //Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-            $mail->Username   = '5b0b0de0c72429';                     //SMTP username
-            $mail->Password   = '1dcc7c242ab250';                               //SMTP password
+            $mail->Username   = USERNAME;                     //SMTP username
+            $mail->Password   = PASSWORD;                               //SMTP password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-            $mail->Port       = 2525;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+            $mail->Port       = PORTTRAP;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
             //Recipients
-            $mail->setFrom('matheuscalifornia29@gmail.com', 'Matheus');
+            $mail->setFrom(EMAILTRAP, NOME);
             $mail->addAddress($email);
 
             $mail->isHTML(true);                                  //Set email format to HTML

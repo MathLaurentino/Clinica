@@ -13,7 +13,7 @@ class StsRecuperarSenha{
     {   
         $stsSelect = new \Sts\Models\helpers\StsSelect();
 
-        $stsSelect->fullRead("SELECT idusuario, nome_usuario, email
+        $stsSelect->fullRead("SELECT idusuario, nome_usuario, email, sit_usuario
                             FROM usuario
                             WHERE email = :email", "email={$email}");
 
@@ -23,7 +23,8 @@ class StsRecuperarSenha{
 
 
     /**     function verifyKeyUser()
-     * Informa se email informado realmente existe no BD
+     * Informa se a chave informada realmente existe no BD
+     *      sa existir retorna o id do usuário que a tem
      */
     public function verifyKeyUser($key): array|null
     {   

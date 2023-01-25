@@ -1,12 +1,32 @@
-<!--CABEÇALHO-->
-<header class="cabecalho-principal">
-  <img class="img" src="<?= URLADM . IMGADMCLINICA ?>logo.png" alt="logo da clínica">
-  <nav class="menu">
-    <a class="item" href="<?= URLADM ?>AreaClientes/Dados"> ÁREA CLIENTES </a>
-    <a class="item" href="<?= URLADM ?>Servicos/Clinica"> SERVICOS CLÍNICA </a>
-    <a href="<?= URLADM ?>ConsultasAgendadas/Clientes"> <button class="botao">SOLICITAÇÕES</button> </a>
+<header>
+    <div class="menu-bg">
+        <div class="menu">
 
-    <!--PARTE DE ICONE E LOGIN-->
-    <a href="login.html" class="login-user"> <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i></a>
-  </nav>
+            <div class="menu__logo">
+                <a > <img src="<?= URLADM . IMGADMCLINICA ?>logo.png" class="img-logo"></a>
+            </div>
+
+            <div class="espaco"></div>
+
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a href="<?= URLADM ?>AreaClientes/Dados" class="nav__link"> ÁREA CLIENTES </a> </li>
+                    <li><a href="<?= URLADM ?>Servicos/Clinica" class="nav__link"> SERVICOS CLÍNICA </a> </li>
+                    <a href="<?= URLADM ?>ConsultasAgendadas/Clientes"> <button class="botaoCab">SOLICITAÇÕES!</button> </a>
+                </ul>
+            </nav>
+
+            <div class="nav__link">
+
+                <div class="mobile-menu">
+                  <div class="icone"> <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> </div>
+                </div>
+
+                <ul class="nav-list">
+                  <a href="<?= URLADM . "Logout/logout" ?>" class="">Logout</a> 
+                </ul>
+
+                </nav> <!-- fim navbar -->
+            </div>
+        </div>
 </header>

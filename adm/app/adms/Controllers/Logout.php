@@ -16,7 +16,7 @@ class Logout{
 
     public function logout()
     {
-        include_once 'app/sts/Controllers/helpers/logout.php';
+        include_once 'app/adms/Controllers/helpers/logout.php';
 
         $header = URL . "Home"; 
         header("Location: {$header}");

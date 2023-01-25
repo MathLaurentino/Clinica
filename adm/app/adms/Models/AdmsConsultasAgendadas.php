@@ -14,7 +14,7 @@ class AdmsConsultasAgendadas{
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
         $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
-                            p.nome_pet, p.data_nascimento_pet, p.sexo,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo, p.imagem_carteira_pet,
                             r.tipo_pet, r.raca,
                             t.nome_consulta, t.descricao_consulta, t.tempo_medio,
                             u.nome_usuario, u.email, foto_usuario
@@ -45,7 +45,7 @@ class AdmsConsultasAgendadas{
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
         $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
-                            p.nome_pet, p.data_nascimento_pet, p.sexo,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo, p.imagem_carteira_pet,
                             r.tipo_pet, r.raca,
                             t.nome_consulta, t.descricao_consulta, t.tempo_medio,
                             u.nome_usuario, u.email, foto_usuario
@@ -76,7 +76,7 @@ class AdmsConsultasAgendadas{
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
         $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
-                            p.nome_pet, p.data_nascimento_pet, p.sexo,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo, p.imagem_carteira_pet,
                             r.tipo_pet, r.raca,
                             t.nome_consulta, t.descricao_consulta, t.tempo_medio,
                             u.nome_usuario, u.email, foto_usuario
@@ -106,7 +106,7 @@ class AdmsConsultasAgendadas{
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
         $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
-                            p.nome_pet, p.data_nascimento_pet, p.sexo,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo, p.imagem_carteira_pet,
                             r.tipo_pet, r.raca,
                             t.nome_consulta, t.descricao_consulta, t.tempo_medio,
                             u.nome_usuario, u.email, foto_usuario
@@ -135,7 +135,7 @@ class AdmsConsultasAgendadas{
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
 
         $admsSelect->fullRead("SELECT c.data_consulta, c.horario_consulta, c.descricao, c.sit_consulta, c.tipo_consulta, c.idconsulta,
-                            p.nome_pet, p.data_nascimento_pet, p.sexo,
+                            p.nome_pet, p.data_nascimento_pet, p.sexo, p.imagem_carteira_pet,
                             r.tipo_pet, r.raca,
                             t.nome_consulta, t.descricao_consulta, t.tempo_medio,
                             u.nome_usuario, u.email, foto_usuario

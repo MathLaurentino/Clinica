@@ -64,7 +64,7 @@
 
                         <section class="conteudo-serviçosadm">
 
-                            <img src="<?= URL . IMGCLIENTEADM . $foto_usuario ?>" class="img-serviços">
+                            <img src="<?= URL . IMGCLIENTEADM . $foto_usuario ?>" class="img-serviços"> <!-- border: 1px solid #000; -->
 
                             <div class="procedimentoadm">
 
@@ -121,6 +121,7 @@
                                             <li class="list-group-item"> <b> Horário: </b> <?= $time ?> </li>
                                             <li class="list-group-item"> <b> Serviço: </b> <?= $nome_consulta ?> </li>
                                             <li class="list-group-item"> <b> Descriçao: </b> <?= $descricao ?> </li>
+                                            <li class="list-group-item"> <b> IMG carteira: </b> <?php if (!empty($imagem_carteira_pet)) { ?> <a href="<?= URL . IMGCLIENTEADM . $imagem_carteira_pet ?>" target="_blank"> <i class="fa fa-picture-o" aria-hidden="true"></i> </a> <?php } else {echo "vazio";}?> </li>
                                         </ul>
                                     </div>
 
@@ -229,6 +230,7 @@
                                             <li class="list-group-item"> <b> Horário: </b> <?= $time ?> </li>
                                             <li class="list-group-item"> <b> Serviço: </b> <?= $nome_consulta ?> </li>
                                             <li class="list-group-item"> <b> Descriçao: </b> <?= $descricao ?> </li>
+                                            <li class="list-group-item"> <b> IMG carteira: </b> <?php if (!empty($imagem_carteira_pet)) { ?> <a href="<?= URL . IMGCLIENTEADM . $imagem_carteira_pet ?>" target="_blank"> <i class="fa fa-picture-o" aria-hidden="true"></i> </a> <?php } else {echo "vazio";}?> </li>
                                         </ul>
                                     </div>
 
@@ -334,6 +336,8 @@
                                             <li class="list-group-item"> <b> Horário: </b> <?= $time ?> </li>
                                             <li class="list-group-item"> <b> Serviço: </b> <?= $nome_consulta ?> </li>
                                             <li class="list-group-item"> <b> Descriçao: </b> <?= $descricao ?> </li>
+                                            <li class="list-group-item"> <b> IMG carteira: </b> <?php if (!empty($imagem_carteira_pet)) { ?> <a href="<?= URL . IMGCLIENTEADM . $imagem_carteira_pet ?>" target="_blank"> <i class="fa fa-picture-o" aria-hidden="true"></i> </a> <?php } else {echo "vazio";}?> </li>
+
                                         </ul>
                                     </div>
 
@@ -431,7 +435,9 @@
                                             <li class="list-group-item"> <b> Data: </b> <?= $day ?> </li>
                                             <li class="list-group-item"> <b> Horário: </b> <?= $time ?> </li>
                                             <li class="list-group-item"> <b> Serviço: </b> <?= $nome_consulta ?> </li>
-                                            <li class="list-group-item"> <b> Descriçao: </b> <?= $descricao ?> </li>
+                                            <li class="list-group-item"> <b> Descriçao: </b> <?= $descricao ?> 
+                                            <li class="list-group-item"> <b> IMG carteira: </b> <?php if (!empty($imagem_carteira_pet)) { ?> <a href="<?= URL . IMGCLIENTEADM . $imagem_carteira_pet ?>" target="_blank"> <i class="fa fa-picture-o" aria-hidden="true"></i> </a> <?php } else {echo "vazio";}?> </li>
+                                            
                                         </ul>
                                     </div>
 

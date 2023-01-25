@@ -122,21 +122,8 @@ button:hover {
 	padding-left: 30px;
 }
 
-.conteudo-principal .descricao {
-	font-family: 'Open Sans', sans-serif;
-	font-size: 20px;
-	margin-left: 30px;
-}
-
 #serviços {
 	display: flex;
-	flex-direction: column;
-}
-
-.corpoclinico {
-	display: flex;
-	align-items: flex-start;
-	/* ALGUMA COISA PARA DEIXAR O TEXTO PARA A ESQUERDA*/
 	flex-direction: column;
 }
 
@@ -309,120 +296,146 @@ button:hover {
 
 
 .slider {
-	margin-left: 60px;
-	width: 250px;
-	height: 250px;
-	overflow: hidden;
-	border-radius: 120px;
+    margin-left: 60px;
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 120px;
 
 }
 
 .slides {
-	width: 400%;
-	height: 250px;
-	display: flex;
+    width: 400%;
+    height: 250px;
+    display: flex;
 
 }
 
 .slides input {
-	display: none;
+    display: none;
 
 }
 
 .slide {
-	width: 25%;
-	position: relative;
-	transition: 2s;
-	border-radius: 10px;
+    width: 25%;
+    position: relative;
+    transition: 2s;
+    border-radius: 10px;
 
 
 }
 
 #img-corpo {
-	width: 250px;
-	height: 250px;
-	border-radius: 10px;
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
 
 }
 
 .manual-navigation {
-	padding-left: 140px;
-	position: absolute;
-	width: 400px;
-	margin-top: -244.5px;
-	display: flex;
-	justify-content: center;
+    padding-left: 300px;
+    position: absolute;
+    width: 400px;
+    margin-top: -245px;
+    display: flex;
+    flex-direction: column;
+    width: 1vw;
 }
 
+
 .manual-btn {
-	border: 0.5px solid rgb(0, 0, 0);
-	padding: 8px;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: 1s;
+    border: 0.5px solid rgb(0, 0, 0);
+    padding: 12px;
+    border-radius: 11px;
+    cursor: pointer;
 }
 
 .manual-btn:not(:last-child) {
-	/*nao aplica no ultimo*/
-	margin-right: 20px;
+    /*nao aplica no ultimo*/
+    margin-bottom: 15px;
+
 }
 
 
 .manual-btn:hover {
-	background-color: rgb(184, 118, 245);
+    background-color: rgb(198, 153, 240);
+    transition: 0.3s;
+
 }
 
 
 
 
 #radio2:checked~.first {
-	margin-left: -25%;
+    margin-left: -25%;
 }
 
 #radio3:checked~.first {
-	margin-left: -50%;
+    margin-left: -50%;
 }
 
 #radio4:checked~.first {
-	margin-left: -75%;
+    margin-left: -75%;
 }
 
 .navigation-auto div {
-	border: 0.5px solid #000000;
-	padding: 8px;
-	border-radius: 10px;
-	cursor: pointer;
-	transition: 1s;
+    border: 0.5px solid #000000;
+    padding: 12px;
+    border-radius: 11px;
+    cursor: pointer;
 }
 
 .navigation-auto {
-	padding-left: 140px;
+    padding-left: 300px;
+    position: absolute;
+    width: 400px;
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    width: 1vw;
 
-	position: absolute;
-	width: 400px;
-	margin-top: 5px;
-	display: flex;
-	justify-content: center;
 }
 
 .navigation-auto div:not(:last-child) {
-	margin-right: 20px;
+    margin-bottom: 14.4px;
 }
 
+.afasta2{
+    margin-left: 1vw;
+}
+.afasta3{
+    margin-left: 1.2vw;
+}
+.afasta4{
+    margin-left: 1.4vw;
+}
+
+.afastab2{
+    margin-left: 1vw;
+}
+.afastab3{
+    margin-left: 1.2vw;
+}
+
+.afastab4{
+    margin-left: 1.4vw;
+}
+
+
 #radio1:checked~.navigation-auto .auto-btn1 {
-	background-color: rgb(255, 255, 255);
+    background-color: rgb(154, 61, 241);
 }
 
 #radio2:checked~.navigation-auto .auto-btn2 {
-	background-color: rgb(255, 255, 255);
+    background-color: rgb(154, 61, 241);
 }
 
 #radio3:checked~.navigation-auto .auto-btn3 {
-	background-color: rgb(255, 255, 255);
+    background-color: rgb(154, 61, 241);
 }
 
 #radio4:checked~.navigation-auto .auto-btn4 {
-	background-color: rgb(255, 255, 255);
+    background-color: rgb(154, 61, 241);
 }
 
 /*ESTILIZACAO GERENCIAMENTO ADM*/
@@ -530,6 +543,7 @@ button:hover {
 .icone-cancel {
 	color: rgb(223, 21, 21);
 	font-size: 2rem;
+	text-decoration: none;
 
 }
 
@@ -586,22 +600,29 @@ button:hover {
 	width: 8vw;
 	height: 12vh;
 	border-radius: 30px;
+	border: 1px solid #000;
 }
 
 
 .iconeEdita {
-	
 	font-size: 25px;
 	color: #7d59ff;
-;
+
 }
+
+.iconeAdiciona {
+	font-size: 18px;
+	color: #7d59ff;
+
+}
+
 a,
 a:hover,
 a:active,
 a:link,
 a:visited{
 	text-decoration: none;
-	color: #7d59ff;
+	color: inherit;
 }
 .form-edição input {
 	height: 7vh;
@@ -694,9 +715,13 @@ a:visited{
 .center{
 	text-align: center;
 }
+
 .center2{
-text-align: center;
+	text-align: center;
 }
+
+
+
 
 
 
@@ -1095,4 +1120,61 @@ text-align: center;
 
 .containerImg .img-pet {
 	margin: 0;
+}
+
+/* ATUALIZAÇÕES INDEX */
+
+.alinhamentoCorpo{
+	margin-left: 2vw;
+
+}
+
+
+.corpoclinico {
+	display: flex;
+	align-items: flex-start;
+	/* ALGUMA COISA PARA DEIXAR O TEXTO PARA A ESQUERDA*/
+	flex-direction: row;
+	flex-wrap: wrap;
+    white-space: nowrap;
+}
+
+.conteudo-principal .descricao {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 20px;
+	text-align: left;
+	margin-left: 2vw;
+
+}
+
+.gapCorpo{
+	width: 5vw;
+}
+/***********************/
+
+/*BOTÃO DA TELA DE ALTERAR DADOS CLIENTE*/
+.form-edição3 .botaoAlterar {
+	font-family: 'Righteous', cursive;
+	font-size: 17px;
+	color: white;
+	background-color: #A487D5;
+	border: none;
+	padding: 8px 10px;
+	border-radius: 5px;
+	cursor: pointer;
+	width: 165px;
+	align-self: center;
+	margin: 12px;
+	height: 5vh;
+	
+}
+
+.botaoAlterar:hover {
+	transform: scale(1.1);
+	cursor: pointer;
+}
+/***********************/
+
+.img-TelaAlterar{
+	width: 28vw;
 }

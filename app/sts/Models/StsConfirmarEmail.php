@@ -6,15 +6,18 @@ class StsConfirmarEmail
 {
     
     /**     function dataPet()
-     * Function pública para pegar dados da tabela raca_pet
+     * Retorna o id do usuário a partir do chave de ativação da conta
      */
-    public function verifyKey($chave)
+    public function getIdUser($chave): string|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead("SELECT idusuario FROM usuario WHERE chave = :chave", "chave={$chave}");
         $userIdFromKey = $stsSelect->getResult();
 
-        return $userIdFromKey;
+        if ($userIdFromKey) 
+            return $userIdFromKey[0]['idusuario'];
+        else 
+            return NULL;
     }
 
 
@@ -22,9 +25,8 @@ class StsConfirmarEmail
     /**     alterSituation($id)
      * Muda o estado da conta para de confirmando para ativo
      */
-    public function alterSituation($id): bool
+    public function alterDataUsuario($id, $data): bool
     {
-        $data = array('sit_usuario' => 'Ativo');
         $stsUpdate = new \Sts\Models\helpers\StsUpdate();
         $stsUpdate->exeAlter('usuario', $data, 'idusuario', $id);
         $resultAlter = $stsUpdate->getResult();
@@ -57,36 +59,16 @@ class StsConfirmarEmail
 
 
 
-    /**     function getKey()
-     * Pega a chave de ativação do cliente no BD
-     *
-     * @return void
-     */
-    public function getKey($email): string|null
-    {
-        $stsSelect = new \Sts\Models\helpers\StsSelect();
-        $stsSelect->fullRead("SELECT chave FROM usuario WHERE email = :email", "email={$email}");
-        $userKey = $stsSelect->getResult();
-        if (!empty($userKey)) 
-            return $userKey[0]['chave'];
-        else 
-            return null;
-    }
-
-
-
     /**     verifyIfEmailExist($email)
      * Verifica se o email mandado tem registro no banco de dados
      */
-    public function verifyIfEmailExist($email): bool
+    public function verifyIfEmailExist($email): array|null
     {
         $stsSelect = new \Sts\Models\helpers\StsSelect();
         $stsSelect->fullRead("SELECT idusuario FROM usuario WHERE email = :email", "email={$email}");
         $idUser = $stsSelect->getResult();
-        if (!empty($idUser)) 
-            return true;
-        else 
-            return false;
+
+        return $idUser;
     }
 
 }

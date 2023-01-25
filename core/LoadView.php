@@ -40,15 +40,16 @@ class LoadView
     }
 
 
-    public function loadView_cabecalhoOff($header)
+    
+    public function loadView_index($header)
     {
         if (file_exists('app/' . $this->nameView . '.php')){
             
             include 'app\sts\Views\headers/' . $header . '.php'; 
             include 'app\sts\Views\helpers\alerts.php';
-            include 'app\sts\Views\helpers\cabecalhoOff.php';
+            include 'app\sts\Views\helpers\cabecalho.php';
             include 'app/' . $this->nameView . '.php';
-            //include 'app\sts\views\helpers\rodape.php';
+            include 'app\sts\views\helpers\rodape.php';
             include 'app\sts\views\helpers\footer.php';
             //include 'app\sts\Views\helpers\fastTravel.php';
 
@@ -56,6 +57,28 @@ class LoadView
             die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
         }
     }
+
+
+
+    public function loadView_index_Off($header)
+    {
+        if (file_exists('app/' . $this->nameView . '.php')){
+            
+            include 'app\sts\Views\headers/' . $header . '.php'; 
+            include 'app\sts\Views\helpers\alerts.php';
+            include 'app\sts\Views\helpers\cabecalhoOff.php';
+            include 'app/' . $this->nameView . '.php';
+            include 'app\sts\views\helpers\rodape.php';
+            include 'app\sts\views\helpers\footer.php';
+            //include 'app\sts\Views\helpers\fastTravel.php';
+
+        } else {
+            die("Erro: Por favor tente novamente. Caso o problema persista, entre em contato o administrador " . EMAILADM);
+        }
+    }
+
+
+    
 
 
 

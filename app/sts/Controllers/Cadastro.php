@@ -75,15 +75,15 @@ class Cadastro{
                             //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
                             $mail->CharSet = "UTF-8";
                             $mail->isSMTP();                                            //Send using SMTP
-                            $mail->Host       = 'smtp.mailtrap.io';                     //Set the SMTP server to send through
+                            $mail->Host       = HOSTTRAP;                     //Set the SMTP server to send through
                             $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-                            $mail->Username   = '5b0b0de0c72429';                     //SMTP username
-                            $mail->Password   = '1dcc7c242ab250';                               //SMTP password
+                            $mail->Username   = USERNAME;                     //SMTP username
+                            $mail->Password   = PASSWORD;                               //SMTP password
                             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;            //Enable implicit TLS encryption
-                            $mail->Port       = 2525;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+                            $mail->Port       = PORTTRAP;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
             
                             //Recipients
-                            $mail->setFrom('matheuscalifornia29@gmail.com', 'Matheus');
+                            $mail->setFrom(EMAILTRAP, NOME);
                             $mail->addAddress($this->dataForm['email'], $this->dataForm['nome_usuario']);
             
                             $mail->isHTML(true);                                  //Set email format to HTML
