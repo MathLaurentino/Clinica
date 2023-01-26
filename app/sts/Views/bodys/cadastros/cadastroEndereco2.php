@@ -20,17 +20,17 @@
             <form method="post" class="form-login">
 
 
-                <input type="text" id="cep" name="cep" placeholder="CEP" class="tamanhoForm">
+                <input type="text" id="cep" name="cep" placeholder="CEP" class="tamanhoForm" minlength="8" maxlength="8"  required>
                 <br>
-                <input type="text" id="rua" name="rua" placeholder="Rua" class="tamanhoForm">
+                <input type="text" id="rua" name="rua" placeholder="Rua" class="tamanhoForm" disabled required>
                 <br>
-                <input type="text" id="bairro" name="bairro" placeholder="Bairro" class="tamanhoForm">
+                <input type="text" id="bairro" name="bairro" placeholder="Bairro" class="tamanhoForm" disabled required>
                 <br>
-                <input type="text" id="cidade" name="cidade" placeholder="Cidade" class="tamanhoForm">
+                <input type="text" id="cidade" name="cidade" placeholder="Cidade" class="tamanhoForm" disabled required>
                 <br>
-                <input type="text" id="estado" name="estado" placeholder="Estado" class="tamanhoForm">
+                <input type="text" id="estado" name="estado" placeholder="Estado" class="tamanhoForm" disabled required>
                 <br>
-                <input type="text" id="numero_residencial" name="numero_residencial" placeholder="Nº" class="tamanhoForm">
+                <input type="number" id="numero_residencial" name="numero_residencial" placeholder="Nº" class="tamanhoForm" required>
                 <br>
                 <br>
                 <p class="center"><input class="botao" name="createAdress" type="submit" value="Enviar"> </p>

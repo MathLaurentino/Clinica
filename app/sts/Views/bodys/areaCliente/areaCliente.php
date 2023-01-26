@@ -380,7 +380,7 @@ if (!isset($_SESSION)) {
               }
             } else {
               ?>
-              Sem servicos agendados! <br>
+              Sem serviços agendados! <br>
             <?php
             }
             ?>
@@ -472,7 +472,7 @@ if (!isset($_SESSION)) {
                   }
                 } else {
                   ?>
-                  Sem servicos concluidos! <br>
+                  Sem serviços concluídos! <br>
                 <?php
                 }
                 ?>
