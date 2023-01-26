@@ -234,7 +234,7 @@ if (!isset($_SESSION)) {
         } else {
         ?>
 
-          Você ainda não tem nunhum PET cadastrado <br>
+          Você ainda não tem nenhum PET cadastrado <br>
           <p class="alinhaPadding"> <a href="<?= URL ?>cadastroPet"> <button class="btn-alterarDados"> cadastrar pet </button> </a> </p>
 
 

@@ -74,7 +74,7 @@ private array|null $dataForm; // dados que vem do formulario
             $stsverify = new \Sts\Models\helpers\StsVerifyRegistrationData();
             //echo "<pre>" ;var_dump($this->dataForm['cpf']);
             
-            if ($stsverify->verifyCpf($this->dataForm['cpf']) && $stsverify->verifyAge($this->dataForm['data_nascimento'])) {
+            if ($stsverify->verifyCpf($this->dataForm['cpf']) && $stsverify->verifyAge($this->dataForm['data_nascimento'])&& $stsverify->verifyRg($this->dataForm['rg'])) { 
                 
                 $stsSobreCliente = new \Sts\Models\StsSobreCliente();
 

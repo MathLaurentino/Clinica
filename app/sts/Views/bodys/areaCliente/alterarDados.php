@@ -27,10 +27,10 @@ if (isset($this->data)) {
             <input type="date" placeholder="Data de Nascimento" name="data_nascimento" value="<?php if (isset($data_nascimento)) { echo $data_nascimento; } ?>"> <br>
 
             <div class="estilizaP"> CPF: </div><br>
-            <input type="text" placeholder="CPF" name="cpf" value="<?php if (isset($cpf)) { echo "$cpf"; } ?>"><br>
+            <input type="text" required minlength="10" maxlength="11" placeholder="CPF" name="cpf" value="<?php if (isset($cpf)) { echo "$cpf"; } ?>"><br>
 
             <div class="estilizaP">RG: </div><br>
-            <input type="text" placeholder="RG" name="rg" value="<?php if (isset($rg)) { echo "$rg"; } ?>"> <br>
+            <input type="text" required minlength="7" maxlength="9" placeholder="RG" placeholder="RG" name="rg" value="<?php if (isset($rg)) { echo "$rg"; } ?>"> <br>
 
             <input name="AlterUser" type="submit" class="botaoAlterar" value="salvar alterações">
 

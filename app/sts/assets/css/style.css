@@ -1167,12 +1167,11 @@ a:visited{
 	color: white;
 	background-color: #A487D5;
 	border: none;
-	padding: 8px 10px;
+	padding: 4px 10px;
 	border-radius: 5px;
 	cursor: pointer;
 	width: 165px;
 	align-self: center;
-	margin: 12px;
 	height: 5vh;
 	
 }
