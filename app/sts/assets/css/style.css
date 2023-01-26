@@ -604,10 +604,10 @@ button:hover {
 .imgSCliente {
 	margin-top: 10px;
 	width: 8vw;
-	height: 12vh;
+	height: 14vh;
 	border-radius: 30px;
 	border: 1px solid #000;
-	object-fit: cover;
+	object-fit: fill;
 }
 
 
