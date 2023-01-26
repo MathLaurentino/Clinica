@@ -24,10 +24,10 @@
                         <div class="icone"> <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> </div>
                     </div>
 
-                    <ul class="nav-list">
+                    <div class="nav-list">
                         <a href="<?= URL . "Login" ?>" class="">Login</a>
                         <a href="<?= URL . "Cadastro/Usuario" ?>" class="">Cadastro</a>
-                    </ul>
+                    </div>
 
                 </div>
             </div>

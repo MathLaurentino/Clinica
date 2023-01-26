@@ -727,7 +727,7 @@ text-align: center;
 }
 .btn-usuariosAdm {
 	font-family: 'Righteous', cursive;
-	background-color: rgb(27, 223, 21);
+	background-color: rgba(46, 230, 86, 0.877);
 	border: none;
 	border-radius: 5px;
 	color: #fff;
@@ -739,7 +739,7 @@ text-align: center;
 
 .btn-usuariosAdmBlock {
 	font-family: 'Righteous', cursive;
-	background-color: rgb(243, 94, 94);
+	background-color: rgba(247, 72, 72, 0.884);
 	border: none;
 	border-radius: 5px;
 	color: #fff;
