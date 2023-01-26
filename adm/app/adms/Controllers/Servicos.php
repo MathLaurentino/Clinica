@@ -90,19 +90,33 @@ class Servicos
         if (isset($_GET['idServico'])) {
 
             $idServico = $_GET['idServico'];
-
             $modelsClinica = new \Adms\Models\AdmsSobreClinica();
-            $result = $modelsClinica->deleteAll('tipo_consulta', 'idtipo_consulta', $idServico);
 
-            if ($result) {
-                $_SESSION['msgGreen'] = "Serviço deletado com sucesso!";
-                $header = URLADM . "Servicos/Clinica"; 
-                header("Location: {$header}");
+            if ($modelsClinica->verifyTipoConsulta($idServico)) {
+
+                if ($modelsClinica->foreignkeyTipoConsulta($idServico)) {
+                    $result = $modelsClinica->deleteAll('tipo_consulta', 'idtipo_consulta', $idServico);
+
+                    if ($result) {
+                        $_SESSION['msgGreen'] = "Serviço deletado com sucesso!";
+                        $header = URLADM . "Servicos/Clinica"; 
+                        header("Location: {$header}");
+                    } else {
+                        $_SESSION['msgRed'] = "Falha ao deletar serviço!";
+                        $header = URLADM . "Servicos/Clinica"; 
+                        header("Location: {$header}");
+                    }
+                } else {
+                    $_SESSION['msgRed'] = "Falha: serviço não pode ser apagado, pois já tem histórico de agendamento com clientes!";
+                    $header = URLADM . "Servicos/Clinica"; 
+                    header("Location: {$header}");
+                }
+                
             } else {
-                $_SESSION['msgRed'] = "Falha ao deletar serviço!";
+                $_SESSION['msgRed'] = "Falha: serviço inexistente!";
                 $header = URLADM . "Servicos/Clinica"; 
                 header("Location: {$header}");
-            }
+            } 
 
         } else {
             $_SESSION['msgRed'] = "Falha ao identificar ID da consulta!";
