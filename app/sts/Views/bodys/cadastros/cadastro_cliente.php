@@ -32,20 +32,20 @@
             <!--COLUNA 02-->
             <h1 class="título">Crie uma conta!</h1>
 
-            <form class="form-login" method="post" enctype="multipart/form-data" action=""> 
-                <input type="text" placeholder="Nome Completo" name="nome_usuario" value="<?php if(isset($nome_usuario)) {echo "$nome_usuario";} ?>">
+            <form class="form-login" method="post" enctype="multipart/form-data" action="" autocomplete="on"> 
+                <input type="text" required placeholder="Nome Completo" name="nome_usuario" value="<?php if(isset($nome_usuario)) {echo "$nome_usuario";} ?>">
 
-                <input type="date" placeholder="Data de Nascimento" name="data_nascimento" value="<?php if(isset($data_nascimento)) {echo "$data_nascimento";} ?>">
+                <input type="date" required placeholder="Data de Nascimento" name="data_nascimento" value="<?php if(isset($data_nascimento)) {echo "$data_nascimento";} ?>">
 
-                <input type="text" placeholder="E-mail" name="email" value="<?php if(isset($email)) {echo "$email";} ?>">
+                <input type="email" required autocomplete="email" placeholder="E-mail" name="email" value="<?php if(isset($email)) {echo "$email";} ?>">
 
                 <input type="hidden" name="tipo_usuario" value="cliente">
                 
-                <input type="text" placeholder="Senha" name="senha_usuario" value="<?php if(isset($senha_usuario)) {echo "$senha_usuario";} ?>">
+                <input type="text" required placeholder="Senha" name="senha_usuario" value="<?php if(isset($senha_usuario)) {echo "$senha_usuario";} ?>">
 
-                <input type="text" placeholder="CPF" name="cpf" value="<?php if(isset($cpf)) {echo "$cpf";} ?>">
+                <input type="text" required minlength="10" maxlength="11" placeholder="CPF" name="cpf" value="<?php if(isset($cpf)) {echo "$cpf";} ?>">
 
-                <input type="text" placeholder="RG" name="rg" value="<?php if(isset($rg)) {echo "$rg";} ?>">
+                <input type="text" required minlength="7" maxlength="9" placeholder="RG" name="rg" value="<?php if(isset($rg)) {echo "$rg";} ?>">
 
                 <!-- <button class="botao"> Criar conta</button> --> 
                 <input name="createAccount" class="botao" type="submit" value="Criar Conta">

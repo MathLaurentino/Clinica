@@ -45,13 +45,13 @@ class StsVerifyRegistrationData
     {
         $cpf = preg_replace( '/[^0-9]/is', '', $cpf );
         if (strlen($cpf) != 11) {
-            //$_SESSION['msg'] = "CPF inválido";
-            return true;
+            $_SESSION['msgRed'] = "CPF inválido";
+            return false;
         }
 
         if (preg_match('/(\d)\1{10}/', $cpf)) {
-            //$_SESSION['msg'] = "CPF inválido";
-            return true;
+            $_SESSION['msgRed'] = "CPF inválido";
+            return false;
         }
         
         for ($t = 9; $t < 11; $t++) {
@@ -60,8 +60,8 @@ class StsVerifyRegistrationData
             }
             $d = ((10 * $d) % 11) % 10;
             if ($cpf[$c] != $d) {
-                //$_SESSION['msg'] = "CPF inválido";
-                return true;
+                $_SESSION['msgRed'] = "CPF inválido";
+                return false;
             }
         }
 
@@ -79,7 +79,7 @@ class StsVerifyRegistrationData
             return true;
         else 
             //$_SESSION['msg'] = "Email Inválido";
-            return true;
+            return false;
     }
 
 }

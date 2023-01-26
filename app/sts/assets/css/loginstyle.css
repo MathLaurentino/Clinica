@@ -197,13 +197,13 @@
     border-bottom-right-radius: 15px;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    animation: slidein .1s; 
+    animation: slidein .07s; 
 
     z-index: 12;
 }
 
 .sign-up-js .conteudo::before{
-    animation: slideout .1s;
+    animation: slideout .07s;
 
     z-index: 12;
 }
@@ -224,13 +224,13 @@
 .sign-in-js .conteudo01 .segundacoluna{
     z-index: -1;
     position: relative;
-    animation: deslocamentoEsq .1s;
+    animation: deslocamentoEsq .07s;
 }
 
 .sign-up-js .conteudo02 .segundacoluna{
     z-index: -1;
     position: relative;
-    animation: deslocamentoDir 0.1s;
+    animation: deslocamentoDir .07s;
 }
 
 /*ANIMAÇÃO CSS PARA O CONTEÚDO*/
