@@ -23,11 +23,9 @@
                         <div class="icone"> <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> </div>
                 
                 </div>
-                <ul class="nav-list">
-
+                <div class="nav-list">
                     <a href="<?= URL . "Logout/Index" ?>" class="">Logout</a> 
-
-                </ul>
+                </div>
 
             </div>
         </div>

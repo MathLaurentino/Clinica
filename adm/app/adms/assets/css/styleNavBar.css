@@ -25,7 +25,6 @@
 	font-size: 20px;
 }
 .mobile-menu div{
-	width: 32px;
 	height: 2px;
 	background: #000000;
 	margin: 8px;
@@ -37,6 +36,7 @@
 	.nav-list{
 		flex-direction: column;
 		align-items: center;
+
 		justify-content: space-around;
 		transform: translateX(-100vw);
         background-color: rgba(156, 154, 148, 0.527);
@@ -74,10 +74,10 @@
 
 
 .nav-list.active {
-	transform: translateY(0);
+	transform: translateY(11px);
 }
 .mobile-menu.active .icone{
-    transform: translate(0px,-30px); /* muda icone*/
+    transform: translate(0px,-20px); /* muda icone*/
 }
 
 
