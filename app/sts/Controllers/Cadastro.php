@@ -55,7 +55,7 @@ class Cadastro{
             $stsVeriry = new \Sts\Models\helpers\StsVerifyRegistrationData();
 
             // se os dados não estão informados corretamente (cpf, idade ou email)
-            if (!$stsVeriry->verifyCpf($this->data['cpf']) || !$stsVeriry->verifyAge($this->data['data_nascimento']) || !$stsVeriry->verifyEmail($this->data['email'])) { 
+            if (!$stsVeriry->verifyCpf($this->data['cpf']) || !$stsVeriry->verifyAge($this->data['data_nascimento']) || !$stsVeriry->verifyEmail($this->data['email']) || !$stsVeriry->verifyRg($this->data['rg'])) { 
 
                 $this->view();
 

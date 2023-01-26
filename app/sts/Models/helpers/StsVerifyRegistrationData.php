@@ -70,6 +70,24 @@ class StsVerifyRegistrationData
 
 
 
+    /**     function verifyRg($rg)
+     * Verifica se o RG passado so contem numeros
+     */
+    public function verifyRg($rg): bool
+    {
+        $indice = 0;
+        while ($indice < strlen($rg)) {
+            if (ctype_digit($rg[$indice]) === false) {
+                $_SESSION['msgRed'] = "RG inválido";
+                return false;
+            } 
+            $indice++;
+        }
+        return true;
+    }
+
+
+
     /**     function verifyEmail($email)
      * Verifica se o texto corresponde a um email
      */
