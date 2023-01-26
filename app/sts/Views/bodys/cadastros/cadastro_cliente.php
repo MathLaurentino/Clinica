@@ -41,7 +41,7 @@
 
                 <input type="hidden" name="tipo_usuario" value="cliente">
                 
-                <input type="text" required placeholder="Senha" name="senha_usuario" value="<?php if(isset($senha_usuario)) {echo "$senha_usuario";} ?>">
+                <input type="password" required placeholder="Senha" name="senha_usuario" value="<?php if(isset($senha_usuario)) {echo "$senha_usuario";} ?>">
 
                 <input type="text" required minlength="10" maxlength="11" placeholder="CPF" name="cpf" value="<?php if(isset($cpf)) {echo "$cpf";} ?>">
 

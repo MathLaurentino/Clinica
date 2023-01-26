@@ -59,32 +59,35 @@
         <div class="gapCorpo"></div>
         <div class="slider">
             <div class="slides">
-                <input type="radio" name="radio-btn" id="radio1"><br>
+                <input type="radio" name="radio-btn" id="radio1">
                 <input type="radio" name="radio-btn" id="radio2">
                 <input type="radio" name="radio-btn" id="radio3">
                 <input type="radio" name="radio-btn" id="radio4">
 
                 <div class="slide first">
-                    <img src="<?= URL . IMGCLINICA ?>paulinho.png" id="img-corpo" alt="">
+                    Dra. Lara A.
+                    <img src="<?= URL . IMGCLINICA ?>img10.png" id="img-corpo" alt="">
+                </div>
+
+                <div class="slide">
+                Dr. João S.
+
+                    <img src="<?= URL . IMGCLINICA ?>img09.png" id="img-corpo" alt="">
                 </div>
                 <div class="slide">
-                    <img src="<?= URL . IMGCLINICA ?>paulinho.png" id="img-corpo" alt="">
+                Dr. Nicolas H.
+
+                    <img src="<?= URL . IMGCLINICA ?>img11.png" id="img-corpo" alt="">
                 </div>
                 <div class="slide">
-                    <img src="<?= URL . IMGCLINICA ?>paulinho.png" id="img-corpo" alt="">
-                </div>
-                <div class="slide">
-                    <img src="<?= URL . IMGCLINICA ?>paulinho.png" id="img-corpo" alt="">
+                Dr. Matheus L.
+                    <img src="<?= URL . IMGCLINICA ?>img10.png" id="img-corpo" alt="">
                 </div>
 
                 <div class="navigation-auto">
 
                     <div class="auto-btn1"> </div>
-
-
-                        <div class="auto-btn2 afastab2"> </div>
-
-
+                    <div class="auto-btn2 afastab2"> </div>
                     <div class="auto-btn3 afastab3"> </div>
                     <div class="auto-btn4 afastab4"> </div>
 
