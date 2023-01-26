@@ -16,7 +16,7 @@
 
         <section class="conteudo-serviços">
             
-            <img class='img' src="<?= URLADM . IMGADMSERVICOS . $foto_servico ?>">
+            <img class='imgServico' src="<?= URLADM . IMGADMSERVICOS . $foto_servico ?>">
 
             <div class="procedimento">
                 <h3 class="título-serviço"> <?= $nome_consulta ?> </h3>

@@ -7,6 +7,36 @@
 	text-decoration: none;
 }
 
+.telaLoginAdm{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.telaLoginAdm .tituloAdm{
+    font-family: 'Righteous', cursive;
+    font-size: 33px;
+    color: black;
+    padding-top: 125px;
+}
+
+.telaLoginAdm .form-loginAdm{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: 70%;
+}
+
+.form-loginAdm input{
+    height: 7vh;
+    border: none;
+    background: none;
+    outline: none;
+    border-bottom: 2px solid black;
+    font-size: 15px;
+    color: black;
+    margin: 8px;
+    width: 20vw;
+}
 
 .main-container{
     display: flex;

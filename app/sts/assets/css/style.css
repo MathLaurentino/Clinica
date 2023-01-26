@@ -75,7 +75,7 @@ button:hover {
 /* ESTILIZAÇÃO NO ICONE DE LOGIN */
 
 .conteudo-principal {
-	border-top: 4px solid black;
+	border-top: 2px solid black;
 	margin-bottom: 20px;
 }
 
@@ -246,6 +246,8 @@ button:hover {
 	padding-right: 20px;
 
 }
+
+
 
 /*ESTILIZAÇÃO PÁGINA ÁREA DOS CLIENTES - USUÁRIO*/
 
@@ -496,7 +498,7 @@ button:hover {
 	font-family: 'Righteous', cursive;
 	font-size: 15px;
 	text-align: center;
-	flex-basis: 20vw;
+	flex-basis: 30vw;
 
 
 
@@ -601,6 +603,7 @@ button:hover {
 	height: 12vh;
 	border-radius: 30px;
 	border: 1px solid #000;
+	object-fit: cover;
 }
 
 
@@ -681,6 +684,7 @@ a:visited{
 	padding: 5px 5px;
 	align-items: left;
 	margin-top: 3vh;
+	margin: 3px;
 }
 
 .alinhaPadding{
@@ -1177,4 +1181,10 @@ a:visited{
 
 .img-TelaAlterar{
 	width: 28vw;
+}
+
+.conteudo-serviços .imgServico{
+	width: 7vw;
+	display: flex;
+	align-self: center;
 }

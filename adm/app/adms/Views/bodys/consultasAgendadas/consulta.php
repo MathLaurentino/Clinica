@@ -1,4 +1,5 @@
 <!--CONTEÚDO PRINCIPAL-->
+
 <main class="conteudo-principal">
     <h1 class="título">Painel de Gerenciamento</h1>
 
@@ -80,12 +81,12 @@
                                     <!-- <a href="<?php // URLADM . "ConsultasAgendadas/Consulta?idConsulta=" . $idconsulta ?>"> <button class="btn-maisinfo"> MAIS INFO </button> </a> -->
                                 </div>
 
-                                <div>
-                                    <a href="<?= URLADM . "ConsultasAgendadas/confirmar-Agendamento?idConsulta=" . $idconsulta ?>" class="icone-check"><i class="fa fa-check-circle-o" aria-hidden="true"></i> </a>
+                                <div class="icone-check">
+                                    <a href="<?= URLADM . "ConsultasAgendadas/confirmar-Agendamento?idConsulta=" . $idconsulta ?>" ><i class="fa fa-check-circle-o" aria-hidden="true"></i> </a>
                                 </div>
 
-                                <div>
-                                    <a href="<?= URLADM . "ConsultasAgendadas/Negar-Agendamento?idConsulta=" . $idconsulta ?>" class="icone-cancel"><i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
+                                <div class="icone-cancel">
+                                    <a href="<?= URLADM . "ConsultasAgendadas/Negar-Agendamento?idConsulta=" . $idconsulta ?>"><i class="fa fa-times-circle-o" aria-hidden="true"></i> </a>
                                 </div>
 
                                 <div class="data"> 
@@ -189,12 +190,12 @@
                                 </div>
 
                                 <div class="data">
-                                    <?= $day ?> <?= $time ?>h-00m<br>
+                                    <?= $day ?> <?= $time ?><br>
                                     <button type="button" class="btn-maisinfo" data-bs-toggle="modal" data-bs-target="#cancelamento<?= $idconsulta ?>"> MAIS INFO </button>    
                                 </div>
 
-                                <div>
-                                    <a href="<?= URLADM . "ConsultasAgendadas/Aceitar-Cancelamento?idConsulta=" . $idconsulta ?>" class="icone-check"><i class="fa fa-check-circle-o" aria-hidden="true"></i> </a>
+                                <div class="icone-check">
+                                    <a href="<?= URLADM . "ConsultasAgendadas/Aceitar-Cancelamento?idConsulta=" . $idconsulta ?>" ><i class="fa fa-check-circle-o" aria-hidden="true"></i> </a>
                                 </div>
 
                                 <div class="data"> 

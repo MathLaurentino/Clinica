@@ -1,9 +1,10 @@
+
 <header>
     <div class="menu-bg">
         <div class="menu">
 
             <div class="menu__logo">
-                <a > <img src="<?= URLADM . IMGADMCLINICA ?>logo.png" class="img-logo"></a>
+                <a href="<?= URLADM ?>Home"> <img src="<?= URLADM . IMGADMSER ?>logo.png" class="img-logo"></a>
             </div>
 
             <div class="espaco"></div>
@@ -16,17 +17,11 @@
                 </ul>
             </nav>
 
-            <div class="nav__link">
-
-                <div class="mobile-menu">
-                  <div class="icone"> <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> </div>
-                </div>
-
-                <ul class="nav-list">
-                  <a href="<?= URLADM . "Logout/logout" ?>" class="">Logout</a> 
+            <div class="nav">
+                <ul class="nav__list">
+                    <li><a href="<?= URLADM . "Logout/logout" ?>" class="nav__link">LOG OUT</a> </li>
                 </ul>
-
-                </nav> <!-- fim navbar -->
             </div>
         </div>
+    </div>
 </header>

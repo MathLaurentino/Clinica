@@ -215,7 +215,7 @@ if (!isset($_SESSION)) {
               ?>
               <div class="alinhaPadding">
                 <a href="<?= URL . "Sobre-Cliente/Alterar-Dados-Pet?id={$idpet}" ?>"> <button class="btn-alterarDados"> alterar dados </button> </a> 
-                <a href="<?= URL . "Sobre-Cliente/Alterar-Dados-Pet?id={$idpet}" ?>"> <button class="btn-alterarDados"> excluir </button> </a> 
+                <a href="<?= URL . "Sobre-Cliente/Apagar-Dados-Pet?idpet={$idpet}" ?>"> <button class="btn-alterarDados"> excluir </button> </a> 
               </div>
 
             </div>

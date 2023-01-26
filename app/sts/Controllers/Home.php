@@ -24,14 +24,8 @@ class Home{
         }
 
 
-        if (isset($_SESSION['idusuario'])) {
-            $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
-            $loadView->loadView_index('home/index');
-        } else {
-            $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
-            $loadView->loadView_index_Off('home/index');
-        }
-        
+        $loadView = new \Core\LoadView('sts/Views/bodys/home/home', null, null);
+        $loadView->loadView_index('home/index');   
         
     }
 

@@ -3,7 +3,7 @@
         <div class="menu">
 
             <div class="menu__logo">
-                <a href="#"> <img src="<?= URL . IMGCLINICA ?>logo.png" class="img-logo"></a>
+                <a href="<?= URL ?>Home"> <img src="<?= URL . IMGCLINICA ?>logo.png" class="img-logo"></a>
             </div>
 
             <div class="espaco"></div>
@@ -29,7 +29,7 @@
 
                 </ul>
 
-                </nav> <!-- fim navbar -->
             </div>
         </div>
+    </div>
 </header>

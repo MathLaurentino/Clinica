@@ -51,13 +51,17 @@ a:visited{
     font-family: 'Righteous', cursive;
 	font-size: 25px;
 	color: #000;
+	margin: 10px;
 
 }
 
 .nav__link{
     padding: 3vh 2vw;
 
+}
 
+.alinhamentoHeader{
+	margin-top: 2vh;
 }
 .botaoCab{
     

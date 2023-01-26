@@ -7,10 +7,10 @@
 ?>
 
 
-
 <div class="containerImg">
 
-    <div class="child">     
+    <div class="child"> 
+            
         <div class="linhaCab"></div>
     </div>
         

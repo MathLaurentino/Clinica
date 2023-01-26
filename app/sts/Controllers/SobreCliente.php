@@ -223,17 +223,29 @@ private array|null $dataForm; // dados que vem do formulario
 
             if ($stsSobreCliente->verifyIdPetIsFromUser($idpet)){
 
-                $resultD =  $stsSobreCliente-> deleteAll("pet","idpet",$idpet);
+                $consultas = $stsSobreCliente->getConsultasPet($idpet);
 
-                if (!empty($resultD)){
-                    $_SESSION['msgGreen'] = "Dados do pet apagados com sucesso";
-                    $header = URL . "Sobre-Cliente/Dados"; 
-                    header("Location: {$header}");
+                if (empty($consultas)) {
+
+                    $resultD =  $stsSobreCliente-> deleteAll("pet","idpet",$idpet);
+
+                    if (!empty($resultD)){
+                        $_SESSION['msgGreen'] = "Dados do pet apagados com sucesso";
+                        $header = URL . "Sobre-Cliente/Dados"; 
+                        header("Location: {$header}");
+                    } else {
+                        $_SESSION['msgRed'] = "Falha ao apagar dados";
+                        $header = URL . "Sobre-Cliente/Dados"; 
+                        header("Location: {$header}");
+                    }
+                    
                 } else {
-                    $_SESSION['msgRed'] = "Falha ao apagar dados";
+                    $_SESSION['msgRed'] = "Não é possivel apagar esse pet pois ele tem um histórico de serviços";
                     $header = URL . "Sobre-Cliente/Dados"; 
                     header("Location: {$header}");
                 }
+
+                
 
             } else {
                 $header = URL . "Erro?case=20"; // Erro 020
@@ -293,10 +305,7 @@ private array|null $dataForm; // dados que vem do formulario
             $this->data = $stsSobreCliente->userData();
         elseif ($table == "endereco")
             $this->data = $stsSobreCliente->userAdress();
-        elseif ($table == "pet") {
-            $this->data['pet'] = $stsSobreCliente->userPet();
-            $this->data['tipo_pet'] = $stsSobreCliente->getRaca();
-        }
+    
     }
 
 

@@ -3,7 +3,7 @@
         <div class="menu">
 
             <div class="menu__logo">
-                <img src="<?= URL . IMGCLINICA ?>logo.png" class="img-logo">
+                <a href="<?= URL ?>Home"> <img src="<?= URL . IMGCLINICA ?>logo.png" class="img-logo"> </a>
             </div>
 
             <div class="espaco"></div>
@@ -17,18 +17,19 @@
                 </ul>
             </nav>
 
-            <div class="nav__link">
+            <div class="alinhamentoHeader">
+                <div class="nav__link">
 
-                <div class="mobile-menu">
-                    <div class="icone"> <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> </div>
+                    <div class="mobile-menu">
+                        <div class="icone"> <i class="fa fa-user-circle-o fa-2x" aria-hidden="true"></i> </div>
+                    </div>
+
+                    <ul class="nav-list">
+                        <a href="<?= URL . "Login" ?>" class="">Login</a>
+                        <a href="<?= URL . "Cadastro/Usuario" ?>" class="">Cadastro</a>
+                    </ul>
+
                 </div>
-                
-                <ul class="nav-list">
-                    <a href="<?= URL . "Login" ?>" class="">Login</a> 
-                    <a href="<?= URL . "Cadastro/Usuario" ?>" class="">Cadastro</a>
-                </ul>
-
-                </nav> <!-- fim navbar -->
             </div>
 
         </div>

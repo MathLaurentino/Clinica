@@ -403,6 +403,22 @@ class StsSobreCliente
         else 
             return false;
     }
+
+
+    public function getConsultasPet($idPet): array|null
+    {
+        $stsSelect = new \Sts\Models\helpers\StsSelect();
+        $stsSelect->fullRead("SELECT idconsulta
+                                FROM consulta as c
+                                INNER JOIN pet as p 
+                                ON c.pet = p.idpet
+                                WHERE c.pet = :pet", "pet={$idPet}");
+        $result = $stsSelect->getResult();
+
+        return $result;
+    }
+
+
 }
 
 ?>

@@ -74,16 +74,18 @@ button:hover {
 /* ESTILIZAÇÃO NO ICONE DE LOGIN */
 
 .conteudo-principal {
-	border-top: 4px solid black;
+	border-top: 2px solid black;
 	margin-bottom: 20px;
 }
-
 .conteudo-principal .apresentação {
 	display: flex;
 	align-items: center;
 	justify-content: space-around;
 }
-
+.separa{
+	display: flex;
+	justify-content: space-between;
+}
 #circulo {
 	margin-top: 15px;
 	width: 470px;
@@ -473,7 +475,7 @@ button:hover {
 	font-family: 'Righteous', cursive;
 	font-size: 15px;
 	text-align: center;
-	flex-basis: 16vw;
+	flex-basis: 30vw;
 
 
 

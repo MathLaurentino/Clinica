@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Projeto de Conclusão de Curso - Site designado para uma clínica veterinária.">
   <script src="https://kit.fontawesome.com/7f492723e7.js" crossorigin="anonymous"></script>
-  <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>header.css">
-  <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>styleNavBar.css">
   <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>style.css">
+  <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>styleNavBar.css">
+  <link rel="stylesheet" type="text/css" href="<?= CSSADM ?>header.css">
   
 
   <!-- Bootstrap CSS -->
