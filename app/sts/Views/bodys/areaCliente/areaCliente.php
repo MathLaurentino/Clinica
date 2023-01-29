@@ -53,7 +53,7 @@ if (!isset($_SESSION)) {
             <b> Nome: </b> <?= $nome_usuario ?> <br>
             <b> CPF: </b> <?= $cpf ?> <br>
             <b> RG: </b> <?= $rg ?> <br>
-            <b> Data Nasc: </b> <?= $nascimento ?> <br>
+            <b> Data Nascimento: </b> <?= $nascimento ?> <br>
             <b> E-mail: </b> <?= $email ?> <br>
           </div>
 
