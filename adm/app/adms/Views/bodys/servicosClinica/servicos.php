@@ -27,7 +27,7 @@
             <?php
                 }else { 
             ?>
-                <p class="info"> SEM IMEGEM </p>
+                <p class="info"> SEM IMAGEM </p>
                 <a href="<?=  URLADM . "FotoServico/Adicionar?idservico={$idtipo_consulta}"?>"> <button class='editaexclui'>ADICONAR</button></a> <br>
             <?php
                 }
@@ -136,7 +136,7 @@
             <?php
                 }else { 
             ?>
-                <p class="info"> SEM IMEGEM </p>
+                <p class="info"> SEM IMAGEM </p>
                 <a href="<?=  URLADM . "FotoServico/Adicionar?idservico={$idtipo_consulta}"?>"> <button class='editaexclui'>ADICONAR</button></a> <br>
             <?php
                 }

@@ -77,7 +77,7 @@ class AdmsSobreClinica{
     public function getSitTipoConsulta($idServico): array
     {
         $admsSelect = new \Adms\Models\helpers\AdmsSelect();
-        $admsSelect->fullRead("SELECT sit_tipo_consulta
+        $admsSelect->fullRead("SELECT sit_tipo_consulta, nome_consulta
                                 FROM tipo_consulta
                                 WHERE idtipo_consulta = :idtipo_consulta", 
                                 "idtipo_consulta={$idServico}");

@@ -155,7 +155,7 @@ class Servicos
                 $alterSit['sit_tipo_consulta'] = $converter;
 
                 if ($admsClinica->changeTipoConsultaAttributes($idServico, $alterSit)) {
-                    $_SESSION['msgGreen'] = "Sit_Tipo_Consulta convertido com sucesso!";
+                    $_SESSION['msgGreen'] = "{$sit[0]['nome_consulta']} convertido com sucesso!";
                 } else {
                     $_SESSION['msgRed'] = "Falha ao alterar Sit_Tipo_Consulta!";
                 }
