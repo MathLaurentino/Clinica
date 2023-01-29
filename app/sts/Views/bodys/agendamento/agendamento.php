@@ -62,7 +62,7 @@
         <!--Descrição Opcional-->
         <div class="form-group">
             <label class="título-desc">Descrição Opcional: </label>
-            <textarea name="descricao" rows="4" cols="4" class="form-control"> Se desejar descreva o motivo do agendamento</textarea>
+            <textarea name="descricao" rows="4" cols="4" class="form-control" placeholder="Se desejar descreva o motivo do agendamento"></textarea>
         </div>
 
         <input type="submit" name="agendar" value="CONFIRMAR" class="botão-confi">

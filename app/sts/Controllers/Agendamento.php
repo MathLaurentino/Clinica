@@ -200,7 +200,8 @@ class Agendamento{
                 elseif ($sti_consulta == "Confirmado") {
 
                     // verifica se ainda restão 24 horas antes do horario marcado (so pode cancelar ate 24 horas de antecedência)
-                    if ($sts->verifyDateConsulta($dataConsulta)) {
+                    // $sts->verifyDateConsulta($dataConsulta, $horaConsulta);
+                    if ($sts->verifyDateConsulta($dataConsulta, $horaConsulta)) {
 
                         $new_sit_consulta['sit_consulta'] = "A Cancelar";
                         $result = $sts->alterSitConsulta($idConsulta, $new_sit_consulta);
