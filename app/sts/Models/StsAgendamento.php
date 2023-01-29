@@ -168,22 +168,31 @@ class StsAgendamento{
      * Verifica se a data passada pertence a um dia afrente do dia atual (futuro)
      */
     // verifica se ainda restão 24 horas antes do horario marcado (so pode cancelar ate 24 horas de antecedência)
-    public function verifyDateConsulta(string $dateConsulta): bool
+    public function verifyDateConsulta(string $dateConsulta, string $horaConsulta)
     {
 
         $dayTimeNow = date('d/m/Y H:i');
         $dayNow = substr($dayTimeNow, 0, 10); // 01/01/2023
         $dayNow = substr($dayNow,6) . "-" . substr($dayNow, 3, -5) . "-" . substr($dayNow, 0, -8); // 2023-01-01
+        $timeNow = substr($dayTimeNow,10, -3);
+
+        $horaConsulta = substr($horaConsulta,0,-5);
 
         $dateDayNew = date_create($dateConsulta);
         $dateDayNow = date_create($dayNow);
         $diff=date_diff($dateDayNow, $dateDayNew); //$result = $diff->format("%a"); -> diferença de dias
-
+      
         $diferença = $diff->format("%a"); // retorna a diferença de dias entre uma data e outra
         $negativo = $diff->invert; // retorna 1 se o dia é passado e 0 se for presente o futuro
 
         if ($diferença != 0 && $negativo == 0){
-            return true;
+
+            if ($diferença == 1 && $horaConsulta > $timeNow) {
+                return true;
+            } else {
+                return false;
+            }
+            
         } else {
             return false;
         }
