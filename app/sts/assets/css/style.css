@@ -603,8 +603,9 @@ button:hover {
 
 .imgSCliente {
 	margin-top: 10px;
-	width: 8vw;
-	height: 14vh;
+	min-width: 8vw;
+	min-height: 14vh;
+	max-height: 14vh;
 	border-radius: 30px;
 	border: 1px solid #000;
 	object-fit: fill;
