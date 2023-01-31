@@ -17,7 +17,7 @@
     ?>
 
         <div class="usuariosAdm">
-            <img class="imgSCliente" src="<?= URL . IMGCLIENTEADM . $foto_usuario ?>">
+            <div> <img class="imgSCliente" src="<?= URL . IMGCLIENTEADM . $foto_usuario ?>"> </div>
             <div class="form-edição2">
                 <b> Nome: </b> <?= $nome_usuario ?> <br>
                 <b> E-mail: </b> <?= $email ?> <br>

@@ -567,10 +567,12 @@ button:hover {
 
 .imgSCliente {
 	margin-top: 10px;
-	width: 7vw;
-	height: 10vh;
-	border-radius: 20px;
-	border: 1px solid #000;
+    width: 120px;
+    min-height: 14vh;
+    max-height: 14vh;
+    border-radius: 30px;
+    border: 1px solid #000;
+    object-fit: fill;
 }
 
 .iconeEdita {

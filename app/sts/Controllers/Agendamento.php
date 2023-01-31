@@ -181,6 +181,7 @@ class Agendamento{
 
             $stsSobreCliente = new \Sts\Models\StsSobreCliente();
             $sts = new \Sts\Models\StsAgendamento();
+            
 
             // verifica se o id da consulta realmente pertence ao cliente
             if ($stsSobreCliente->verifyIdConsultaIsFromUser($idConsulta)) {
@@ -200,7 +201,6 @@ class Agendamento{
                 elseif ($sti_consulta == "Confirmado") {
 
                     // verifica se ainda restão 24 horas antes do horario marcado (so pode cancelar ate 24 horas de antecedência)
-                    // $sts->verifyDateConsulta($dataConsulta, $horaConsulta);
                     if ($sts->verifyDateConsulta($dataConsulta, $horaConsulta)) {
 
                         $new_sit_consulta['sit_consulta'] = "A Cancelar";
