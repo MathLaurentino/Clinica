@@ -41,11 +41,11 @@ if (!isset($_SESSION)) {
           $nascimento = substr($data_nascimento, 8) . "/" . substr($data_nascimento, 5, -3) . "/" . substr($data_nascimento, 0, -6);
           if (isset($_SESSION['foto_usuario'])) {
           ?>
-            <img class="imgSCliente" src="<?= URL . IMG . $foto_usuario ?>"> <!-- FOTO USUÁRIO -->
+            <div> <img class="imgSCliente" src="<?= URL . IMG . $foto_usuario ?>"> <!-- FOTO USUÁRIO --> </div>
           <?php
           } else {
           ?>
-            <img class="imgSCliente" src="<?= URL . IMGERRO ?>">
+            <div> <img class="imgSCliente" src="<?= URL . IMGERRO ?>"> </div>
           <?php
           }
           ?>
