@@ -206,7 +206,7 @@ class Agendamento{
                         $new_sit_consulta['sit_consulta'] = "A Cancelar";
                         $result = $sts->alterSitConsulta($idConsulta, $new_sit_consulta);
                         if ($result) {
-                            $_SESSION['msgGreen'] = "Solicitação de cancelamento de consulta realizado com sucesso.";
+                            $_SESSION['msg'] = "Solicitação de cancelamento de consulta realizado com sucesso.";
                         } else {
                             $_SESSION['msgRed'] = "Falha ao solicitar cancelamento de consulta, tente novamente mais tarde.";
                         }

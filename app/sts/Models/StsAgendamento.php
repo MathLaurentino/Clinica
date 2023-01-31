@@ -186,13 +186,12 @@ class StsAgendamento{
         $negativo = $diff->invert; // retorna 1 se o dia é passado e 0 se for presente o futuro
 
         if ($diferença != 0 && $negativo == 0){
-
-            if ($diferença == 1 && $horaConsulta > $timeNow) {
-                return true;
-            } else {
-                return false;
-            }
             
+            if ($diferença == 1 && $horaConsulta <= $timeNow)
+                return false;
+            else 
+                return true;
+         
         } else {
             return false;
         }
