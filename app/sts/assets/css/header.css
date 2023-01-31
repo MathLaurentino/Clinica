@@ -25,7 +25,7 @@ a:visited{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    max-width: 1500px;
+    max-width: 90vw;
     margin: 0 auto;
     flex-wrap: wrap;
     white-space: nowrap;
