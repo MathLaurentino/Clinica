@@ -10,7 +10,7 @@
     <section id="" class="apresentação">
 
 
-        <img src="<?= URL . IMGCLINICA ?>img01.png" alt="img cães" class="img" id="circulo">
+        <div> <img src="<?= URL . IMGCLINICA ?>img01.png" alt="img cães" class="img" id="circulo"> </div>
 
         <div class="introdução">
             <h1 class="título"> Invista na saúde e bem estar <br> do seu pet! </h1> <br> <br>
@@ -81,7 +81,7 @@
                 </div>
                 <div class="slide">
                 Dr. Matheus L.
-                    <img src="<?= URL . IMGCLINICA ?>img10.png" id="img-corpo" alt="">
+                    <img src="<?= URL . IMGCLINICA ?>img121.png" id="img-corpo" alt="">
                 </div>
 
                 <div class="navigation-auto">
