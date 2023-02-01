@@ -58,12 +58,12 @@ class FotoUsuario
 
                     } else { // se não conseguiu salvar na pasta assets/imagens
                         // recarrega a pagina mostrando o erro pro usuario 
-                        $header = URL . "Foto/Usuario"; 
+                        $header = URL . "SobreCliente/Dados"; 
                         header("Location: {$header}");
                     }
 
                 } else { // se a foto não segue as regras de negocio
-                    $header = URL . "Foto/Usuario"; 
+                    $header = URL . "SobreCliente/Dados"; 
                     header("Location: {$header}");
                 } 
 
@@ -133,11 +133,11 @@ class FotoUsuario
 
                 } else { // se não conseguiu salvar na pasta assets/imagens
                     // recarrega a pagina mostrando o erro pro usuario 
-                    $header = URL . "Foto/Usuario"; 
+                    $header = URL . "SobreCliente/Dados"; 
                     header("Location: {$header}");
                 }
             } else { // se a foto não segue as regras de negocio
-                $header = URL . "Foto/Usuario"; 
+                $header = URL . "SobreCliente/Dados"; 
                 header("Location: {$header}");
             } 
         }

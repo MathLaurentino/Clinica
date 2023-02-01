@@ -22,13 +22,13 @@ class StsFile
 
         if ($file['error']) // falha ao carregar arquivo
         {
-            $_SESSION['errFile'] = "Erro ao receber imagem";
+            $_SESSION['msgRed'] = "Erro ao receber imagem";
             return false;
         }
 
         elseif ($file['size'] > 2097152) // arquivo maior que 2 mg
         { 
-            $_SESSION['errFile'] = "Arquivo muito grande";
+            $_SESSION['msgRed'] = "Arquivo muito grande";
             return false;
         } 
 
@@ -38,7 +38,7 @@ class StsFile
             $extensao = strtolower(pathinfo($file['name'], PATHINFO_EXTENSION));
 
             if ($extensao != "jpg" && $extensao != "png") { // se não for um arquivo jpg ou png
-                $_SESSION['errFile'] = "tipo de arquivo não aceito";
+                $_SESSION['msgRed'] = "tipo de arquivo não aceito";
                 return false;
             } else {
                 return true; //$this->saveFile($extensao)

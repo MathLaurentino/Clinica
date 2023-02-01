@@ -43,7 +43,7 @@ class LoadView
         if (file_exists('app/' . $this->nameView . '.php')){
             
             include 'app\adms\Views\headers/' . $header . '.php'; 
-            // include 'app\sts\Views\helpers\aviso.php';
+            include 'app\adms\Views\helpers\alerts.php';
             include 'app/' . $this->nameView . '.php';
             include 'app/adms/views/helpers/footer.php';
 

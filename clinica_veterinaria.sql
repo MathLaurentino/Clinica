@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Fev-2023 às 03:39
+-- Tempo de geração: 01-Fev-2023 às 05:03
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -49,7 +49,8 @@ INSERT INTO `consulta` (`idconsulta`, `data_consulta`, `horario_consulta`, `desc
 (34, '2023-02-07', '18:00:00', 'Está muito agitado. Precisa ser castrado para relaxar!', 'A Confirmar', 27, 53),
 (35, '2023-02-09', '14:00:00', '', 'Cancelado', 21, 52),
 (36, '2023-02-01', '18:00:00', 'Apenas um check up.', 'Confirmado', 24, 57),
-(37, '2023-02-10', '15:00:00', 'Apenas um check up', 'A Cancelar', 23, 57);
+(37, '2023-02-10', '15:00:00', 'Apenas um check up', 'A Cancelar', 23, 57),
+(38, '2023-01-20', '18:00:00', 'Aparenta estar com dor nos dentes!', 'Concluido', 21, 52);
 
 -- --------------------------------------------------------
 
@@ -184,8 +185,7 @@ INSERT INTO `tipo_consulta` (`idtipo_consulta`, `nome_consulta`, `valor_consulta
 (21, 'Consulta Dentária', 150, 'Exame como dentista veterinário                   ', 'Ativo', '01:00:00', '63c9a565bc521.png'),
 (23, 'Exame De Sangue', 180, 'Exame sanguíneo do animal para verificar a saúde', 'Ativo', '01:00:00', '63acb6b131bcd.png'),
 (24, 'Consulta Médica', 200, 'Avaliação geral do animal por uma médico veterinário geral    ', 'Ativo', '02:00:00', '63acde444571f.png'),
-(27, 'Castração', 500, 'cirurgia de castração', 'Ativo', '02:00:00', '63b1e4393353d.png'),
-(31, 'Teste1', 150, 'teste1', 'Inativo', '02:00:00', NULL);
+(27, 'Castração', 500, 'cirurgia de castração', 'Inativo', '02:00:00', '63b1e4393353d.png');
 
 -- --------------------------------------------------------
 
@@ -215,7 +215,7 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`idusuario`, `nome_usuario`, `cpf`, `rg`, `data_nascimento`, `email`, `tipo_usuario`, `sit_usuario`, `endereco`, `foto_usuario`, `senha_usuario`, `chave`, `recuperar_senha`) VALUES
 (1, 'maria', '123', '123', '2022-09-28', 'maria@clinica.com', 'mantenedor', 'Ativo', 62, NULL, '$2y$10$Q6pkE2iA9fepKpF6EJqJeufYRIpjSQYxW5pmycYhfGiAbC7FCOQtS', NULL, NULL),
-(90, 'João Pedro Sgobero', '07894971406', '28289054898', '2000-11-29', 'joao@clinica.com', 'cliente', 'Ativo', 80, '63d9a12daaf26.jpg', '$2y$10$plYrgyWpu8TS.EEIQud7ZO4dP6/1m2/nnmr/9sGvRtrgcbAIhpKX6', NULL, '$2y$10$bk8puB4NlYTf86Y7uOuCj.dD11y4C3JAEeza08/dihsbt8Akqo2yy'),
+(90, 'João Pedro Sgobero', '07894971406', '28289054898', '2000-11-29', 'joao@clinica.com', 'cliente', 'Ativo', 80, '63d9e2d8b08db.jpg', '$2y$10$plYrgyWpu8TS.EEIQud7ZO4dP6/1m2/nnmr/9sGvRtrgcbAIhpKX6', NULL, '$2y$10$bk8puB4NlYTf86Y7uOuCj.dD11y4C3JAEeza08/dihsbt8Akqo2yy'),
 (100, 'Matheus Laurentino', '07894971405', '6749209475', '2003-11-29', 'matheus@clinica.com', 'cliente', 'Ativo', 79, '63d9a18a44987.jpg', '$2y$10$qPn34zTeSm3jlurOPONB8OVbBYNDCEvvoJHTqnYcQq0knQU7QNGr6', NULL, NULL),
 (104, 'Nicolas Herculano', '07894971423', '12345564543', '2001-02-02', 'nicolas@clinica.com', 'cliente', 'Ativo', 82, '63d9a20d4c5c4.jpg', '$2y$10$sUC4H/Iq1ejtbZMQiDvytubR33xtpPIiUxp/POou/iAPt2.JgvIji', NULL, NULL),
 (112, 'Lara Alanis', '03012402055', '679243578', '2004-07-21', 'lara@clinica.com', 'cliente', 'Ativo', 87, '63d9af2078284.jpg', '$2y$10$ZMDUKOoRVyMdCLWnCHoL0O6dZnZGLqHiJL/8meCcxKLdgHM1xomHS', NULL, NULL);
@@ -273,7 +273,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT de tabela `endereco`
@@ -285,7 +285,7 @@ ALTER TABLE `endereco`
 -- AUTO_INCREMENT de tabela `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
+  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT de tabela `raca_pet`
@@ -297,7 +297,7 @@ ALTER TABLE `raca_pet`
 -- AUTO_INCREMENT de tabela `tipo_consulta`
 --
 ALTER TABLE `tipo_consulta`
-  MODIFY `idtipo_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `idtipo_consulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de tabela `usuario`

@@ -33,60 +33,67 @@ class FotoServico
      */
     public function adicionar(): void
     {
+        if (!isset($_FILES['arquivo'])) {
+            $this->view("fotoServico");
+        } 
+        else {
 
-        if (isset($_GET['idservico'])) {
-            $this->idservico = $_GET['idservico'];
-        }   
+            if (isset($_GET['idservico'])) {
 
-        $AdmsFotoServico = new \Adms\Models\AdmsFotoServico();
-
-        // verifica se o id do servico passado pela URL existe no banco de dados
-        if ($AdmsFotoServico->verifyIdServico($this->idservico)) {
+                $this->idservico = $_GET['idservico'];
+    
+                $AdmsFotoServico = new \Adms\Models\AdmsFotoServico();
+                // verifica se o id do servico passado pela URL existe no banco de dados
+                if ($AdmsFotoServico->verifyIdServico($this->idservico)) {
             
-            if (!isset($_FILES['arquivo'])) {
-                $this->view("fotoServico");
-            } 
-            
-            else {
-                $admsFile = new \Adms\Models\helpers\AdmsFile();
-                
-                if ($admsFile->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
+                    $admsFile = new \Adms\Models\helpers\AdmsFile();
                     
-                    $nameInDB = $admsFile->saveFile($_FILES['arquivo']);
-
-                    if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
-                        $this->data = ['foto_servico' => $nameInDB];
-
-                        $admsCreate= new \Adms\Models\AdmsFotoServico();
-                        $result = $admsCreate->cadastroFoto($this->data, $this->idservico);
-
-                        if ($result) { // se salvar corretamente no BD
-                            $_SESSION['msgGreen'] = "Foto salva com sucesso";
+                    if ($admsFile->verifyFile($_FILES['arquivo'])) { // se a foto segue as regras de negocio
+                        
+                        $nameInDB = $admsFile->saveFile($_FILES['arquivo']);
+    
+                        if (!empty($nameInDB)) { // se conseguiu salvar na pasta assets/imagens
+                            $this->data = ['foto_servico' => $nameInDB];
+    
+                            $admsCreate= new \Adms\Models\AdmsFotoServico();
+                            $result = $admsCreate->cadastroFoto($this->data, $this->idservico);
+    
+                            if ($result) { // se salvar corretamente no BD
+                                $_SESSION['msgGreen'] = "Foto salva com sucesso";
+                                $header = URLADM . "Servicos/Clinica"; 
+                                header("Location: {$header}");
+                            } else { // se não salvar corretamente no BD
+                                $header = URLADM . "Erro?case=13"; // Erro 013
+                                header("Location: {$header}");
+                            }
+    
+                        } else { // se não conseguiu salvar na pasta assets/imagens
+                            // recarrega a pagina mostrando o erro pro usuario 
                             $header = URLADM . "Servicos/Clinica"; 
                             header("Location: {$header}");
-                        } else { // se não salvar corretamente no BD
-                            $header = URLADM . "Erro?case=13"; // Erro 013
-                            header("Location: {$header}");
                         }
-
-                    } else { // se não conseguiu salvar na pasta assets/imagens
-                        // recarrega a pagina mostrando o erro pro usuario 
-                        $header = URLADM . "FotoServico/adicionar"; 
+    
+                    } else {
+                        //$_SESSION['msgRed'] = "Arquivo com problemas, tente outro";
+                        $header = URLADM . "Servicos/Clinica"; 
                         header("Location: {$header}");
                     }
-
+                    
+    
                 } else {
-                    $_SESSION['msgRed'] = "Arquivo com problemas, tente outro";
-                    $header = URLADM . "FotoServico/adicionar"; 
+                    $_SESSION['msgRed'] = "id do serviço inválido!";
+                    $header = URLADM . "Servicos/Clinica"; 
                     header("Location: {$header}");
                 }
+    
+            } else {
+                $_SESSION['msgRed'] = "id do serviço não encontrado!";
+                $header = URLADM . "Servicos/Clinica"; 
+                header("Location: {$header}");
             }
 
-        } else {
-            $_SESSION['msgRed'] = "id de serviço não encontrado";
-            $header = URLADM . "SobreClinica"; 
-            header("Location: {$header}");
         }
+
     }
 
 
