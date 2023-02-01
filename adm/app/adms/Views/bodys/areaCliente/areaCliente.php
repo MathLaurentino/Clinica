@@ -103,17 +103,9 @@
         </div>
 
     <?php
-        }} elseif ($_SESSION['idusuario'] != $idusuario) {
-            if ($idusuario != 1) {
-    ?>
-        <div class="estilizaUsuariosAdm">
-            <div class="alinhaPadding2"> 
-                <a href="<?= URLADM ?>Area-Clientes/alterar-Sit-Usuario?idUser=<?= $idusuario ?>&sit=<?= $sit_usuario ?>"> <button class="btn-usuariosAdmBlock"> <?= $textoBnt2 ?>  </button> </a>
-            </div>
-        </div>
-    <?php
         }}
     ?>
+
 
         <hr class="linha2"> <!-- LINHA PARA DIVIDIR CONTEÚDO -->
 

@@ -98,7 +98,7 @@
                 <label for="radio1" class="manual-btn"></label>
                 
                 <div class="afasta2">
-                    <label for="radio2" class="manual-btn"></label>
+                     <label for="radio2" class="manual-btn"></label> </a>
                 </div>
 
                 <div class="afasta3">

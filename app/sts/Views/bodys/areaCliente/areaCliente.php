@@ -166,7 +166,7 @@ if (!isset($_SESSION)) {
 
             <div class="areaCliente">
 
-              <img class="imgSCliente" src="<?= URL . IMG . $img_pet ?>">
+              <div> <img class="imgSCliente" src="<?= URL . IMG . $img_pet ?>"> </div>
 
               <div class="form-edição2">
                 <b> Nome: </b> <?= $nome_pet ?> <br>

@@ -82,7 +82,7 @@ class AreaClientes
             }
 
         } else {
-            $_SESSION['msgRed'] = "Erro, Nivel de mantenedor insuficiente!";
+            $_SESSION['msgRed'] = "Erro: nível de mantenedor insuficiente!";
         }
         
         $header = URLADM . "AreaClientes/dados"; 
@@ -98,51 +98,49 @@ class AreaClientes
      */
     public function alterarSitUsuario(): void
     {
-        if (isset($_GET['idUser']) && isset($_GET['sit'])) {
+        if ($_SESSION['idusuario'] == 1) {
 
-            $idUser = $_GET['idUser'];
-            $sit = $_GET['sit'];
-            $modelSobreCliente = new \Adms\Models\AdmsSobreClientes();
+            if (isset($_GET['idUser']) && isset($_GET['sit'])) {
 
-            if ($sit == "Ativo" || $sit == "Inativo" && $sit == $modelSobreCliente->getSitUser($idUser)) {
+                $idUser = $_GET['idUser'];
+                $sit = $_GET['sit'];
+                $modelSobreCliente = new \Adms\Models\AdmsSobreClientes();
 
-                if ($sit == "Ativo") 
-                $converte = "Inativo";
+                if ($sit == "Ativo" || $sit == "Inativo" && $sit == $modelSobreCliente->getSitUser($idUser)) {
 
-                elseif($sit == "Inativo")
-                    $converte = "Ativo";
-                    
-                if ($modelSobreCliente->verifyIfUserExist($idUser) && $modelSobreCliente->verifyIfUserIsNotConfirmando($idUser) && $idUser != 1 && $_SESSION['idusuario'] != $idUser) {
+                    if ($sit == "Ativo") 
+                    $converte = "Inativo";
 
-                    $alterSit['sit_usuario'] = $converte;
+                    elseif($sit == "Inativo")
+                        $converte = "Ativo";
+                        
+                    if ($modelSobreCliente->verifyIfUserExist($idUser) && $modelSobreCliente->verifyIfUserIsNotConfirmando($idUser) && $idUser != 1 && $_SESSION['idusuario'] != $idUser) {
 
-                    if ($modelSobreCliente->changeUserAttributes($idUser, $alterSit)) 
-                        $_SESSION['msgGreen'] = "Sit_Usuario alterado com sucesso!"; 
+                        $alterSit['sit_usuario'] = $converte;
 
-                    else 
-                        $_SESSION['msgRed'] = "Falha ao alterar Sit_Usuario!";  
-                    
+                        if ($modelSobreCliente->changeUserAttributes($idUser, $alterSit)) 
+                            $_SESSION['msgGreen'] = "Sit_Usuario alterado com sucesso!"; 
+
+                        else 
+                            $_SESSION['msgRed'] = "Falha ao alterar Sit_Usuario!";  
+                        
+                    } else {
+                        $_SESSION['msgRed'] = "Erro, usuário inválido!";  
+                    }
+
                 } else {
-                    $_SESSION['msgRed'] = "Erro, usuário inválido!";  
+                    $_SESSION['msgRed'] = "Erro, informações inválidas!";
                 }
 
             } else {
-                $_SESSION['msgRed'] = "Erro, informações inválidas!";
+                $_SESSION['msgRed'] = "Erro, falta de informações!";
             }
 
         } else {
-            $_SESSION['msgRed'] = "Erro, falta de informações!";
+            $_SESSION['msgRed'] = "Erro: nível de mantenedor insuficiente!";
         }
 
         $header = URLADM . "AreaClientes/dados"; 
-        header("Location: {$header}");
-    }
-
-
-    // Redireciona o usuario para a mesma página
-    private function header() 
-    {
-        $header = URLADM . "Sobre-Clientes"; 
         header("Location: {$header}");
     }
 

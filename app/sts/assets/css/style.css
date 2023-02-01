@@ -613,12 +613,11 @@ button:hover {
 
 .imgSCliente {
 	margin-top: 10px;
-	min-width: 8vw;
-	min-height: 14vh;
-	max-height: 14vh;
-	border-radius: 30px;
-	border: 1px solid #000;
-	object-fit: fill;
+    width: 135px;
+    height: 120px;
+    border-radius: 30px;
+    border: 1px solid #000;
+    object-fit: fill;
 }
 
 

@@ -5,9 +5,9 @@
     class="endereco"> <i class="fa fa-map-marker fa-1x" aria-hidden="true" ></i> Rua Marmota 260 - Foz do Iguaçu, PR</a>
 
     <nav class="informações">
-        <a href="#"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>
-        <a href="#"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
-        <a href="#"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i></a>
+        <a href="https://api.whatsapp.com/send?phone=554598540787" target="_blank"><i class="fa fa-whatsapp fa-2x" aria-hidden="true"></i></a>
+        <a href="https://www.instagram.com/_laraalanis/" target="_blank"><i class="fa fa-instagram fa-2x" aria-hidden="true"></i></a>
+        <a href="mailto:laralanis6@gmail.com" target="_blank"><i class="fa fa-envelope-o fa-2x" aria-hidden="true"></i></a>
     </nav>
 
     <p class="direitos">direitos autorais</p>
