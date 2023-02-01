@@ -16,6 +16,7 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
+    width: 100vw;
     background-color: #ECEFF1;
 }
 
@@ -29,6 +30,7 @@
     height: 70vh;
     position: relative;
 }
+
 
 .main-container2{
     display: flex;
@@ -126,11 +128,13 @@ input[type="file"]{
 .main-container .conteudo01{
     display: flex;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .main-container .primeiracoluna{
     text-align: center;
-    width: 50%;
+    width:50%;
+
 }
 
 .conteudo01 .primeiracoluna{
@@ -149,8 +153,8 @@ input[type="file"]{
 }
 
 .primeiracoluna .imagemPet{
-    width: 25vw;
-    height: 65vh;
+    max-width: 34vw;
+    max-height: 65vh;
     margin-top: 5vh;
 }
 
@@ -285,4 +289,76 @@ input[type="file"]{
     display: flex;
     align-items: flex-start;
     position: absolute;
+}
+
+@media (max-width: 850px) {
+    .main-container .conteudo{
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: white;
+        border-radius: 20px;
+        width: 100vw;
+        height: 90vh;
+        position: relative;
+    }
+    .main-container .conteudo01{
+        display: flex;
+        align-items: flex-start;
+
+    }
+    .main-container .conteudo::before{
+        display: none;
+    
+    }
+
+    
+    .main-container .segundacoluna{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+
+    .main-container .primeiracoluna{
+        display: none;
+    }
+
+    .main-container .segundacoluna{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+    }
+    
+    .segundacoluna .título{
+        font-family: 'Righteous', cursive;
+        font-size: 45px;
+        color: black;
+        padding-top: 25px;
+    }
+    
+    .segundacoluna .subtítulo{
+        font-family: 'Righteous', cursive;
+        font-size: 30px;
+        color: rgb(0, 0, 0);   
+        
+    }
+    
+    .main-container .form-cadastroPet{
+        font-family: 'Open Sans', sans-serif;
+        width: 70%;
+     font-size: 30px;
+     margin-top: 4vh;
+    
+    }
+
+    .tamanhoForm{
+        width: 45vw;
+    }
 }

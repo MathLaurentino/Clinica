@@ -14,7 +14,7 @@ if(!isset($_SESSION)){
     <div class="conteudo conteudo01">
 
         <div class="primeiracoluna">
-            <img class="imagemPet" src="<?= URL . IMGCLINICA ?>img05.png">
+            <img class="imagemPet" src="<?= URL . IMGCLINICA ?>img05.png"> 
         </div>
 
         <div class="segundacoluna">
@@ -25,7 +25,7 @@ if(!isset($_SESSION)){
             
             <form method="post" class="form-cadastroPet">
                 <h4 class="subtítulo"> Qual a espécie do seu pet?</h4>
-                <input type="radio" value="cachorro" name="animal">
+                <input type="radio" value="cachorro" name="animal" required>
                 <label>Cachorro</label> <br>
     
                 <input type="radio" value="gato" name="animal">
