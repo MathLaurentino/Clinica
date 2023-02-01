@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 01-Fev-2023 às 01:44
+-- Tempo de geração: 01-Fev-2023 às 03:39
 -- Versão do servidor: 10.4.27-MariaDB
 -- versão do PHP: 8.2.0
 
@@ -49,9 +49,7 @@ INSERT INTO `consulta` (`idconsulta`, `data_consulta`, `horario_consulta`, `desc
 (34, '2023-02-07', '18:00:00', 'Está muito agitado. Precisa ser castrado para relaxar!', 'A Confirmar', 27, 53),
 (35, '2023-02-09', '14:00:00', '', 'Cancelado', 21, 52),
 (36, '2023-02-01', '18:00:00', 'Apenas um check up.', 'Confirmado', 24, 57),
-(37, '2023-02-10', '15:00:00', 'Apenas um check up', 'A Cancelar', 23, 57),
-(38, '2023-02-02', '15:00:00', 'Apenas uma check up!', 'A Confirmar', 24, 60),
-(39, '2023-02-01', '17:00:00', 'teste', 'A Confirmar', 27, 60);
+(37, '2023-02-10', '15:00:00', 'Apenas um check up', 'A Cancelar', 23, 57);
 
 -- --------------------------------------------------------
 
@@ -77,14 +75,8 @@ INSERT INTO `endereco` (`idendereco`, `cep`, `rua`, `numero_residencial`, `bairr
 (62, '123434', '123', '123', '', 'Foz do Iguaçu', 'Parana'),
 (79, '85861090', 'Rua Marmota Vila Residencial A', '260', 'Itaipu A', 'Foz do Iguaçu', 'PR'),
 (80, '85863767', 'PR', '89', 'Foz do Iguaçu', 'Polo Centro', 'Rua Manoel Alves dos Santos Alto São Francisco'),
-(81, '85861090', 'Rua Marmota', '300', 'Itaipu A', 'Foz do Iguaçu', 'PR'),
 (82, '85861090', 'Rua Marmota', '260', 'Itaipu A', 'Foz do Iguaçu', 'PR'),
-(83, '85861090', '', '', '', '', ''),
-(84, 'effe', '', '', '', '', ''),
-(85, 'dede', '', '', '', '', ''),
-(86, '85861090', 'Rua Marmota Vila Residencial A', '120', 'Itaipu A', 'Foz do Iguaçu', 'PR'),
-(87, '85861500', 'Rua Ourinhos Jardim Ana Cristina', '432', 'Lancaster', 'Foz do Iguaçu', 'PR'),
-(88, '85867060', 'Rua das Acácias Conjunto B', '200', 'Itaipu B', 'Foz do Iguaçu', 'PR');
+(87, '85861500', 'Rua Ourinhos Jardim Ana Cristina', '432', 'Lancaster', 'Foz do Iguaçu', 'PR');
 
 -- --------------------------------------------------------
 
@@ -115,8 +107,7 @@ INSERT INTO `pet` (`idpet`, `nome_pet`, `data_nascimento_pet`, `sexo`, `imagem_p
 (56, 'Sofia', '2017-01-01', 'Fêmea', '63d9a1e81cd1e.jpg', NULL, 24, 100),
 (57, 'Luna', '2018-01-01', 'Fêmea', '63d9a232b2853.jpg', NULL, 14, 104),
 (58, 'Branquinha', '2018-10-01', 'Fêmea', '63d9a360e7af7.jpg', NULL, 14, 112),
-(59, 'Mel', '2017-10-01', 'Fêmea', '63d9a37a0648d.jpg', NULL, 14, 112),
-(60, 'Elvis', '2008-01-01', 'Macho', '63d9b52a175d3.jpg', '63d9b536f2957.jpg', 36, 113);
+(59, 'Mel', '2017-10-01', 'Fêmea', '63d9a37a0648d.jpg', NULL, 14, 112);
 
 -- --------------------------------------------------------
 
@@ -227,8 +218,7 @@ INSERT INTO `usuario` (`idusuario`, `nome_usuario`, `cpf`, `rg`, `data_nasciment
 (90, 'João Pedro Sgobero', '07894971406', '28289054898', '2000-11-29', 'joao@clinica.com', 'cliente', 'Ativo', 80, '63d9a12daaf26.jpg', '$2y$10$plYrgyWpu8TS.EEIQud7ZO4dP6/1m2/nnmr/9sGvRtrgcbAIhpKX6', NULL, '$2y$10$bk8puB4NlYTf86Y7uOuCj.dD11y4C3JAEeza08/dihsbt8Akqo2yy'),
 (100, 'Matheus Laurentino', '07894971405', '6749209475', '2003-11-29', 'matheus@clinica.com', 'cliente', 'Ativo', 79, '63d9a18a44987.jpg', '$2y$10$qPn34zTeSm3jlurOPONB8OVbBYNDCEvvoJHTqnYcQq0knQU7QNGr6', NULL, NULL),
 (104, 'Nicolas Herculano', '07894971423', '12345564543', '2001-02-02', 'nicolas@clinica.com', 'cliente', 'Ativo', 82, '63d9a20d4c5c4.jpg', '$2y$10$sUC4H/Iq1ejtbZMQiDvytubR33xtpPIiUxp/POou/iAPt2.JgvIji', NULL, NULL),
-(112, 'Lara Alanis', '03012402055', '679243578', '2004-07-21', 'lara@clinica.com', 'cliente', 'Ativo', 87, '63d9af2078284.jpg', '$2y$10$ZMDUKOoRVyMdCLWnCHoL0O6dZnZGLqHiJL/8meCcxKLdgHM1xomHS', NULL, NULL),
-(113, 'Marcela', '50680816046', '374788236', '1995-01-01', 'marcela@clinica.com', 'cliente', 'Ativo', 88, '63d9b4e1c89bf.jpg', '$2y$10$r09KSECKTg2m0Mqhxd7bjOY5mPKH0QVFTgRtIA.Xq77rpfYjSAckS', NULL, NULL);
+(112, 'Lara Alanis', '03012402055', '679243578', '2004-07-21', 'lara@clinica.com', 'cliente', 'Ativo', 87, '63d9af2078284.jpg', '$2y$10$ZMDUKOoRVyMdCLWnCHoL0O6dZnZGLqHiJL/8meCcxKLdgHM1xomHS', NULL, NULL);
 
 --
 -- Índices para tabelas despejadas
@@ -283,19 +273,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de tabela `consulta`
 --
 ALTER TABLE `consulta`
-  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `idconsulta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de tabela `endereco`
 --
 ALTER TABLE `endereco`
-  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
+  MODIFY `idendereco` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
 
 --
 -- AUTO_INCREMENT de tabela `pet`
 --
 ALTER TABLE `pet`
-  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `idpet` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT de tabela `raca_pet`
@@ -313,7 +303,7 @@ ALTER TABLE `tipo_consulta`
 -- AUTO_INCREMENT de tabela `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=114;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- Restrições para despejos de tabelas
